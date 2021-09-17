@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: AA;
-    src: url(/font/HanyiSentyBubbleTea.ttf);
+    src: url(../font/HanyiSentyBubbleTea.ttf);
 }
 
 * {
@@ -84,12 +84,12 @@ h2 {
 }
 
 .papper li .backpic {
-    background-image: url(/images/11.jfif);
+    background-image: url(../image/11.jfif);
     background-size: cover;
 }
 
 .papper li .backpic2 {
-    background-image: url(/images/13.jfif);
+    background-image: url(../image/13.jfif);
     background-size: cover;
     margin-right: 0px;
 }
