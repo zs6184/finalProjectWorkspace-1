@@ -1,0 +1,66 @@
+﻿body {
+    height: 3000px;
+    background-color: rgb(240, 245, 240);
+}
+
+@font-face {
+    font-family: AA;
+    src: url(/font/HanyiSentyBubbleTea.ttf);
+}
+
+* {
+    font-family: AA;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+    margin-top:10px;
+}
+
+#topbar {
+    overflow: hidden;
+    z-index: 2;
+    background-color: rgb(240, 245, 240);
+}
+
+a:hover {
+    color: gray;
+}
+
+.sticky{
+    position:fixed;
+    top:0px;
+    width:100%;
+}
+
+.col-12 li {
+    float: right;
+    height: 88px;
+    padding: 0 65px;
+}
+
+.banner-area {
+    position: relative;
+    z-index: 1;
+    height: 300px;
+}
+    .banner-area .banner-content h2{
+        font-size:48px;
+        padding:10px 15px ;
+        margin-bottom:0;
+        background-color:#000000;
+        color:honeydew;
+        display:inline-block;
+        line-height:1;
+    }
+.bg-img {
+    background-position: center bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
