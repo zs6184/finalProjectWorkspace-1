@@ -1,0 +1,97 @@
+﻿header {
+    background-color: #ffffff;
+}
+
+.containerAll {
+    display: flex;
+    align-items: stretch;
+
+}
+#sidebar {
+    width: 250px;
+    background-color: white;
+    color: #ADADAD;
+    transition: 0.4s;
+}
+.containerRight {
+    background-color: #eeeeee;
+    width: 100%;
+    /*z-index:-1;*/
+    /*會造成右邊欄不能使用，但是這樣看不到陰影*/
+}
+.box {
+    height:700px;
+}
+.collapseBtn {
+    background-color: white;
+    color: #ADADAD;
+    border: none;
+    font-size: 30px;
+}
+.collapseBtn:hover {
+    background-color: #F0F0F0;
+    /*transition:0.6s;*/
+}
+.colorGray ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    color: #4F4F4F;
+    text-decoration:none;
+}
+.colorGray ul li a:hover {
+        background-color: #F0F0F0;
+    }
+
+.clickA ul li a {
+    background-color: #9999CC !important;
+    color: white !important;
+}
+.clickA{
+    background-color: #9999CC !important;
+    color: white !important;
+}
+.image{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    padding:0;
+    margin:0;
+    border:3px solid white;
+}
+.imageMessage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+    margin-right:10px;
+    border: 3px solid white;
+}
+#navIcon {
+    font-size:2em;
+    color:black;
+}
+.btn-transparent {
+    background-color: white;
+    outline: none;
+    border: none;
+}
+
+.dropdown-item{
+    text-align:center;
+    font-size:20px;
+    padding:10px;
+}
+.dropdown {
+    float: right;
+}
+#dropdownButton{
+    display:block;
+}
+
+
+
+
+
+
