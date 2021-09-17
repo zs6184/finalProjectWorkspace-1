@@ -16,20 +16,15 @@
         }
     });
 
-    //$("ul li a").on("click", function () {
-        //if ($(this).hasClass("background-c")) {
-        //    $(this).css({ "background-color": "" }).css({ "color": "" });
-        //    $(this).removeClass("background-c");
-        //} else {
-        //    $(this).addClass("background-c").siblings().removeClass("background-c");
-        //    $(this).css({ "background-color": "#9999CC" }).css({ "color": "white" });
-        //    $(this).addClass("background-c").siblings().removeClass("background-c");
-        //$(this).addClass("clickA").siblings().removeClass("clickA");
+    $(".list-unstyled li").on("click", function () {
+        //.list-unstyled li子元素下的a新增class，回到父元素，
+        //遍歷父元素尋找除自己以外的同層元素，再進到子元素移除class
+        $(this).find("a").addClass("sidebarLight01").parent().siblings().find("a").removeClass("sidebarLight01");
+    });
 
-        //}
-
-    //});
-
-
+    $(".collapse li").on("click", function () {
+        $(this).find("a").addClass("sidebarLight02").parent().siblings().find("a").removeClass("sidebarLight02");
+        
+    });
 
 });
