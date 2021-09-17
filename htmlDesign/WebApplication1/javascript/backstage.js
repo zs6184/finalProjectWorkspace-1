@@ -22,9 +22,5 @@
         $(this).find("a").addClass("sidebarLight01").parent().siblings().find("a").removeClass("sidebarLight01");
     });
 
-    $(".collapse li").on("click", function () {
-        $(this).find("a").addClass("sidebarLight02").parent().siblings().find("a").removeClass("sidebarLight02");
-        
-    });
 
 });

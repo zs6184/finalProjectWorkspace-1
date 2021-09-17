@@ -90,9 +90,11 @@
     display:block;
 }
 
-.sidebarLight01, .sidebarLight02 {
+.sidebarLight01,
+.sidebarLight02{
     background-color: #e6e6e7;
 }
+
 
 
 
