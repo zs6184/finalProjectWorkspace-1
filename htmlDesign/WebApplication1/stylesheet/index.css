@@ -48,6 +48,10 @@ li {
         color:white;
     }
     
+.sticky a:hover{
+       color:gray
+      
+    }
     .col-12 li {
         float: right;
         height: 60px;
@@ -59,6 +63,12 @@ li {
 
 
 /* 2 */
+.papper{
+    text-align: center;
+    padding-left: 85px;
+}
+
+
 .papper li {
     float: left;
     height: 460px;
