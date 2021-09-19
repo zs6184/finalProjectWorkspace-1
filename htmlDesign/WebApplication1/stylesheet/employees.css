@@ -5,3 +5,7 @@
 .table{
     text-align:center;
 }
+textarea {
+    resize:none;
+    height:125px;
+}

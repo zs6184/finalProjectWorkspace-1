@@ -237,11 +237,11 @@
                                                 <div class="row">
                                                     <div class="offset-1 col-4">
                                                         <label for="empName" class="form-label">姓名:</label>
-                                                        <input id="empName" name="empName" type="text" class="form-control  mb-3" autocomplete="off" autofocus required/>
+                                                        <input id="empName" name="empName" type="text" class="form-control  mb-3" autocomplete="off" autofocus required />
 
                                                     </div>
                                                     <div class="offset-2 col-4 d-flex align-items-center">
-                                                        <label for="male" class="form-check-label" >性別:</label>
+                                                        <label for="male" class="form-check-label">性別:</label>
                                                         <input id="male" name="gender" type="radio" class="form-check-input mx-2" required />
                                                         <label for="male">男</label>
                                                         <input id="female" name="gender" type="radio" class="form-check-input mx-2" />
@@ -251,34 +251,34 @@
                                                 <div class="row">
                                                     <div class="offset-1 col-4">
                                                         <label for="phoneNumber" class="form-label">連絡電話:</label>
-                                                        <input id="phoneNumber" name="phoneNumber" max="10" pattern="[0]{1}[9]{1}\d{8}" type="tel" class="form-control  mb-3" autocomplete="off" required/>
+                                                        <input id="phoneNumber" name="phoneNumber" max="10" pattern="[0]{1}[9]{1}\d{8}" type="tel" class="form-control  mb-3" autocomplete="off" required />
 
                                                     </div>
                                                     <div class="offset-2 col-4">
                                                         <label for="birthdate" class="form-label">生日:</label>
-                                                        <input id="birthdate" name="birthdate" type="date" class="form-control  mb-3" required/>
+                                                        <input id="birthdate" name="birthdate" type="date" class="form-control  mb-3" required />
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="offset-1 col-4">
                                                         <label for="" class="form-label">職稱:</label>
                                                         <select class="form-select" required>
-                                                          <option selected></option>
-                                                          <option value="waiter">服務生</option>
-                                                          <option value="senior waiter">資深服務生</option>
-                                                          <option value="assistant chef">廚房助手</option>
-                                                          <option value="chef">廚師</option>
-                                                          <option value="store manager">店長</option>
+                                                            <option selected></option>
+                                                            <option value="waiter">服務生</option>
+                                                            <option value="senior waiter">資深服務生</option>
+                                                            <option value="assistant chef">廚房助手</option>
+                                                            <option value="chef">廚師</option>
+                                                            <option value="store manager">店長</option>
                                                         </select>
 
                                                     </div>
                                                     <div class="offset-2 col-4">
                                                         <label for="hiredate" class="form-label">到職日:</label>
-                                                        <input id="hiredate" name="hiredate" type="date" class="form-control  mb-3" required/>
+                                                        <input id="hiredate" name="hiredate" type="date" class="form-control  mb-3" required />
                                                     </div>
                                                     <div class="offset-1 col-7">
                                                         <label for="address" class="form-label">地址:</label>
-                                                        <input id="address" name="address" type="text" class="form-control  mb-3" autocomplete="off" required/>
+                                                        <input id="address" name="address" type="text" class="form-control  mb-3" autocomplete="off" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -292,7 +292,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-8 ">
                             <nav aria-label="Page navigation">
                                 <ul class="pagination justify-content-center">
@@ -336,7 +336,7 @@
                                         <td>2020/09/09</td>
                                         <td>高雄市苓雅區四維三路2號高雄市苓雅區四維三路2號</td>
                                         <td>長期曠職</td>
-                                        <td><button type="button" class="btn btn-danger">更新</button></td>
+                                        <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#empUpdataModal">更新</button></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
@@ -370,6 +370,68 @@
                         </div>
                     </div>
                 </div>
+                <!-- 員工資料更新modal -->
+                <div class="modal fade" id="empUpdataModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg ">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="exampleModalLabel">員工資料</h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <form action="#" method="post">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <!-- left -->
+                                        <div class="offset-1 col-4">
+                                            <div class="ratio ratio-1x1 mt-1 mb-3">
+                                                <img src="image/m2.jpg" class="rounded-3 shadow" />
+                                            </div>
+                                            <label for="empNameUpdata" class="form-label">姓名:</label>
+                                            <input id="empNameUpdata" name="empNameUpdata" type="text" class="form-control mb-3" value="賈斯汀" disabled />
+                                            <label for="hiredateUpdata" class="form-label">到職日:</label>
+                                            <input id="hiredateUpdata" name="hiredateUpdata" type="date" class="form-control mb-3" value="2020-09-09" disabled />
+                                            <label for="" class="form-label">職稱:</label>
+                                            <select class="form-select mb-3" required>
+                                                <option value="waiter">服務生</option>
+                                                <option value="senior waiter">資深服務生</option>
+                                                <option value="assistant chef">廚房助手</option>
+                                                <option value="chef">廚師</option>
+                                                <option value="store manager">店長</option>
+                                            </select>
+                                        </div>
+                                        <!-- right -->
+                                        <div class="offset-1 col-5">
+                                            <label for="genderUpdata" class="form-label">性別:</label>
+                                            <input id="genderUpdata" name="genderUpdata" type="text" class="form-control mb-3" value="男" disabled />
+                                            <label for="phoneNumberUpdata" class="form-label">連絡電話:</label>
+                                            <input id="phoneNumberUpdata" name="phoneNumberUpdata" type="tel" class="form-control mb-3" value="0987654321" disabled />
+                                            <label for="birthdateUpdata" class="form-label">生日:</label>
+                                            <input id="birthdateUpdata" name="birthdateUpdata" type="date" class="form-control mb-3" value="1990-12-31" disabled />
+                                            <label for="addressUpdata" class="form-label">地址:</label>
+                                            <input id="addressUpdata" name="addressUpdata" type="text" class="form-control mb-3" value="高雄市苓雅區四維三路2號高雄市苓雅區四維三路2號" disabled />
+                                            <label for="notesUpdata" class="form-label">備註:</label>
+                                            <textarea id="notesUpdata" name="notesUpdata" class="form-control mb-3">長期曠職</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="offset-5 col">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                                                <button type="submit" class="btn btn-primary">完成</button>
+                                            </div>
+                                            <div class="offset-2 col-2">
+                                                <button type="button" class="btn btn-danger">刪除帳號</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 分頁按鈕 -->
                 <div class="page">
                     <nav aria-label="Page navigation">
