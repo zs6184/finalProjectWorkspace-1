@@ -254,7 +254,7 @@
                                         <td>高雄市前金區中正四路211號8號樓之1</td>
                                         <td>0</td>
                                         <td></td>
-                                        <td><button type="button" class="btn btn-danger">更新</button></td>
+                                        <td><button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#memberUpdataModal">更新</button></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
@@ -287,6 +287,83 @@
                                 </tbody>
                             </table>
 
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 會員資料更新modal -->
+                <div class="modal fade" id="memberUpdataModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg ">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="memberModalLabel">會員資料</h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <form action="#" method="post">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <!-- left -->
+                                        <div class="offset-1 col-4">
+                                            <div class="ratio ratio-1x1 mt-1 mb-3">
+                                                <img src="image/m6.jpg" class="rounded-3 shadow" />
+                                            </div>
+                                            <div class="row">
+                                                <div class="col text-center">
+                                                    <h5><span class="badge bg-warning text-dark">VIP</span></h5>
+                                                </div>
+                                                <div class="col text-center">
+                                                    <h5><span class="badge bg-warning text-dark">超級有錢人</span></h5>
+                                                </div>                                                
+                                                <div class="col text-center">
+                                                    <h5><span class="badge bg-warning text-dark">富二代</span></h5>
+                                                </div>                                                
+                                                <div class="col text-center">
+                                                    <h5><span class="badge bg-warning text-dark">花花公子</span></h5>
+                                                </div>                                                
+                                                <div class="col text-center">
+                                                    <h5><span class="badge bg-warning text-dark">帥</span></h5>
+                                                </div>
+                                            </div>
+                                            <label for="empNameUpdata" class="form-label mt-5">姓名:</label>
+                                            <input id="empNameUpdata" name="empNameUpdata" type="text" class="form-control mb-3" value="王小明" disabled />
+                                            <label for="phoneNumberUpdata" class="form-label">連絡電話:</label>
+                                            <input id="phoneNumberUpdata" name="phoneNumberUpdata" type="tel" class="form-control mb-3" value="0912345678" disabled />
+                                        </div>
+                                        <!-- right -->
+                                        <div class="offset-1 col-5">
+
+                                            <label for="userNameUpdata" class="form-label">暱稱:</label>
+                                            <input id="userNameUpdata" name="userNameUpdata" type="text" class="form-control mb-3" value="小明" disabled />
+                                            <label for="genderUpdata" class="form-label">性別:</label>
+                                            <input id="genderUpdata" name="genderUpdata" type="text" class="form-control mb-3" value="男" disabled />
+                                            <label for="birthdateUpdata" class="form-label">生日:</label>
+                                            <input id="birthdateUpdata" name="birthdateUpdata" type="date" class="form-control mb-3" value="1970-01-01" disabled />
+                                            <label for="emailUpdata" class="form-label">E-mail:</label>
+                                            <input id="emailUpdata" name="emailUpdata" type="email" class="form-control mb-3" value="aaa@gmail.com" disabled />
+                                            <label for="addressUpdata" class="form-label">地址:</label>
+                                            <input id="addressUpdata" name="addressUpdata" type="text" class="form-control mb-3" value="高雄市前金區中正四路211號8號樓之1" disabled />
+                                            <label for="notesUpdata" class="form-label">備註:</label>
+                                            <textarea id="notesUpdata" name="notesUpdata" class="form-control mb-3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <button type="button" class="btn btn-primary">新增標籤</button>
+                                            </div>                      
+                                            <div class="offset-3 col">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                                                <button type="submit" class="btn btn-primary">完成</button>
+                                            </div>
+                                            <div class="offset-2 col-2">
+                                                <button type="button" class="btn btn-danger">刪除帳號</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
