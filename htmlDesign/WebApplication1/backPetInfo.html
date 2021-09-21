@@ -17,6 +17,7 @@
     <script src="javascript/jquery-3.6.0.min.js"></script>
     <!--自訂js-->
     <script src="javascript/backstage.js"></script>
+    <script src="javascript/backPetInfo.js"></script>
 </head>
 <body>
     <!-- 導覽列 -->
@@ -247,9 +248,9 @@
                                 <tr>
                                     <td>2021092001</td>
                                     <td>Mumei Nanashi</td>
-                                    <td>貓頭鷹</td>
+                                    <td class="category">貓頭鷹</td>
                                     <td>金魚腦鴞</td>
-                                    <td>F</td>
+                                    <td class="sex">F</td>
                                     <td>中型</td>
                                     <td>幼年</td>
                                     <td>未結紮</td>
@@ -258,14 +259,18 @@
                                     <td>N/A</td>
                                     <td>N/A</td>
                                     <td>see mumeiter</td>
-                                    <td><button type="button" class="btn btn-danger">更新</button></td>
+                                    <td>
+                                        <a href="#" onclick="openEdit()">
+                                        <input type="button" value="更新" class="btn btn-danger"/>
+                                        </a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2021092002</td>
                                     <td>Inugami Korone</td>
-                                    <td>狗</td>
+                                    <td class="category">狗</td>
                                     <td>麵包狗</td>
-                                    <td>F</td>
+                                    <td class="sex">F</td>
                                     <td>中型</td>
                                     <td>成年</td>
                                     <td>未結紮</td>
@@ -274,14 +279,18 @@
                                     <td>N/A</td>
                                     <td>N/A</td>
                                     <td>ほら見てほらよ</td>
-                                    <td><button type="button" class="btn btn-danger">更新</button></td>
+                                    <td>
+                                        <a href="#" onclick="openEdit()">
+                                            <input type="button" value="更新" class="btn btn-danger" />
+                                        </a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2021092003</td>
                                     <td>Nekomata Okayu</td>
-                                    <td>貓</td>
+                                    <td class="category">貓</td>
                                     <td>飯糰貓</td>
-                                    <td>F</td>
+                                    <td class="sex">F</td>
                                     <td>中型</td>
                                     <td>成年</td>
                                     <td>未結紮</td>
@@ -290,7 +299,11 @@
                                     <td>N/A</td>
                                     <td>N/A</td>
                                     <td>もぐもぐ</td>
-                                    <td><button type="button" class="btn btn-danger">更新</button></td>
+                                    <td>
+                                        <a href="#" onclick="openEdit()">
+                                            <input type="button" value="更新" class="btn btn-danger" />
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
