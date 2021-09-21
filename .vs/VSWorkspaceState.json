@@ -3,9 +3,7 @@
     "",
     "\\htmlDesign",
     "\\htmlDesign\\WebApplication1",
-    "\\htmlDesign\\WebApplication1\\image",
-    "\\htmlDesign\\WebApplication1\\javascript",
-    "\\htmlDesign\\WebApplication1\\stylesheet"
+    "\\htmlDesign\\WebApplication1\\javascript"
   ],
   "SelectedNode": "\\htmlDesign\\WebApplication1\\javascript\\backPetInfo.js",
   "PreviewInSolutionExplorer": false
