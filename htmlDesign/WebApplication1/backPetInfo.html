@@ -13,11 +13,14 @@
     <link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
     <!--自訂樣式表-->
     <link href="stylesheet/backstage.css" rel="stylesheet" />
+    <link href="stylesheet/backPetInfo.css" rel="stylesheet" />
     <!--<script src="javascript/bootstrap.min.js"></script>-->
     <script src="javascript/jquery-3.6.0.min.js"></script>
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script> <!--datepicker-ui中文補丁-->
     <!--自訂js-->
-    <script src="javascript/backstage.js"></script>
     <script src="javascript/backPetInfo.js"></script>
+    <script src="javascript/backstage.js"></script>
 </head>
 <body>
     <!-- 導覽列 -->
@@ -259,11 +262,7 @@
                                     <td>N/A</td>
                                     <td>N/A</td>
                                     <td>see mumeiter</td>
-                                    <td>
-                                        <a href="#" onclick="openEdit()">
-                                        <input type="button" value="更新" class="btn btn-danger"/>
-                                        </a>
-                                    </td>
+                                    <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button></td>
                                 </tr>
                                 <tr>
                                     <td>2021092002</td>
@@ -279,11 +278,7 @@
                                     <td>N/A</td>
                                     <td>N/A</td>
                                     <td>ほら見てほらよ</td>
-                                    <td>
-                                        <a href="#" onclick="openEdit()">
-                                            <input type="button" value="更新" class="btn btn-danger" />
-                                        </a>
-                                    </td>
+                                    <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button></td>
                                 </tr>
                                 <tr>
                                     <td>2021092003</td>
@@ -299,11 +294,7 @@
                                     <td>N/A</td>
                                     <td>N/A</td>
                                     <td>もぐもぐ</td>
-                                    <td>
-                                        <a href="#" onclick="openEdit()">
-                                            <input type="button" value="更新" class="btn btn-danger" />
-                                        </a>
-                                    </td>
+                                    <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -311,6 +302,117 @@
                     </div>
                 </div>
             </div>
+
+            <!--寵物資料更新Modal-->
+            <div class="modal fade" id="petInfoAdd" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="petModalTitle">寵物資料</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <form action="#" method="get">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="text-center" id="mainbox">
+                                        <fieldset>
+                                            <legend>基本資料</legend>
+                                            <div>
+                                                <label for="petId" class=""><span>寵物編號</span></label>
+                                                <input type="text" id="petId" name="petId" />
+                                            </div>
+                                            <div>
+                                                <label for="petName" class=""><span>寵物名</span></label>
+                                                <input type="text" id="petName" name="petName" />
+                                            </div>
+                                            <div>
+                                                <label for="category" class=""><span>類別</span></label>
+                                                <input type="text" id="category" name="category" />
+                                            </div>
+                                            <div>
+                                                <label for="species" class=""><span>品種</span></label>
+                                                <input type="text" id="species" name="species" />
+                                            </div>
+                                            <div>
+                                                <label for="sex" class=""><span>性別</span></label>
+                                                <select id="sex" name="sex">
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="size" class=""><span>體型</span></label>
+                                                <select id="size" name="size">
+                                                    <option value="小型">小型</option>
+                                                    <option value="中型">中型</option>
+                                                    <option value="大型">大型</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="age" class=""><span>年齡</span></label>
+                                                <select id="age" name="age">
+                                                    <option value="幼年">幼年</option>
+                                                    <option value="成年">成年</option>
+                                                    <option value="老年">老年</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="castration" class=""><span>絕育狀態</span></label>
+                                                <select id="castration" name="castration">
+                                                    <option value="Y">已結紮</option>
+                                                    <option value="N">未結紮</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="adoption" class=""><span>領養狀態</span></label>
+                                                <select id="adoption" name="adoption">
+                                                    <option value="Y">已領養</option>
+                                                    <option value="N">未領養</option>
+                                                </select>
+                                            </div>
+                                        </fieldset>
+                                        <hr />
+                                        <fieldset>
+                                            <legend>領養資料</legend>
+                                            <div>
+                                                <label for="adopterId" class=""><span>領養會員ID</span></label>
+                                                <input type="text" id="adopterId" name="adopterId" />
+                                            </div>
+                                            <div>
+                                                <label for="adopterName" class=""><span>領養會員姓名</span></label>
+                                                <input type="text" id="adopterName" name="adopterName" />
+                                            </div>
+                                            <div>
+                                                <label for="adoptDate" class=""><span>領養日期</span></label>
+                                                <input type="text" id="adoptDate" name="adoptDate" data-provide="datepicker" />
+                                            </div>
+                                        </fieldset>
+                                        <hr />
+                                        <fieldset>
+                                            <legend>備註</legend>
+                                            <textarea placeholder="請輸入備註..."></textarea>
+                                        </fieldset>
+                                        <div class="modal-footer">
+                                            <div class="container-fluid">
+                                                <div class="row justify-content-start">
+                                                    <div class="offset-4 col-4">
+                                                        <button type="submit" class="btn btn-primary">確認</button>
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                                                    </div>
+                                                    <div class="offset-2 col-2">
+                                                        <button type="button" class="btn btn-danger">刪除帳號</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <!-- 分頁按鈕 -->
             <div class="page">
                 <nav aria-label="Page navigation">
