@@ -14,15 +14,4 @@ $(function () {
     }
 });
 
-//從其他頁面抓取資料
-/*function getDataPage() {
-    $("#divTest").load("backPetInfo.html #petModalTitle", function (responseTxt, statusTxt, xhr) {
-        if (statusTxt == "success") {
-            alert("completed !");
-        } else {
-            alert("failed !" + xhr.status + xhr.statusText);
-        }
-    });
-}*/
-
 
