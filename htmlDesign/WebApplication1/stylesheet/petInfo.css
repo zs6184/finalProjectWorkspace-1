@@ -1,5 +1,4 @@
 ﻿body {
-    height:3000px;
     background-color: rgb(240, 245, 240);
 }
 
@@ -73,4 +72,7 @@ a:hover {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+
+
 

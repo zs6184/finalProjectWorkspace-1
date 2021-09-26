@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\htmlDesign",
-    "\\htmlDesign\\WebApplication1"
+    "\\htmlDesign\\WebApplication1",
+    "\\htmlDesign\\WebApplication1\\javascript"
   ],
-  "SelectedNode": "\\htmlDesign\\WebApplication1\\backPetInfo.html",
+  "SelectedNode": "\\htmlDesign\\WebApplication1\\javascript\\backPetInfo.js",
   "PreviewInSolutionExplorer": false
 }

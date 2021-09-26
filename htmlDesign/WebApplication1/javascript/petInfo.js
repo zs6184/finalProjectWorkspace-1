@@ -1,5 +1,6 @@
 // JavaScript source code
 $(function () {
+    //製造stickybar效果
     window.onscroll = function () { stickTop() };
     var topbar = document.getElementById("topbar");
     var distance = topbar.offsetTop; //取得topbar上方偏移量
@@ -11,5 +12,6 @@ $(function () {
             topbar.classList.remove("sticky");
         }
     }
-
 });
+
+
