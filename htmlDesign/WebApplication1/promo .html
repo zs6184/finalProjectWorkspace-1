@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="utf-8" />
-    <title>寵物資訊管理</title>
+    <title>優惠碼管理</title>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- fontawesome icon -->
@@ -17,11 +18,15 @@
     <!--<script src="javascript/bootstrap.min.js"></script>-->
     <script src="javascript/jquery-3.6.0.min.js"></script>
     <script src="javascript/jquery-ui.min.js"></script>
-    <script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script> <!--datepicker-ui中文補丁-->
+    <script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
+    <!--datepicker-ui中文補丁-->
     <!--自訂js-->
     <script src="javascript/backPetInfo.js"></script>
     <script src="javascript/backstage.js"></script>
+
+
 </head>
+
 <body>
     <!-- 導覽列 -->
     <header>
@@ -38,7 +43,8 @@
                     <div class="">
                         <!-- 帳號頭像及功能 -->
                         <div class="dropdown">
-                            <button class="btn-transparent" type="button" id="dropdownButton01" data-bs-toggle="dropdown">
+                            <button class="btn-transparent" type="button" id="dropdownButton01"
+                                data-bs-toggle="dropdown">
                                 <img src="image/husky.jpg" class="image shadow" />
                             </button>
                             <ul class="dropdown-menu  dropdown-menu-end shadow" aria-labelledby="dropdownMenuButton01">
@@ -49,7 +55,8 @@
                         </div>
                         <!-- 訊息資訊 -->
                         <div class="dropdown">
-                            <button class="btn-transparent" type="button" id="dropdownButton02" data-bs-toggle="dropdown">
+                            <button class="btn-transparent" type="button" id="dropdownButton02"
+                                data-bs-toggle="dropdown">
                                 <i class="far fa-envelope me-5 navIcon mt-3" id="navIcon"></i>
                             </button>
                             <ul class="dropdown-menu  dropdown-menu-end shadow" aria-labelledby="dropdownMenuButton02">
@@ -75,7 +82,8 @@
                         </div>
                         <!-- 訊息通知 -->
                         <div class="dropdown floatDown">
-                            <button class="btn-transparent" type="button" id="dropdownButton03" data-bs-toggle="dropdown">
+                            <button class="btn-transparent" type="button" id="dropdownButton03"
+                                data-bs-toggle="dropdown">
                                 <i class="far fa-bell me-5 navIcon mt-3" id="navIcon"></i>
                             </button>
                             <ul class="dropdown-menu  dropdown-menu-end shadow" aria-labelledby="dropdownMenuButton03">
@@ -147,7 +155,7 @@
                         <!-- 子連結 -->
                         <ul id="sublist03" class="list-unstyled collapse">
                             <li>
-                                <a href="#" class="itemDetails">公告總覽</a>
+                                <a href="post.html" class="itemDetails">公告總覽</a>
                             </li>
                             <li>
                                 <a href="postCreate.html" class="itemDetails">新增公告</a>
@@ -231,97 +239,30 @@
                         <table class="table table-striped table-hover mt-4">
                             <thead>
                                 <tr>
-                                    <th scope="col">寵物編號</th>
-                                    <th scope="col">寵物名</th>
-                                    <th scope="col">類別</th>
-                                    <th scope="col">品種</th>
-                                    <th scope="col">性別</th>
-                                    <th scope="col">體型</th>
-                                    <th scope="col">年紀</th>
-                                    <th scope="col">絕育狀態</th>
-                                    <th scope="col">領養狀態</th>
-                                    <th scope="col">領養會員ID</th>
-                                    <th scope="col">領養會員姓名</th>
-                                    <th scope="col">領養日期</th>
-                                    <th scope="col">備註</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">優惠碼名稱</th>
+                                    <th scope="col">優惠碼</th>
+                                    <th scope="col">優惠金額</th>
+                                    <th scope="col">到期日</th>
+                                    <th scope="col">
+                                        <!--<a href="#empModal" class="btn btn-primary btn" tabindex="-1"
+                                     role="button" aria-disabled="true">新增</a>-->
+                                        <button type="button" class="btn btn-primary btn" data-bs-toggle="modal" data-bs-target="#empModal">
+                                            新增
+                                        </button>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="align-middle">
                                 <tr>
-                                    <td>2021092001</td>
-                                    <td>Mumei Nanashi</td>
-                                    <td class="category">貓頭鷹</td>
-                                    <td>金魚腦鴞</td>
-                                    <td class="sex">F</td>
-                                    <td>中型</td>
-                                    <td>幼年</td>
-                                    <td>未結紮</td>
-                                    <td>未領養</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>see mumeiter</td>
+                                    <td>歡慶朱立倫當選國冥黨黨魁</td>
+                                    <td>KMT85164</td>
+                                    <td>92</td>
+                                    <td class="category">2021/11/25</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button>
-                                        <button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2021092002</td>
-                                    <td>Inugami Korone</td>
-                                    <td class="category">狗</td>
-                                    <td>麵包狗</td>
-                                    <td class="sex">F</td>
-                                    <td>中型</td>
-                                    <td>成年</td>
-                                    <td>未結紮</td>
-                                    <td>未領養</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>ほら見てほらよ</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button>
-                                        <button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2021092003</td>
-                                    <td>Nekomata Okayu</td>
-                                    <td class="category">貓</td>
-                                    <td>飯糰貓</td>
-                                    <td class="sex">F</td>
-                                    <td>中型</td>
-                                    <td>成年</td>
-                                    <td>未結紮</td>
-                                    <td>未領養</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>もぐもぐ</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button>
-                                        <button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2021092004</td>
-                                    <td>Shirogane Noel</td>
-                                    <td class="category">牛</td>
-                                    <td>乳牛</td>
-                                    <td class="sex">M cup (X</td>
-                                    <td>大型</td>
-                                    <td>成年</td>
-                                    <td>未結紮</td>
-                                    <td>未領養</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>こんばん　マスルー</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button>
-                                        <button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button>
+                                        <button type="button" class="btn btn-danger delete"
+                                                onclick="del(this)">
+                                            刪除
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -330,113 +271,47 @@
                     </div>
                 </div>
             </div>
-
-            <!--寵物資料更新Modal-->
-            <div class="modal fade" id="petInfoAdd" tabindex="-1">
-                <div class="modal-dialog modal-lg">
+            <!--新增優惠碼-->
+            <div class="modal fade" id="empModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title" id="petModalTitle">寵物資料</h3>
+                            <h3 class="modal-title ms-3" id="ModalLabel">新增優惠碼</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <form action="#" method="get">
+                        <form action="#" method="post">
                             <div class="modal-body">
                                 <div class="row">
-                                    <div class="text-center" id="mainbox">
-                                        <fieldset>
-                                            <legend>基本資料</legend>
-                                            <div>
-                                                <label for="petId" class=""><span>寵物編號</span></label>
-                                                <input type="text" id="petId" name="petId" />
-                                            </div>
-                                            <div>
-                                                <label for="petName" class=""><span>寵物名</span></label>
-                                                <input type="text" id="petName" name="petName" />
-                                            </div>
-                                            <div>
-                                                <label for="category" class=""><span>類別</span></label>
-                                                <input type="text" id="category" name="category" />
-                                            </div>
-                                            <div>
-                                                <label for="species" class=""><span>品種</span></label>
-                                                <input type="text" id="species" name="species" />
-                                            </div>
-                                            <div>
-                                                <label for="sex" class=""><span>性別</span></label>
-                                                <select id="sex" name="sex">
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label for="size" class=""><span>體型</span></label>
-                                                <select id="size" name="size">
-                                                    <option value="小型">小型</option>
-                                                    <option value="中型">中型</option>
-                                                    <option value="大型">大型</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label for="age" class=""><span>年齡</span></label>
-                                                <select id="age" name="age">
-                                                    <option value="幼年">幼年</option>
-                                                    <option value="成年">成年</option>
-                                                    <option value="老年">老年</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label for="castration" class=""><span>絕育狀態</span></label>
-                                                <select id="castration" name="castration">
-                                                    <option value="Y">已結紮</option>
-                                                    <option value="N">未結紮</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label for="adoption" class=""><span>領養狀態</span></label>
-                                                <select id="adoption" name="adoption">
-                                                    <option value="Y">已領養</option>
-                                                    <option value="N">未領養</option>
-                                                </select>
-                                            </div>
-                                        </fieldset>
-                                        <hr />
-                                        <fieldset>
-                                            <legend>領養資料</legend>
-                                            <div>
-                                                <label for="adopterId" class=""><span>領養會員ID</span></label>
-                                                <input type="text" id="adopterId" name="adopterId" />
-                                            </div>
-                                            <div>
-                                                <label for="adopterName" class=""><span>領養會員姓名</span></label>
-                                                <input type="text" id="adopterName" name="adopterName" />
-                                            </div>
-                                            <div>
-                                                <label for="adoptDate" class=""><span>領養日期</span></label>
-                                                <input type="text" id="adoptDate" name="adoptDate" data-provide="datepicker" />
-                                            </div>
-                                        </fieldset>
-                                        <hr />
-                                        <fieldset>
-                                            <legend>備註</legend>
-                                            <textarea placeholder="請輸入備註..."></textarea>
-                                        </fieldset>
-                                        <div class="modal-footer">
-                                            <div class="container-fluid">
-                                                <div class="row justify-content-start">
-                                                    <div class="offset-4 col-4">
-                                                        <button type="submit" class="btn btn-primary">確認</button>
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="offset-0 col-6">
+                                        <label for="promoname" class="form-label">優惠碼名稱:</label>
+                                        <input id="promoname" name="promoname" type="text" value="" class="form-control mb-3" required />
+                                    </div>
+                                    <div class="offset-0 col-6">
+                                        <label for="promocode" class="form-label">優惠碼:</label>
+                                        <input id="promocode" name="promocode" type="text" class="form-control mb-3"  required />
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="offset-0 col-6">
+                                        <label for="discount" class="form-label">優惠金額:</label>
+                                        <input id="discount" name="discount" type="number" class="form-control mb-3" required  />
+                                    </div>
+                                    <div class="offset-0 col-6">
+                                        <label for="expirydate" class="form-label">到期日:</label>
+                                        <input id="expirydate" name="expirydate" type="date" class="form-control  mb-3"  required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                                <button type="submit" class="btn btn-primary">新增</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            <!--新增優惠碼結束-->
 
             <!-- 分頁按鈕 -->
             <div class="page">
@@ -454,4 +329,5 @@
 
     </div>
 </body>
+
 </html>
