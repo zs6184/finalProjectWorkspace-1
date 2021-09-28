@@ -1,4 +1,4 @@
-﻿body {
+body {
     
     background-color: rgb(240, 245, 240);
 }
@@ -7,8 +7,11 @@
     font-family: AA;
     src: url(../font/HanyiSentyBubbleTea.ttf);
 }
-
-* {
+@font-face {
+    font-family: BB;
+    src: url(../font/毛筆字體.ttf);
+}
+li, .container {
     font-family: AA;
 }
 
@@ -73,9 +76,9 @@ li {
     float: left;
     height: 460px;
     width: 332px;
-    margin: 10px;
+    margin: 30px;
     font-family: AA;
-    margin: 20px;
+   
 }
 
     .papper li .p1 {
@@ -104,14 +107,14 @@ h2 {
     margin-right: 0px;
 }
 
-.btn {
+#b1,#b2 {
     height: 120px;
     width: 180px;
     font-size: 25px;
     opacity: .95;
 }
 
-.btn .btn-dark:hover{
+#b1:hover,#b2:hover{
     color:#000000;
     background-color:lightgray;
 }
