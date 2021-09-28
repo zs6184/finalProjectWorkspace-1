@@ -15,21 +15,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
         integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="javascript/index.js"></script>
+
     <!--javaScript掛到這邊-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
         integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="javascript/index.js"></script>
+
+
     <style>
+        .w3layouts_copy_right {
+            padding: 1em 0;
+            text-align: center;
+            background: rgb(6, 121, 121);
+        }
 
+        .w3layouts_copy_right div {
+            color: #fff;
+            font-size: 1.1em;
+            letter-spacing: 2px;
+        }
+
+
+        .w3layouts_copy_right div:hover {
+            color: #fff;
+        }
     </style>
-    <script>
-
-    </script>
 </head>
 
 <body>
-
     <hr>
     <!-- 標題logo 部分 -->
     <div class="logo-area text-center">
@@ -93,7 +107,7 @@
                 <div class="backpic">
                     <div style="height: 460px;width:332px;" class="row justify-content-center align-items-center">
                         <div class="btn">
-                            <button type="button" class="btn btn-dark">我要訂餐</button>
+                            <button type="button" class="btn btn-dark" id="b1">我要訂餐</button>
                             <!--訂餐訂位按鈕我加了一個hover效果在CSS XDD-->
                         </div>
                     </div>
@@ -104,7 +118,8 @@
                     <div style="height: 460px;width:332px;">
                         <div style="height: 460px;width:332px;" class="row justify-content-center align-items-center">
                             <div class="btn">
-                                <button type="button" class="btn btn-dark">我要訂位</button>
+                                <button type="button" class="btn btn-dark" id="b2" data-bs-toggle="modal"
+                                    data-bs-target="#Reservation">我要訂位</button>
                             </div>
                         </div>
                     </div>
@@ -113,11 +128,52 @@
         </ul>
     </div>
     <hr id="t1">
+    <div class="modal fade" id="Reservation" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="background-image: url(image/img/blog-img/2.jpg);background-size: cover;">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="#" method="get">
+                    <div class="modal-body" style="font-family:BB;font-size: 25px;" ;>
+                        <div class="row">
+                            <div class="text-center" id="mainbox">
+                                <img src="image/浪跡.png" style="width: 25%;">
+                                <hr>
 
-
-
+                                <BR>
+                                <label for="Name" class=""><span>顧客姓名&nbsp&nbsp&nbsp</span></label>
+                                <input type="text" id="Name" name="Name" />
+                                <BR><BR>
+                                <label for="Phone" class=""><span>電話號碼&nbsp&nbsp&nbsp</span></label>
+                                <input type="text" id="Phone" name="Phone" />
+                                <BR><BR>
+                                <label for="number" class=""><span>訂位人數&nbsp&nbsp&nbsp</span></label>
+                                <input type="text" id="number" name="number" />
+                                <BR><BR>
+                                <label for="time" class=""><span>預約時間&nbsp&nbsp&nbsp</span></label>
+                                <input type="text" id="time" name="time" />
+                                <BR><BR>
+                                <div class="modal-footer">
+                                    <div class="container-fluid">
+                                        <div class="row justify-content-start">
+                                            <div class="offset-4 col-4">
+                                                <button type="submit" class="btn btn-primary">送出</button>
+                                                <button type="reset" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">取消</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- 公告 -->
-    <div class=" container">
+    <div class="container">
         <div class="row justify-content-center">
             <div style="display: inline-block; height: 300px;width: 300px;margin:25px">
                 <img src="image/food1_adobespark.jfif">
@@ -138,7 +194,7 @@
                 <h2 style="text-align: center;">新餐點來享受</h2>
 
                 <p style="font-size: 25px;">人生中最美好的時光就是吃
-                    紅羅波佐火腿佐魚肉佐菠菜佐哈密瓜拌飯才是人間美味。:D<br>快來享受美好餐點,現在只要189元就吃的到唷。<br><br>
+                    紅羅波佐火腿佐魚肉佐菠菜佐哈密瓜拌飯才是人間美味。: D<br>快來享受美好餐點,現在只要189元就吃的到唷。<br><br>
                     <br&nbsp>&nbsp哈密瓜魚肉紅羅波拌飯&nbsp189元!!!!!!!
                 </p>
 
@@ -155,7 +211,7 @@
                 <img src="image/c1.jpg">
             </div>
             <div style="display: inline-block; height: 300px;width: 700px;margin: 25px 25px;padding-top:10px">
-                <h6 style="float:right">2021年9月15號 22:38</h6>
+                <h6 style="float:right">2021年9月15號 22: 38</h6>
                 <h2 style="text-align: center;">小波今天去看醫生嚕</h2>
 
                 <p style="font-size: 25px;">最近小波的眼睛好像怪怪的,於是我們請我們最美麗的小倩店長帶她去看醫生嚕!!還好醫生說沒怎麼樣,不然采臣跟我會很欲哭無淚的嗚嗚嗚 </p>
@@ -164,7 +220,7 @@
         </div>
         <div class="row justify-content-center">
             <div style="display: inline-block; height: 300px;width: 700px;margin: 25px 25px;padding-top:10px">
-                <h6 style="float:left">2021年9月15號 22:38</h6>
+                <h6 style="float:left">2021年9月15號 22: 38</h6>
                 <h2 style="text-align: center;">小春今天也去看醫生嚕</h2>
 
                 <p style="font-size: 25px;">最近小春的眼睛好像怪怪的,於是我們請我們最美麗的小倩店長帶她去看醫生嚕!!還好醫生說沒怎麼樣,不然采臣跟我會很欲哭無淚的嗚嗚嗚 </p>
@@ -175,12 +231,12 @@
             </div>
         </div>
     </div>
-    <div style="text-align: center;" class="clearfix ">
+    <div style="text-align: center;font-family: BB;" class="clearfix ">
         </span> <a href="">下一頁</a><span class="current">&nbsp&nbsp1</span>
-        <a href="">&nbsp;2&nbsp;</a>
-        <a href="">&nbsp;3&nbsp;</a>
-        <a href="">&nbsp;4&nbsp;</a>
-        <a href="">&nbsp;5&nbsp;</a>
+        <a href="">&nbsp; 2&nbsp; </a>
+        <a href="">&nbsp; 3&nbsp; </a>
+        <a href="">&nbsp; 4&nbsp; </a>
+        <a href="">&nbsp; 5&nbsp; </a>
         <a href="">終頁</a>
     </div>
 
@@ -216,7 +272,11 @@
         </div>
     </div>
 
-
+    <div class="w3layouts_copy_right">
+        <div class="container">
+            <div>Copyright &copy; 2021.III.JavaTeam4 rights reserved.</div>
+        </div>
+    </div>
 </body>
 
 </html>
