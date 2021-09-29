@@ -41,7 +41,7 @@ li {
         position:fixed;
         top:0;
         width:100%;
-        background-color: rgba(0,0,0,.8);
+        background-color: rgb(6, 121, 121,.8);
         height: 40px;
         z-index: 100;
         transition: 1s;
