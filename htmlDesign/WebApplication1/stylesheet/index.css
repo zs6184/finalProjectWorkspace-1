@@ -139,6 +139,39 @@ h2 {
     color: #ccc;
 }
 
+.lowbar li{
+    float: left;
+    width:15%;
+    padding-left: 60px;
+    
+}
+
+.lowbar li a {
+    font-family: BB;
+    font-size: 18px;
+    color:white;
+    
+    
+    
+}
+.lowbar li a:hover{
+   color:#ccc;
+    
+    
+    
+}
+
+.fix{
+    width:60px;
+    height:60px;
+    position:fixed;
+    bottom: 0px;
+    right:0px;
+    z-index:10000000;
+    font-family: AA;
+    font-size: 25px;
+    text-decoration: underline;
+  }
 @media screen and (max-width:1300px){
    
   
