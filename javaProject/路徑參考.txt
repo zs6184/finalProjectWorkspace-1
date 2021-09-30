@@ -1,9 +1,0 @@
-jdk、Spring、tomcat路徑
-進去後再選擇需要的
-C:\project\finalProjectWorkspace\javaProjectWeb\Tools
-
-maven路徑
-C:\DataSource\apache-maven-3.8.1
-
-maven路徑檔案存放路徑
-C:\DataSource\maven_download\repository
