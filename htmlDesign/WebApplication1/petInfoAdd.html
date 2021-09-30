@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>寵物新增與修改</title>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <!--bootstrap & jQuery-ui-->
+    <link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
+    <link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
+    <!--自訂樣式表-->
+    <link href="stylesheet/petInfoAdd.css" rel="stylesheet" />
+    <!--<script src="javascript/bootstrap.min.js"></script>-->
+    <script src="javascript/jquery-3.6.0.min.js"></script>
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
+    <!--自訂js-->
+    <script src="javascript/petInfoAdd.js"></script>
+</head>
+<body class="bg-dark">
+    <div class="container border">
+        <div class="mainbox text-center" id="mainbox">
+            <form id="adminAdd" method="get">
+                <fieldset>
+                    <legend>基本資料</legend>
+                    <div>
+                        <label for="petId" class=""><span>寵物編號</span></label>
+                        <input type="text" id="petId" name="petId" />
+                    </div>
+                    <div>
+                        <label for="petName" class=""><span>寵物名</span></label>
+                        <input type="text" id="petName" name="petName" />
+                    </div>
+                    <div>
+                        <label for="category" class=""><span>類別</span></label>
+                        <input type="text" id="category" name="category" />
+                    </div>
+                    <div>
+                        <label for="species" class=""><span>品種</span></label>
+                        <input type="text" id="species" name="species" />
+                    </div>
+                    <div>
+                        <label for="sex" class=""><span>性別</span></label>
+                        <select id="sex" name="sex">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="size" class=""><span>體型</span></label>
+                        <select id="size" name="size">
+                            <option value="小型">小型</option>
+                            <option value="中型">中型</option>
+                            <option value="大型">大型</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="age" class=""><span>年齡</span></label>
+                        <select id="age" name="age">
+                            <option value="幼年">幼年</option>
+                            <option value="成年">成年</option>
+                            <option value="老年">老年</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="castration" class=""><span>絕育狀態</span></label>
+                        <select id="castration" name="castration">
+                            <option value="Y">已結紮</option>
+                            <option value="N">未結紮</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="adoption" class=""><span>領養狀態</span></label>
+                        <select id="adoption" name="adoption">
+                            <option value="Y">已領養</option>
+                            <option value="N">未領養</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <hr />
+                <fieldset>
+                    <legend>領養資料</legend>
+                    <div>
+                        <label for="adopterId" class=""><span>領養會員ID</span></label>
+                        <input type="text" id="adopterId" name="adopterId" />
+                    </div>
+                    <div>
+                        <label for="adopterName" class=""><span>領養會員姓名</span></label>
+                        <input type="text" id="adopterName" name="adopterName" />
+                    </div>
+                    <div>
+                        <label for="adoptDate" class=""><span>領養日期</span></label>
+                        <input type="text" id="adoptDate" name="adoptDate" />
+                    </div>
+                </fieldset>
+                <hr />
+                <fieldset>
+                    <legend>備註</legend>
+                    <textarea style="height:300px; width:500px; resize:none; overflow:auto"></textarea>
+                </fieldset>
+                <button type="submit">確認</button>
+                <button type="reset">重新填寫</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
