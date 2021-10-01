@@ -1,0 +1,45 @@
+
+Eclipse: Version: 2021-03 (4.19.0)
+
+server : tomcat 9.0.37
+
+使用jdk-15(阿昌給的那包)
+
+
+
+
+--------------------------
+開始前檢查：
+
+1. Window/Preference/Content Types/Text/JSP底下三個 Default Encoding 為 UTF-8 (用打字的)
+
+2. Window/Preference/General/Workspace /Text file encoding 為UTF-8
+
+3. Window/Preference/Web 底下的CSS File & HTML File & JSP File 三者編碼為UTF-8
+
+4.Window/Preference/Installed JREs 路徑同老師上課路徑  C:\_jsp-ide\openjdk-15_windows-x64_bin\jdk-15   
+
+5.Window/Preference/Server/Runtime Environment 路徑同老師上課路徑 C:\_jsp-ide\apache-tomcat-9.0.37-windows-x64\apache-tomcat-9.0.37   
+
+6.專案右鍵/BuildPath/Targeted RunTimes/Tomcat9.0要打勾
+
+7.Server 建立Tomcat分身
+
+8.如果想要用外部瀏覽器開啟--> Window/Preference/General/Web Browser /選擇 Use External Web Browser
+
+9.Window/Preference/Maven/Installations 路徑 C:\DataSource\apache-maven-3.8.1   
+
+10. Window/Preference/Maven/UserSettings 路徑 C:\DataSource\apache-maven-3.8.1\conf\settings.xml
+
+11.注意  C:\DataSource\apache-maven-3.8.1\conf\settings.xml此檔案中的設定是否正確，且C:\DataSource\maven_download資料夾中，與repository資料夾同一層要複製一份settings.xml過去
+
+	<localRepository>C:\DataSource\maven_download\repository</localRepository> 
+
+12.Maven如果下載不完全，刪掉重載即可 
+
+13.hibernate.cfg.xml用來測試的資料庫是上hibernate時建立的hibernateDB/username:sa/password:team4
+
+	自行注意 hibernate.cfg.xml & CompanyBean.hbm.xml兩個檔案對應的table名稱、類別有無錯誤
+
+14.暫時先不管Spring跟專案名稱了，先以Servlet JSP & Hibernate專案運行，確定能跑之後再搞
+                                                                                               
