@@ -1,4 +1,6 @@
 
+--------------------版本概述-------------------------
+
 Eclipse: Version: 2021-03 (4.19.0)
 
 server : tomcat 9.0.37
@@ -6,10 +8,9 @@ server : tomcat 9.0.37
 使用jdk-15(阿昌給的那包)
 
 
+--------------------環境設置-------------------------
 
-
---------------------------
-開始前檢查：
+開始前務必檢查：(基本上tomcat/jdk/MAVEN下載存放路徑與設定檔都與上課相同，柏毅要改成Eclipse阿昌版本的話記得檢察系統環境變數 JAVA_HOME的路徑)
 
 1. Window/Preference/Content Types/Text/JSP底下三個 Default Encoding 為 UTF-8 (用打字的)
 
@@ -25,21 +26,44 @@ server : tomcat 9.0.37
 
 7.Server 建立Tomcat分身
 
-8.如果想要用外部瀏覽器開啟--> Window/Preference/General/Web Browser /選擇 Use External Web Browser
+8.如果想要用外部瀏覽器開啟運行結果(非必要環境設置)--> Window/Preference/General/Web Browser /選擇 Use External Web Browser
 
-9.Window/Preference/Maven/Installations 路徑 C:\DataSource\apache-maven-3.8.1   
+9.Window/Preference/Maven/Installations (MAVEN路徑) C:\DataSource\apache-maven-3.8.1   
 
-10. Window/Preference/Maven/UserSettings 路徑 C:\DataSource\apache-maven-3.8.1\conf\settings.xml
+10. Window/Preference/Maven/UserSettings (MAVEN設定檔路徑) C:\DataSource\apache-maven-3.8.1\conf\settings.xml
 
-11.注意  C:\DataSource\apache-maven-3.8.1\conf\settings.xml此檔案中的設定是否正確，且C:\DataSource\maven_download資料夾中，與repository資料夾同一層要複製一份settings.xml過去
+11.注意!!!!!	檢查 C:\DataSource\apache-maven-3.8.1\conf\settings.xml此檔案中的設定是否正確(正常應該都OK 跟上課同一個)
 
-	<localRepository>C:\DataSource\maven_download\repository</localRepository> 
+		且C:\DataSource\maven_download資料夾中，與repository資料夾同一層要複製一份改好的settings.xml放過去
 
-12.Maven如果下載不完全，刪掉重載即可 
+		setting.xml 在中間的<mirrors>標籤上方需要具備這一行
 
-13.hibernate.cfg.xml用來測試的資料庫是上hibernate時建立的hibernateDB/username:sa/password:team4
+		<localRepository>C:\DataSource\maven_download\repository</localRepository> 
 
-	自行注意 hibernate.cfg.xml & CompanyBean.hbm.xml兩個檔案對應的table名稱、類別有無錯誤
+12.Maven如果下載不完全，repository資料夾內的內容全部刪掉重載即可(透過pom檔儲存後就會自動下載了) 
 
-14.暫時先不管Spring跟專案名稱了，先以Servlet JSP & Hibernate專案運行，確定能跑之後再搞
-                                                                                               
+13.hibernate.cfg.xml設定中用來測試的資料庫是上hibernate時建立的(hibernateDB) 其中連入資料庫的username = sa / password = team4
+			
+		記得檢查自己的資料庫名稱跟使用者帳密，另外自行注意 
+
+		hibernate.cfg.xml & CompanyBean.hbm.xml兩個檔案對應的table名稱、類別有無錯誤(不應該會有除非檔案毀損)
+
+
+(P.S)專案內Test開頭的檔案都是用來測試的小東西，設定完成後看看能不能正常運作
+
+(P.P.S)如果想要用外部瀏覽器開啟程式運行後的網頁結果 --> Window/Preference/General/Web Browser /選擇 Use External Web Browser
+
+
+---------------無關環境設置-----------------
+
+
+14.這個專案裡面暫時先不管Spring跟專案名稱了，先以執行Servlet JSP & Hibernate為主，確定能跑之後再弄其他的
+
+
+15.測試過MAVEN dependencies 載入的jar之後-- JSTL 標籤是可以使用的(或許不用再在 WEB-INF / lib裡面引入作為web app 的jar檔了??)
+
+	如這件事情為真，sqljdbc4.jar應該也不用引入用MAVEN裝的那些也夠用了，剩下java-json未來需要再裝	
+
+	疑點待驗證：在本機上執行OK，但未來匯出成網頁應用程式的時候應該或許可能Maybe還是不可或缺吧???之後碰到再驗證，以此紀錄。
+
+16.環境設置真操蛋，我要來看二次元老婆了		                                                                                               
