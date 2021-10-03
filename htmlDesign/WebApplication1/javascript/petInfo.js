@@ -1,4 +1,6 @@
 // JavaScript source code
+
+
 $(function () {
     //製造stickybar效果
     window.onscroll = function () { stickTop() };
