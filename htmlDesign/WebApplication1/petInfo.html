@@ -113,7 +113,7 @@
             var index = 0;
             $("#infoTable tr:even:not(':first')", data).each(function () {
                 console.log("LEFT---" + this.textContent);
-                $("#infoLeft").append(`<div class="row col-8 offset-2 border" style="margin-bottom:30px;border-radius:5px;"><div class="col-3 border border-radius:5px;">IMAGE</div><div class="col" id="${index}"></div></div>`);
+                $("#infoLeft").append(`<div class="row col-10 offset-1 border bg-secondary text-white" style="margin-bottom:30px;border-radius:10px;"><div class="row col-6 border align-items-center" style="margin:0px;"><img src="image/f5.jpg" class="col w-100 h-w"/></div><div class="col" id="${index}"></div></div>`);
                 $("td:not(':last')", this).each(function () {
                     $(`#${index}`).append(`<div>${this.textContent}</div>`);
                 });
@@ -122,7 +122,7 @@
 
             $("#infoTable tr:odd", data).each(function () {
                 console.log("RIGHT---" + this.textContent);
-                $("#infoRight").append(`<div class="row col-8 offset-2 border" style="margin-bottom:30px;border-radius:5px;"><div class="col-3 border border-radius:5px;">IMAGE</div><div class="col" id="${index}"></div></div>`);
+                $("#infoRight").append(`<div class="row col-10 offset-1 border bg-secondary text-white" style="margin-bottom:30px;border-radius:10px;"><div class="row col-6 border align-items-center" style="margin:0px;"><img src="image/f5.jpg" class="col w-100 h-w"/></div><div class="col" id="${index}"></div></div>`);
                 $("td:not(':last')", this).each(function () {
                     $(`#${index}`).append(`<div>${this.textContent}</div>`);
                 });
