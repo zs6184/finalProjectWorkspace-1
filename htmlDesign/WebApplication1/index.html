@@ -20,12 +20,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
         integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <script src="javascript/index.js"></script>
 
 
-    <style>
 
-    </style>
 </head>
 
 <body id="top" style="background-image:url(image/背景4.jpg)" ;>
@@ -130,16 +129,52 @@
 
                                 <BR>
                                 <label for="Name" class=""><span>顧客姓名&nbsp&nbsp&nbsp</span></label>
-                                <input type="text" id="Name" name="Name" />
+                                <input type="text" id="Name" name="Name" required style="border:2px solid #ccc" />
                                 <BR><BR>
-                                <label for="Phone" class=""><span>電話號碼&nbsp&nbsp&nbsp</span></label>
-                                <input type="text" id="Phone" name="Phone" />
+                                <label for="Phone" class="">電話號碼&nbsp&nbsp&nbsp</span></label>
+                                <input type="text" id="Phone" name="Phone" required style="border:2px solid #ccc" />
                                 <BR><BR>
-                                <label for="number" class=""><span>訂位人數&nbsp&nbsp&nbsp</span></label>
-                                <input type="text" id="number" name="number" />
+                                <span>訂位人數&nbsp&nbsp&nbsp</span>
+                                <select name="pets" style="width: 280px;height:40px;border:2px solid #ccc" required>
+                                    <option value="" selected>選擇人數</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
                                 <BR><BR>
-                                <label for="time" class=""><span>預約時間&nbsp&nbsp&nbsp</span></label>
-                                <input type="text" id="time" name="time" />
+
+                                <label for="orderdate" class="form-label" style="margin-right: 13px;">訂位日期</label>
+                                <input
+                                    style="width:280px;height: 40px;display: inline-block;margin-left: 25px;border:2px solid #ccc"
+                                    id="orderdate" name="orderdate" type="date" class="form-control" required />
+
+                                <div style="overflow: hidden;height:40px;"></div>
+
+                                <span>訂位人數&nbsp&nbsp&nbsp</span>
+                                <select name="pets" style="width: 280px;height:40px;border:2px solid #ccc" required>
+                                    <option value="" selected>選擇時間</option>
+                                    <option value="1">11:00</option>
+                                    <option value="2">12:00</option>
+                                    <option value="3">13:00</option>
+                                    <option value="4">14:00</option>
+                                    <option value="5">15:00</option>
+                                    <option value="6">16:00</option>
+                                    <option value="7">17:00</option>
+                                    <option value="8">18:00</option>
+                                    <option value="9">19:00</option>
+                                    <option value="10">20:00</option>
+                                </select>
+
+
+
+
                                 <BR><BR>
                                 <div class="modal-footer">
                                     <div class="container-fluid">
@@ -159,6 +194,10 @@
             </div>
         </div>
     </div>
+   
+
+
+
     <!-- 公告 -->
     <div class="container">
         <div class="row justify-content-center">
@@ -224,7 +263,7 @@
             </div>
         </div>
     </div>
-    <div style="text-align: center;font-family: BB;" class="clearfix ">
+    <div style="text-align: center;font-family: BB;" class="clearfix " id="pageChange">
         </span> <a href="">下一頁</a><span class="current">&nbsp&nbsp1</span>
         <a href="">&nbsp; 2&nbsp; </a>
         <a href="">&nbsp; 3&nbsp; </a>
@@ -298,7 +337,7 @@
         </div>
     </div>
 
-    <div class="fix"><a href="#top">TOP</a></div>
+    <div class="fix"><a href="#top" style="font-size: 40px;">TOP</a></div>
 
 </body>
 
