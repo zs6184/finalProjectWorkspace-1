@@ -1,7 +1,6 @@
 ﻿body {
     background-color: rgb(240, 245, 240);
 }
-#loginStatus, .errMsg {
+.errMsg, .difMsg, .uATMsg, .pNATMsg, .eATMsg {
     color: red;
 }
-
