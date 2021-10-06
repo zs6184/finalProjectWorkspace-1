@@ -117,6 +117,11 @@ h2 {
     opacity: .95;
 }
 
+#pageChange button{
+    border:none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
 #b1:hover,#b2:hover{
     color:#000000;
     background-color:lightgray;
@@ -173,8 +178,6 @@ h2 {
     text-decoration: underline;
   }
 @media screen and (max-width:1300px){
-   
-  
    
     .papper li {
         float: left;
