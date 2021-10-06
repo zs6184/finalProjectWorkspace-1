@@ -1,6 +1,7 @@
-﻿<!DOCTYPE html>
-
-<html lang="zh-tw" xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8" />
     <title>寵物資訊管理</title>
@@ -246,7 +247,7 @@
                                     <th scope="col">備註</th>
                                     <th scope="col">
                                         <button type="button" class="btn btn-primary btn" data-bs-toggle="modal" data-bs-target="#petInfoAdd">新增</button>
-                                        <button type="button" class="btn btn-primary btn" id="renew">更新</button>
+                                        <button type="button" class="btn btn-primary btn" id="renew">刷新</button>
                                     </th>
                                 </tr>
                             </thead>

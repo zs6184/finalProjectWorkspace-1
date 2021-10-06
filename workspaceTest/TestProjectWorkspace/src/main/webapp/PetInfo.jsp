@@ -1,16 +1,18 @@
-﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8" />
     <title>PetInfo</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/stylesheet/petInfo.css" /><!--CSS here-->
+    <link rel="stylesheet" href="stylesheet/petInfo.css" /><!--CSS here-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0-alpha.1/jquery-ui.min.js"></script>
-    <script src="/javascript/petInfo.js"></script> <!--JS Here-->
-    
+    <script src="javascript/petInfo.js"></script> <!--JS Here-->
+
+
 </head>
 <body style="background-image:url(image/背景4.jpg)">
     <hr>
@@ -45,7 +47,7 @@
     </div>
 
     <!--橫幅圖片區域-->
-    <div class="banner-area bg-img" style="background-image:url(/image/img/bg-img/cat1.jpeg);">
+    <div class="banner-area bg-img" style="background-image:url(image/img/bg-img/cat1.jpeg);">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">

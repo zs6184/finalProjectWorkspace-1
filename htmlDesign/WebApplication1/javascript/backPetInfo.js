@@ -8,12 +8,27 @@ $(function () {
         changeMonth: true
     });
 
+    $("#renew").click(function () {
+        del(this);
+    });
 
 });
 
 //刪除資料事件
 function del(obj) {
     $(obj).parents("tr").remove();
+}
+
+
+function renewData() {
+    $.ajax({
+        type: "GET",
+        url: "/PetInfoLoad",
+        dataType: "text",
+        success: function (data, textStatus) {
+            alert(data);
+        },
+    });
 }
 
 /*function openEdit() {

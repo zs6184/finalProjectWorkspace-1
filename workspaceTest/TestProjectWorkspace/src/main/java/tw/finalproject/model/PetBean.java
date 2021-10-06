@@ -1,0 +1,189 @@
+package tw.finalproject.model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+//Entity.Table.Columns
+@Entity
+@Table(name = "Pets")
+public class PetBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "pet_ID")
+	private Integer petId;
+
+	@Column(name = "category")
+	private String category;
+
+	@Column(name = "species")
+	private String species;
+
+	@Column(name = "sex")
+	private String sex;
+
+	@Column(name = "pet_name")
+	private String petName;
+
+	@Column(name = "age")
+	private String age;
+
+	@Column(name = "fix_status")
+	private String fixStatus;
+
+	@Column(name = "note")
+	private String note;
+
+	@Column(name = "adopt_status")
+	private String adoptStatus;
+
+	@Column(name = "adopt_date")
+	private Date adoptDate;
+
+	@Column(name = "cus_ID")
+	private Integer cusId;
+
+	@Column(name = "cus_realname")
+	private String cusName;
+
+	// constructor
+	public PetBean() {
+	}
+
+	public PetBean(int petId, String category, String species, String sex, 
+			String petName,String age,String fixStatus,String note,
+			String adoptStatus,Date adoptDate,Integer cusID,String cusName) {
+		super();
+		this.petId = petId;
+		this.category = category;
+		this.species = species;
+		this.sex = sex;
+		this.age = age;
+		this.fixStatus = fixStatus;
+		this.note = note;
+		this.petName = petName;
+		this.adoptStatus = adoptStatus;
+		this.adoptDate = adoptDate;
+		this.cusId = cusID;
+		this.cusName = cusName;
+	}
+
+	// getters & setters
+	public Integer getPetId() {
+		return petId;
+	}
+
+	public void setPetId(Integer petId) {
+		this.petId = petId;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getSpecies() {
+		return species;
+	}
+
+	public void setSpecies(String species) {
+		this.species = species;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getPetName() {
+		return petName;
+	}
+
+	public void setPetName(String petName) {
+		this.petName = petName;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getFixStatus() {
+		return fixStatus;
+	}
+
+	public void setFixStatus(String fixStatus) {
+		this.fixStatus = fixStatus;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getAdoptStatus() {
+		return adoptStatus;
+	}
+
+	public void setAdoptStatus(String adoptStatus) {
+		this.adoptStatus = adoptStatus;
+	}
+
+	public Date getAdoptDate() {
+		return adoptDate;
+	}
+
+	public void setAdoptDate(Date adoptDate) {
+		this.adoptDate = adoptDate;
+	}
+
+	public Integer getCusId() {
+		return cusId;
+	}
+
+	public void setCusId(Integer cusId) {
+		this.cusId = cusId;
+	}
+
+	public String getCusName() {
+		return cusName;
+	}
+
+	public void setCusName(String cusName) {
+		this.cusName = cusName;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "Pet [petId=" + petId + ", category=" + category + ", species=" + species + ", sex=" + sex + ", petName="
+				+ petName + ", age=" + age + ", fixStatus=" + fixStatus + ", note=" + note + ", adoptStatus="
+				+ adoptStatus + ", adoptDate=" + adoptDate + ", cusId=" + cusId + ", cusName=" + cusName + "]";
+	}
+	
+	
+
+}
