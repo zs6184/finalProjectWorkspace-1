@@ -54,3 +54,62 @@ $(function () {
 });
 
 
+function getData() {
+    var req = new XMLHttpRequest();
+    req.open("get", "http://localhost:8080/indexContent/page1.html");
+    req.onload = function () {
+        var content = document.getElementById("content");
+        $('#content').empty();
+        content.innerHTML = this.responseText;
+
+    };
+    req.send();
+}
+
+
+function getData2() {
+    var req = new XMLHttpRequest();
+    req.open("get", "http://localhost:8080/indexContent/page2.html");
+    req.onload = function () {
+        var content = document.getElementById("content");
+        $('#content').empty();
+        content.innerHTML = this.responseText;
+
+    };
+    req.send();
+}
+function getData3() {
+    var req = new XMLHttpRequest();
+    req.open("get", "http://localhost:8080/indexContent/page3.html");
+    req.onload = function () {
+        var content = document.getElementById("content");
+        $('#content').empty();
+        content.innerHTML = this.responseText;
+
+    };
+    req.send();
+}
+
+function getData4() {
+    var req = new XMLHttpRequest();
+    req.open("get", "http://localhost:8080/indexContent/page4.html");
+    req.onload = function () {
+        var content = document.getElementById("content");
+        $('#content').empty();
+        content.innerHTML = this.responseText;
+
+    };
+    req.send();
+}
+
+function getData5() {
+    var req = new XMLHttpRequest();
+    req.open("get", "http://localhost:8080/indexContent/page5.html");
+    req.onload = function () {
+        var content = document.getElementById("content");
+        $('#content').empty();
+        content.innerHTML = this.responseText;
+
+    };
+    req.send();
+}
