@@ -237,7 +237,6 @@
                                     <th scope="col">類別</th>
                                     <th scope="col">品種</th>
                                     <th scope="col">性別</th>
-                                    <th scope="col">體型</th>
                                     <th scope="col">年紀</th>
                                     <th scope="col">絕育狀態</th>
                                     <th scope="col">領養狀態</th>
@@ -247,87 +246,83 @@
                                     <th scope="col">備註</th>
                                     <th scope="col">
                                         <button type="button" class="btn btn-primary btn" data-bs-toggle="modal" data-bs-target="#petInfoAdd">新增</button>
-                                        <button type="button" class="btn btn-primary btn" id="renew">刷新</button>
+<!--                                         <button type="button" class="btn btn-primary btn" id="renew">刷新</button> -->
                                     </th>
                                 </tr>
                             </thead>
                             <tbody class="align-middle">
-                                <tr>
-                                    <td>2021092001</td>
-                                    <td class="pname">Mumei Nanashi</td>
-                                    <td class="category">貓頭鷹</td>
-                                    <td class="species">金魚腦鴞</td>
-                                    <td class="sex">F</td>
-                                    <td>中型</td>
-                                    <td>幼年</td>
-                                    <td>未結紮</td>
-                                    <td>未領養</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>see mumeiter</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button>
-                                        <button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2021092002</td>
-                                    <td class="pname">Inugami Korone</td>
-                                    <td class="category">狗</td>
-                                    <td class="species">麵包狗</td>
-                                    <td class="sex">F</td>
-                                    <td>中型</td>
-                                    <td>成年</td>
-                                    <td>未結紮</td>
-                                    <td>未領養</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>ほら見てほらよ</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button>
-                                        <button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2021092003</td>
-                                    <td class="pname">Nekomata Okayu</td>
-                                    <td class="category">花心貓</td>
-                                    <td class="species">飯糰貓</td>
-                                    <td class="sex">F</td>
-                                    <td>中型</td>
-                                    <td>成年</td>
-                                    <td>未結紮</td>
-                                    <td>未領養</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>もぐもぐ</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button>
-                                        <button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2021092004</td>
-                                    <td class="pname">Shirogane Noel</td>
-                                    <td class="category">牛</td>
-                                    <td class="species">乳牛</td>
-                                    <td class="sex">M cup (X</td>
-                                    <td>大型</td>
-                                    <td>成年</td>
-                                    <td>未結紮</td>
-                                    <td>未領養</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>こんばん　マスルー</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button>
-                                        <button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button>
-                                    </td>
-                                </tr>
+<!--                                 <tr> -->
+<!--                                     <td>2021092001</td> -->
+<!--                                     <td class="pname">Mumei Nanashi</td> -->
+<!--                                     <td class="category">貓頭鷹</td> -->
+<!--                                     <td class="species">金魚腦鴞</td> -->
+<!--                                     <td class="sex">F</td> -->
+<!--                                     <td>幼年</td> -->
+<!--                                     <td>未結紮</td> -->
+<!--                                     <td>未領養</td> -->
+<!--                                     <td>N/A</td> -->
+<!--                                     <td>N/A</td> -->
+<!--                                     <td>N/A</td> -->
+<!--                                     <td>see mumeiter</td> -->
+<!--                                     <td> -->
+<!--                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button> -->
+<!--                                         <button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button> -->
+<!--                                     </td> -->
+<!--                                 </tr> -->
+<!--                                 <tr> -->
+<!--                                     <td>2021092002</td> -->
+<!--                                     <td class="pname">Inugami Korone</td> -->
+<!--                                     <td class="category">狗</td> -->
+<!--                                     <td class="species">麵包狗</td> -->
+<!--                                     <td class="sex">F</td> -->
+<!--                                     <td>成年</td> -->
+<!--                                     <td>未結紮</td> -->
+<!--                                     <td>未領養</td> -->
+<!--                                     <td>N/A</td> -->
+<!--                                     <td>N/A</td> -->
+<!--                                     <td>N/A</td> -->
+<!--                                     <td>ほら見てほらよ</td> -->
+<!--                                     <td> -->
+<!--                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button> -->
+<!--                                         <button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button> -->
+<!--                                     </td> -->
+<!--                                 </tr> -->
+<!--                                 <tr> -->
+<!--                                     <td>2021092003</td> -->
+<!--                                     <td class="pname">Nekomata Okayu</td> -->
+<!--                                     <td class="category">花心貓</td> -->
+<!--                                     <td class="species">飯糰貓</td> -->
+<!--                                     <td class="sex">F</td> -->
+<!--                                     <td>成年</td> -->
+<!--                                     <td>未結紮</td> -->
+<!--                                     <td>未領養</td> -->
+<!--                                     <td>N/A</td> -->
+<!--                                     <td>N/A</td> -->
+<!--                                     <td>N/A</td> -->
+<!--                                     <td>もぐもぐ</td> -->
+<!--                                     <td> -->
+<!--                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button> -->
+<!--                                         <button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button> -->
+<!--                                     </td> -->
+<!--                                 </tr> -->
+<!--                                 <tr> -->
+<!--                                     <td>2021092004</td> -->
+<!--                                     <td class="pname">Shirogane Noel</td> -->
+<!--                                     <td class="category">牛</td> -->
+<!--                                     <td class="species">乳牛</td> -->
+<!--                                     <td class="sex">M cup (X</td> -->
+<!--                                     <td>成年</td> -->
+<!--                                     <td>未結紮</td> -->
+<!--                                     <td>未領養</td> -->
+<!--                                     <td>N/A</td> -->
+<!--                                     <td>N/A</td> -->
+<!--                                     <td>N/A</td> -->
+<!--                                     <td>こんばん　マスルー</td> -->
+<!--                                     <td> -->
+<!--                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button> -->
+<!--                                         <button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button> -->
+<!--                                     </td> -->
+<!--                                 </tr> -->
                             </tbody>
                         </table>
 

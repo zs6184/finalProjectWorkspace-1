@@ -12,4 +12,6 @@ public interface PetDAOInterface {
 	
 	public List<PetBean> selectAll();
 	
+	public PetBean updateOne(int petId,PetBean petBean);
+	
 }

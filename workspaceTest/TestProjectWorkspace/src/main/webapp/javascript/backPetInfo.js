@@ -1,6 +1,5 @@
 // JavaScript source code
 $(function() {
-
 	//datepicker jQuery
 	$("input[name='adoptDate']").datepicker({
 		dateFormat: 'yy/mm/dd',
@@ -8,28 +7,25 @@ $(function() {
 		changeMonth: true
 	});
 
-	//取得一筆資料從DB
-	$("#renew").click(function() {
-		console.log("click Success");
-		$.ajax({
-			type: "GET",
-			url: "/TestProjectWorkspace/Servlet/PetInfoLoad",
-			dataType: "JSON",
-			contentType: "application/json",
+	//一開始從DB取得資料
+	$.ajax({
+		type: "GET",
+		url: "/TestProjectWorkspace/Servlet/PetInfoLoad",
+		dataType: "JSON",
+		contentType: "application/json",
 
-			error: function() {
-				console.log("get data failed");
-			},
-			success: function(data) {
-				for (var i=0;i<data.pets.length;i++) {
-					$("#infoTable tbody").append(
-						`<tr>
+		error: function() {
+			console.log("get data failed");
+		},
+		success: function(data) {
+			for (var i = 0; i < data.pets.length; i++) {
+				$("#infoTable tbody").append(
+					`<tr>
                          <td>${data.pets[i].petId}</td>
                          <td class="pname">${data.pets[i].petName}</td>
                          <td class="category">${data.pets[i].category}</td>
                          <td class="species">${data.pets[i].species}</td>
                          <td class="sex">${data.pets[i].sex}</td>
-                         <td>${data.pets[i].size}</td>
                          <td>${data.pets[i].age}</td>
                          <td>${data.pets[i].fixStatus}</td>
                          <td>${data.pets[i].adoptStatus}</td>
@@ -42,13 +38,10 @@ $(function() {
                          	<button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button>
                          </td>
                      </tr>`
-					);
-				}
+				);
 			}
-
-		});
+		}
 	});
-
 });
 
 //刪除資料欄(僅畫面上的刪除尚未連接資料庫)

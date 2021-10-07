@@ -20,7 +20,7 @@ public class TestPetAction {
 //			session.beginTransaction();
 //			
 //			PetDAO petDAO = new PetDAO(session);
-//			PetBean temp = petDAO.select(1001);
+//			PetBean temp = petDAO.select(1005);
 //			
 //			if(temp != null) {
 //				System.out.println(temp.toString());
@@ -43,8 +43,9 @@ public class TestPetAction {
 //		try {
 //			session.beginTransaction();
 //			PetDAO petDAO = new PetDAO(session);
+//			PetBean test = new PetBean("牛","乳牛","F","諾艾爾","成年","未結紮","腦筋","未領養",null,null,null);
 //			
-//			petDAO.insert(new PetBean(1003,"EXP","實驗體","無","實驗體二號","幼年",null,"2nd insert test(identity)","未領養",null,null,null));
+//			petDAO.insert(test);
 //			
 //			session.getTransaction().commit();
 //			System.out.println("insert success !");
@@ -75,27 +76,46 @@ public class TestPetAction {
 //		}
 
 //查詢全部
+//			try {
+//				session.beginTransaction();
+//				PetDAO petDAO = new PetDAO(session);
+//				
+//				List<PetBean> allPet = petDAO.selectAll(); 
+//				
+//				for(PetBean singlePet : allPet) {
+//					System.out.println(singlePet.toString());
+//				}
+//				
+//	
+//				session.getTransaction().commit();
+//				System.out.println("selectAll success !");
+//			} catch (Exception e) {
+//				session.getTransaction().rollback();
+//				System.out.println("SOMETHING ERROR,transaction rolled back");
+//				e.printStackTrace();
+//			} finally {
+//				HibernateUtil.closeSessionFactory();
+//			}
+	
+//更新單筆資料
 		try {
 			session.beginTransaction();
 			PetDAO petDAO = new PetDAO(session);
+			PetBean updateTest = new PetBean("狗","查理士王小獵犬","F","Korone","成年","已結紮","YUBI YUBI","未領養",null,null,null);
 			
-			List<PetBean> allPet = petDAO.selectAll(); 
+			petDAO.updateOne(1005, updateTest);
 			
-			for(PetBean singlePet : allPet) {
-				System.out.println(singlePet.toString());
-			}
-			
-
 			session.getTransaction().commit();
-			System.out.println("selectAll success !");
-		} catch (Exception e) {
+			System.out.println("Update one success !");
+		}catch(Exception e) {
 			session.getTransaction().rollback();
 			System.out.println("SOMETHING ERROR,transaction rolled back");
 			e.printStackTrace();
-		} finally {
+		}finally {
 			HibernateUtil.closeSessionFactory();
 		}
-
+		
+		
 	}
 
 }

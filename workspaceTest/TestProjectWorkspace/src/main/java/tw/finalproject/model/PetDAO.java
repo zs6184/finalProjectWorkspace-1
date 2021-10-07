@@ -10,18 +10,14 @@ public class PetDAO implements PetDAOInterface {
 	private Session session;
 
 	public PetDAO(Session session) {
-		this.session = session;
+		this.session = session;	
 	}
-
+	
 	@Override
 	public PetBean insert(PetBean petBean) {
-		PetBean temp = session.get(PetBean.class, petBean.getPetId());
-
-		if (temp == null) {
 			session.save(petBean);
+			
 			return petBean;
-		}
-		return null;
 	}
 
 	@Override
@@ -44,6 +40,18 @@ public class PetDAO implements PetDAOInterface {
 	public List<PetBean> selectAll() {
 		Query<PetBean> query = session.createQuery("from PetBean",PetBean.class);
 		return query.list();
+	}
+
+	@Override
+	public PetBean updateOne(int petId,PetBean petBean) {
+		PetBean DBBean = session.get(PetBean.class, petId);
+		
+		if(DBBean != null) {
+			DBBean.setBean(petBean);
+		
+			return DBBean;
+		}
+		return null;
 	}
 	
 	

@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import tw.finalproject.model.PetBean;
 import tw.finalproject.model.PetDAO;
@@ -49,11 +51,13 @@ public class PetInfoLoad extends HttpServlet {
 		int i = 0;
 
 		for (PetBean aPet : allPet) {
-			String tempStr = JSONObject.toJSONString(aPet);
-			JSONObject tempObj = JSONObject.parseObject(tempStr);
+			String tempStr = (JSON.toJSONString(aPet,SerializerFeature.WriteMapNullValue)); //轉為JSON字串時要寫出NULL值
+			String transfer = tempStr.replaceAll("null", "\"N/A\""); //將null轉為N/A字串
+			JSONObject tempObj = JSONObject.parseObject(transfer); //轉換後的字串轉為JSON
 			jsonArr.add(i, tempObj);
 			i++;
-			System.out.println(tempStr);
+			System.out.println("tempStr"+tempStr);
+			System.out.println("transfer"+transfer);
 		}
 		data.put("pets", jsonArr); // 設置回傳的陣列物件與其名稱
 		System.out.println("共有" + i + "筆資料輸出");

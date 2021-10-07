@@ -19,6 +19,7 @@ public class PetBean implements Serializable {
 
 	@Id
 	@Column(name = "pet_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer petId;
 
 	@Column(name = "category")
@@ -58,22 +59,21 @@ public class PetBean implements Serializable {
 	public PetBean() {
 	}
 
-	public PetBean(int petId, String category, String species, String sex, 
+	public PetBean(String category, String species, String sex, 
 			String petName,String age,String fixStatus,String note,
 			String adoptStatus,Date adoptDate,Integer cusID,String cusName) {
 		super();
-		this.petId = petId;
-		this.category = category;
-		this.species = species;
-		this.sex = sex;
-		this.age = age;
-		this.fixStatus = fixStatus;
-		this.note = note;
-		this.petName = petName;
-		this.adoptStatus = adoptStatus;
-		this.adoptDate = adoptDate;
-		this.cusId = cusID;
-		this.cusName = cusName;
+		this.setCategory(category);
+		this.setSpecies(species);
+		this.setSex(sex);
+		this.setAge(age);
+		this.setFixStatus(fixStatus);
+		this.setNote(note);
+		this.setPetName(petName);
+		this.setAdoptStatus(adoptStatus);
+		this.setAdoptDate(adoptDate);
+		this.setCusId(cusID);
+		this.setCusName(cusName);
 	}
 
 	// getters & setters
@@ -184,6 +184,21 @@ public class PetBean implements Serializable {
 				+ adoptStatus + ", adoptDate=" + adoptDate + ", cusId=" + cusId + ", cusName=" + cusName + "]";
 	}
 	
+	public PetBean setBean(PetBean temp) {
+		this.setCategory(temp.getCategory());
+		this.setSpecies(temp.getSpecies());
+		this.setSex(temp.getSex());
+		this.setPetName(temp.getPetName());
+		this.setAge(temp.getAge());
+		this.setFixStatus(temp.getFixStatus());
+		this.setNote(temp.getNote());
+		this.setAdoptStatus(temp.getAdoptStatus());
+		this.setAdoptDate(temp.getAdoptDate());
+		this.setCusId(temp.getCusId());
+		this.setCusName(temp.getCusName());
+		
+		return this;
+	}
 	
 
 }
