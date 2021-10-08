@@ -7,7 +7,7 @@
          
         <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
         <property name="hibernate.connection.password">team4</property>
-        <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=hibernateDB</property>
+        <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=final</property>
         <property name="hibernate.connection.username">sa</property>
          
         <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
@@ -23,7 +23,7 @@
         <property name="format_sql">true</property>
 		
 		<!-- hibernate 內建 連線池 -->
-		<property name="connection.pool_size">2</property>
+		<property name="connection.pool_size">10</property>
         
         <!-- setting auto generate table: update/validate  -->
 <!--         <property name="hbm2ddl.auto">update</property> -->
@@ -32,7 +32,7 @@
         <mapping resource="test/company/model/CompanyBean.hbm.xml"/>
         
         <!--  class mapping -->
-        
+        <mapping class="tw.finalproject.model.PetBean"/>
 
     
         

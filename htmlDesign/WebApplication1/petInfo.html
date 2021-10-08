@@ -10,17 +10,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0-alpha.1/jquery-ui.min.js"></script>
     <script src="/javascript/petInfo.js"></script> <!--JS Here-->
-
-
+    
 </head>
-<body>
+<body style="background-image:url(image/背景4.jpg)">
     <hr>
     <!-- 標題logo 部分 -->
     <div class="logo-area text-center">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
-                    <a href="index.html"><img src="image/浪跡.png" alt=""></a> <!--LOGO-->
+                    <a href="index.html"><img src="image/浪跡2.png" alt=""></a> <!--LOGO-->
                 </div>
             </div>
         </div>
@@ -59,7 +58,7 @@
     </div>
 
     <!--內容-->
-    <div class="container" id="container" style="margin:30px;">
+    <div class="container" id="container">
         <!--查詢欄位-->
         <form action="#">
             <div class="row justify-content-start" style="margin:30px;">
@@ -69,38 +68,19 @@
             </div>
         </form>
 
-        <!--TEST-->
-        <div id="divTest">
-            
-        </div>
+        <!--查詢結果概覽-->
+            <div class="container" style="margin-bottom:30px;">
+                <div class="row justify-content-start" id="infoContent">
+                    <div class="col" id="infoLeft">
+                       <!--左半邊--> 
+                    </div>
+                    <div class="col" id="infoRight">
+                       <!--右半邊-->
+                    </div>
+                </div>
+            </div>
+
     </div>
 
-    <script>
-        //將取得backPetInfo資料載入select選項中
-        $.get("backPetInfo.html", function (data) {
-
-            
-            //純粹取值後填入的做法，沒有篩重複值(剛好也沒有重複值)
-            $(".category", data).each(function () {
-                $("#category").append(`<option value="${this.textContent}">${this.textContent}</option>`);
-            });
-
-            //使用陣列裝抓到的所有選項(三個F)，因為有重複值，所以丟進Set中篩掉重複值
-            var sexArr = new Array;
-            $(".sex", data).each(function () {
-                sexArr.push(this.textContent);
-            });
-            var sexArrSet = new Set(sexArr);
-            var sexUnique = [...sexArrSet]; //使用展開運算符[...]轉換成為陣列
-            console.log("uniqyeArr = " + sexUnique);
-
-            sexUnique.forEach(function (v, i) { //forEach()是js的API，K-V值value是第一個參數，index是第二個
-                $("#sex").append(`<option value="${v}">${v}</option>`)
-                console.log("value = " + v);
-            });
-
-        });
-
-    </script>
 </body>
 </html>
