@@ -22,9 +22,7 @@ import tw.finalproject.model.PetBean;
 import tw.finalproject.model.PetDAO;
 import tw.finalproject.util.HibernateUtil;
 
-/**
- * Servlet implementation class PetInfoAdd
- */
+
 @WebServlet("/Servlet/PetInfoLoad")
 public class PetInfoLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -51,9 +49,9 @@ public class PetInfoLoad extends HttpServlet {
 		int i = 0;
 
 		for (PetBean aPet : allPet) {
-			String tempStr = (JSON.toJSONString(aPet,SerializerFeature.WriteMapNullValue)); //轉為JSON字串時要寫出NULL值
+			String tempStr = (JSON.toJSONString(aPet,SerializerFeature.WriteMapNullValue)); //轉為JSON字串時輸出NULL值
 			String transfer = tempStr.replaceAll("null", "\"N/A\""); //將null轉為N/A字串
-			JSONObject tempObj = JSONObject.parseObject(transfer); //轉換後的字串轉為JSON
+			JSONObject tempObj = JSONObject.parseObject(transfer); //轉換後的字串轉為JSON物件
 			jsonArr.add(i, tempObj);
 			i++;
 			System.out.println("tempStr"+tempStr);

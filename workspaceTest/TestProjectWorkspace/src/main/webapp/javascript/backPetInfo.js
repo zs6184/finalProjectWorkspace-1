@@ -17,7 +17,7 @@ $(function() {
 		error: function() {
 			console.log("get data failed");
 		},
-		success: function(data) {
+		success: function(data) {   
 			for (var i = 0; i < data.pets.length; i++) {
 				$("#infoTable tbody").append(
 					`<tr>
@@ -42,9 +42,30 @@ $(function() {
 			}
 		}
 	});
+	
+	//提交表單
+	$("form").on("submit",function(event){
+		event.preventDefault();
+		console.log($(this).serialize());
+	});
+	
 });
 
 //刪除資料欄(僅畫面上的刪除尚未連接資料庫)
 function del(obj) {
 	$(obj).parents("tr").remove();
 }
+
+//提交新增表單
+//function addInfo(){
+//	$.ajax({
+//		type:"POST",
+//		dataType:"JSON",
+//		url:"/TestProjectWorkspace/Servlet/PetInfoInsert",
+//		data:$(this).serialize(),
+//		success:function(res){
+//			console.log("POST SUCCESS")
+//			
+//		}
+//	});
+//}

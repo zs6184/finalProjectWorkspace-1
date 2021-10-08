@@ -338,7 +338,7 @@
                             <h3 class="modal-title" id="petModalTitle">寵物資料</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <form action="#" method="get">
+                        <form class="add">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="text-center" id="mainbox">
@@ -346,7 +346,7 @@
                                             <legend>基本資料</legend>
                                             <div>
                                                 <label for="petId" class=""><span>寵物編號</span></label>
-                                                <input type="text" id="petId" name="petId" />
+                                                <input type="text" id="petId" name="petId" disabled/>
                                             </div>
                                             <div>
                                                 <label for="petName" class=""><span>寵物名</span></label>
@@ -363,16 +363,8 @@
                                             <div>
                                                 <label for="sex" class=""><span>性別</span></label>
                                                 <select id="sex" name="sex">
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label for="size" class=""><span>體型</span></label>
-                                                <select id="size" name="size">
-                                                    <option value="小型">小型</option>
-                                                    <option value="中型">中型</option>
-                                                    <option value="大型">大型</option>
+                                                    <option value="M">Male</option>
+                                                    <option value="F">Female</option>
                                                 </select>
                                             </div>
                                             <div>
@@ -384,17 +376,17 @@
                                                 </select>
                                             </div>
                                             <div>
-                                                <label for="castration" class=""><span>絕育狀態</span></label>
-                                                <select id="castration" name="castration">
-                                                    <option value="Y">已結紮</option>
-                                                    <option value="N">未結紮</option>
+                                                <label for="fixStatus" class=""><span>絕育狀態</span></label>
+                                                <select id="fixStatus" name="fixStatus">
+                                                    <option value="已結紮">已結紮</option>
+                                                    <option value="未結紮">未結紮</option>
                                                 </select>
                                             </div>
                                             <div>
-                                                <label for="adoption" class=""><span>領養狀態</span></label>
-                                                <select id="adoption" name="adoption">
-                                                    <option value="Y">已領養</option>
-                                                    <option value="N">未領養</option>
+                                                <label for="adoptStatus" class=""><span>領養狀態</span></label>
+                                                <select id="adoptStatus" name="adoptStatus">
+                                                    <option value="已領養">已領養</option>
+                                                    <option value="未領養">未領養</option>
                                                 </select>
                                             </div>
                                         </fieldset>
@@ -402,12 +394,12 @@
                                         <fieldset>
                                             <legend>領養資料</legend>
                                             <div>
-                                                <label for="adopterId" class=""><span>領養會員ID</span></label>
-                                                <input type="text" id="adopterId" name="adopterId" />
+                                                <label for="cusId" class=""><span>領養會員ID</span></label>
+                                                <input type="text" id="cusId" name="cusId" oninput="value=value.replace(/[^\d]/g,'')" />
                                             </div>
                                             <div>
-                                                <label for="adopterName" class=""><span>領養會員姓名</span></label>
-                                                <input type="text" id="adopterName" name="adopterName" />
+                                                <label for="cusName" class=""><span>領養會員姓名</span></label>
+                                                <input type="text" id="cusName" name="cusName" />
                                             </div>
                                             <div>
                                                 <label for="adoptDate" class=""><span>領養日期</span></label>
@@ -417,7 +409,7 @@
                                         <hr />
                                         <fieldset>
                                             <legend>備註</legend>
-                                            <textarea placeholder="請輸入備註..."></textarea>
+                                            <textarea placeholder="請輸入備註..." id="note"></textarea>
                                         </fieldset>
                                         <div class="modal-footer">
                                             <div class="container-fluid">
@@ -436,6 +428,8 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- End Of Modal -->
 
             <!-- 分頁按鈕 -->
             <div class="page">
