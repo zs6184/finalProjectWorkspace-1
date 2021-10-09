@@ -5,29 +5,27 @@
 
 <html>
 <head>
-<head>
-<meta charset="utf-8" />
-<title>優惠碼管理</title>
-<!-- JavaScript Bundle with Popper -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-<!-- fontawesome icon -->
-<link rel="stylesheet"
-	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-<!--bootstrap & jQuery-ui-->
-<link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
-<link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
-<!--自訂樣式表-->
-<link href="stylesheet/backstage.css" rel="stylesheet" />
-<link href="stylesheet/backPetInfo.css" rel="stylesheet" />
-<!--<script src="javascript/bootstrap.min.js"></script>-->
-<script src="javascript/jquery-3.6.0.min.js"></script>
-<script src="javascript/jquery-ui.min.js"></script>
-<script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
-<!--datepicker-ui中文補丁-->
-<!--自訂js-->
-<script src="javascript/backPetInfo.js"></script>
-<script src="javascript/backstage.js"></script>
+    <meta charset="utf-8" />
+    <title>優惠碼管理</title>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <!--bootstrap & jQuery-ui-->
+    <link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
+    <link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
+    <!--自訂樣式表-->
+    <link href="stylesheet/backstage.css" rel="stylesheet" />
+    <link href="stylesheet/backPetInfo.css" rel="stylesheet" />
+    <!--<script src="javascript/bootstrap.min.js"></script>-->
+    <script src="javascript/jquery-3.6.0.min.js"></script>
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
+    <!--datepicker-ui中文補丁-->
+    <!--自訂js-->
+    <script src="javascript/backPetInfo.js"></script>
+    <script src="javascript/backstage.js"></script>
+</head>
 <body>
 	<!-- 導覽列 -->
 	<header>

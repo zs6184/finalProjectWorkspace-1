@@ -55,21 +55,21 @@ $(function () {
 
 
 function getData() {
-    var req = new XMLHttpRequest();
-    req.open("get", "http://localhost:8080/indexContent/page1.html");
-    req.onload = function () {
-        var content = document.getElementById("content");
-        $('#content').empty();
-        content.innerHTML = this.responseText;
-
-    };
-    req.send();
+  $.ajax({
+	type: "get",
+	dataType:'text',
+	contentType: "application/x-www-form-urlencoded; charset=utf-8",
+	url:"http://localhost:1337/TestProjectWorkspace/indexContent/page1.html",
+	success: function(data) {
+     	 $('#content').html(data);
+	
+}})
 }
 
 
 function getData2() {
     var req = new XMLHttpRequest();
-    req.open("get", "http://localhost:8080/indexContent/page2.html");
+    req.open("get", "http://localhost:1337/TestProjectWorkspace/indexContent/page2.html");
     req.onload = function () {
         var content = document.getElementById("content");
         $('#content').empty();
@@ -80,8 +80,9 @@ function getData2() {
 }
 function getData3() {
     var req = new XMLHttpRequest();
-    req.open("get", "http://localhost:8080/indexContent/page3.html");
+    req.open("get", "http://localhost:1337/TestProjectWorkspace/indexContent/page3.html");
     req.onload = function () {
+		
         var content = document.getElementById("content");
         $('#content').empty();
         content.innerHTML = this.responseText;
@@ -92,7 +93,7 @@ function getData3() {
 
 function getData4() {
     var req = new XMLHttpRequest();
-    req.open("get", "http://localhost:8080/indexContent/page4.html");
+    req.open("get", "http://localhost:1337/TestProjectWorkspace/indexContent/page4.html");
     req.onload = function () {
         var content = document.getElementById("content");
         $('#content').empty();
@@ -104,7 +105,7 @@ function getData4() {
 
 function getData5() {
     var req = new XMLHttpRequest();
-    req.open("get", "http://localhost:8080/indexContent/page5.html");
+    req.open("get", "http://localhost:1337/TestProjectWorkspace/indexContent/page5.html");
     req.onload = function () {
         var content = document.getElementById("content");
         $('#content').empty();

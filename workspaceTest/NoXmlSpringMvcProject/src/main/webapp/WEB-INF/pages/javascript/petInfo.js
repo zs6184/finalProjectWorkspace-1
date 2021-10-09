@@ -2,15 +2,14 @@
 
 
 $(function () {
-    
-    //»s³ystickybar®ÄªG
+    //ï¿½sï¿½ystickybarï¿½ÄªG
     window.onscroll = function () { stickTop() };
     var topbar = document.getElementById("topbar");
-    var distance = topbar.offsetTop; //¨ú±otopbar¤W¤è°¾²¾¶q
+    var distance = topbar.offsetTop; //ï¿½ï¿½ï¿½otopbarï¿½Wï¿½è°¾ï¿½ï¿½ï¿½q
 
 
     function stickTop() {
-        if (window.pageYOffset >= distance) { //¥H­¶­±Y¶b°¾²¾¶q¬°§PÂ_±ø¥ó
+        if (window.pageYOffset >= distance) { //ï¿½Hï¿½ï¿½ï¿½ï¿½Yï¿½bï¿½ï¿½ï¿½ï¿½ï¿½qï¿½ï¿½ï¿½Pï¿½_ï¿½ï¿½ï¿½ï¿½
             topbar.classList.add("sticky");
         } else {
             topbar.classList.remove("sticky");
@@ -18,32 +17,32 @@ $(function () {
     }
 
 
-    //±N¨ú±obackPetInfo¸ê®Æ¸ü¤Jselect¿ï¶µ¤¤
-    $.get("backPetInfo.html", function (data) {
+    //å°‡å–å¾—backPetInfoè³‡æ–™è¼‰å…¥selecté¸é …ä¸­
+    $.get("BackPetInfo.jsp", function (data) {
 
-        //¿ï¶µÄæ
+        //ï¿½ï¶µï¿½ï¿½
 
-        //¯Âºé¨ú­È«á¶ñ¤Jªº°µªk¡A¨S¦³¿z­«½Æ­È(­è¦n¤]¨S¦³­«½Æ­È)
+        //ç´”ç²¹å–å€¼å¾Œå¡«å…¥çš„åšæ³•ï¼Œæ²’æœ‰ç¯©é‡è¤‡å€¼(å‰›å¥½ä¹Ÿæ²’æœ‰é‡è¤‡å€¼)
         $(".category", data).each(function () {
             $("#category").append(`<option value="${this.textContent}">${this.textContent}</option>`);
             console.log(this.textContent);
         });
 
-        //¨Ï¥Î°}¦C¸Ë§ì¨ìªº©Ò¦³¿ï¶µ(¤T­ÓF)¡A¦]¬°¦³­«½Æ­È¡A©Ò¥H¥á¶iSet¤¤¿z±¼­«½Æ­È
+        //ä½¿ç”¨é™£åˆ—è£æŠ“åˆ°çš„æ‰€æœ‰é¸é …(ä¸‰å€‹F)ï¼Œå› ç‚ºæœ‰é‡è¤‡å€¼ï¼Œæ‰€ä»¥ä¸Ÿé€²Setä¸­ç¯©æ‰é‡è¤‡å€¼
         var sexArr = new Array;
         $(".sex", data).each(function () {
             sexArr.push(this.textContent);
         });
         var sexArrSet = new Set(sexArr);
-        var sexUnique = [...sexArrSet]; //¨Ï¥Î®i¶}¹Bºâ²Å[...]Âà´«¦¨¬°°}¦C
+        var sexUnique = [...sexArrSet]; //ä½¿ç”¨å±•é–‹é‹ç®—ç¬¦[...]è½‰æ›æˆç‚ºé™£åˆ—
         console.log("uniqyeArr = " + sexUnique);
 
-        sexUnique.forEach(function (v, i) { //forEach()¬OjsªºAPI¡AK-V­Èvalue¬O²Ä¤@­Ó°Ñ¼Æ¡Aindex¬O²Ä¤G­Ó
+        sexUnique.forEach(function (v, i) { //forEach()æ˜¯jsçš„APIï¼ŒK-Vå€¼valueæ˜¯ç¬¬ä¸€å€‹åƒæ•¸ï¼Œindexæ˜¯ç¬¬äºŒå€‹
             $("#sex").append(`<option value="${v}">${v}</option>`)
             console.log("value = " + v);
         });
 
-        //¸ê°TÄæ
+       //è³‡è¨Šæ¬„
         var index = 0;
         $("#infoTable tr:even:not(':first')", data).each(function () {
             console.log("LEFT---" + this.textContent);

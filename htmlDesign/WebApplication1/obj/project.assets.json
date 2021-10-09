@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\zs618\\.nuget\\packages\\": {}
+    "C:\\Users\\houng\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zs618\\source\\repos\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "C:\\Users\\houng\\Documents\\GitHub\\finalProjectWorkspace1000\\htmlDesign\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "C:\\Users\\zs618\\source\\repos\\WebApplication1\\WebApplication1.csproj",
-      "packagesPath": "C:\\Users\\zs618\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zs618\\source\\repos\\WebApplication1\\obj\\",
+      "projectPath": "C:\\Users\\houng\\Documents\\GitHub\\finalProjectWorkspace1000\\htmlDesign\\WebApplication1\\WebApplication1.csproj",
+      "packagesPath": "C:\\Users\\houng\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\houng\\Documents\\GitHub\\finalProjectWorkspace1000\\htmlDesign\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\zs618\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\houng\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

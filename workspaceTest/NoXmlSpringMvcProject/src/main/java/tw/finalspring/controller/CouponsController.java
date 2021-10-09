@@ -25,6 +25,7 @@ public class CouponsController {
 		m.addAttribute("coupon",coupons);
 		m.addAttribute("allCoupons",Coupon);
 		return "coupons";
+		//return "index";
 	}
 	
 	@RequestMapping(path = "/back.addcoupon",method = RequestMethod.POST)
