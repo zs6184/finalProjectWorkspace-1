@@ -1,5 +1,6 @@
 package tw.finalspring.model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -31,7 +32,7 @@ public class Coupons {
 	private int	couponDiscount;
 	//Àu´f½X¹L´Á¤é
 	@Column(name = "due_date")
-	private Timestamp couponDue;
+	private Date couponDue;
 	
 	public int getCouponId() {
 		return couponId;
@@ -57,10 +58,10 @@ public class Coupons {
 	public void setCouponDiscount(int couponDiscount) {
 		this.couponDiscount = couponDiscount;
 	}
-	public Timestamp getCouponDue() {
+	public Date getCouponDue() {
 		return couponDue;
 	}
-	public void setCouponDue(Timestamp couponDue) {
+	public void setCouponDue(Date couponDue) {
 		this.couponDue = couponDue;
 	}
 	
