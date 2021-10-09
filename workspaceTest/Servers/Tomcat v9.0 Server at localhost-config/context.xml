@@ -23,7 +23,7 @@
 		username="sa"
 		password="team4"
 		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		url="jdbc:sqlserver://localhost:1433;databaseName=springdemo" />
+		url="jdbc:sqlserver://localhost:1433;databaseName=final" />
 
 
     <!-- Default set of monitored resources. If one of these changes, the    -->
