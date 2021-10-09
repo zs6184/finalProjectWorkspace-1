@@ -14,17 +14,12 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
---><!-- The contents of this file will be loaded for each web application -->
-<Context>
-
-	<Resource name="connectSqlServerJdbc/OrderService"
-		type="javax.sql.DataSource" 
-		auth="Container" 
-		username="sa"
-		password="team4"
+--><!-- The contents of this file will be loaded for each web application --><Context>
+<Resource
+		url="jdbc:sqlserver://localhost:1433;databaseName=final"
 		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		url="jdbc:sqlserver://localhost:1433;databaseName=final" />
-
+		password="team4" username="sa" auth="Container"
+		type="javax.sql.DataSource" name="connectSqlServerJdbc/OrderService" />
 
     <!-- Default set of monitored resources. If one of these changes, the    -->
     <!-- web application will be reloaded.                                   -->
