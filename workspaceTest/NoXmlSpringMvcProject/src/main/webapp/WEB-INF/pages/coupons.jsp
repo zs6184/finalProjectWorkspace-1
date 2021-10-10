@@ -216,10 +216,9 @@
 										<td class="category">${Coupons.couponDue}</td>
 										<td>
 											<button type="button" class="btn btn-danger delete"
-												onclick="del(this)">刪除</button>
+												onclick="del(this,${Coupons.couponId})">刪除</button>
 										</td>
 									</tr>
-
 								</c:forEach>
 							</tbody>
 						</table>
@@ -273,9 +272,8 @@
 							</div>
 
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-bs-dismiss="modal">取消</button>
-								<form:button value="Send" type="submit" class="btn btn-primary">新增</form:button>
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+								<form:button  value="submit" type="submit" class="btn btn-primary">新增</form:button>
 							</div>
 						</form:form>
 					</div>

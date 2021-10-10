@@ -22,5 +22,8 @@ public class CouponsService {
 	public List<Coupons> allCoupon() {
 		return couponsDAO.allCoupon();
 	}
-
+	
+	public void deleteCoupon(int id) {
+		couponsDAO.deleteCoupon(id);
+	}
 }

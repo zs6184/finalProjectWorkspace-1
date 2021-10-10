@@ -1,7 +1,6 @@
 package tw.finalspring.model;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +20,11 @@ public class Coupons {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "coupon_ID")
 	private int couponId;
+	@Override
+	public String toString() {
+		return "Coupons [couponId=" + couponId + ", couponName=" + couponName + ", couponCode=" + couponCode
+				+ ", couponDiscount=" + couponDiscount + ", couponDue=" + couponDue + "]";
+	}
 	//Àu´f½X¦WºÙ
 	@Column(name = "coupon_name")
 	private String couponName;

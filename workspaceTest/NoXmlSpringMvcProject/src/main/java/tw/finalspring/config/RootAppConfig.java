@@ -15,7 +15,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-//相當於beans.config.xml
+//���beans.config.xml
 @Configuration
 @ComponentScan(basePackages = "tw.finalspring")
 @EnableTransactionManagement
