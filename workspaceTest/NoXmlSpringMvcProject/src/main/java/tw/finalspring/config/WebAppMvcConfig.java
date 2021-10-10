@@ -2,6 +2,8 @@ package tw.finalspring.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -25,7 +27,7 @@ public class WebAppMvcConfig implements WebMvcConfigurer {
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/pages/");
+		viewResolver.setPrefix("/");
 		viewResolver.setSuffix(".jsp");
 		viewResolver.setOrder(6);
 		
@@ -42,6 +44,10 @@ public class WebAppMvcConfig implements WebMvcConfigurer {
 		registry.addRedirectViewController("/", "membersmainpage.controller");
 	}
 	
-	
+	@Bean
+	//需要這個才能使用commons-fileupload上傳文件
+	public MultipartResolver multipartResolver() {
+		return new CommonsMultipartResolver();
+	}
 
 }
