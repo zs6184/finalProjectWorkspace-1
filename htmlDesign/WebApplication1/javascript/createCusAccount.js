@@ -81,7 +81,7 @@ $(function () {
         var dataForm = $(this).serialize();
         $.ajax({
             method: "post",
-            url: "http://localhost:8080/Hibernate_Web/CreateCusAccountCheckUsername",
+            url: "http://localhost:8080/NoXmlSpringMvcProject/CreateCusAccountCheckUsername",
             data: dataForm,
             success: function (data) {
                 console.log(data);
@@ -111,7 +111,7 @@ $(function () {
         var dataForm = $(this).serialize();
         $.ajax({
             method: "post",
-            url: "http://localhost:8080/Hibernate_Web/CreateCusAccountCheckPhone",
+            url: "http://localhost:8080/NoXmlSpringMvcProject/CreateCusAccountCheckPhone",
             data: dataForm,
             success: function (data) {
                 console.log(data);
@@ -141,7 +141,7 @@ $(function () {
         var dataForm = $(this).serialize();
         $.ajax({
             method: "post",
-            url: "http://localhost:8080/Hibernate_Web/CreateCusAccountCheckEmail",
+            url: "http://localhost:8080/NoXmlSpringMvcProject/CreateCusAccountCheckEmail",
             data: dataForm,
             success: function (data) {
                 if (data == "pass") {
@@ -198,7 +198,7 @@ $(function () {
         var dataForm = $(this).serialize();
         $.ajax({
             method: "post",
-            url: "http://localhost:8080/Hibernate_Web/CreateCusAccount",
+            url: "http://localhost:8080/NoXmlSpringMvcProject/CreateCusAccount",
             data: dataForm,
             success: function (data) {
                 if (data == "pass") {

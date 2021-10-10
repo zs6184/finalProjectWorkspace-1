@@ -45,7 +45,7 @@ $(function () {
         var formData = $(this).serialize();
         $.ajax({
             method: "post",
-            url: "http://localhost:8080/Hibernate_Web/LoginServlet",
+            url: "http://localhost:8080/NoXmlSpringMvcProject/checkloginaccount.controller",
             data: formData,
             success: function (data) {
                 if (data == "pass") {

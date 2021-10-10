@@ -1,0 +1,6 @@
+﻿body {
+    background-color: rgb(240, 245, 240);
+}
+.errMsg, .difMsg, .uATMsg, .pNATMsg, .eATMsg {
+    color: red;
+}
