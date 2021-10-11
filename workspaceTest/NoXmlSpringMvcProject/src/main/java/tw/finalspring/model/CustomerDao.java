@@ -17,17 +17,15 @@ public class CustomerDao {
 
 //	@Override
 	public CustomerBean select(int cId) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		CustomerBean cusBean = session.get(CustomerBean.class, cId);
-		session.close();
 		return cusBean;
 	}
 
 //	@Override
 	public List<CustomerBean> selectAll() {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query<CustomerBean> query = session.createQuery("from CustomerBean", CustomerBean.class);
-		session.close();
 		return query.list();
 	}
 	
@@ -35,10 +33,9 @@ public class CustomerDao {
 //	@Override
 	public Query<CustomerBean> selectUsernameLogin(CustomerBean username) {
 		String hql = "from CustomerBean as c where c.cusUsername = :username";
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query<CustomerBean> query = session.createQuery(hql, CustomerBean.class).setParameter("username",
 				username.getCusUsername());
-//		session.close();
 		return query;
 	}
 	
@@ -47,11 +44,10 @@ public class CustomerDao {
 //	@Override
 	public List<CustomerBean> selectUsername(CustomerBean username) {
 		String hql = "from CustomerBean as c where c.cusUsername = :username";
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query<CustomerBean> query = session.createQuery(hql, CustomerBean.class).setParameter("username",
 				username.getCusUsername());
 		List<CustomerBean> list = query.getResultList();
-		session.close();
 		return list;
 	}
 
@@ -59,11 +55,10 @@ public class CustomerDao {
 //	@Override
 	public List<CustomerBean> selectPhone(CustomerBean phoneNumber) {
 		String hql = "from CustomerBean as c where c.phoneNumber = :phoneNumber";
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query<CustomerBean> query = session.createQuery(hql, CustomerBean.class).setParameter("phoneNumber",
 				phoneNumber.getPhoneNumber());
 		List<CustomerBean> list = query.getResultList();
-		session.close();
 		return list;
 	}
 
@@ -71,34 +66,31 @@ public class CustomerDao {
 //	@Override
 	public List<CustomerBean> selectEmail(CustomerBean email) {
 		String hql = "from CustomerBean as c where c.email = :email";
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query<CustomerBean> query = session.createQuery(hql, CustomerBean.class).setParameter("email",
 				email.getEmail());
 		List<CustomerBean> list = query.getResultList();
-		session.close();
 		return list;
 	}
 
 //	@Override
 	public CustomerBean insert(CustomerBean cBean) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		CustomerBean cusBean = session.get(CustomerBean.class, cBean.getCusId());
 		if (cusBean == null) {
 			session.save(cBean);
-			session.close();
 			return cBean;
 		}
-		session.close();
 		return null;
 	}
 
 //	@Override
 	public CustomerBean updateOne(int cId, CustomerBean cBean) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		CustomerBean cusBean = session.get(CustomerBean.class, cId);
 		if (cusBean != null) {
 			// 透過Bean取得資料更新到資料庫
-			cusBean.setCusPassword(cBean.getCusPassword());
+//			cusBean.setCusPassword(cBean.getCusPassword());
 			cusBean.setAka(cBean.getAka());
 			cusBean.setCusRealname(cBean.getCusRealname());
 			cusBean.setGender(cBean.getGender());
@@ -109,22 +101,18 @@ public class CustomerDao {
 			cusBean.setImage(cBean.getImage());
 			cusBean.setNote(cBean.getNote());
 			cusBean.setNoShow(cBean.getNoShow());
-			session.close();
 		}
-		session.close();
 		return cusBean;
 	}
 
 //	@Override
 	public boolean deletOne(int cId) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		CustomerBean cusBean = session.get(CustomerBean.class, cId);
 		if (cusBean != null) {
 			session.delete(cusBean);
-			session.close();
 			return true;
 		} else {
-			session.close();
 			return false;
 		}
 	}
