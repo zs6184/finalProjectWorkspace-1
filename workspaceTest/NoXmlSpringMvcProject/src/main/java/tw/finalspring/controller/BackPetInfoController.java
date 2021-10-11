@@ -38,7 +38,9 @@ public class BackPetInfoController {
 	@RequestMapping(path = "/backpetinfo.controller", method = RequestMethod.GET)
 	public String processLoadingPage(Model m) {
 		arrPet = loadPet();
-
+		sexSet.clear();		//進行內容刷新避免舊資料殘留
+		cateSet.clear();	//進行內容刷新避免舊資料殘留
+		
 		for(PetBean aPet:arrPet) {
 			sexSet.add(aPet.getSex());		//用Set將重複值篩選掉
 			cateSet.add(aPet.getCategory());//用Set將重複值篩選掉

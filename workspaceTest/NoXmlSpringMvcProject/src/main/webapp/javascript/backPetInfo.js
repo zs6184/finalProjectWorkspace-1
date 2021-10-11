@@ -1,5 +1,8 @@
 // JavaScript source code
-$(function () {
+
+
+//DocumentReady
+$(function() {
 
 	//DatePicker
 	$("input[name='adoptDate']").datepicker({
@@ -10,17 +13,39 @@ $(function () {
 
 
 	//不同按鈕對應同一表單的action
-	$("#insertBtn").click(function () {
+	$("#insertBtn").click(function() {
 		$("#modalForm").attr("action", "insertPetInfo.controller");
 		$("#modalForm #idSection").prop("hidden", "hidden");
 		$("#modalForm input,textarea,select").val("");
 
 	});
-	
-	//表單事件
-	
 
+	//表單事件-生成錯誤提示元素
+	function createErr(obj) {
+		$(obj).attr("placeholder","此為必填");
+	}
 
+	//表單事件-新增錯誤提示元素
+	$("#modalForm .requiredValue").blur(function() {
+		if ($(this).val() == "") {		//若必填的input空值
+			createErr(this);		
+		} 
+	});
+
+	//表單事件-提交控制
+	$("#modalForm").submit(function() {
+		var errs = [];
+		$("#modalForm .requiredValue").each(function() {
+			if ($(this).val() == "") {
+				createErr(this);
+				errs.push(this);
+			}
+		});
+		if (errs.length>0) {
+			$(errs[0]).focus();
+			return false; //阻止表單提交	
+		}
+	});
 });
 
 //跳出確認刪除對話框
@@ -32,7 +57,7 @@ function delAlert(obj) {
 	ID = $(obj).parent("td").siblings(".ID").text();
 	var NAME = $(obj).parent("td").siblings(".NAME").text();
 	console.log(ID);
-	$("#alertDialog").html(`�T�{�R��${ID} : ${NAME} ?`);
+	$("#alertDialog").html(`確定刪除資料 ${ID} : ${NAME} ?`);
 }
 
 
@@ -61,7 +86,7 @@ function select(obj) {
 		datatype: "JSON",
 		contentType: "application/json",
 		data: { "id": `${ID}` },
-		success: function (result) {
+		success: function(result) {
 			console.log("Success");
 			var parsed = jQuery.parseJSON(result);
 			$("#modalForm #petId").val(ID);
@@ -77,7 +102,7 @@ function select(obj) {
 			$("#modalForm #adoptDate").val(parsed.adoptDate);
 			$("#modalForm #note").val(parsed.note);
 		},
-		error: function () {
+		error: function() {
 			console.log("failed to get data");
 		}
 	})

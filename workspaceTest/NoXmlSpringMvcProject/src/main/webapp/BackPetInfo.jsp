@@ -277,46 +277,50 @@
 										<fieldset>
 											<legend>基本資料</legend>
 											<div id="idSection">
-												<label for="petId" class=""><span>寵物編號</span></label> <input
+												<label for="petId"><span>寵物編號</span></label> <input
 													type="text" id="petId" name="petId" disabled />
 											</div>
 											<div>
-												<label for="petName" class=""><span>寵物名</span></label> <input
-													type="text" id="petName" name="petName" />
+												<label for="petName"><span>*寵物名</span></label> <input
+													type="text" id="petName" name="petName" class="requiredValue" />
 											</div>
 											<div>
-												<label for="category" class=""><span>類別</span></label> <input
-													type="text" id="category" name="category" />
+												<label for="category"><span>*類別</span></label> <input
+													type="text" id="category" name="category" class="requiredValue" />
 											</div>
 											<div>
-												<label for="species" class=""><span>品種</span></label> <input
-													type="text" id="species" name="species" />
+												<label for="species"><span>*品種</span></label> <input
+													type="text" id="species" name="species" class="requiredValue" />
 											</div>
 											<div>
-												<label for="sex" class=""><span>性別</span></label> <select
-													id="sex" name="sex">
+												<label for="sex"><span>*性別</span></label> <select
+													id="sex" name="sex"  class="requiredValue" required>													
+													<option value="" disabled selected></option>
 													<option value="M">Male</option>
 													<option value="F">Female</option>
 												</select>
 											</div>
 											<div>
-												<label for="age" class=""><span>年齡</span></label> <select
-													id="age" name="age">
+												<label for="age"><span>*年齡</span></label> <select
+													id="age" name="age"  class="requiredValue" required>
+													<option value="" disabled selected></option>
 													<option value="幼年">幼年</option>
 													<option value="成年">成年</option>
 													<option value="老年">老年</option>
 												</select>
 											</div>
 											<div>
-												<label for="fixStatus" class=""><span>絕育狀態</span></label> <select
-													id="fixStatus" name="fixStatus">
+												<label for="fixStatus"><span>*絕育狀態</span></label> <select
+													id="fixStatus" name="fixStatus" class="requiredValue" required>
+													<option value="" disabled selected></option>
 													<option value="已結紮">已結紮</option>
 													<option value="未結紮">未結紮</option>
 												</select>
 											</div>
 											<div>
-												<label for="adoptStatus" class=""><span>領養狀態</span></label>
-												<select id="adoptStatus" name="adoptStatus">
+												<label for="adoptStatus"><span>*領養狀態</span></label>
+												<select id="adoptStatus" name="adoptStatus" class="requiredValue" required>
+													<option value="" disabled selected></option>
 													<option value="已領養">已領養</option>
 													<option value="未領養">未領養</option>
 												</select>
