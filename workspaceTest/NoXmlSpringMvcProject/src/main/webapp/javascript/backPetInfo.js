@@ -1,54 +1,14 @@
 // JavaScript source code
-$(function() {
-//datepicker jQuery
-	$("input[name='adoptDate']").datepicker({
-		dateFormat: 'yy/mm/dd',
-		changeYear: true,
-		changeMonth: true
-	});
+$(function () {
 
-//一開始從DB取得資料
-//	$.ajax({
-//		type: "GET",
-//		url: "/TestProjectWorkspace/Servlet/PetInfoLoad",
-//		dataType: "JSON",
-//		contentType: "application/json",
-//
-//		error: function() {
-//			console.log("get data failed");
-//		},
-//		success: function(data) {   
-//			for (var i = 0; i < data.pets.length; i++) {
-//				$("#infoTable tbody").append(
-//					`<tr>
-//                         <td>${data.pets[i].petId}</td>
-//                         <td class="pname">${data.pets[i].petName}</td>
-//                         <td class="category">${data.pets[i].category}</td>
-//                         <td class="species">${data.pets[i].species}</td>
-//                         <td class="sex">${data.pets[i].sex}</td>
-//                         <td>${data.pets[i].age}</td>
-//                         <td>${data.pets[i].fixStatus}</td>
-//                         <td>${data.pets[i].adoptStatus}</td>
-//                         <td>${data.pets[i].cusId}</td>
-//                         <td>${data.pets[i].cusName}</td>
-//                         <td>${data.pets[i].adoptDate}</td>
-//                         <td>${data.pets[i].note}</td>
-//                         <td>
-//                         	<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petInfoAdd">更新</button>
-//                         	<button type="button" class="btn btn-danger delete" onclick="del(this)">刪除</button>
-//                         </td>
-//                     </tr>`
-//				);
-//			}
-//		}
-//	});
-	
-//阻止提交表單並顯示於console中
-//	$("form").on("submit",function(event){
-//		event.preventDefault();
-//		console.log($(this).serialize());
-//	});
+    //�����ܾ�
+    $("input[name='adoptDate']").datepicker({
+        dateFormat: 'yy/mm/dd',
+        changeYear: true,
+        changeMonth: true
+    });
 
+<<<<<<< HEAD
 
 //變更按鈕對應表單的action
 $("#insertBtn").click(function(){
@@ -120,4 +80,31 @@ function select(obj){
 			}
 		})
 	}
+=======
+    $("#renew").click(function () {
+        del(this);
+    });
 
+});
+
+//�R����ƨƥ�
+function del(obj) {
+    $(obj).parents("tr").remove();
+}
+
+
+function renewData() {
+    $.ajax({
+        type: "GET",
+        url: "/PetInfoLoad",
+        dataType: "text",
+        success: function (data, textStatus) {
+            alert(data);
+        },
+    });
+}
+>>>>>>> 8b58d75e16e8106c9211067c0685275e26faeb5f
+
+/*function openEdit() {
+    window.open("petInfoAdd.html", "EditWindow", "height=600,width=800,top=200,left=600");
+}*/

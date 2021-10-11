@@ -19,7 +19,7 @@ public class TestCompanyBean {
 		
 		Transaction tx = session.beginTransaction();
 		
-		CompanyBean comBean = new CompanyBean(1006,"BongFrog");
+		CompanyBean comBean = new CompanyBean(1007,"Google");
 		
 		session.save(comBean);
 		
