@@ -286,7 +286,7 @@
 											</div>
 											<div>
 												<label for="category" class=""><span>類別</span></label> <input
-													type="text" id="category" name="category" />
+													type="text" id="category" name="category"/>
 											</div>
 											<div>
 												<label for="species" class=""><span>品種</span></label> <input

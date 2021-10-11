@@ -9,13 +9,16 @@ $(function () {
 	});
 
 
-	//變更按鈕對應表單的action
+	//不同按鈕對應同一表單的action
 	$("#insertBtn").click(function () {
 		$("#modalForm").attr("action", "insertPetInfo.controller");
 		$("#modalForm #idSection").prop("hidden", "hidden");
 		$("#modalForm input,textarea,select").val("");
 
 	});
+	
+	//表單事件
+	
 
 
 });
@@ -31,7 +34,6 @@ function delAlert(obj) {
 	console.log(ID);
 	$("#alertDialog").html(`�T�{�R��${ID} : ${NAME} ?`);
 }
-
 
 
 //刪除資料欄(連到資料庫)
@@ -80,8 +82,3 @@ function select(obj) {
 		}
 	})
 }
-
-
-/*function openEdit() {
-	window.open("petInfoAdd.html", "EditWindow", "height=600,width=800,top=200,left=600");
-}*/
