@@ -2,14 +2,14 @@
 
 
 $(function () {
-    //�s�ystickybar�ĪG
+    //stickybar
     window.onscroll = function () { stickTop() };
     var topbar = document.getElementById("topbar");
-    var distance = topbar.offsetTop; //���otopbar�W�谾���q
+    var distance = topbar.offsetTop; //抓topbar離頁面頂部距離
 
 
     function stickTop() {
-        if (window.pageYOffset >= distance) { //�H����Y�b�����q���P�_����
+        if (window.pageYOffset >= distance) { //偏移量>distance時增加stick
             topbar.classList.add("sticky");
         } else {
             topbar.classList.remove("sticky");
@@ -17,7 +17,7 @@ $(function () {
     }
 
 
-    //將取得backPetInfo資料載入select選項中
+//將取得backPetInfo資料載入select選項中
     $.get("BackPetInfo.jsp", function (data) {
 
         //�ﶵ��
@@ -28,7 +28,7 @@ $(function () {
             console.log(this.textContent);
         });
 
-        //使用陣列裝抓到的所有選項(三個F)，因為有重複值，所以丟進Set中篩掉重複值
+//使用陣列裝抓到的所有選項(三個F)，因為有重複值，所以丟進Set中篩掉重複值
         var sexArr = new Array;
         $(".sex", data).each(function () {
             sexArr.push(this.textContent);
@@ -42,7 +42,7 @@ $(function () {
             console.log("value = " + v);
         });
 
-       //資訊欄
+//資訊欄
         var index = 0;
         $("#infoTable tr:even:not(':first')", data).each(function () {
             console.log("LEFT---" + this.textContent);

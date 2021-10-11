@@ -49,19 +49,33 @@ $(function() {
 //		console.log($(this).serialize());
 //	});
 
-//變更按鈕對應表單的action
 
+//變更按鈕對應表單的action
 $("#insertBtn").click(function(){
 	$("#modalForm").attr("action","insertPetInfo.controller");
 	$("#modalForm #idSection").prop("hidden","hidden");
 	$("#modalForm input,textarea,select").val("");
 });
-	
+
+
 });
 
+//跳出確認刪除對話框
+
+var ID; 
+var record;
+
+function delAlert(obj){
+	record=$(obj);
+	ID =$(obj).parent("td").siblings(".ID").text();
+	var NAME = $(obj).parent("td").siblings(".NAME").text();
+	console.log(ID);
+	$("#alertDialog").html(`確認刪除${ID} : ${NAME} ?`);
+}
+
+
 //刪除資料欄(連到資料庫)
-function del(obj) {
-	var ID =$(obj).parent("td").siblings(".ID").text();
+function del() {
 	console.log(ID);
 			$.ajax({
 			type:"GET",
@@ -70,13 +84,14 @@ function del(obj) {
 			contentType: "application/json",
 			data:{"id":`${ID}`}
 		})
-	$(obj).parents("tr").remove();
+	record.parents("tr").remove();
 }
-//選取此筆資料
+
+//使用更新按鈕選取此筆資料
 function select(obj){
 	$("#modalForm").attr("action","updateone.controller");
 	$("#modalForm #idSection").removeAttr("hidden");
-	var ID =$(obj).parent("td").siblings(".ID").text();
+	ID =$(obj).parent("td").siblings(".ID").text();
 	console.log(ID);
 		$.ajax({
 			type:"GET",
@@ -104,6 +119,5 @@ function select(obj){
 				console.log("failed to get data");
 			}
 		})
-		
 	}
 
