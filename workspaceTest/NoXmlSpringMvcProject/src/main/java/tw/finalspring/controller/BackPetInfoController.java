@@ -2,11 +2,11 @@ package tw.finalspring.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +27,48 @@ import tw.finalspring.service.PetService;
 @Controller
 public class BackPetInfoController {
 
-	int ID;
+	int ID;//選中資料的ID值
+	List<PetBean> arrPet = new ArrayList<PetBean>();//查詢後用於顯示的資料存放處
+	Set<String> sexSet = new HashSet<String>(); //查詢欄位的性別欄選項
+	Set<String> cateSet = new HashSet<String>();//查詢欄位的類別欄選項
+	
+//----------------------------------------------------------------	
 	
 	//載入全部資料
 	@RequestMapping(path = "/backpetinfo.controller", method = RequestMethod.GET)
 	public String processLoadingPage(Model m) {
-		List<PetBean> arrPet = loadPet();
+		arrPet = loadPet();
+
+		for(PetBean aPet:arrPet) {
+			sexSet.add(aPet.getSex());		//用Set將重複值篩選掉
+			cateSet.add(aPet.getCategory());//用Set將重複值篩選掉
+		}
+	
 		m.addAttribute("arrPet",arrPet);
+		m.addAttribute("cateSet",cateSet);
+		m.addAttribute("sexSet",sexSet);
+		
 		
 		return "BackPetInfo";
 	}
+	
+	//使用條件進行查詢
+	@RequestMapping(path = "/searchdata.controller",method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	public String processSearchData(@RequestParam("category") String category,@RequestParam("sex") String sex,Model m) {
+		
+		arrPet = searchPet(category, sex);
+		
+		m.addAttribute("arrPet",arrPet);
+		m.addAttribute("cateSet",cateSet);
+		m.addAttribute("sexSet",sexSet);
+		
+		if(arrPet==null||arrPet.isEmpty()) {
+			return "redirect:/backpetinfo.controller";
+		}
+		
+		return "BackPetInfo";
+	}
+	
 	
 	//新增單一資料
 	@RequestMapping(path = "/insertPetInfo.controller", method = RequestMethod.POST, produces = "application/json; charset=utf-8") // 設定字串type與編碼
@@ -73,12 +105,9 @@ public class BackPetInfoController {
 	
 	//刪除單一資料
 	@RequestMapping(path="/deletebyid.controller",method = RequestMethod.GET)
-	public String processDeleteById(@RequestParam String id) {
-		System.out.println("Start To Delete");
-		System.out.println(id);
+	public String processDeleteById(@RequestParam int id) {
 		
-		int petId = Integer.parseInt(id);
-		deletePet(petId);
+		deletePet(id);
 		System.out.println("Delete Success");
 		
 		return "redirect:/backpetinfo.controller";
@@ -151,5 +180,18 @@ public class BackPetInfoController {
 			e.printStackTrace();
 		}
 	}
+	
+	//使用類別與性別查詢
+	private List<PetBean> searchPet(String category,String sex){
+		List<PetBean>tempArr = new ArrayList<>();
+		try {
+			tempArr = pService.searchData(category, sex);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return tempArr;
+	}
+	
+	
 
 }

@@ -1,4 +1,12 @@
-﻿.page {
+﻿body{
+padding: 0px;
+margin: 0px;
+width: 100%;
+min-width:1580px;
+}
+
+
+.page {
     margin-top: 30px;
 }
 
@@ -52,4 +60,5 @@
     resize: none;
     overflow: auto;
 }
+
 

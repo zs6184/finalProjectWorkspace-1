@@ -41,7 +41,7 @@ public class WebAppMvcConfig implements WebMvcConfigurer {
 
 	@Override//根據虛擬路徑重新導向至對應路徑
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addRedirectViewController("/", "membersmainpage.controller");
+		registry.addRedirectViewController("/WEB-INF/pages", "membersmainpage.controller");
 	}
 	
 	@Bean

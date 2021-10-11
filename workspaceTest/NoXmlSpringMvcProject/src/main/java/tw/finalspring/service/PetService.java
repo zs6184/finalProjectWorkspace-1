@@ -21,10 +21,8 @@ public class PetService {
 		return petDAO.insertOne(temp);
 	}
 	
-	
 	//載入全部
 	public List<PetBean> selectAll(){
-		System.out.println("Service do selectALL");
 		return petDAO.selectAll();
 	}
 	
@@ -34,13 +32,18 @@ public class PetService {
 	}
 	
 	//使用ID單筆刪除
-	public boolean deleteById(int petId) {
-		return petDAO.deleteById(petId);
+	public void deleteById(int petId) {
+		petDAO.deleteById(petId);
 	}
 	
 	//更新單筆資料
 	public PetBean updateOne(int petId ,PetBean temp) {
 		return petDAO.updateOne(petId,temp);
+	}
+	
+	//根據類別與性別進行查詢
+	public List<PetBean> searchData(String category,String sex) {
+		return petDAO.searchData(category,sex);
 	}
 	
 }
