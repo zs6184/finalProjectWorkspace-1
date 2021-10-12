@@ -30,7 +30,7 @@ public class Coupons {
 	private String couponName;
 	//Àu´f½X
 	@Column(name = "coupon_code")
-	private String couponCode;
+	private int couponCode;
 	//Àu´f½X§é»ùª÷ÃB
 	@Column(name = "[discount]")
 	private int	couponDiscount;
@@ -50,10 +50,10 @@ public class Coupons {
 	public void setCouponName(String couponName) {
 		this.couponName = couponName;
 	}
-	public String getCouponCode() {
+	public int getCouponCode() {
 		return couponCode;
 	}
-	public void setCouponCode(String couponCode) {
+	public void setCouponCode(int couponCode) {
 		this.couponCode = couponCode;
 	}
 	public int getCouponDiscount() {

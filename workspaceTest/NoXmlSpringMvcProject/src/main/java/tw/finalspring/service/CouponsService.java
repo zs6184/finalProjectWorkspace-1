@@ -1,5 +1,7 @@
 package tw.finalspring.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +27,9 @@ public class CouponsService {
 	
 	public void deleteCoupon(int id) {
 		couponsDAO.deleteCoupon(id);
+	}
+	
+	public  ArrayList<Object> checkCoupon(int couponCode) {
+		return couponsDAO.checkCoupon(couponCode);	
 	}
 }
