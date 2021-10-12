@@ -2,7 +2,7 @@
 padding: 0px;
 margin: 0px;
 width: 100%;
-min-width:1580px;
+min-width:1800px;
 }
 
 
@@ -12,6 +12,15 @@ min-width:1580px;
 
 .table {
     text-align: center;
+}
+
+th,td{
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.notetable{
+	max-width:150px;
 }
 
     #mainbox div {

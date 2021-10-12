@@ -112,7 +112,7 @@ public class BackPetInfoController {
 		deletePet(id);
 		System.out.println("Delete Success");
 		
-		return "redirect:/backpetinfo.controller";
+		return "BackPetInfo";
 	}
 	
 	//修改單筆資料

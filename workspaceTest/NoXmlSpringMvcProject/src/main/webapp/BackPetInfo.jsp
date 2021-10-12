@@ -15,6 +15,8 @@
 <!--bootstrap & jQuery-ui-->
 <link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
 <link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
+<!-- DataTable套件 -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
 <!--自訂樣式表-->
 <link href="stylesheet/backstage.css" rel="stylesheet" />
 <link href="stylesheet/backPetInfo.css" rel="stylesheet" />
@@ -23,6 +25,8 @@
 <script src="javascript/jquery-ui.min.js"></script>
 <!--datepicker-ui中文補丁-->
 <script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
+<!-- DataTable套件 -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <!--自訂js-->
 <script src="javascript/backPetInfo.js"></script>
 <script src="javascript/backstage.js"></script>
@@ -190,19 +194,6 @@
 							</div>
 						</form>
 					</div>
-					<!-- 分頁按鈕 -->
-					<div class="offset-2 col-8 ">
-						<nav aria-label="Page navigation">
-							<ul class="pagination justify-content-center">
-								<li class="page-item "><a class="page-link"
-									href="history.back()">上一頁</a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">下一頁</a></li>
-							</ul>
-						</nav>
-					</div>
 			</div>
 			<!-- 主頁內容 -->
 			<div class="container-fluid ">
@@ -222,7 +213,7 @@
 									<th scope="col">領養會員ID</th>
 									<th scope="col">領養會員姓名</th>
 									<th scope="col">領養日期</th>
-									<th scope="col">備註</th>
+									<th scope="col" class="notetable">備註</th>
 									<th scope="col">
 										<button type="button" class="btn btn-primary btn"
 											data-bs-toggle="modal" data-bs-target="#petInfoAdd"
@@ -244,7 +235,7 @@
 										<td>${arrPet.cusId}</td>
 										<td>${arrPet.cusName}</td>
 										<td>${arrPet.adoptDate}</td>
-										<td>${arrPet.note}</td>
+										<td class="notetable">${arrPet.note}</td>
 										<td>
 											<button type="button" class="btn btn-danger updateBtn"
 												data-bs-toggle="modal" data-bs-target="#petInfoAdd"
@@ -385,26 +376,10 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		
+			</div>		
 			<!-- End Of deleteAlert Modal-->
 
-
-			<!-- 分頁按鈕 -->
-			<div class="page">
-				<nav aria-label="Page navigation">
-					<ul class="pagination justify-content-center">
-						<li class="page-item"><a class="page-link"
-							href="history.back()">上一頁</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">下一頁</a></li>
-					</ul>
-				</nav>
-			</div>
 		</div>
-
 	</div>
 </body>
 </html>

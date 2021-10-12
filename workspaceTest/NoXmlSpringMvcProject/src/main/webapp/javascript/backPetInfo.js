@@ -1,6 +1,5 @@
 // JavaScript source code
 
-
 //DocumentReady
 $(function() {
 
@@ -22,14 +21,14 @@ $(function() {
 
 	//表單事件-生成錯誤提示元素
 	function createErr(obj) {
-		$(obj).attr("placeholder","此為必填");
+		$(obj).attr("placeholder", "此為必填");
 	}
 
 	//表單事件-新增錯誤提示元素
 	$("#modalForm .requiredValue").blur(function() {
 		if ($(this).val() == "") {		//若必填的input空值
-			createErr(this);		
-		} 
+			createErr(this);
+		}
 	});
 
 	//表單事件-提交控制
@@ -41,11 +40,31 @@ $(function() {
 				errs.push(this);
 			}
 		});
-		if (errs.length>0) {
+		if (errs.length > 0) {
 			$(errs[0]).focus();
 			return false; //阻止表單提交	
 		}
 	});
+	
+	//生成表格分頁,呼叫DataTable套件
+	dttable=
+	$("#infoTable").DataTable({
+		lengthChange:true,
+		lengthMenu:[5,8,10],
+		pageLength:10,
+		paging:true,
+		searching:false,
+		ordering:false,
+		language:{
+			"lengthMenu":"顯示_MENU_ 項",
+			"info":"顯示第 _START_ 至 _END_ 項 , 共 _TOTAL_ 項",
+			"paginate":{
+				"previous":"上一頁",
+				"next":"下一頁"
+			}
+		}
+	});
+
 });
 
 //跳出確認刪除對話框
@@ -72,6 +91,7 @@ function del() {
 		data: { "id": `${ID}` }
 	})
 	record.parents("tr").remove();
+	window.location.reload()
 }
 
 //使用更新按鈕選取此筆資料
@@ -107,3 +127,4 @@ function select(obj) {
 		}
 	})
 }
+
