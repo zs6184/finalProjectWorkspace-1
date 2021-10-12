@@ -15,11 +15,13 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --><!-- The contents of this file will be loaded for each web application --><Context>
-<Resource
-		url="jdbc:sqlserver://localhost:1433;databaseName=final"
+	<Resource name="connectSqlServerJdbc/OrderService"
+		type="javax.sql.DataSource" 
+		auth="Container" 
+		username="sa"
+		password="team4"
 		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		password="team4" username="sa" auth="Container"
-		type="javax.sql.DataSource" name="connectSqlServerJdbc/OrderService" />
+		url="jdbc:sqlserver://localhost:1433;databaseName=final" />
 
     <!-- Default set of monitored resources. If one of these changes, the    -->
     <!-- web application will be reloaded.                                   -->

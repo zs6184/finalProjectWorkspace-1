@@ -36,6 +36,7 @@ public class CouponsController {
 
 	@RequestMapping(path = "/back.coupons")
 	public String couponsPage(Model m) {
+		System.out.println("¶i¤J");
 		Coupons coupons = new Coupons();
 		List<Coupons> Coupon = couponsService.allCoupon();
 		m.addAttribute("coupon", coupons);

@@ -14,8 +14,7 @@
     <!--自訂樣式表-->
     <link href="stylesheet/login.css" rel="stylesheet" />
     <!--自訂js-->
-
-
+    <script src="javascript/login.js"></script>
 
 </head>
 <body>
@@ -42,15 +41,15 @@
                     </div>
                 </div>
                 <hr class="mx-5">
-                <form class="mt-5" action="#" method="post">
-                    <div class="row">
+                <form class="mt-5" id="loginForm" action="http://localhost:8080/NoXmlSpringMvcProject/checkloginaccount.controller" method="post">
+                    <div class="row" id="account">
                         <!-- 帳號 -->
                         <div class="offset-2 col-8">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">
                                     <i class="fas fa-user"></i>
                                 </span>
-                                <input type="text" name="username" class="form-control" placeholder="Username" autocomplete="off">
+                                <input type="text" id="username" name="username" class="form-control" placeholder="Username" autocomplete="off">
                             </div>
                         </div>
                         <!--密碼-->
@@ -59,9 +58,12 @@
                                 <span class="input-group-text" id="basic-addon2">
                                     <i class="fas fa-lock"></i>
                                 </span>
-                                <input type="text" name="password" class="form-control" placeholder="Password" autocomplete="off">
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Password" autocomplete="off">
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center LoginErrMsg"></div>
                         <!-- checkBox -->
                         <div class="offset-2 col-8">
                             <div class="form-check">
@@ -78,12 +80,12 @@
                             </div>
                         </div>
                         <!-- 註冊及忘記密碼 -->
-                        <div class="text-center mt-3 mb-5">
+                        <div class="text-center mt-3 mb-5" id="status1">
                             <button type="submit" class="btn btn-primary btn-lg">登入</button>
                         </div>
 
                         <div class="text-center mb-4">
-                            <a href="createAccount.html">註冊</a>
+                            <a href="createCusAccount.html">註冊</a>
                             <a href="#" class="ms-5">忘記您的密碼?</a>
                         </div>
                     </div>

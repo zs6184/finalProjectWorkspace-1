@@ -24,7 +24,9 @@
     <!--datepicker-ui中文補丁-->
     <!--自訂js-->
     <script src="javascript/backPetInfo.js"></script>
+    <script src="javascript/backstage.js"></script>
     <script src="javascript/coupon.js"></script>
+    
 </head>
 <body>
 	<!-- 導覽列 -->

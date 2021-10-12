@@ -1,4 +1,5 @@
 package tw.finalspring.config;
+
 import java.util.Properties;
 
 import javax.naming.NamingException;
@@ -25,16 +26,16 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 @EnableTransactionManagement
 @EnableWebMvc
 public class RootAppConfig {
-	
+
 	@Bean
-    public DataSource datasource() throws IllegalArgumentException, NamingException {
-    	JndiObjectFactoryBean jndiBean = new JndiObjectFactoryBean();
-    	jndiBean.setJndiName("java:comp/env/connectSqlServerJdbc/OrderService");
-    	jndiBean.afterPropertiesSet();
-    	DataSource ds = (DataSource)jndiBean.getObject();
-    	return ds;
-    }
-	
+	public DataSource datasource() throws IllegalArgumentException, NamingException {
+		JndiObjectFactoryBean jndiBean = new JndiObjectFactoryBean();
+		jndiBean.setJndiName("java:comp/env/connectSqlServerJdbc/OrderService");
+		jndiBean.afterPropertiesSet();
+		DataSource ds = (DataSource) jndiBean.getObject();
+		return ds;
+	}
+
 	@Bean(destroyMethod = "destroy")
 	public LocalSessionFactoryBean sessionFactory() throws IllegalArgumentException, NamingException {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
@@ -51,37 +52,39 @@ public class RootAppConfig {
 		props.put("hibernate.format_sql", Boolean.TRUE);
 		return props;
 	}
-	
-	@Bean(name="transactionManager")
+
+	@Bean(name = "transactionManager")
 	@Autowired
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager mgr = new HibernateTransactionManager();
 		mgr.setSessionFactory(sessionFactory);
 		return mgr;
 	}
-	
+
 	@Bean("javaMailSender")
 	public JavaMailSender getJavaMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
-        mailSender.setUsername("ik2469181@gmail.com");
-        mailSender.setPassword("jvvwmqblclsldqzf");    
-        
-        Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol", "smtp");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.debug", "true");
-        return  mailSender;
-    }
-	
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		mailSender.setHost("smtp.gmail.com");
+		mailSender.setPort(587);
+		mailSender.setUsername("ik2469181@gmail.com");
+		mailSender.setPassword("jvvwmqblclsldqzf");
+
+		Properties props = mailSender.getJavaMailProperties();
+		props.put("mail.transport.protocol", "smtp");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.debug", "true");
+		return mailSender;
+	}
+
 	@Bean
 	public FreeMarkerConfigurationFactoryBean markerfactoryBean() {
-		//FreeMarkerConfigurationFactoryBean bean = new FreeMarkerConfigurationFactoryBean();
+		// FreeMarkerConfigurationFactoryBean bean = new
+		// FreeMarkerConfigurationFactoryBean();
 		FreeMarkerConfigurer bean = new FreeMarkerConfigurer();
 		bean.setTemplateLoaderPath("classpath:/WEB-INF/templates/");
 		return null;
-		
+
 	}
+
 }
