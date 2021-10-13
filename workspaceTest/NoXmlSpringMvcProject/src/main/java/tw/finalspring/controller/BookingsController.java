@@ -29,9 +29,7 @@ import tw.finalspring.service.BookingsService;
 public class BookingsController {
 
 	int ID;
-	List<BookingsBean> arrBook = new ArrayList<BookingsBean>();//查詢後用於顯示的資料存放處
-	Set<String> sexSet = new HashSet<String>(); //查詢欄位的性別欄選項
-	Set<String> cateSet = new HashSet<String>();//查詢欄位的類別欄選項
+	
 //	載入全部資料
 	@RequestMapping(path = "/bookings.controller", method = RequestMethod.GET)
 	public String processLoadingPage(Model m) {
