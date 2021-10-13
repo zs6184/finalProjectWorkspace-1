@@ -62,6 +62,7 @@ public class RootAppConfig {
 		return mgr;
 	}
 
+
 	@Bean("javaMailSender")
 	public JavaMailSender getJavaMailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();

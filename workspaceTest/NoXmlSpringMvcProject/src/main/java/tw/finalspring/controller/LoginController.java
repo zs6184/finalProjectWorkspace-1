@@ -27,18 +27,18 @@ public class LoginController {
 	private CustomerService cusService;
 
 	@RequestMapping(path = "/loginIndex.Controller", method = RequestMethod.GET)
-	public String processMainPage() {
+	public String processloginIndexMainPage() {
 		return "loginIndex";
 	}
 
 	@RequestMapping(path = "/logoutIndex.Controller", method = RequestMethod.GET)
-	public String processLogout(SessionStatus status) {
+	public String processLogoutMainPage(SessionStatus status) {
 		status.setComplete();
 		return "logout";
 	}
 
 	@RequestMapping(path = "/login.Controller", method = RequestMethod.GET)
-	public String processMainPage1() {
+	public String processLoginMainPage() {
 		return "login";
 	}
 
@@ -61,7 +61,6 @@ public class LoginController {
 			String realName = cusService.selectUsernameLogin(cusBean);//抓取使用者名稱
 			System.out.println(realName);
 			m.addAttribute("realName", realName);
-//			return "loginIndex";
 			return result;
 		}
 

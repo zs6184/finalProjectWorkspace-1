@@ -54,7 +54,7 @@
 								<span class="input-group-text" id="basic-addon1"> <i
 									class="fas fa-user"></i>
 								</span> <input type="text" id="username" name="username"
-									class="form-control" placeholder="Username" autocomplete="off">
+									class="form-control" maxlength="20" placeholder="Username" autocomplete="off">
 							</div>
 						</div>
 						<!--密碼-->
@@ -63,7 +63,7 @@
 								<span class="input-group-text" id="basic-addon2"> <i
 									class="fas fa-lock"></i>
 								</span> <input type="password" id="password" name="password"
-									class="form-control" placeholder="Password" autocomplete="off">
+									class="form-control" maxlength="20" placeholder="Password" autocomplete="off">
 							</div>
 						</div>
 					</div>
