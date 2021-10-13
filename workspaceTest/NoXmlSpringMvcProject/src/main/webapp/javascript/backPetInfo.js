@@ -1,5 +1,6 @@
 // JavaScript source code
-
+var customers;
+var cusID = new Array();
 //DocumentReady
 $(function() {
 
@@ -19,7 +20,7 @@ $(function() {
 
 	});
 
-	//表單事件-生成錯誤提示元素
+	//表單事件-生成錯誤提示訊息
 	function createErr(obj) {
 		$(obj).attr("placeholder", "此為必填");
 	}
@@ -64,7 +65,42 @@ $(function() {
 			}
 		}
 	});
+	
+	//抓取cusData後續檢測使用
+	$.ajax({
+		type: "GET",
+		url: "/NoXmlSpringMvcProject/getAllCustomerData.controller",
+		datatype: "JSON",
+		contentType: "application/json",
+		success: function(data) {
+			console.log("getCusData Success")
+			customers=jQuery.parseJSON(data).cusData; //客戶的資料JSON陣列
+			//console.log("cusId=1="+customers.find(i=>i.cusId=="1").cusRealname); //JOE
+			
+			for(let i=0;i<customers.length;i++){
+				cusID.push(customers[i].cusId);	
+			}
+			console.log("cusID members ="+cusID);
+		},
+		error:function(){
+			console.log("get cusData failed");
+		}
+	})
+	
+	//更新寵物資料輸入客戶ID後檢測客戶是否存在
+	$("#cusId").blur(function(){
+		var check = parseInt($(this).val()); //確定轉為整數值
 
+		if(cusID.includes(check)){
+			console.log("cusRealname="+customers.find(i=>i.cusId==`${check}`).cusRealname);
+			$("#cusName").val(customers.find(i=>i.cusId==`${check}`).cusRealname);
+		}else{
+			console.log("Who is it ?");
+			$("#cusId,#cusName").val("");
+			$("#cusId,#cusName").attr("placeholder","查無此會員");
+		}
+	});
+	
 });
 
 //跳出確認刪除對話框

@@ -152,11 +152,11 @@
 					<li class="m-0"><a href="#" class="center"> <i
 							class="fas fa-comments-dollar mx-2"></i> <span class="items">客服管理</span>
 					</a></li>
-					<li class="m-0"><a href="members.html"
+					<li class="m-0"><a href="SelectCustomerAll.Controller"
 						class="center sidebarLight02"> <i class="fas fa-users mx-2"></i>
 							<span class="items">會員管理</span>
 					</a></li>
-					<li class="m-0"><a href="employees.html" class="center"> <i
+					<li class="m-0"><a href="EmployeesAll.Controller" class="center"> <i
 							class="fas fa-address-card mx-2"></i> <span class="items">員工管理</span>
 					</a></li>
 

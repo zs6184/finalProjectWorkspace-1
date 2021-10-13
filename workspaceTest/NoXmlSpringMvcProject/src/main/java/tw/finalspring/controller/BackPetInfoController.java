@@ -17,39 +17,69 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import tw.finalspring.model.CustomerBean;
 import tw.finalspring.model.PetBean;
+import tw.finalspring.service.CustomerService;
 import tw.finalspring.service.PetService;
 
 @Controller
 public class BackPetInfoController {
 
 	int ID;//選中資料的ID值
-	List<PetBean> arrPet = new ArrayList<PetBean>();//查詢後用於顯示的資料存放處
+	List<PetBean> arrPet = new ArrayList<PetBean>();//查詢後用於顯示的寵物資料存放處
+	List<CustomerBean> arrCus = new ArrayList<CustomerBean>();//查詢後用於顯示的寵物資料存放處
 	Set<String> sexSet = new HashSet<String>(); //查詢欄位的性別欄選項
 	Set<String> cateSet = new HashSet<String>();//查詢欄位的類別欄選項
 	
 //----------------------------------------------------------------	
 	
-	//載入全部資料
+	//取得全部會員資料放到變數中後續檢測+填值用
+	@RequestMapping(path = "/getAllCustomerData.controller",method = RequestMethod.GET)
+	public void processGetAllCus(HttpServletResponse response)throws IOException {
+		JSONObject cusData = new JSONObject();
+		JSONArray jsonCusArr = new JSONArray();// 存放多筆cus資料的json陣列
+		int index = 0;
+		
+		arrCus = selectAllCus();
+		
+		//將客戶資料轉為JSON後回傳給AJAX請求
+		for(CustomerBean aCus:arrCus) {
+			String cusStr = (JSON.toJSONString(aCus,SerializerFeature.WriteMapNullValue));//Bean轉為JSON字串
+			JSONObject cusObj = JSONObject.parseObject(cusStr); //字串轉為JSON物件
+			jsonCusArr.add(index,cusObj);//JSON物件逐個放入JSON陣列
+			index++;
+		}
+		System.out.println(jsonCusArr);
+		cusData.put("cusData", jsonCusArr);
+		PrintWriter out = response.getWriter();
+		out.println(cusData);
+		out.close();
+		System.out.println("所有客戶輸出完成");
+	}
+	
+	
+	//載入全部寵物資料(
 	@RequestMapping(path = "/backpetinfo.controller", method = RequestMethod.GET)
 	public String processLoadingPage(Model m) {
+		
 		arrPet = loadPet();
+		
+		//處理類別與性別篩選
 		sexSet.clear();		//進行內容刷新避免舊資料殘留
 		cateSet.clear();	//進行內容刷新避免舊資料殘留
-		
 		for(PetBean aPet:arrPet) {
 			sexSet.add(aPet.getSex());		//用Set將重複值篩選掉
 			cateSet.add(aPet.getCategory());//用Set將重複值篩選掉
-		}
-	
+		}		
+		
 		m.addAttribute("arrPet",arrPet);
 		m.addAttribute("cateSet",cateSet);
 		m.addAttribute("sexSet",sexSet);
-		
 		
 		return "BackPetInfo";
 	}
@@ -84,20 +114,17 @@ public class BackPetInfoController {
 		return "redirect:/backpetinfo.controller";
 	}
 	
-	//選取單一資料
+	//更新寵物個別資料(含領養)
 	@RequestMapping(path = "/selectbyid.controller",method = RequestMethod.GET)
-	public void processSelectById(@RequestParam String id, HttpServletResponse response) throws IOException {
+	public void processSelectById(@RequestParam int id, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
 		
-		System.out.println("Start To Select");
-		System.out.println(id);
-		int petId = Integer.parseInt(id);
-		PetBean temp = selectPet(petId);
-		ID=petId; //按下更新後取得的petId放到全域變數中保存
+		ID=id; //按下更新後取得的petId放到全域變數中保存
+		PetBean temp = selectPet(id);
 		
-		String jsonStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue));
-		JSONObject jsonObj = JSONObject.parseObject(jsonStr);
-		System.out.println(jsonStr);
+		String petStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue));
+		JSONObject jsonObj = JSONObject.parseObject(petStr);
+		System.out.println(petStr);
 		
 		PrintWriter out = response.getWriter();
 		out.print(jsonObj);
@@ -132,6 +159,8 @@ public class BackPetInfoController {
 //------------------------------------------------------
 	@Autowired
 	private PetService pService;
+	@Autowired
+	private CustomerService cService;
 
 	// 執行插入單筆function
 	private void savePet(PetBean temp) {
@@ -142,19 +171,29 @@ public class BackPetInfoController {
 		}
 	}
 
-	// 執行載入全部function
+	// 載入全部寵物資料
 	private List<PetBean> loadPet() {
 		List<PetBean>tempArr = new ArrayList<>();
 		try {
-			tempArr = pService.selectAll();
-			
+			tempArr = pService.selectAll();			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return tempArr;
 	}
 	
-	//使用ID執行單一查詢
+	//載入全部會員資料
+	private List<CustomerBean> selectAllCus() {
+		List<CustomerBean> allCus = new ArrayList<>();
+		try {
+			allCus = cService.selectAll();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return allCus;
+	}
+	
+	//使用ID執行單一查詢(按下寵物資料更新按鈕後)
 	private PetBean selectPet(int petId) {
 		PetBean temp = new PetBean();
 		try {
