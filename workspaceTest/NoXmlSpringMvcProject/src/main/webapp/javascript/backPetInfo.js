@@ -1,5 +1,7 @@
 // JavaScript source code
-$(function () {
+
+//DocumentReady
+$(function() {
 
 	//DatePicker
 	$("input[name='adoptDate']").datepicker({
@@ -9,14 +11,59 @@ $(function () {
 	});
 
 
-	//變更按鈕對應表單的action
-	$("#insertBtn").click(function () {
+	//不同按鈕對應同一表單的action
+	$("#insertBtn").click(function() {
 		$("#modalForm").attr("action", "insertPetInfo.controller");
 		$("#modalForm #idSection").prop("hidden", "hidden");
 		$("#modalForm input,textarea,select").val("");
 
 	});
 
+	//表單事件-生成錯誤提示元素
+	function createErr(obj) {
+		$(obj).attr("placeholder", "此為必填");
+	}
+
+	//表單事件-新增錯誤提示元素
+	$("#modalForm .requiredValue").blur(function() {
+		if ($(this).val() == "") {		//若必填的input空值
+			createErr(this);
+		}
+	});
+
+	//表單事件-提交控制
+	$("#modalForm").submit(function() {
+		var errs = [];
+		$("#modalForm .requiredValue").each(function() {
+			if ($(this).val() == "") {
+				createErr(this);
+				errs.push(this);
+			}
+		});
+		if (errs.length > 0) {
+			$(errs[0]).focus();
+			return false; //阻止表單提交	
+		}
+	});
+	
+	//生成表格分頁,呼叫DataTable套件
+	dttable=
+	$("#infoTable").DataTable({
+		lengthChange:true,
+		lengthMenu:[5,8,10],
+		pageLength:10,
+		paging:true,
+		searching:false,
+		ordering:false,
+		language:{
+			"lengthMenu":"顯示_MENU_ 項",
+			"info":"顯示第 _START_ 至 _END_ 項 , 共 _TOTAL_ 項",
+			"paginate":{
+				"previous":"上一頁",
+				"next":"下一頁"
+			}
+		}
+	});
 
 });
 
@@ -29,9 +76,8 @@ function delAlert(obj) {
 	ID = $(obj).parent("td").siblings(".ID").text();
 	var NAME = $(obj).parent("td").siblings(".NAME").text();
 	console.log(ID);
-	$("#alertDialog").html(`�T�{�R��${ID} : ${NAME} ?`);
+	$("#alertDialog").html(`確定刪除資料 ${ID} : ${NAME} ?`);
 }
-
 
 
 //刪除資料欄(連到資料庫)
@@ -45,6 +91,7 @@ function del() {
 		data: { "id": `${ID}` }
 	})
 	record.parents("tr").remove();
+	window.location.reload()
 }
 
 //使用更新按鈕選取此筆資料
@@ -59,7 +106,7 @@ function select(obj) {
 		datatype: "JSON",
 		contentType: "application/json",
 		data: { "id": `${ID}` },
-		success: function (result) {
+		success: function(result) {
 			console.log("Success");
 			var parsed = jQuery.parseJSON(result);
 			$("#modalForm #petId").val(ID);
@@ -75,13 +122,9 @@ function select(obj) {
 			$("#modalForm #adoptDate").val(parsed.adoptDate);
 			$("#modalForm #note").val(parsed.note);
 		},
-		error: function () {
+		error: function() {
 			console.log("failed to get data");
 		}
 	})
 }
 
-
-/*function openEdit() {
-	window.open("petInfoAdd.html", "EditWindow", "height=600,width=800,top=200,left=600");
-}*/

@@ -25,7 +25,7 @@ a {
 
 li {
     list-style: none;
-    width:16.66%;
+    width:20%;
 }
 
     .topbar li a {
@@ -146,8 +146,8 @@ h2 {
 
 .lowbar li{
     float: left;
-    width:15%;
-    padding-left: 60px;
+    width:20%;
+    padding-left: 100px;
     
 }
 

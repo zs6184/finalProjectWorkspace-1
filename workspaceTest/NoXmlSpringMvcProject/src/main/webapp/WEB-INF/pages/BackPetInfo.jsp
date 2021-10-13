@@ -15,6 +15,8 @@
 <!--bootstrap & jQuery-ui-->
 <link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
 <link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
+<!-- DataTable套件 -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
 <!--自訂樣式表-->
 <link href="stylesheet/backstage.css" rel="stylesheet" />
 <link href="stylesheet/backPetInfo.css" rel="stylesheet" />
@@ -23,6 +25,8 @@
 <script src="javascript/jquery-ui.min.js"></script>
 <!--datepicker-ui中文補丁-->
 <script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
+<!-- DataTable套件 -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <!--自訂js-->
 <script src="javascript/backPetInfo.js"></script>
 <script src="javascript/backstage.js"></script>
@@ -190,19 +194,6 @@
 							</div>
 						</form>
 					</div>
-					<!-- 分頁按鈕 -->
-					<div class="offset-2 col-8 ">
-						<nav aria-label="Page navigation">
-							<ul class="pagination justify-content-center">
-								<li class="page-item "><a class="page-link"
-									href="history.back()">上一頁</a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">下一頁</a></li>
-							</ul>
-						</nav>
-					</div>
 			</div>
 			<!-- 主頁內容 -->
 			<div class="container-fluid ">
@@ -222,7 +213,7 @@
 									<th scope="col">領養會員ID</th>
 									<th scope="col">領養會員姓名</th>
 									<th scope="col">領養日期</th>
-									<th scope="col">備註</th>
+									<th scope="col" class="notetable">備註</th>
 									<th scope="col">
 										<button type="button" class="btn btn-primary btn"
 											data-bs-toggle="modal" data-bs-target="#petInfoAdd"
@@ -244,7 +235,7 @@
 										<td>${arrPet.cusId}</td>
 										<td>${arrPet.cusName}</td>
 										<td>${arrPet.adoptDate}</td>
-										<td>${arrPet.note}</td>
+										<td class="notetable">${arrPet.note}</td>
 										<td>
 											<button type="button" class="btn btn-danger updateBtn"
 												data-bs-toggle="modal" data-bs-target="#petInfoAdd"
@@ -277,46 +268,50 @@
 										<fieldset>
 											<legend>基本資料</legend>
 											<div id="idSection">
-												<label for="petId" class=""><span>寵物編號</span></label> <input
+												<label for="petId"><span>寵物編號</span></label> <input
 													type="text" id="petId" name="petId" disabled />
 											</div>
 											<div>
-												<label for="petName" class=""><span>寵物名</span></label> <input
-													type="text" id="petName" name="petName" />
+												<label for="petName"><span>*寵物名</span></label> <input
+													type="text" id="petName" name="petName" class="requiredValue"/>
 											</div>
 											<div>
-												<label for="category" class=""><span>類別</span></label> <input
-													type="text" id="category" name="category" />
+												<label for="category"><span>*類別</span></label> <input
+													type="text" id="category" name="category" class="requiredValue"/>
 											</div>
 											<div>
-												<label for="species" class=""><span>品種</span></label> <input
-													type="text" id="species" name="species" />
+												<label for="species"><span>*品種</span></label> <input
+													type="text" id="species" name="species" class="requiredValue" />
 											</div>
 											<div>
-												<label for="sex" class=""><span>性別</span></label> <select
-													id="sex" name="sex">
+												<label for="sex"><span>*性別</span></label> <select
+													id="sex" name="sex" class="requiredValue" required>
+													<option value="" disabled selected></option>
 													<option value="M">Male</option>
 													<option value="F">Female</option>
 												</select>
 											</div>
 											<div>
-												<label for="age" class=""><span>年齡</span></label> <select
-													id="age" name="age">
+												<label for="age"><span>*年齡</span></label> <select
+													id="age" name="age" class="requiredValue" required>
+													<option value="" disabled selected></option>
 													<option value="幼年">幼年</option>
 													<option value="成年">成年</option>
 													<option value="老年">老年</option>
 												</select>
 											</div>
 											<div>
-												<label for="fixStatus" class=""><span>絕育狀態</span></label> <select
-													id="fixStatus" name="fixStatus">
+												<label for="fixStatus"><span>*絕育狀態</span></label> <select
+													id="fixStatus" name="fixStatus" class="requiredValue" required>
+													<option value="" disabled selected></option>
 													<option value="已結紮">已結紮</option>
 													<option value="未結紮">未結紮</option>
 												</select>
 											</div>
 											<div>
-												<label for="adoptStatus" class=""><span>領養狀態</span></label>
-												<select id="adoptStatus" name="adoptStatus">
+												<label for="adoptStatus"><span>*領養狀態</span></label>
+												<select id="adoptStatus" name="adoptStatus" class="requiredValue" required>
+													<option value="" disabled selected></option>
 													<option value="已領養">已領養</option>
 													<option value="未領養">未領養</option>
 												</select>
@@ -381,26 +376,10 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		
+			</div>	
 			<!-- End Of deleteAlert Modal-->
-
-
-			<!-- 分頁按鈕 -->
-			<div class="page">
-				<nav aria-label="Page navigation">
-					<ul class="pagination justify-content-center">
-						<li class="page-item"><a class="page-link"
-							href="history.back()">上一頁</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">下一頁</a></li>
-					</ul>
-				</nav>
-			</div>
+			
 		</div>
-
 	</div>
 </body>
 </html>

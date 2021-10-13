@@ -14,48 +14,75 @@ $(function () {
             topbar.classList.remove("sticky");
         }
     }
+	
+	//
+//	$.ajax({
+//		type: "GET",
+//		url: "/NoXmlSpringMvcProject/petinfo.controller",
+//		success:function(){
+//			console.log("redirect success");
+//		},
+//		error:function(){
+//			console.log("redirect fail");
+//		}
+//
+//	})
+	
 
     //將取得backPetInfo資料載入select選項中
-    $.get("backPetInfo.html", function (data) {
-
-        $(".category", data).each(function () {
-            $("#category").append(`<option value="${this.textContent}">${this.textContent}</option>`);
-            console.log(this.textContent);
-        });
-
-        //使用陣列裝抓到的所有選項(三個F)，因為有重複值，所以丟進Set中篩掉重複值
-        var sexArr = new Array;
-        $(".sex", data).each(function () {
-            sexArr.push(this.textContent);
-        });
-        var sexArrSet = new Set(sexArr);
-        var sexUnique = [...sexArrSet]; //Set轉回陣列
-        console.log("uniqyeArr = " + sexUnique);
-
-        sexUnique.forEach(function (v, i) { //JQ 的forEach 前面value後面index
-            $("#sex").append(`<option value="${v}">${v}</option>`)
-            console.log("value = " + v);
-        });
-
-        var index = 0;
-        $("#infoTable tr:even:not(':first')", data).each(function () {
-            console.log("LEFT---" + this.textContent);
-            $("#infoLeft").append(`<div class="row col-10 offset-1 border bg-secondary text-white" style="margin-bottom:30px;border-radius:10px;"><div class="row col-6 border align-items-center" style="margin:0px;"><img src="image/f5.jpg" class="col w-100 h-w"/></div><div class="col" id="${index}"></div></div>`);
-            $("td:not(':last')", this).each(function () {
-                $(`#${index}`).append(`<div>${this.textContent}</div>`);
-            });
-            index++;
-        });
-
-        $("#infoTable tr:odd", data).each(function () {
-            console.log("RIGHT---" + this.textContent);
-            $("#infoRight").append(`<div class="row col-10 offset-1 border bg-secondary text-white" style="margin-bottom:30px;border-radius:10px;"><div class="row col-6 border align-items-center" style="margin:0px;"><img src="image/f5.jpg" class="col w-100 h-w"/></div><div class="col" id="${index}"></div></div>`);
-            $("td:not(':last')", this).each(function () {
-                $(`#${index}`).append(`<div>${this.textContent}</div>`);
-            });
-            index++;
-        });
-
-    });
+//    $.get("backPetInfo.html", function (data) {
+//
+//        $(".category", data).each(function () {
+//            $("#category").append(`<option value="${this.textContent}">${this.textContent}</option>`);
+//            console.log(this.textContent);
+//        });
+//
+//        //使用陣列裝抓到的所有選項(三個F)，因為有重複值，所以丟進Set中篩掉重複值
+//        var sexArr = new Array;
+//        $(".sex", data).each(function () {
+//            sexArr.push(this.textContent);
+//        });
+//        var sexArrSet = new Set(sexArr);
+//        var sexUnique = [...sexArrSet]; //Set轉回陣列
+//        console.log("uniqyeArr = " + sexUnique);
+//
+//        sexUnique.forEach(function (v, i) { //JQ 的forEach 前面value後面index
+//            $("#sex").append(`<option value="${v}">${v}</option>`)
+//            console.log("value = " + v);
+//        });
+//		
+//        var index = 0;
+//		//左半區域
+//        $("#infoTable tr:even:not(':first')", data).each(function () {
+//            $("#infoLeft").append
+//				(`<div class="row col-10 offset-1 border bg-secondary text-white" style="margin-bottom:30px;border-radius:10px;">
+//					<div class="row col-6 border align-items-center" style="margin:0px;">
+//						<img src="image/f5.jpg" class="col w-100 h-w"/>
+//					</div>
+//					<div class="col" id="${index}">
+//					</div>
+//				</div>`);
+//            $("td:not(':last')", this).each(function () {
+//                $(`#${index}`).append(`<div>${this.textContent}</div>`);
+//            });
+//            index++;
+//        });
+//		//右半區域
+//        $("#infoTable tr:odd", data).each(function () {
+//            console.log("RIGHT---" + this.textContent);
+//            $("#infoRight").append(
+//				`<div class="row col-10 offset-1 border bg-secondary text-white" style="margin-bottom:30px;border-radius:10px;">
+//					<div class="row col-6 border align-items-center" style="margin:0px;">
+//						<img src="image/f5.jpg" class="col w-100 h-w"/>
+//					</div>
+//					<div class="col" id="${index}"></div>
+//				</div>`);
+//            $("td:not(':last')", this).each(function () {
+//                $(`#${index}`).append(`<div>${this.textContent}</div>`);
+//            });
+//            index++;
+//        });
+//
+//    });
 
 });

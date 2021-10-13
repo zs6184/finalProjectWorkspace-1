@@ -64,7 +64,7 @@
 								<a href="#" target="_self">${realName}</a>
 								<a href="logoutIndex.Controller" target="_self">登出</a>
 							</li>
-							<li><a href="petInfo.html" target="_self">寵物領養</a></li>
+							<li><a href="petinfo.controller" target="_self">寵物領養</a></li>
 							<li><a href="index.html" target="_self">線上訂位</a></li>
 							<li><a href="index.html" target="_self">餐點介紹</a></li>
 							<li><a href="#t1" target="_self">活動訊息</a></li>
@@ -299,9 +299,19 @@
 					onclick="getData5()">&nbsp; 5&nbsp;</button></span> <span><button
 					onclick="getData5()">終頁</button></span>
 
-			<script>
-				
-			</script>
+			 <hr style="margin-bottom: 0;">
+
+                <div style="text-align: center;background-color:rgb(6, 121, 121,.1);">
+                    <br>
+                    <h1 style="font-size: 68px;margin:20px 0 0 0;">地圖顯示</h1>
+                    <br><br>
+
+                    <iframe src="https://snazzymaps.com/embed/344847" width="100%" height="690px"
+                        style="border:none;"></iframe>
+                    <br><br><br><br><br><br>
+                </div>
+                <hr STYLE="margin-top:0 ;">
+                <br><br><br><br><br><br>
 			<hr>
 			<!--網頁底部輪播  -->
 
@@ -345,11 +355,10 @@
 							<div class="row h-100 align-items-center lowbar">
 								<div class="col-12">
 									<ul>
-										<li><a href="index.html" target="_self">會員中心</a></li>
 										<li><a href="#t1" target="_self">活動訊息</a></li>
 										<li><a href="index.html" target="_self">餐點介紹</a></li>
 										<li><a href="index.html" target="_self">線上訂位</a></li>
-										<li><a href="petInfo.html" target="_self">寵物領養</a></li>
+										<li><a href="petinfo.controller" target="_self">寵物領養</a></li>
 										<li><a href="index.html" target="_self">登入註冊</a></li>
 									</ul>
 								</div>
