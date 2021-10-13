@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -22,6 +24,7 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateNotFoundException;
 import tw.finalspring.model.Coupons;
 import tw.finalspring.service.CouponsService;
+import tw.finalspring.service.MailService;
 
 @Controller
 public class CouponsController {
@@ -29,8 +32,8 @@ public class CouponsController {
 	@Autowired
 	CouponsService couponsService;
 	
-//	@Autowired
-//	MailService mailService;
+	@Autowired
+	MailService mailService;
 	
 
 
@@ -77,12 +80,12 @@ public class CouponsController {
 //		return "redirect:/http://127.0.0.1:8080/NoXmlSpringMvcProject/xxxx";
 //	}
 	
-//	@RequestMapping(path = "/back.mailTest")
-//	@ResponseBody
-//	public String mailTest() throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
-//		if(mailService.sendMail())return "ok";
-//		return "fail";
-//	}
+	@RequestMapping(path = "/back.mailTest")
+	@ResponseBody
+	public String mailTest(HttpServletRequest request) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
+		if(mailService.sendMail(request,null))return "ok";
+		return "fail";
+	}
 	
 	
 

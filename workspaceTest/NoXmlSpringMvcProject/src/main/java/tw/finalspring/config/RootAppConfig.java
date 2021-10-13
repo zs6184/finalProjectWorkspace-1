@@ -16,7 +16,6 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
@@ -26,6 +25,8 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 @EnableTransactionManagement
 @EnableWebMvc
 public class RootAppConfig {
+
+
 
 	@Bean
 	public DataSource datasource() throws IllegalArgumentException, NamingException {
@@ -78,13 +79,11 @@ public class RootAppConfig {
 	}
 
 	@Bean
-	public FreeMarkerConfigurationFactoryBean markerfactoryBean() {
-		// FreeMarkerConfigurationFactoryBean bean = new
-		// FreeMarkerConfigurationFactoryBean();
-		FreeMarkerConfigurer bean = new FreeMarkerConfigurer();
-		bean.setTemplateLoaderPath("classpath:/WEB-INF/templates/");
-		return null;
-
+	public FreeMarkerConfigurer freemarkerConfig() {
+		final FreeMarkerConfigurer result = new FreeMarkerConfigurer();
+		result.setTemplateLoaderPath("/WEB-INF/templates/");
+		result.setDefaultEncoding("UTF-8");
+		return result;
 	}
 
 }
