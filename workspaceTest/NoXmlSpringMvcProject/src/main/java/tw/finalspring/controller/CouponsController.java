@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import freemarker.core.ParseException;
 import freemarker.template.MalformedTemplateNameException;
@@ -22,6 +21,7 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateNotFoundException;
 import tw.finalspring.model.Coupons;
 import tw.finalspring.service.CouponsService;
+import tw.finalspring.service.MailService;
 
 @Controller
 public class CouponsController {
@@ -29,8 +29,8 @@ public class CouponsController {
 	@Autowired
 	CouponsService couponsService;
 	
-//	@Autowired
-//	MailService mailService;
+	@Autowired
+	MailService mailService;
 	
 
 
@@ -77,12 +77,12 @@ public class CouponsController {
 //		return "redirect:/http://127.0.0.1:8080/NoXmlSpringMvcProject/xxxx";
 //	}
 	
-//	@RequestMapping(path = "/back.mailTest")
-//	@ResponseBody
-//	public String mailTest() throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
-//		if(mailService.sendMail())return "ok";
-//		return "fail";
-//	}
+	@RequestMapping(path = "/back.mailTest")
+	@ResponseBody
+	public String mailTest(HttpServletRequest request) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
+		if(mailService.sendMail(request,null))return "ok";
+		return "fail";
+	}
 	
 	
 
