@@ -15,7 +15,6 @@
 <!--bootstrap & jQuery-ui-->
 <link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
 <link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
 <!--自訂樣式表-->
 <link href="stylesheet/backstage.css" rel="stylesheet" />
 <link href="stylesheet/bookings.css" rel="stylesheet" />
@@ -26,30 +25,9 @@
 <script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
 <!--datepicker-ui中文補丁-->
 <!--自訂js-->
-<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
 <script src="javascript/bookings.js"></script>
-<script type="text/javascript">
-$(document).ready( function () {
-    $('#infoTable').DataTable({
-    	
-    	lengthChange:true,
-		lengthMenu:[5,8,10],
-		pageLength:10,
-		paging:true,
-		searching:true,
-		ordering:false,
-		language:{
-			"lengthMenu":"顯示_MENU_ 項",
-			"info":"顯示第 _START_ 至 _END_ 項 , 共 _TOTAL_ 項",
-			"paginate":{
-				"previous":"上一頁",
-				"next":"下一頁"
-			}
-		}
-	 
-    });
-} );
-</script>
+
 </head>
 <body>
 	<!-- 導覽列 -->
@@ -186,22 +164,22 @@ $(document).ready( function () {
 		<!-- container right -->
 		<div class="containerRight">
 			<!-- 分頁按鈕 -->
-<!-- 			<div class="page container"> -->
-<!-- 				<div class="row"> -->
-<!-- 					<div class="offset-2 col-8 "> -->
-<!-- 						<nav aria-label="Page navigation"> -->
-<!-- 							<ul class="pagination justify-content-center"> -->
-<!-- 								<li class="page-item "><a class="page-link" -->
-<!-- 									href="history.back()">上一頁</a></li> -->
-<!-- 								<li class="page-item"><a class="page-link" href="#">1</a></li> -->
-<!-- 								<li class="page-item"><a class="page-link" href="#">2</a></li> -->
-<!-- 								<li class="page-item"><a class="page-link" href="#">3</a></li> -->
-<!-- 								<li class="page-item"><a class="page-link" href="#">下一頁</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</nav> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+			<div class="page container">
+				<div class="row">
+					<div class="offset-2 col-8 ">
+						<nav aria-label="Page navigation">
+							<ul class="pagination justify-content-center">
+								<li class="page-item "><a class="page-link"
+									href="history.back()">上一頁</a></li>
+								<li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item"><a class="page-link" href="#">下一頁</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
 			<!-- 主頁內容 -->
 			<div class="container-fluid ">
 				<div class="row">
@@ -359,19 +337,19 @@ $(document).ready( function () {
 			<!-- End Of Modal -->
 
 			<!-- 分頁按鈕 -->
-<!-- 			<div class="page"> -->
-<!-- 				<nav aria-label="Page navigation"> -->
-<!-- 					<ul class="pagination justify-content-center"> -->
-<!-- 						<li class="page-item"><a class="page-link" -->
-<!-- 							href="history.back()">上一頁</a></li> -->
-<!-- 						<li class="page-item"><a class="page-link" href="#">1</a></li> -->
-<!-- 						<li class="page-item"><a class="page-link" href="#">2</a></li> -->
-<!-- 						<li class="page-item"><a class="page-link" href="#">3</a></li> -->
-<!-- 						<li class="page-item"><a class="page-link" href="#">下一頁</a></li> -->
-<!-- 					</ul> -->
-<!-- 				</nav> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
+			<div class="page">
+				<nav aria-label="Page navigation">
+					<ul class="pagination justify-content-center">
+						<li class="page-item"><a class="page-link"
+							href="history.back()">上一頁</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">下一頁</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
 
 	</div>
 </body>

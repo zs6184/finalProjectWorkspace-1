@@ -3,7 +3,9 @@ package tw.finalspring.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,20 +22,25 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import tw.finalspring.model.BookingsBean;
+import tw.finalspring.model.PetBean;
 import tw.finalspring.service.BookingsService;
 
 @Controller
 public class BookingsController {
 
 	int ID;
-	
-	//載入全部資料
+	List<BookingsBean> arrBook = new ArrayList<BookingsBean>();//查詢後用於顯示的資料存放處
+	Set<String> sexSet = new HashSet<String>(); //查詢欄位的性別欄選項
+	Set<String> cateSet = new HashSet<String>();//查詢欄位的類別欄選項
+//	載入全部資料
 	@RequestMapping(path = "/bookings.controller", method = RequestMethod.GET)
 	public String processLoadingPage(Model m) {
 		List<BookingsBean> arrBook = loadBook();
 		m.addAttribute("arrBook",arrBook);
 		
 		return "Bookings";
+
+	
 	}
 	
 	//新增單一資料
