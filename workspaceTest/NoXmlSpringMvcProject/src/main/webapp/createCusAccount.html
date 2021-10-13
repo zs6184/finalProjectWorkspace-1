@@ -48,31 +48,31 @@
 
                             <label for="username" class="col-3 col-form-label"><span style="color:red">*</span>帳號:</label>
                             <div class="col-9">
-                                <input id="username" type="text" name="cusUsername" class="form-control" placeholder="Username" autocomplete="off" autofocus>
+                                <input id="username" type="text" name="cusUsername" class="form-control" maxlength="20" placeholder="Username" autocomplete="off" autofocus>
                             </div>
                         </div>
                         <div class="row my-2 offset-2 col-8">
                             <label for="password" class="col-3 col-form-label"><span style="color:red">*</span>密碼:</label>
                             <div class="col-9">
-                                <input id="password" type="password" name="cusPassword" class="form-control" placeholder="Password" autocomplete="off">
+                                <input id="password" type="password" name="cusPassword" class="form-control" maxlength="20" placeholder="Password" autocomplete="off">
                             </div>
                         </div>
                         <div class="row my-2 offset-2 col-8">
                             <label for="checkPassword" class="col-3 col-form-label"><span style="color:red">*</span>確認密碼:</label>
                             <div class="col-9">
-                                <input id="checkPassword" type="password" name="checkPassword" class="form-control" placeholder="Password" autocomplete="off">
+                                <input id="checkPassword" type="password" name="checkPassword" class="form-control" maxlength="20" placeholder="Password" autocomplete="off">
                             </div>
                         </div>
                         <div class="row my-2 offset-2 col-8">
                             <label for="name" class="col-3 col-form-label"><span style="color:red">*</span>姓名:</label>
                             <div class="col-9">
-                                <input id="name" type="text" name="cusRealname" class="form-control" placeholder="Name" autocomplete="off">
+                                <input id="name" type="text" name="cusRealname" class="form-control" maxlength="10" placeholder="Name" autocomplete="off">
                             </div>
                         </div>
                         <div class="row my-2 offset-2 col-8">
                             <label for="nickName" class="col-3 col-form-label">暱稱:</label>
                             <div class="col-9">
-                                <input id="nickName" type="text" name="aka" class="form-control" placeholder="Nickname" autocomplete="off">
+                                <input id="nickName" type="text" name="aka" class="form-control" maxlength="10" placeholder="Nickname" autocomplete="off">
                             </div>
                         </div>
                         <div class="row my-2 offset-2 col-8">
@@ -93,19 +93,19 @@
                         <div class="row my-2 offset-2 col-8">
                             <label for="phoneNumber" class="col-3 col-form-label"><span style="color:red">*</span>聯絡電話:</label>
                             <div class="col-9">
-                                <input id="phoneNumber" type="tel" name="phoneNumber" pattern="[0]{1}[9]{1}\d{8}" class="form-control" placeholder="Phone Number" autocomplete="off">
+                                <input id="phoneNumber" type="tel" name="phoneNumber" pattern="[0]{1}[9]{1}\d{8}" maxlength="10" class="form-control" placeholder="Phone Number" autocomplete="off">
                             </div>
                         </div>
                         <div class="row my-2 offset-2 col-8">
                             <label for="email" class="col-3 col-form-label"><span style="color:red">*</span>E-mail:</label>
                             <div class="col-9">
-                                <input id="email" type="email" name="email" class="form-control" placeholder="Email" autocomplete="off">
+                                <input id="email" type="email" name="email" class="form-control" maxlength="30" placeholder="Email" autocomplete="off">
                             </div>
                         </div>
                         <div class="row my-2 offset-2 col-8">
                             <label for="address" class="col-3 col-form-label">地址:</label>
                             <div class="col-9">
-                                <input id="address" type="text" name="address" class="form-control" placeholder="Address" autocomplete="off">
+                                <input id="address" type="text" name="address" class="form-control" maxlength="50" placeholder="Address" autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="text-center mb-4">
                         <span>已有帳號?</span>
-                        <a href="login.html">登入</a>
+                        <a href="login.Controller">登入</a>
                     </div>
                     <!-- Button trigger modal -->
                     <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#submitButton">

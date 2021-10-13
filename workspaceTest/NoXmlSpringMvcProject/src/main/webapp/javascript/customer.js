@@ -25,6 +25,7 @@ function selectOneCus(id) {
 			alert(`${textStatus}---${errThrown}`)
 		}
 	});
+	return false;
 }
 
 //刪除指定會員資料
@@ -51,92 +52,33 @@ function deleteOneCus() {
 			alert(`${textStatus}---${errThrown}`)
 		}
 	});
-}
-//更新指定會員資料
-/*function updateOneCus(){
-	var formData = $("#updateForm").serialize();
-	$.ajax({
-		method:"post",
-		url:"http://localhost:8080/NoXmlSpringMvcProject/UpdateCustomerById.Controller",
-		data:formData,
-		success:function(data){
-			console.log(date);
-		},
-		error:function(jqXHR, textStatus, errThrown) {
-			alert(`${textStatus}---${errThrown}`)
-		}
-	});
-}*/
-
-
-//function updateOneCus(){
-$("#updateForm").submit(function() {
-
-	var formData = $(this).serialize();
-	console.log(formData);
-	$.ajax({
-		method: "post",
-		url: "http://localhost:8080/NoXmlSpringMvcProject/UpdateCustomerById.Controller",
-		data: formData,
-		success: function(data) {
-			console.log(date);
-		},
-		error: function(jqXHR, textStatus, errThrown) {
-			alert(`${textStatus}---${errThrown}`)
-		}
-	});
 	return false;
-
-});
-
-//}
-
-
-
-
-
-
-
+}
 
 
 
 
 
 $(function() {
-	/*$("#updateForm").submit(function(id){
-		
-		//更新指定會員資料
-	var formData = $(this).serialize();
-	$.ajax({
-		method:"post",
-		url:"http://localhost:8080/NoXmlSpringMvcProject/UpdateCustomerById.Controller",
-		data:formData,
-		success:function(data){
-			console.log(date);
-		},
-		error:function(jqXHR, textStatus, errThrown) {
-			alert(`${textStatus}---${errThrown}`)
-		}
-		
-	});*/
-$("#updateForm").submit(function() {
-$("#updateForm :input").prop("disabled",false);//disabled會造成伺服器無法接收資料
-	var formData = $(this).serialize();
-	console.log(formData+"測試");
-	$.ajax({
-		method: "post",
-		url: "http://localhost:8080/NoXmlSpringMvcProject/UpdateCustomerById.Controller",
-		data: formData,
-		success: function(data) {
-			console.log(data);
-			location.href = "SelectCustomerAll.Controller";
-		},
-		error: function(jqXHR, textStatus, errThrown) {
-			alert(`${textStatus}---${errThrown}`)
-		}
+	
+	//更新指定會員資料
+	$("#updateForm").submit(function() {
+		$("#updateForm :input").prop("disabled", false);//disabled會造成伺服器無法接收資料
+		var formData = $(this).serialize();
+		console.log(formData + "測試");
+		$.ajax({
+			method: "post",
+			url: "http://localhost:8080/NoXmlSpringMvcProject/UpdateCustomerById.Controller",
+			data: formData,
+			success: function(data) {
+				console.log(data);
+				location.href = "SelectCustomerAll.Controller";
+			},
+			error: function(jqXHR, textStatus, errThrown) {
+				alert(`${textStatus}---${errThrown}`)
+			}
+		});
+		return false;
 	});
-	return false;
-
-});
 
 });

@@ -150,8 +150,8 @@
 						class="center sidebarLight02"> <i class="fas fa-users mx-2"></i>
 							<span class="items">會員管理</span>
 					</a></li>
-					<li class="m-0"><a href="Employees.Controller" class="center"> <i
-							class="fas fa-address-card mx-2"></i> <span class="items">員工管理</span>
+					<li class="m-0"><a href="EmployeesAll.Controller" class="center">
+							<i class="fas fa-address-card mx-2"></i> <span class="items">員工管理</span>
 					</a></li>
 
 				</ul>
@@ -210,7 +210,9 @@
 										<td>${cus.address}</td>
 										<td>${cus.noShow}</td>
 										<td>${cus.note}</td>
-										<td><button type="button" class="btn btn-danger" onclick="selectOneCus(${cus.cusId})" data-bs-toggle="modal" data-bs-target="#memberUpdataModal">更新</button></td>
+										<td><button type="button" class="btn btn-danger"
+												onclick="selectOneCus(${cus.cusId})" data-bs-toggle="modal"
+												data-bs-target="#memberUpdataModal">更新</button></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -228,7 +230,8 @@
 							<h3 class="modal-title" id="memberModalLabel">會員資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-						<form action="UpdateCustomerById.Controller" id="updateForm" method="post">
+						<form action="UpdateCustomerById.Controller" id="updateForm"
+							method="post">
 							<div class="modal-body">
 								<div class="row">
 									<!-- left -->
@@ -263,11 +266,12 @@
 												</h5>
 											</div>
 										</div>
-										<input type="hidden" name="cusUpdateId" id="cusUpdateId" value="">
-										<label for="cusNameUpdate" class="form-label mt-5">姓名:</label>
-										<input id="cusNameUpdate" name="cusNameUpdate" type="text"
-											class="form-control mb-3" value="" disabled /> <label
-											for="phoneNumberUpdate" class="form-label">連絡電話:</label> <input
+										<input type="hidden" name="cusUpdateId" id="cusUpdateId"
+											value=""> <label for="cusNameUpdate"
+											class="form-label mt-5">姓名:</label> <input id="cusNameUpdate"
+											name="cusNameUpdate" type="text" class="form-control mb-3"
+											value="" disabled /> <label for="phoneNumberUpdate"
+											class="form-label">連絡電話:</label> <input
 											id="phoneNumberUpdate" name="phoneNumberUpdate" type="tel"
 											class="form-control mb-3" value="" disabled />
 									</div>
@@ -282,14 +286,14 @@
 											class="form-control mb-3" value="" disabled /> <label
 											for="birthdateUpdate" class="form-label">生日:</label> <input
 											id="birthdateUpdate" name="birthdateUpdate" type="date"
-											class="form-control mb-3" value="" disabled/> <label
+											class="form-control mb-3" value="" disabled /> <label
 											for="emailUpdate" class="form-label">E-mail:</label> <input
 											id="emailUpdate" name="emailUpdate" type="email"
-											class="form-control mb-3" value="" disabled />
-										<label for="addressUpdate" class="form-label">地址:</label> <input
+											class="form-control mb-3" value="" disabled /> <label
+											for="addressUpdate" class="form-label">地址:</label> <input
 											id="addressUpdate" name="addressUpdate" type="text"
-											class="form-control mb-3" value=""
-											disabled /> <label for="notesUpdate" class="form-label">備註:</label>
+											class="form-control mb-3" value="" disabled /> <label
+											for="notesUpdate" class="form-label">備註:</label>
 										<textarea id="notesUpdate" name="notesUpdate"
 											class="form-control mb-3"></textarea>
 									</div>
@@ -307,12 +311,32 @@
 											<button type="submit" class="btn btn-primary">完成</button>
 										</div>
 										<div class="offset-2 col-2">
-											<button type="button" onclick="deleteOneCus()" class="btn btn-danger">刪除帳號</button>
+											<button type="button" class="btn btn-danger"
+												data-bs-toggle="modal" data-bs-target="#deleteButton">刪除帳號</button>
 										</div>
 									</div>
 								</div>
 							</div>
+
 						</form>
+					</div>
+				</div>
+			</div>
+			<!-- modal確認視窗 -->
+			<div class="modal fade" id="deleteButton" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">溫馨提示</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+						</div>
+						<div class="modal-body">刪除後無法復原，請確定是否要刪除?</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal">取消</button>
+							<button type="button" onclick="deleteOneCus()"
+								class="btn btn-primary">送出</button>
+						</div>
 					</div>
 				</div>
 			</div>
