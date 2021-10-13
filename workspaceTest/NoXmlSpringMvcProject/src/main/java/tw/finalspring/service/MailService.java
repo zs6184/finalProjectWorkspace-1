@@ -38,26 +38,26 @@ public class MailService {
 	public boolean sendMail(HttpServletRequest request,CustomerBean user) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
 			IOException, TemplateException {
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
-		//¨ú±oLogo¸ô®|
+		//å–å¾—legoè·¯å¾‘
 		String path = request.getSession().getServletContext().getRealPath("/WEB-INF/templates/image/logo.png");
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "utf-8");
-			//³]¸m¬ÛÃö«H®§
+			//é…ç½®ä¿¡æ¯
 			helper.setFrom("ik2469181@gmail.com");
 			//helper.setTo(user.getEmail());
-			helper.setTo("¥X¤J§Aªº«H½c´ú¸Õ");
-			helper.setSubject("¥D¦®¡G®ö¸ñ­«³]±K½X");
+			helper.setTo("æ”¶ä»¶äºº");
+			helper.setSubject("è¼¸å…¥æ¨™é¡Œ");
 			Map<String, Object> model = new HashMap<String, Object>();
 			//model.put("userName", user.getCusUsername());
-			model.put("userName", "¿é¤J©m¦W");
-			//¸ü¤J¼ÒªO
+			model.put("userName", "æ¸¬è©¦");
+			//è¼‰å…¥æ¨¡æ¿
 			String templateString = FreeMarkerTemplateUtils
 					.processTemplateIntoString(freemarkerConfig.getConfiguration().getTemplate("mailMarker.html"), model);
 			helper.setText(templateString, true);
 			FileSystemResource file = new FileSystemResource(new File(path));			
-			//¥[¤Jlego
+			//åœ–ç‰‡
 			helper.addInline("imgfile", file);
-			//°e¥X¦^¶Çtrue
+			//é€å‡ºå›å‚³true
 			mailSender.send(mimeMessage);
 			return true;
 		} catch (MessagingException e) {
