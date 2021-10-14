@@ -1,18 +1,11 @@
 package iii.homework.controller;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -25,28 +18,29 @@ public class LoginController {
 
 	@Autowired
 	private CustomerService cusService;
-
-	@RequestMapping(path = "/loginIndex.Controller", method = RequestMethod.GET)
-	public String processMainPage() {
-		return "loginIndex";
-	}
-
-	@RequestMapping(path = "/logoutIndex.Controller", method = RequestMethod.GET)
-	public String processLogout(SessionStatus status) {
-		status.setComplete();
-		return "logout";
-	}
-
+	
+	//登入畫面
 	@RequestMapping(path = "/login.Controller", method = RequestMethod.GET)
-	public String processMainPage1() {
+	public String processLogin() {
 		return "login";
 	}
 
+	//登入後首頁
+	@RequestMapping(path = "/loginIndex.Controller", method = RequestMethod.GET)
+	public String processLoginIndex() {
+		return "loginIndex";
+	}
+
+	//登出後首頁
+	@RequestMapping(path = "/logoutIndex.Controller", method = RequestMethod.GET)
+	public String processLogoutIndex(SessionStatus status) {
+		status.setComplete();//取消session
+		return "logout";
+	}
+	
 	@RequestMapping(path = "/checkloginaccount.controller", method = RequestMethod.POST)
-	@ResponseBody
-	public String processAction(@RequestParam("username") String username, @RequestParam("password") String password,
-			HttpServletResponse response, Model m) throws ServletException, IOException {
-		response.setHeader("Access-Control-Allow-Origin", "*");// CORS策略
+	public String processAction(@RequestParam("username") String username, 
+			@RequestParam("password") String password, Model m){
 
 		// 將帳號密碼放進Bean
 		CustomerBean cusBean = new CustomerBean();
@@ -55,18 +49,17 @@ public class LoginController {
 
 		m.addAttribute("username", username);
 
-		// 使用service的方法查詢使用者資料，並判斷是否存在或正確
-		String result = cusService.selectUsername(cusBean);// 回傳值為pass或fail
-		if ("pass".equals(result)) {
-			String realName = cusService.selectUsernameLogin(cusBean);//抓取使用者名稱
-			System.out.println(realName);
-			m.addAttribute("realName", realName);
-//			return "loginIndex";
-			return result;
+		if(username =="" || password =="") {
+			return "loginEmpty";
 		}
-
-		// 回傳給html端
-		return result;
+		// 使用service的方法查詢使用者資料，並判斷是否存在或正確
+		boolean result = cusService.selectUsername(cusBean);
+		if (result) {
+			String realName = cusService.selectUsernameLogin(cusBean);//抓取使用者名稱
+			m.addAttribute("realName", realName); 
+			return "loginIndex";
+		}
+		return "loginFail";
 
 	}
 
