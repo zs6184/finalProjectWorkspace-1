@@ -17,11 +17,14 @@
 <script src="javascript/jquery-3.6.0.min.js"></script>
 <!--自訂樣式表-->
 <link href="stylesheet/login.css" rel="stylesheet" />
+<!--自訂js-->
+<script src="javascript/login.js"></script>
 
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="row">
+
 			<div class="offset-6 col-5 border rounded-3 shadow mt-5 bg-white">
 				<!-- 標題logo 部分 -->
 				<div class="text-center">
@@ -46,6 +49,7 @@
 									class="form-control" placeholder="Username" autocomplete="off"  autofocus>
 							</div>
 						</div>
+							<div class="col-1" style="color:red"></div>
 						<!--密碼-->
 						<div class="offset-2 col-8">
 							<div class="input-group mb-3">
@@ -56,7 +60,9 @@
 							</div>
 						</div>
 					</div>
+					<div style="color:red;text-align:center;">帳號或密碼錯誤</div>
 					<div class="row">
+						<!-- 註冊及忘記密碼 -->
 						<div class="text-center mt-3 mb-5" id="status1">
 							<button type="submit" class="btn btn-primary btn-lg">登入</button>
 						</div>
@@ -66,7 +72,9 @@
 						</div>
 					</div>
 				</form>
+
 			</div>
+
 		</div>
 	</div>
 </body>
