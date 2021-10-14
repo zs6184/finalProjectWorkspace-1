@@ -14,11 +14,10 @@ import iii.homework.service.CustomerService;
 
 @Controller
 @SessionAttributes(names = {"realName"}) //設為session層級
-
 public class LoginController {
 
-	int cusId;
-	int status=2;
+	int cusId;		//登入後取得該筆資料的ID	
+	int status=2;	//控制修改資料時出現不同提示信息的狀態代碼
 	@Autowired
 	private CustomerService cusService;
 	
@@ -43,11 +42,10 @@ public class LoginController {
 		return "logout";
 	}
 	
+	//登入事件處理
 	@RequestMapping(path = "/checkloginaccount.controller", method = RequestMethod.POST)
 	public String processAction(@RequestParam("username") String username, 
-			@RequestParam("password") String password, Model m){
-		status=2;
-		// 將帳號密碼放進Bean
+								@RequestParam("password") String password, Model m){
 		CustomerBean cusBean = new CustomerBean();
 		cusBean.setCusUsername(username);
 		cusBean.setCusPassword(password);
@@ -57,20 +55,18 @@ public class LoginController {
 		if(username =="" || password =="") {
 			return "loginEmpty";
 		}
-		// 使用service的方法查詢使用者資料，並判斷是否存在或正確
+		// 使用service的selectUsername方法查詢使用者資料，並判斷是否存在或正確
 		boolean result = cusService.selectUsername(cusBean);
 		if (result) {
 			CustomerBean theCus = cusService.selectUsernameLogin(cusBean);//抓取使用者名稱
 			String realName =theCus.getCusRealname();
 			cusId = theCus.getCusId();
-			System.out.println("cusId="+cusId);
 			
 			m.addAttribute("realName", realName); 
 			
 			return "loginIndex";
 		}
 		return "loginFail";
-
 	}
 	
 	//進入個人資料頁
@@ -88,19 +84,19 @@ public class LoginController {
 	
 	//修改個人資料
 	@RequestMapping(path = "/updateData.controller",method = RequestMethod.POST)
-	public String updatePersonnelData(@RequestParam("cusRealname")String cusRealname,@RequestParam("cusUsername")String cusUsername,@RequestParam("cusPassword")String cusPassword,Model m) {
+	public String updatePersonnelData(@RequestParam("cusRealname")String cusRealname,
+									@RequestParam("cusUsername")String cusUsername,
+									@RequestParam("cusPassword")String cusPassword,Model m) {
 		CustomerBean temp = new CustomerBean(cusId,cusUsername,cusPassword,cusRealname);
+		// 判斷帳號名稱是否已經被使用
 		status=2;
-		// 判斷帳號是否存在
 		boolean resultUsername = cusService.selectCreateCusUsername(temp);
-		// 如果資料不存在就修改會員資料
+		// 若否就修改會員帳號資料
 		if (resultUsername) {
 			cusService.updateOne(cusId,temp);
-			System.out.println("資料修改成功");
 			status=1;
 			return "redirect:/personnelData.controller";
 		} else {
-			System.out.println("此帳號已有人使用");
 			status=0;
 			return "redirect:/personnelData.controller";
 		}
@@ -109,9 +105,7 @@ public class LoginController {
 	//刪除個人資料
 	@RequestMapping(path = "/deleteData.controller",method = RequestMethod.POST)
 	public String deletePersonnelData() {
-		System.out.println("Delete cusId="+cusId);
-		cusService.deleteOne(cusId);
-		
+		cusService.deleteOne(cusId);	
 		return "redirect:/login.Controller";
 	}
 

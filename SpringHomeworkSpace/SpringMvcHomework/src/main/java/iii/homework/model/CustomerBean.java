@@ -1,7 +1,6 @@
 package iii.homework.model;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,7 +35,8 @@ public class CustomerBean implements Serializable {
 	public CustomerBean() {
 	}
 	
-	public CustomerBean(Integer cusId,String cusUsername,String cusPassword,String cusRealname) {
+	public CustomerBean(Integer cusId,String cusUsername,
+				String cusPassword,String cusRealname) {
 		super();
 		this.setCusId(cusId);
 		this.setCusUsername(cusUsername);

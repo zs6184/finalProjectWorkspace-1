@@ -44,7 +44,7 @@ public class CustomerDao {
 		return null;
 	}
 	
-	//用Id抓CustomerBean
+	//使用Id取得CustomerBean物件
 	public CustomerBean selectById(int cusId) {
 		Session session = sessionFactory.getCurrentSession();
 		CustomerBean temp = session.get(CustomerBean.class, cusId);
@@ -55,7 +55,6 @@ public class CustomerDao {
 	//修改個人資料
 	public CustomerBean updateOne(int cusId,CustomerBean temp) {
 		Session session = sessionFactory.getCurrentSession();
-		System.out.println("cusId="+cusId+"開始查詢");
 		CustomerBean check = session.get(CustomerBean.class, cusId);
 		if(check!=null) {
 			check.setBean(temp);

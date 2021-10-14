@@ -25,7 +25,7 @@
 		
 		$("#deleteBtn").click(function(){
 			$("#cusDataForm").attr("action","deleteData.controller");
-			console.log("成功刪除");
+			alert("成功刪除");
 		});
 		
 		$("#updateBtn").click(function(){
