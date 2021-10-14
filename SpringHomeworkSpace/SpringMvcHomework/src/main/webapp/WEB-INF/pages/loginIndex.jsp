@@ -61,7 +61,7 @@
 
 						<ul>
 							<li>
-								<a href="#" target="_self">${realName}</a>
+								<a href="personnelData.controller" target="_self">${realName}</a>
 								<a href="logoutIndex.Controller" target="_self">登出</a>
 							</li>
 							<li><a href="petinfo.controller" target="_self">寵物領養</a></li>

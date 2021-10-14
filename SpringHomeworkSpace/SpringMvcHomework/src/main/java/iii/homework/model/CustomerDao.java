@@ -43,5 +43,34 @@ public class CustomerDao {
 		}
 		return null;
 	}
-
+	
+	//用Id抓CustomerBean
+	public CustomerBean selectById(int cusId) {
+		Session session = sessionFactory.getCurrentSession();
+		CustomerBean temp = session.get(CustomerBean.class, cusId);
+		
+		return temp;
+	}
+	
+	//修改個人資料
+	public CustomerBean updateOne(int cusId,CustomerBean temp) {
+		Session session = sessionFactory.getCurrentSession();
+		System.out.println("cusId="+cusId+"開始查詢");
+		CustomerBean check = session.get(CustomerBean.class, cusId);
+		if(check!=null) {
+			check.setBean(temp);
+			return check;
+		}
+		return null;
+	}
+	
+	//刪除個人資料
+	public void deleteOne(int cusId) {
+		Session session = sessionFactory.getCurrentSession();
+		CustomerBean temp = session.get(CustomerBean.class, cusId);
+		if(temp != null) {
+			session.delete(temp);
+			System.out.println("刪除完畢");
+		}
+	}
 }

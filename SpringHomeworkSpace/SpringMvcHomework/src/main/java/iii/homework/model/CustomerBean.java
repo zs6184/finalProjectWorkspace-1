@@ -35,6 +35,14 @@ public class CustomerBean implements Serializable {
 
 	public CustomerBean() {
 	}
+	
+	public CustomerBean(Integer cusId,String cusUsername,String cusPassword,String cusRealname) {
+		super();
+		this.setCusId(cusId);
+		this.setCusUsername(cusUsername);
+		this.setCusPassword(cusPassword);
+		this.setCusRealname(cusRealname);
+	}
 
 	public int getCusId() {
 		return cusId;
@@ -68,4 +76,12 @@ public class CustomerBean implements Serializable {
 		this.cusRealname = cusRealname;
 	}
 
+	public CustomerBean setBean(CustomerBean temp) {
+		this.setCusId(temp.getCusId());
+		this.setCusUsername(temp.getCusUsername());
+		this.setCusRealname(temp.getCusRealname());
+		this.setCusPassword(temp.getCusPassword());
+		
+		return this;
+	}
 }
