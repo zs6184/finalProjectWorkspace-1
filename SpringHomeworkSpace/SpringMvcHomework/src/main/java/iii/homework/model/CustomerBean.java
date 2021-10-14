@@ -33,9 +33,6 @@ public class CustomerBean implements Serializable {
 	@Column(name = "realName")
 	private String cusRealname;
 
-	public CustomerBean() {
-	}
-
 	public int getCusId() {
 		return cusId;
 	}

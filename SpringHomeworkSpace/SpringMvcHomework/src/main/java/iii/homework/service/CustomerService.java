@@ -18,18 +18,15 @@ public class CustomerService {
 
 	// 登入時查詢會員真實名稱
 	public String selectUsernameLogin(CustomerBean cBean) {
-//		String cusPassword = cBean.getCusPassword();// 先取得使用者輸入的密碼
 		Query<CustomerBean> theCus = cusDao.selectUsernameLogin(cBean);// 透過DAO取的使用者資料
 		CustomerBean result = theCus.uniqueResult();
-		// 判斷帳號是否存在
-		result.getCusRealname();
-		return result.getCusRealname();
+		return	result.getCusRealname();
 	}
 
 	// 登入時帳號密碼驗證
 	public boolean selectUsername(CustomerBean cBean) {
 		String cusPassword = cBean.getCusPassword();// 先取得使用者輸入的密碼
-		List<CustomerBean> theCus = cusDao.selectUsername(cBean);// 透過DAO取的使用者資料
+		List<CustomerBean> theCus = cusDao.selectUsername(cBean);
 
 		// 判斷帳號是否存在
 		if (theCus.isEmpty()) {

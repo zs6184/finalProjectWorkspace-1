@@ -14,20 +14,22 @@ public class CustomerDao {
 	@Autowired
     private SessionFactory sessionFactory;
 	
-	// 搜尋會員帳號
+	// 登入時搜尋會員帳號
 	public Query<CustomerBean> selectUsernameLogin(CustomerBean username) {
 		String hql = "from CustomerBean as c where c.cusUsername = :username";
 		Session session = sessionFactory.getCurrentSession();
-		Query<CustomerBean> query = session.createQuery(hql, CustomerBean.class).setParameter("username",
+		Query<CustomerBean> query = session.createQuery(hql,
+				CustomerBean.class).setParameter("username",
 				username.getCusUsername());
 		return query;
 	}
 
-	// 搜尋會員帳號
+	// 註冊時搜尋會員帳號
 	public List<CustomerBean> selectUsername(CustomerBean username) {
 		String hql = "from CustomerBean as c where c.cusUsername = :username";
 		Session session = sessionFactory.getCurrentSession();
-		Query<CustomerBean> query = session.createQuery(hql, CustomerBean.class).setParameter("username",
+		Query<CustomerBean> query = session.createQuery(hql,
+				CustomerBean.class).setParameter("username",
 				username.getCusUsername());
 		List<CustomerBean> list = query.getResultList();
 		return list;

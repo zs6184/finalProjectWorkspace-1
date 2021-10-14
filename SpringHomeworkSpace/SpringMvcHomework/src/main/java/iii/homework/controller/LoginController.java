@@ -38,6 +38,7 @@ public class LoginController {
 		return "logout";
 	}
 	
+	//登入時判斷帳號密碼是否存在
 	@RequestMapping(path = "/checkloginaccount.controller", method = RequestMethod.POST)
 	public String processAction(@RequestParam("username") String username, 
 			@RequestParam("password") String password, Model m){
@@ -60,7 +61,5 @@ public class LoginController {
 			return "loginIndex";
 		}
 		return "loginFail";
-
 	}
-
 }
