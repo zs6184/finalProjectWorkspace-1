@@ -63,12 +63,12 @@ public class BackPetInfoController {
 	}
 	
 	
-	//載入全部寵物資料(
+	//載入全部寵物資料
 	@RequestMapping(path = "/backpetinfo.controller", method = RequestMethod.GET)
 	public String processLoadingPage(Model m) {
 		
 		arrPet = loadPet();
-		
+		arrCus = selectAllCus();
 		//處理類別與性別篩選
 		sexSet.clear();		//進行內容刷新避免舊資料殘留
 		cateSet.clear();	//進行內容刷新避免舊資料殘留
@@ -80,6 +80,7 @@ public class BackPetInfoController {
 		m.addAttribute("arrPet",arrPet);
 		m.addAttribute("cateSet",cateSet);
 		m.addAttribute("sexSet",sexSet);
+		m.addAttribute("arrCus",arrCus);
 		
 		return "BackPetInfo";
 	}
