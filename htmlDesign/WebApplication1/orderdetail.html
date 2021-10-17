@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>會員訂單</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
+    <!--<link rel="stylesheet" href="/stylesheet/petInfo.css" />--><!--CSS here-->
+    <link rel="stylesheet" href="/stylesheet/orderdetail.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="javascript/jquery-3.6.0.min.js"></script>
+    <script src="javascript/jquery-ui.min.js"></script>
+    <script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
+    <script src="/javascript/orderdetail.js"></script> <!--JS Here-->
+
+
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</head>
+<body style="background-image:url(image/背景4.jpg)">
+    <hr>
+    <!-- 標題logo 部分 -->
+    <div class="logo-area text-center">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <a href="index.html"><img src="image/浪跡2.png" alt=""></a> <!--LOGO-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <!-- nav欄部分 -->
+    <div id="topbar">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <ul>
+                        <li><a href="petInfo.html" target="_self">寵物領養</a></li>
+                        <li><a href="index.html" target="_self">線上訂位</a></li>
+                        <li><a href="index.html" target="_self">餐點介紹</a></li>
+                        <li><a href="index.html" target="_self">公告專區</a></li>
+                        <li><a href="index.html" target="_self">登入註冊</a></li>
+                        <li><a href="index.html" target="_self">首頁</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--橫幅圖片區域-->
+    <div class="banner-area bg-img" style="background-image:url(/image/img/bg-img/cat1.jpeg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="banner-content text-center">
+                        <h2>訂單明細</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--搜尋-->
+    <div class="searchform">
+        <form>
+            <i class="bi bi-search"></i>
+            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </form>
+    </div>    
+<!--內容-->
+    <div class="container" id="container">
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">訂單編號</th>
+                    <th scope="col">日期</th>
+                    <th scope="col">總計</th>
+                    <th scope="col">狀態</th>
+                    <th scope="col">操作</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">200</th>
+                    <td>2021-10-15 13:25</td>
+                    <td>250</td>
+                    <td>
+                        <i class="bi bi-check-lg" style="color:forestgreen"></i>
+                        已付款
+                    </td>
+                    <td>
+                        <div class="preloader">
+                            <span></span>
+                        </div>
+                        <a class="godetail" href="#this">明細</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">1000</th>
+                    <td>2021-10-15 13:25</td>
+                    <td>250</td>
+                    <td>
+                        <i class="bi bi-check-lg" style="color: #E0E0E0 "></i>
+                        未付款
+                    </td>
+                    <td>
+                        <div class="preloader">
+                            <span></span>
+                        </div>
+                        <a class="godetail" href="#this">明細</a>
+                        <a href="#this" class="gopay">付款去</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!--明細-->
+
+        <div class="orderdetail">
+            <div class="wrap">
+                <button>
+                    <i class="bi bi-x-circle"></i>
+                    exit!
+                </button>
+            </div>
+            <div class="wrap">
+                <div class="item"><img src="image/f6.jpg" /></div>
+                <div class="item">
+                    <p>產品名稱:</p>
+                    <p>數量:</p>
+                </div>
+            </div>
+            <div class="wrap">
+                <div class="item"><img src="image/c5.jpg" /></div>
+                <div class="item">
+                    <p>產品名稱:</p>
+                    <p>數量:</p>
+                </div>
+            </div>
+            <div class="wrap">
+                <div class="item">
+                    <ul id="progress">
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
