@@ -25,7 +25,7 @@ a {
 
 li {
     list-style: none;
-    width:20%;
+   
 }
 
     .topbar li a {
@@ -62,7 +62,7 @@ li {
         float: right;
         height: 60px;
         padding-left: 30px;
-        
+        width:20%;
     }
 
 
