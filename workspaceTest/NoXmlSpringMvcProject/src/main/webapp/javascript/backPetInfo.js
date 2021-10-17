@@ -16,6 +16,7 @@ $(function() {
 	$("#insertBtn").click(function() {
 		$("#modalForm").attr("action", "insertPetInfo.controller");
 		$("#modalForm #idSection").prop("hidden", "hidden");
+		$("#cusId,#cusName").attr("placeholder","");
 		$("#modalForm input,textarea,select").val("");
 
 	});

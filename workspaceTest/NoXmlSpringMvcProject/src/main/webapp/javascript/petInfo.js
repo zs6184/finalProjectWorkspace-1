@@ -15,6 +15,20 @@ $(function () {
         }
     }
 	
+	
+	//將不同背景色放入陣列
+	const bgColor = ["bg-success","bg-danger","bg-warning","bg-info"];
+	//隨機從陣列中取詞彙
+	const getBgColor = () =>bgColor[
+		Math.floor(Math.random()*(bgColor.length))];
+	//將搜索結果加上隨機背景色
+	$(".selectResult").each(function(){
+		$(this).addClass(`${getBgColor()}`)
+	});
+	
+	
+	
+	
 	//
 //	$.ajax({
 //		type: "GET",
