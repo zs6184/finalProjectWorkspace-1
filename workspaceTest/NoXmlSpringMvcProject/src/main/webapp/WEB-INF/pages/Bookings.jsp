@@ -185,23 +185,7 @@ $(document).ready( function () {
 		</div>
 		<!-- container right -->
 		<div class="containerRight">
-			<!-- 分頁按鈕 -->
-<!-- 			<div class="page container"> -->
-<!-- 				<div class="row"> -->
-<!-- 					<div class="offset-2 col-8 "> -->
-<!-- 						<nav aria-label="Page navigation"> -->
-<!-- 							<ul class="pagination justify-content-center"> -->
-<!-- 								<li class="page-item "><a class="page-link" -->
-<!-- 									href="history.back()">上一頁</a></li> -->
-<!-- 								<li class="page-item"><a class="page-link" href="#">1</a></li> -->
-<!-- 								<li class="page-item"><a class="page-link" href="#">2</a></li> -->
-<!-- 								<li class="page-item"><a class="page-link" href="#">3</a></li> -->
-<!-- 								<li class="page-item"><a class="page-link" href="#">下一頁</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</nav> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+		
 			<!-- 主頁內容 -->
 			<div class="container-fluid ">
 				<div class="row">
@@ -276,7 +260,7 @@ $(document).ready( function () {
 											<div>
 												<label for="cusId" class=""><span>會員ID</span></label> <input
 													type="text" id="cusId" name="cusId"
-													oninput="value=value.replace(/[^\d]/g,'')" />
+													oninput="value=value.replace(/[^\d]/g,'')" min="4" max="13"/>
 											</div>
 											<div>
 												<label for="cusRealName" class=""><span>姓名</span></label> <input
@@ -284,7 +268,7 @@ $(document).ready( function () {
 											</div>
 											<div>
 												<label for="phone" class=""><span>電話</span></label> <input
-													type="text" id="phone" name="phone" />
+													type="text" id="phone" name="phone" min="10" max="13"/>
 											</div>
 											<div>
 												<label for="bookingsNum" class=""><span>人數</span></label> <select
@@ -358,20 +342,7 @@ $(document).ready( function () {
 			</div>
 			<!-- End Of Modal -->
 
-			<!-- 分頁按鈕 -->
-<!-- 			<div class="page"> -->
-<!-- 				<nav aria-label="Page navigation"> -->
-<!-- 					<ul class="pagination justify-content-center"> -->
-<!-- 						<li class="page-item"><a class="page-link" -->
-<!-- 							href="history.back()">上一頁</a></li> -->
-<!-- 						<li class="page-item"><a class="page-link" href="#">1</a></li> -->
-<!-- 						<li class="page-item"><a class="page-link" href="#">2</a></li> -->
-<!-- 						<li class="page-item"><a class="page-link" href="#">3</a></li> -->
-<!-- 						<li class="page-item"><a class="page-link" href="#">下一頁</a></li> -->
-<!-- 					</ul> -->
-<!-- 				</nav> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
+			
 
 	</div>
 </body>
