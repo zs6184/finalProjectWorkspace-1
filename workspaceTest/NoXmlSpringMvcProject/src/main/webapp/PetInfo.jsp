@@ -104,10 +104,10 @@
 						</div>
 						<div class="row col-6 align-items-center">
 							<ul>
-								<li>寵物姓名:${arrPet.petName}</li>	
-								<li>性別:${arrPet.sex}</li>	
-								<li>類別:${arrPet.category}</li>	
-								<li>品種:${arrPet.species}</li>	
+								<li><span><i class="fa fa-id-card" aria-hidden="true"></i></span>寵物姓名:${arrPet.petName}</li>	
+								<li><span><i class="fa fa-venus-mars" aria-hidden="true"></i></span>性別:${arrPet.sex}</li>	
+								<li><span><i class="fa fa-paw" aria-hidden="true"></i></span>類別:${arrPet.category}</li>	
+								<li><span><i class="fa fa-tag" aria-hidden="true"></i></span>品種:${arrPet.species}</li>	
 							</ul>
 							<button type="button" class="btn-sm btn-light">詳細資料</button>
 						</div>

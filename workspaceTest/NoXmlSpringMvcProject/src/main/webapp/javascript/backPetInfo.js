@@ -16,7 +16,9 @@ $(function() {
 	$("#insertBtn").click(function() {
 		$("#modalForm").attr("action", "insertPetInfo.controller");
 		$("#modalForm #idSection").prop("hidden", "hidden");
+		$("#petInfoAdd input").attr("placeholder","");
 		$("#modalForm input,textarea,select").val("");
+		$("#imgPreview img").attr("src","");
 
 	});
 
@@ -87,7 +89,7 @@ $(function() {
 		}
 	})
 	
-	//更新寵物資料輸入客戶ID後檢測客戶是否存在
+	//更新寵物資料-輸入客戶ID後檢測客戶是否存在
 	$("#cusId").blur(function(){
 		var check = parseInt($(this).val()); //確定轉為整數值
 
@@ -101,6 +103,13 @@ $(function() {
 		}
 	});
 	
+	//上傳檔案預覽圖片
+	$("#mypic").change(function(){
+		previewImg(this.files);
+	});
+	//當使用者返回前頁時，需重新預覽前回點選擬上傳的圖片
+	//previewImg($("#mypic")[0].files);
+
 });
 
 //跳出確認刪除對話框
@@ -157,10 +166,24 @@ function select(obj) {
 			$("#modalForm #cusName").val(parsed.cusName);
 			$("#modalForm #adoptDate").val(parsed.adoptDate);
 			$("#modalForm #note").val(parsed.note);
+			$("#imgPreview img").attr("src",`data:image/png;base64,${parsed.pic}`);
+			//console.log(parsed.pic);
 		},
 		error: function() {
 			console.log("failed to get data");
 		}
 	})
+}
+
+//預覽上傳檔案圖片
+function previewImg(files){
+	if(files.length==0) 
+	return;
+	var file = files[0];
+	var fr = new FileReader();
+	fr.onload = function(){
+		$("#imgPreview img").attr({src:fr.result});
+	};
+	fr.readAsDataURL(file);
 }
 

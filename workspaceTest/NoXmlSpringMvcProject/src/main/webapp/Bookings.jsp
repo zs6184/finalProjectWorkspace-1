@@ -262,7 +262,7 @@
 											</div>
 											<div>
 												<label for="phone" class=""><span>電話</span></label> <input
-													type="text" id="phone" name="phone" />
+													type="text" min="10" max="13" id="phone" name="phone" />
 											</div>
 											<div>
 												<label for="bookingsNum" class=""><span>人數</span></label> <select
