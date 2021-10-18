@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -63,7 +64,7 @@ public class BackPetInfoController {
 	}
 	
 	
-	//載入全部寵物資料
+	//載入全部寵物資料，寵物後台首頁
 	@RequestMapping(path = "/backpetinfo.controller", method = RequestMethod.GET)
 	public String processLoadingPage(Model m) {
 		
@@ -105,30 +106,33 @@ public class BackPetInfoController {
 	
 	//新增單一資料
 	@RequestMapping(path = "/insertPetInfo.controller", method = RequestMethod.POST, produces = "application/json; charset=utf-8") // 設定字串type與編碼
-	public String processAddPetInfo(PetBean temp) throws JsonProcessingException {
+	public String processAddPetInfo(PetBean temp,@RequestParam("mypic") MultipartFile pic) throws JsonProcessingException {
 		System.out.println("receive POST request");
 		String jsonStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue)).replaceAll("\"\"","null"); // 寫出所有null後將所有空白轉null
 		PetBean transfer = JSON.parseObject(jsonStr, PetBean.class);
-			
-		savePet(transfer);
+		
+		savePet(transfer,pic);
 
 		return "redirect:/backpetinfo.controller";
 	}
 	
-	//更新寵物個別資料(含領養)
+	//使用更新按鈕選擇寵物個別資料(含領養)
 	@RequestMapping(path = "/selectbyid.controller",method = RequestMethod.GET)
 	public void processSelectById(@RequestParam int id, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
-		
-		ID=id; //按下更新後取得的petId放到全域變數中保存
+
+		//按下更新後取得的petId放到全域變數中保存
+		ID=id; 
 		PetBean temp = selectPet(id);
-		
+
+		//資料轉JSON字串
 		String petStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue));
-		JSONObject jsonObj = JSONObject.parseObject(petStr);
+		JSONObject petData = JSONObject.parseObject(petStr);
 		System.out.println(petStr);
 		
+
 		PrintWriter out = response.getWriter();
-		out.print(jsonObj);
+		out.print(petData);
 		out.close();
 		System.out.println("輸出完成");
 	}
@@ -145,12 +149,12 @@ public class BackPetInfoController {
 	
 	//修改單筆資料
 	@RequestMapping(path = "/updateone.controller",method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	public String processUpdateOne(PetBean temp) {
+	public String processUpdateOne(PetBean temp,@RequestParam("mypic") MultipartFile pic) {
 		
 		String jsonStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue)).replaceAll("\"\"","null"); // 將所有空白轉為null
 		PetBean transfer = JSON.parseObject(jsonStr, PetBean.class);
 		
-		updateOne(ID,transfer);
+		updateOne(ID,transfer,pic);
 		
 		return "redirect:/backpetinfo.controller";
 	}
@@ -164,9 +168,9 @@ public class BackPetInfoController {
 	private CustomerService cService;
 
 	// 執行插入單筆function
-	private void savePet(PetBean temp) {
+	private void savePet(PetBean temp,MultipartFile pic) {
 		try {
-			pService.insertOne(temp);
+			pService.insertOne(temp,pic);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -215,9 +219,9 @@ public class BackPetInfoController {
 	}
 	
 	//更新單筆資料
-	private void updateOne(int petId,PetBean temp) {
+	private void updateOne(int petId,PetBean temp,MultipartFile pic) {
 		try {
-			pService.updateOne(petId,temp);
+			pService.updateOne(petId,temp,pic);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

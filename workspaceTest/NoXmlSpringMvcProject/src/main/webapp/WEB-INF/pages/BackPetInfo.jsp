@@ -16,7 +16,8 @@
 <link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
 <link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
 <!-- DataTable套件 -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
 <!--自訂樣式表-->
 <link href="stylesheet/backstage.css" rel="stylesheet" />
 <link href="stylesheet/backPetInfo.css" rel="stylesheet" />
@@ -26,7 +27,8 @@
 <!--datepicker-ui中文補丁-->
 <script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
 <!-- DataTable套件 -->
-<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <!--自訂js-->
 <script src="javascript/backPetInfo.js"></script>
 <script src="javascript/backstage.js"></script>
@@ -156,8 +158,9 @@
 						class="center sidebarLight02"> <i class="fas fa-users mx-2"></i>
 							<span class="items">會員管理</span>
 					</a></li>
-					<li class="m-0"><a href="EmployeesAll.Controller" class="center"> <i
-							class="fas fa-address-card mx-2"></i> <span class="items">員工管理</span>
+					<li class="m-0"><a href="EmployeesAll.Controller"
+						class="center"> <i class="fas fa-address-card mx-2"></i> <span
+							class="items">員工管理</span>
 					</a></li>
 
 				</ul>
@@ -168,32 +171,33 @@
 
 			<div class="container-fluid">
 				<!-- 查詢欄位 -->
-					<div style="margin-top:20px;">
-						<form action="searchdata.controller" method="POST" id="srhForm">
-							<div class="row justify-content-start">
-								<div class="col-1 text-center">
-									<select name="category" id="srhCategory">
-										<option value="">不限類別</option>
-										<c:forEach var="cateSet" items="${cateSet}">
-											<option value="${cateSet}" name="${cateSet}">${cateSet}</option>
-										</c:forEach>
-									</select>
-								</div>
-								<div class="col-1 text-center">
-									<select name="sex" id="srhSex">
-										<option value="">不限性別</option>
-										<c:forEach var="sexSet" items="${sexSet}">
-											<option value="${sexSet}" name="${sexSet}">${sexSet}</option>
-										</c:forEach>
-										
-									</select>
-								</div>
-								<div class="col-1 text-center">
-									<button type="submit" class="btn btn-info text-white btn-sm" id="srhBtn">搜尋</button>
-								</div>
+				<div style="margin-top: 20px;">
+					<form action="searchdata.controller" method="POST" id="srhForm">
+						<div class="row justify-content-start">
+							<div class="col-1 text-center">
+								<select name="category" id="srhCategory">
+									<option value="">不限類別</option>
+									<c:forEach var="cateSet" items="${cateSet}">
+										<option value="${cateSet}" name="${cateSet}">${cateSet}</option>
+									</c:forEach>
+								</select>
 							</div>
-						</form>
-					</div>
+							<div class="col-1 text-center">
+								<select name="sex" id="srhSex">
+									<option value="">不限性別</option>
+									<c:forEach var="sexSet" items="${sexSet}">
+										<option value="${sexSet}" name="${sexSet}">${sexSet}</option>
+									</c:forEach>
+
+								</select>
+							</div>
+							<div class="col-1 text-center">
+								<button type="submit" class="btn btn-info text-white btn-sm"
+									id="srhBtn">搜尋</button>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 			<!-- 主頁內容 -->
 			<div class="container-fluid ">
@@ -240,8 +244,9 @@
 											<button type="button" class="btn btn-danger updateBtn"
 												data-bs-toggle="modal" data-bs-target="#petInfoAdd"
 												onclick="select(this)">更新</button>
-											<button type="button" class="btn btn-danger deleteBtn" data-bs-toggle="modal" 
-											data-bs-target="#deleteAlert" onclick="delAlert(this)">刪除</button>
+											<button type="button" class="btn btn-danger deleteBtn"
+												data-bs-toggle="modal" data-bs-target="#deleteAlert"
+												onclick="delAlert(this)">刪除</button>
 										</td>
 									</tr>
 								</c:forEach>
@@ -261,7 +266,7 @@
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
 						<form class="add" action="insertPetInfo.controller" method="POST"
-							id="modalForm">
+							id="modalForm" enctype="multipart/form-data">
 							<div class="modal-body">
 								<div class="row">
 									<div class="text-center" id="mainbox">
@@ -273,27 +278,30 @@
 											</div>
 											<div>
 												<label for="petName"><span>*寵物名</span></label> <input
-													type="text" id="petName" name="petName" class="requiredValue"/>
+													type="text" id="petName" name="petName"
+													class="requiredValue" />
 											</div>
 											<div>
 												<label for="category"><span>*類別</span></label> <input
-													type="text" id="category" name="category" class="requiredValue"/>
+													type="text" id="category" name="category"
+													class="requiredValue" />
 											</div>
 											<div>
 												<label for="species"><span>*品種</span></label> <input
-													type="text" id="species" name="species" class="requiredValue" />
+													type="text" id="species" name="species"
+													class="requiredValue" />
 											</div>
 											<div>
-												<label for="sex"><span>*性別</span></label> <select
-													id="sex" name="sex" class="requiredValue" required>
+												<label for="sex"><span>*性別</span></label> <select id="sex"
+													name="sex" class="requiredValue" required>
 													<option value="" disabled selected></option>
 													<option value="M">Male</option>
 													<option value="F">Female</option>
 												</select>
 											</div>
 											<div>
-												<label for="age"><span>*年齡</span></label> <select
-													id="age" name="age" class="requiredValue" required>
+												<label for="age"><span>*年齡</span></label> <select id="age"
+													name="age" class="requiredValue" required>
 													<option value="" disabled selected></option>
 													<option value="幼年">幼年</option>
 													<option value="成年">成年</option>
@@ -302,15 +310,17 @@
 											</div>
 											<div>
 												<label for="fixStatus"><span>*絕育狀態</span></label> <select
-													id="fixStatus" name="fixStatus" class="requiredValue" required>
+													id="fixStatus" name="fixStatus" class="requiredValue"
+													required>
 													<option value="" disabled selected></option>
 													<option value="已結紮">已結紮</option>
 													<option value="未結紮">未結紮</option>
 												</select>
 											</div>
 											<div>
-												<label for="adoptStatus"><span>*領養狀態</span></label>
-												<select id="adoptStatus" name="adoptStatus" class="requiredValue" required>
+												<label for="adoptStatus"><span>*領養狀態</span></label> <select
+													id="adoptStatus" name="adoptStatus" class="requiredValue"
+													required>
 													<option value="" disabled selected></option>
 													<option value="已領養">已領養</option>
 													<option value="未領養">未領養</option>
@@ -335,6 +345,19 @@
 													data-provide="datepicker" />
 											</div>
 										</fieldset>
+										<hr />
+										<fieldset></fieldset>
+										<legend>相片</legend>
+										<div class="row">
+											<div class="col-6 justify-content-center">
+												<input type="file" name="mypic" id="mypic" /><br>
+											</div>
+											<div class="col-6 justify-content-center">
+												<div id="imgPreview">
+													<img src="" style="width:100%;height:100%;" alt="圖片預覽區域"/>
+												</div>
+											</div>
+										</div>
 										<hr />
 										<fieldset>
 											<legend>備註</legend>
@@ -370,15 +393,18 @@
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
 						<div class="modal-body items-align-center">
-							<h4 style="margin-top:10px;margin-bottom:50px;" id="alertDialog">確認刪除此筆資料?</h4>
-							<button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="delConfirm" onclick="del()">確定</button>
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+							<h4 style="margin-top: 10px; margin-bottom: 50px;"
+								id="alertDialog">確認刪除此筆資料?</h4>
+							<button type="button" class="btn btn-danger"
+								data-bs-dismiss="modal" id="delConfirm" onclick="del()">確定</button>
+							<button type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal">取消</button>
 						</div>
 					</div>
 				</div>
-			</div>	
+			</div>
 			<!-- End Of deleteAlert Modal-->
-			
+
 		</div>
 	</div>
 </body>

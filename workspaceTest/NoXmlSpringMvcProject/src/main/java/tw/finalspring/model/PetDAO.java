@@ -1,5 +1,6 @@
 package tw.finalspring.model;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -8,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Repository @Transactional
 public class PetDAO{
@@ -16,10 +18,12 @@ public class PetDAO{
 	private SessionFactory sessionFactory;
 	
 //插入單筆資料
-	public PetBean insertOne(PetBean temp) {
+	public PetBean insertOne(PetBean temp,MultipartFile pic) throws IOException {
 		Session session = sessionFactory.openSession();
 		
 		if(temp!=null) {
+			byte[] picBytes = pic.getBytes();
+			temp.setPic(picBytes);
 			session.save(temp);
 		}	
 		session.close();
@@ -32,8 +36,16 @@ public class PetDAO{
 		Query<PetBean> query = session.createQuery("from PetBean",PetBean.class);
 		
 		return query.list(); //因為query只能讀取一次所以使用getCurrentSession,若使用OpenSession再手動Close會造成query無法讀取
-		
 	}
+//載入全部未領養資料
+	public List<PetBean> selectNoAdopt(){
+		Session session = sessionFactory.getCurrentSession();
+		Query<PetBean> query = session.createQuery("from PetBean where adoptStatus=:adoptStatus",PetBean.class);
+		query.setParameter("adoptStatus","未領養");
+		System.out.println("資料筆數="+query.list().size());
+		return query.list();
+	}
+	
 
 //使用ID查詢
 	public PetBean selectById(int petId) {
@@ -54,11 +66,13 @@ public class PetDAO{
 	}
 
 //更新單筆資料
-	public PetBean updateOne(int petId,PetBean temp) {
+	public PetBean updateOne(int petId,PetBean temp,MultipartFile pic) throws IOException {
 		Session session = sessionFactory.getCurrentSession();
 		PetBean check = session.get(PetBean.class, petId);
 		if(check != null) {
+			byte[] picBytes = pic.getBytes();
 			check.setBean(temp);
+			check.setPic(picBytes);
 			return check;
 		}
 		
