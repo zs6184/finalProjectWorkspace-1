@@ -1,5 +1,9 @@
 package tw.finalspring.model;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -90,7 +94,6 @@ public class CustomerDao {
 		CustomerBean cusBean = session.get(CustomerBean.class, cId);
 		if (cusBean != null) {
 			// 透過Bean取得資料更新到資料庫
-//			cusBean.setCusPassword(cBean.getCusPassword());
 			cusBean.setAka(cBean.getAka());
 			cusBean.setCusRealname(cBean.getCusRealname());
 			cusBean.setGender(cBean.getGender());
@@ -104,6 +107,24 @@ public class CustomerDao {
 		}
 		return cusBean;
 	}
+	
+	//更新會員中心個人資料
+	public CustomerBean updateCustomerCenter(int cId, CustomerBean cBean) {
+		Session session = sessionFactory.getCurrentSession();
+		CustomerBean cusBean = session.get(CustomerBean.class, cId);
+		if (cusBean != null) {
+			// 透過Bean取得資料更新到資料庫
+			cusBean.setCusRealname(cBean.getCusRealname());
+			cusBean.setAka(cBean.getAka());
+			cusBean.setGender(cBean.getGender());
+			cusBean.setPhoneNumber(cBean.getPhoneNumber());
+			cusBean.setEmail(cBean.getEmail());
+			cusBean.setBirthdate(cBean.getBirthdate());
+			cusBean.setAddress(cBean.getAddress());
+		}
+		return cusBean;
+	}
+	
 
 //	@Override
 	public boolean deletOne(int cId) {
@@ -115,6 +136,43 @@ public class CustomerDao {
 		} else {
 			return false;
 		}
+	}
+	
+	//更新圖片
+	public String saveFile(int cId, String fileName, String saveFilePath) {
+		Session session = sessionFactory.getCurrentSession();
+		CustomerBean cusBean = session.get( CustomerBean.class, cId);
+		
+		
+		try {
+			FileInputStream fis = new FileInputStream(saveFilePath);
+			byte[] b1 = new byte[fis.available()];
+			
+			fis.read(b1);//將讀取檔案放入byte陣列
+			fis.close();
+			
+			cusBean.setImageName(fileName);
+			cusBean.setImage(b1);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "save";
+	}
+	
+	//會員中心圖片下載到專案資料夾底下的downloadTempDir
+	public String imageDownload(byte[] image, String filePath) {
+		try { 
+			FileOutputStream fos = new FileOutputStream(filePath);
+			fos.write(image);
+			fos.close();
+			System.out.println("輸出完成");
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "download";
 	}
 
 }

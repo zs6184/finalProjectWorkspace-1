@@ -16,11 +16,21 @@ public class CustomerService {
 	@Autowired
 	private CustomerDao cusDao;
 
+<<<<<<< HEAD
 	// 登入時查詢會員真實名稱
 	public String selectUsernameLogin(CustomerBean cBean) {
 		Query<CustomerBean> theCus = cusDao.selectUsernameLogin(cBean);// 透過DAO取的使用者資料
 		CustomerBean result = theCus.uniqueResult();
 		return	result.getCusRealname();
+=======
+	// 登入時查詢會員
+	public CustomerBean selectUsernameLogin(CustomerBean cBean) {
+		//String cusPassword = cBean.getCusPassword();// 先取得使用者輸入的密碼
+		Query<CustomerBean> theCus = cusDao.selectUsernameLogin(cBean);// 透過DAO取的使用者資料
+		CustomerBean result = theCus.uniqueResult();
+		// 判斷帳號是否存在
+		return result;
+>>>>>>> 0a89dbdc21b6af8f74c9917f8e0680305e639135
 	}
 
 	// 登入時帳號密碼驗證
@@ -50,7 +60,6 @@ public class CustomerService {
 
 	// 會員註冊時判斷帳號是否存在
 	public boolean selectCreateCusUsername(CustomerBean cBean) {
-		String cusUsername = cBean.getCusUsername();
 		List<CustomerBean> theCus = cusDao.selectUsername(cBean);
 		if (theCus.isEmpty()) {
 			System.out.println("usernamePass");
@@ -62,7 +71,23 @@ public class CustomerService {
 
 	// 新增
 	public CustomerBean insert(CustomerBean cBean) {
-		CustomerBean oneCus = cusDao.insert(cBean);
+		cusDao.insert(cBean);
 		return null;
+	}
+	
+	//用Id抓CustomerBean
+	public CustomerBean selectById(int cusId) {
+		CustomerBean temp = cusDao.selectById(cusId);
+		return temp;
+	}
+	
+	//修改個人資料
+	public CustomerBean updateOne(int cusId,CustomerBean temp) {
+		return cusDao.updateOne(cusId,temp);
+	}
+	
+	//刪除個人資料
+	public void deleteOne(int cusId) {
+		cusDao.deleteOne(cusId);
 	}
 }

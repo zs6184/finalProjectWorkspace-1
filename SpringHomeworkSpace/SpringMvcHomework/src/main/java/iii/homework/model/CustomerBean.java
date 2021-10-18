@@ -1,7 +1,6 @@
 package iii.homework.model;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,6 +32,21 @@ public class CustomerBean implements Serializable {
 	@Column(name = "realName")
 	private String cusRealname;
 
+<<<<<<< HEAD
+=======
+	public CustomerBean() {
+	}
+	
+	public CustomerBean(Integer cusId,String cusUsername,
+				String cusPassword,String cusRealname) {
+		super();
+		this.setCusId(cusId);
+		this.setCusUsername(cusUsername);
+		this.setCusPassword(cusPassword);
+		this.setCusRealname(cusRealname);
+	}
+
+>>>>>>> 0a89dbdc21b6af8f74c9917f8e0680305e639135
 	public int getCusId() {
 		return cusId;
 	}
@@ -65,4 +79,12 @@ public class CustomerBean implements Serializable {
 		this.cusRealname = cusRealname;
 	}
 
+	public CustomerBean setBean(CustomerBean temp) {
+		this.setCusId(temp.getCusId());
+		this.setCusUsername(temp.getCusUsername());
+		this.setCusRealname(temp.getCusRealname());
+		this.setCusPassword(temp.getCusPassword());
+		
+		return this;
+	}
 }

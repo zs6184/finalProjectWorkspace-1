@@ -1,5 +1,6 @@
 package tw.finalspring.service;
 
+import java.io.File;
 import java.util.List;
 
 import org.hibernate.query.Query;
@@ -10,12 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import tw.finalspring.model.CustomerBean;
 import tw.finalspring.model.CustomerDao;
 
-@Service @Transactional
-public class CustomerService{
+@Service
+@Transactional
+public class CustomerService {
 //	 implements CustomerServiceInterface
 	@Autowired
 	private CustomerDao cusDao;
-
 
 	// 透過id搜尋
 //	@Override
@@ -31,8 +32,7 @@ public class CustomerService{
 
 		return cusAll;
 	}
-	
-	
+
 	// 登入時查詢會員真實名稱
 //	@Override
 	public String selectUsernameLogin(CustomerBean cBean) {
@@ -44,7 +44,12 @@ public class CustomerService{
 		return result.getCusRealname();
 
 	}
-	
+
+	public List<CustomerBean> selectCustomerCenterUsername(CustomerBean username) {
+		Query<CustomerBean> query = cusDao.selectUsernameLogin(username);
+
+		return query.list();
+	}
 
 	// 登入時帳號密碼驗證
 //	@Override
@@ -126,6 +131,11 @@ public class CustomerService{
 		return oneCus;
 	}
 
+	// 更新會員中心個人資料
+	public CustomerBean updateCustomerCenter(int cId, CustomerBean cBean) {
+		return cusDao.updateCustomerCenter(cId, cBean);
+	}
+
 	// 刪除
 //	@Override
 	public boolean deletOne(int cId) {
@@ -133,4 +143,34 @@ public class CustomerService{
 		return boo;
 	}
 
+	// 更新圖片
+	public String saveFile(int cId, String fileName, String saveFilePath) {
+		return cusDao.saveFile(cId, fileName, saveFilePath);
+	}
+
+	public String imageDownload(byte[] image,int cusId, String imageName,String path) {
+		
+		//建立資料夾
+		File file = new File(path);
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+
+		String profix = cusId + "_"; // 建立檔案前綴檔名
+		File[] listFiles = file.listFiles();// 將資料夾內的圖片存成陣列
+		for (int i = 0; i < listFiles.length; i++) {
+			// 如果圖片的名稱.startsWith(profix)符合cusId+"_"
+			if (listFiles[i].getName().startsWith(profix)) {
+				File deleteFile2 = new File(path + listFiles[i].getName());// 建立要刪除的檔案路徑
+				deleteFile2.delete();
+			}
+		}
+		
+		String filePath1 = path + imageName;
+		cusDao.imageDownload(image, filePath1);
+		
+		return "PASS";
+	}
+
+	
 }

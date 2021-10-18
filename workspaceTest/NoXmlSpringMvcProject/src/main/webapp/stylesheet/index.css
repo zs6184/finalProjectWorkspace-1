@@ -25,12 +25,12 @@ a {
 
 li {
     list-style: none;
-    width:20%;
 }
 
     .topbar li a {
         font-family: AA;
         font-size: 20px;
+    	
         
     }
    
@@ -62,7 +62,7 @@ li {
         float: right;
         height: 60px;
         padding-left: 30px;
-        
+        width:20%;
     }
 
 
