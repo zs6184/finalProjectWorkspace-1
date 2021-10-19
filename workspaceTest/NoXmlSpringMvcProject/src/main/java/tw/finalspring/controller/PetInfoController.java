@@ -71,11 +71,11 @@ public class PetInfoController {
 	@Autowired
 	private PetService pService;	
 	
-	// 執行載入全部function
+	// 載入全部未領養寵物資訊
 	private List<PetBean> loadPet() {
 		List<PetBean>tempArr = new ArrayList<>();
 		try {
-			tempArr = pService.selectAll();
+			tempArr = pService.selectNoAdopt();
 			
 		}catch(Exception e) {
 			e.printStackTrace();

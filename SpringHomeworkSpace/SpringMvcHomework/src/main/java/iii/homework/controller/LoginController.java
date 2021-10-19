@@ -42,6 +42,7 @@ public class LoginController {
 		return "logout";
 	}
 	
+	//登入時判斷帳號密碼是否存在
 	//登入事件處理
 	@RequestMapping(path = "/checkloginaccount.controller", method = RequestMethod.POST)
 	public String processAction(@RequestParam("username") String username, 
@@ -108,5 +109,4 @@ public class LoginController {
 		cusService.deleteOne(cusId);	
 		return "redirect:/login.Controller";
 	}
-
 }

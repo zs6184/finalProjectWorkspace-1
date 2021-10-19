@@ -20,7 +20,7 @@ import tw.finalspring.model.CustomerBean;
 import tw.finalspring.service.CustomerService;
 
 @Controller
-@SessionAttributes(names = { ("realName") }) //設為session層級
+@SessionAttributes(names = { ("realName"),("username") }) //設為session層級
 public class LoginController {
 
 	@Autowired

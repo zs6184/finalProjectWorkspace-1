@@ -12,7 +12,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-@Entity @Table(name = "Customers")
+@Entity
+@Table(name = "Customers")
 @Component("customerBean")
 public class CustomerBean implements Serializable {
 
@@ -53,6 +54,9 @@ public class CustomerBean implements Serializable {
 	@Column(name = "photo")
 	private byte[] image;
 
+	@Column(name = "photoName")
+	private String imageName;
+
 	@Column(name = "note")
 	private String note;
 
@@ -61,8 +65,6 @@ public class CustomerBean implements Serializable {
 
 	public CustomerBean() {
 	}
-	
-	
 
 	@Override
 	public String toString() {
@@ -71,8 +73,6 @@ public class CustomerBean implements Serializable {
 				+ phoneNumber + ", email=" + email + ", birthdate=" + birthdate + ", address=" + address + ", image="
 				+ Arrays.toString(image) + ", note=" + note + ", noShow=" + noShow + "]";
 	}
-
-
 
 	public int getCusId() {
 		return cusId;
@@ -162,6 +162,14 @@ public class CustomerBean implements Serializable {
 		this.image = image;
 	}
 
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
 	public String getNote() {
 		return note;
 	}
@@ -177,6 +185,5 @@ public class CustomerBean implements Serializable {
 	public void setNoShow(int noShow) {
 		this.noShow = noShow;
 	}
-
 
 }

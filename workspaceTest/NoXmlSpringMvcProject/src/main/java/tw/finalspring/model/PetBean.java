@@ -12,7 +12,8 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 //Entity.Table.Columns
-@Entity @Table(name = "Pets")
+@Entity
+@Table(name = "Pets")
 @Component("PetBean")
 public class PetBean implements Serializable {
 
@@ -56,13 +57,15 @@ public class PetBean implements Serializable {
 	@Column(name = "cus_realname")
 	private String cusName;
 
+	@Column(name = "pic")
+	private byte[] pic;
+
 	// constructor
 	public PetBean() {
 	}
 
-	public PetBean(Integer petId ,String category, String species, String sex, 
-			String petName,String age,String fixStatus,String note,
-			String adoptStatus,String adoptDate,Integer cusID,String cusName) {
+	public PetBean(Integer petId, String category, String species, String sex, String petName, String age,
+			String fixStatus, String note, String adoptStatus, String adoptDate, Integer cusID, String cusName,byte[] pic) {
 		super();
 		this.setPetId(petId);
 		this.setCategory(category);
@@ -76,6 +79,7 @@ public class PetBean implements Serializable {
 		this.setAdoptDate(adoptDate);
 		this.setCusId(cusID);
 		this.setCusName(cusName);
+		this.setPic(pic);
 	}
 
 	// getters & setters
@@ -179,13 +183,23 @@ public class PetBean implements Serializable {
 		return serialVersionUID;
 	}
 
+	public byte[] getPic() {
+		return pic;
+	}
+
+	public void setPic(byte[] pic) {
+		this.pic = pic;
+	}
+	
+	
+
 	@Override
 	public String toString() {
 		return "Pet [petId=" + petId + ", category=" + category + ", species=" + species + ", sex=" + sex + ", petName="
 				+ petName + ", age=" + age + ", fixStatus=" + fixStatus + ", note=" + note + ", adoptStatus="
 				+ adoptStatus + ", adoptDate=" + adoptDate + ", cusId=" + cusId + ", cusName=" + cusName + "]";
 	}
-	
+
 	public PetBean setBean(PetBean temp) {
 		this.setCategory(temp.getCategory());
 		this.setSpecies(temp.getSpecies());
@@ -198,9 +212,9 @@ public class PetBean implements Serializable {
 		this.setAdoptDate(temp.getAdoptDate());
 		this.setCusId(temp.getCusId());
 		this.setCusName(temp.getCusName());
-		
+		this.setPic(temp.getPic());
+
 		return this;
 	}
-	
 
 }
