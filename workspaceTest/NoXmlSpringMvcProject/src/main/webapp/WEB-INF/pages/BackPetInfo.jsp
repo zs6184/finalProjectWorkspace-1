@@ -350,10 +350,11 @@
 										<legend>相片</legend>
 										<div class="row">
 											<div class="col-6 justify-content-center">
-												<input type="file" name="mypic" id="mypic" /><br>
+												<label for="mypic" class="btn btn-outline-success text-center">選擇圖片</label>
+												<input type="file" name="mypic" id="mypic" accept="image/*" style="display:none"/><br>
 											</div>
 											<div class="col-6 justify-content-center">
-												<div id="imgPreview">
+												<div id="imgPreview" class="border" style="width:300px; height:200px;">
 													<img src="" style="width:100%;height:100%;" alt="圖片預覽區域"/>
 												</div>
 											</div>

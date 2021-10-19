@@ -212,7 +212,6 @@ public class PetBean implements Serializable {
 		this.setAdoptDate(temp.getAdoptDate());
 		this.setCusId(temp.getCusId());
 		this.setCusName(temp.getCusName());
-		this.setPic(temp.getPic());
 
 		return this;
 	}

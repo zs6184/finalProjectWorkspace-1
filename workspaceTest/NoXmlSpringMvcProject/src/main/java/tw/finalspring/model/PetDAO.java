@@ -70,9 +70,11 @@ public class PetDAO{
 		Session session = sessionFactory.getCurrentSession();
 		PetBean check = session.get(PetBean.class, petId);
 		if(check != null) {
-			byte[] picBytes = pic.getBytes();
 			check.setBean(temp);
-			check.setPic(picBytes);
+			if(pic!=null && pic.isEmpty()==false) {
+				byte[] picBytes = pic.getBytes();
+				check.setPic(picBytes);
+			}
 			return check;
 		}
 		

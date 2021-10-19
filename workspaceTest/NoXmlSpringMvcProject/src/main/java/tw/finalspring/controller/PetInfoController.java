@@ -1,10 +1,14 @@
 package tw.finalspring.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,20 +30,27 @@ public class PetInfoController {
 	
 //--------------------------------------------------------------------
 	
+	//載入所有未領養寵物資訊
 	@RequestMapping(path = "/petinfo.controller",method = RequestMethod.GET)
-	public String processLoadingPage(Model m) {
+	public String processLoadingPage(Model m) throws UnsupportedEncodingException {
 		arrPet = loadPet();
 		sexSet.clear();		//進行內容刷新避免舊資料殘留
 		cateSet.clear();	//進行內容刷新避免舊資料殘留
+		Map<Integer,String> baseStr = new HashMap<>();
 		
 		for(PetBean aPet:arrPet) {
 			sexSet.add(aPet.getSex());		//用Set將重複值篩選掉
 			cateSet.add(aPet.getCategory());//用Set將重複值篩選掉
+			
+			byte[] base64 = Base64.encodeBase64(aPet.getPic()); //轉成base64 byte陣列
+			String base64Str = new String (base64,"UTF-8"); //轉成UTF-8編碼字串
+			baseStr.put(aPet.getPetId(), base64Str);//把字串放到MAP中使用PrtId作為KEY值
 		}
 		
 		m.addAttribute("arrPet",arrPet);
 		m.addAttribute("cateSet",cateSet);
 		m.addAttribute("sexSet",sexSet);
+		m.addAttribute("baseStr",baseStr);	//把base64字串MAP用另外的變數送出
 		
 		System.out.println(cateSet);
 		System.out.println(sexSet);
