@@ -98,9 +98,9 @@
                         </a> <!-- 子連結 -->
                         <ul id="sublist02" class="list-unstyled collapse">
                             <li>
-                                <a href="ordermanage.html" class="itemDetails">訂單管理</a>
+                                <a href="orderdetail.html" class="itemDetails">訂單管理</a>
                             </li>
-                            <li><a href="promo.html" class="itemDetails">優惠碼管理</a></li>
+                            <li><a href="shoppingcart.html" class="itemDetails">購物車</a></li>
                             <li><a href="#" class="itemDetails">訂位查詢</a></li>
                             <li><a href="#" class="itemDetails">訂位更新</a></li>
                         </ul>
