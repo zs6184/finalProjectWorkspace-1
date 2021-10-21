@@ -1,10 +1,12 @@
 package tw.finalspring.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import tw.finalspring.model.AnnouncementsBean;
 import tw.finalspring.model.AnnouncementsDAO;
@@ -17,14 +19,14 @@ public class AnnouncementsService {
 	private AnnouncementsDAO announcementsDAO;
 	
 	//插入單筆
-	public AnnouncementsBean insertOne(AnnouncementsBean temp) {
-		return announcementsDAO.insertOne(temp);
+	public AnnouncementsBean insertOne(AnnouncementsBean temp,MultipartFile picture) throws IOException {
+		return announcementsDAO.insertOne(temp,picture);
 	}
 	
 	
 	//載入全部
 	public List<AnnouncementsBean> selectAll(){
-		System.out.println("Service do selectALL");
+	
 		return announcementsDAO.selectAll();
 	}
 	
@@ -34,13 +36,13 @@ public class AnnouncementsService {
 	}
 	
 	//使用ID單筆刪除
-	public boolean deleteById(int announceID) {
-		return announcementsDAO.deleteById(announceID);
+	public void deleteById(int announceID) {
+		announcementsDAO.deleteById(announceID);
 	}
 	
 	//更新單筆資料
-	public AnnouncementsBean updateOne(int announceID ,AnnouncementsBean temp) {
-		return announcementsDAO.updateOne(announceID,temp);
+	public AnnouncementsBean updateOne(int announceID ,AnnouncementsBean temp,MultipartFile picture) throws IOException {
+		return announcementsDAO.updateOne(announceID,temp,picture);
 	}
 	
 }
