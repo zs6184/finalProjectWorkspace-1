@@ -6,8 +6,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,12 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.client.RestTemplate;
 
 import tw.finalspring.model.CustomerBean;
+import tw.finalspring.model.Recaptcha;
 import tw.finalspring.service.CustomerService;
 
 @Controller
-@SessionAttributes(names = { ("realName"),("username") }) //設為session層級
+@SessionAttributes(names = { "realName","username" }) //設為session層級
 public class LoginController {
 
 	@Autowired
@@ -66,7 +74,37 @@ public class LoginController {
 
 		// 回傳給html端
 		return result;
+	}
+	
+	//reCAPTCHA未完成
+	@RequestMapping(path = "/reCAPTCHA.controller",method = RequestMethod.POST)
+	@ResponseBody
+	public String processReCAPTCHAAction(@RequestBody String token) {
+		System.out.println("進後端驗證密鑰");
+		System.out.println("前端回傳的token"+token);
+		//密鑰
+		String secretKey = "6Lcnq94cAAAAAEhdIjBGvTDx9qFyH2hSU8_4BnIJ";
+		Recaptcha recap = new Recaptcha();
+		//發送http請求給google
+//		String url = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + token;
+		String url = "https://www.google.com/recaptcha/api/siteverify";//google驗證網址
+		
+		HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+	    
+		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+		map.add("secret", secretKey);
+		map.add("response", token);
+		
+		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
+		
+		System.out.println("response: "+response);
 
+		return "list";
 	}
 
 }

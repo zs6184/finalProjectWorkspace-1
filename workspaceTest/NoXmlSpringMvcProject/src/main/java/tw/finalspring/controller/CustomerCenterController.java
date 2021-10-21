@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,6 +115,48 @@ public class CustomerCenterController {
 		saveFile.delete();// 刪除存在硬碟的檔案
 
 		return "pass";
+	}
+	
+	//判斷電話是否重複
+	@RequestMapping(path = "/CustomerCenterCheckPhone.controller",method = RequestMethod.POST)
+	@ResponseBody
+	public String processCustomerCenterCheckPhone(@RequestParam("phoneNumber") String phoneNumber, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+
+		CustomerBean cBean = new CustomerBean();
+
+		// 設定到Bean
+		cBean.setPhoneNumber(phoneNumber);
+
+		// 判斷電話是否存在
+		String resultPhone = cusService.selectPhone(cBean);
+
+		// 察看結果
+		System.out.println(resultPhone);
+
+		return resultPhone;
+	}
+	
+	//判斷Email是否重複
+	@RequestMapping(path = "/CustomerCenterCheckEmail.controller",method = RequestMethod.POST)
+	@ResponseBody
+	public String processCustomerCenterCheckEmail(@RequestParam("email") String email, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+
+		CustomerBean cBean = new CustomerBean();
+
+		// 設定到Bean
+		cBean.setEmail(email);
+
+		// 判斷email是否存在
+		String resultEmail = cusService.selectEmail(cBean);
+
+		// 察看結果
+		System.out.println(resultEmail);
+
+		return resultEmail;
 	}
 
 }
