@@ -243,22 +243,50 @@
   
 
         <br> <br> <br>
-        <!-- 公告 -->
+     
        
-             <hr style="margin-bottom: 0;">
+          <div style="width:1100px;margin:0 auto">
 
-                <div style="text-align: center;background-color:rgb(6, 121, 121,.1);">
-                    <br>
-                    <h1 style="font-size: 68px;margin:20px 0 0 0;">地圖顯示</h1>
-                    <br><br>
 
-                    <iframe src="https://snazzymaps.com/embed/344847" width="100%" height="690px"
-                        style="border:none;"></iframe>
-                    <br><br><br><br><br><br>
-                </div>
-                <hr STYLE="margin-top:0 ;">
-                <br><br><br><br><br><br>
-            <hr>
+        <ul>
+            <li style="float:left;margin-right: 30px;">
+                <iframe src="https://snazzymaps.com/embed/344847" width="500px" height="500px"
+                    style="border:none;"></iframe>
+            </li>
+            <li style="float:left;height: 500px;width: 500px; background-color:  rgba(6, 121, 121,.8);">
+                <ul>
+                    <li style="height:50px;">
+                        <h2 style="margin-top:20px;color: ivory;">浪跡寵物餐廳</h2>
+                    </li>
+                    <li>
+                        <p style="margin-top:0px;color: ivory;font-size: 20px;">地址:嘉義市嘉義市西區博愛路二段467號</p>
+                    </li>
+                    <hr style="width: 430px;color: white;height: 8px;margin-bottom:5px ;">
+                    <li>
+                        <h4 style="color: white;">&lt交通資訊&gt - 步行 </h4>
+                        <p style="font-size: 20px;color: white;">從後火車站＞中興路左轉＞沿博愛路一段＞沿博愛路二段</p>
+                        <hr style="width: 430px;color: white;height: 5px;">
+                        <h4 style="color: white;">&lt交通資訊&gt - 公車 </h4>
+                        <p style="font-size: 20px;color: white;">可以搭乘嘉義客運或公車，往朴子.布袋方向，在家樂福站下車</p>
+                        <hr style="width: 430px;color: white;height: 5px;">
+                        <span style="color: white;font-size: 20px;">&lt預約電話&gt </span>
+                        <span style="font-size: 20px;color: white;">0987-654-321</span><br>
+                        <span style="color: white;font-size: 20px;">&lt營業時間&gt </span>
+                        <span style="font-size: 20px;color: white;">週一到週五早上11:00-下午7:00</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+ <div style="clear: both;"></div>
+    <br><br><br>
+
+
+
+
+
+
+    </div>
+
             <!--網頁底部輪播  -->
 
             <div class=" footer">
