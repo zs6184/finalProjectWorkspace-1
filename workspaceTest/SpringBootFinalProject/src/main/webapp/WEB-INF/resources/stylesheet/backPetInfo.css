@@ -1,0 +1,73 @@
+﻿body{
+padding: 0px;
+margin: 0px;
+width: 100%;
+min-width:1800px;
+}
+
+
+.page {
+    margin-top: 30px;
+}
+
+.table {
+    text-align: center;
+}
+
+th,td{
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.notetable{
+	max-width:150px;
+}
+
+    #mainbox div {
+        margin-bottom: 10px;
+    }
+
+    #mainbox label {
+        width: 150px;
+        text-align: left;
+        font-size: 1.2em;
+        font-family: 'Times New Roman';
+    }
+
+    #mainbox select {
+        width: 250px;
+        text-align: left;
+        background-color: transparent;
+        border-radius: 5px;
+        outline: none;
+        border: 0.5px solid lightgray;
+    }
+
+    #mainbox input {
+        width: 250px;
+        text-align: left;
+    }
+
+        #mainbox input[type="text"] {
+            border: 0.5px solid lightgray;
+            text-align: center;
+            background: none;
+            padding: 12px;
+            border-radius: 20px;
+            outline: none;
+        }
+
+            #mainbox input[type="text"]:focus {
+                border: 2px solid #3498db;
+                width: 260px;
+            }
+
+#mainbox textarea {
+    border-radius: 10px;
+    height: 300px;
+    width: 500px;
+    resize: none;
+    overflow: auto;
+}
+
+
