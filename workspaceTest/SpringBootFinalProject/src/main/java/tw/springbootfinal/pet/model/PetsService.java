@@ -54,11 +54,14 @@ public class PetsService {
 	
 	//根據ID更新寵物資料
 	public void updateOne(Pets temp,MultipartFile pic) throws IOException{
-		if(pic!=null && !pic.isEmpty()) {
+		int id = temp.getPetId();
+		Pets check =pRepo.findById(id).get();
+		check.setBean(temp);	
+		if(pic!=null && pic.isEmpty()==false) {
 			byte[] picBytes = pic.getBytes();
-			temp.setPic(picBytes);
+			check.setPic(picBytes);
 		}
-		pRepo.save(temp);
+		pRepo.save(check);
 	}
 	
 	//根據ID刪除資廖
