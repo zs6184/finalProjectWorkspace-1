@@ -265,9 +265,13 @@ $(document).ready( function () {
 											<hr />
 											<div>
 												<label for="picture" class=""><span>圖片</span></label> <input
-													type="text" id="picture" name="picture" />
+													type="file" id="picture" name="picture" />
 											</div>
-											
+											<div class="col-6 justify-content-center">
+												<div id="imgPreview">
+													<img src="" style="width:100%;height:100%;" alt="圖片預覽區域"/>
+												</div>
+											</div>
 									
 										<hr />
 										<fieldset>

@@ -49,6 +49,19 @@ $(document).ready( function () {
 	 
     });
 } );
+
+function t(){
+	var now= new Date();
+	var y = now.getFullYear();
+	var M =(now.getMonth()+1);
+	var d = now.getDate();
+	var h=now.getHours();
+	var m=now.getMinutes();
+	var s=now.getSeconds(); 
+	var tt=y+"-"+M+"-"+d+" "+h+":"+m+":"+s;
+	document.getElementById("releaseTime").value=tt;
+	}
+	setInterval('t()',500);
 </script>
 </head>
 <body>
@@ -195,11 +208,9 @@ $(document).ready( function () {
 								<tr>
 									<th scope="col">文章編號</th>
 									<th scope="col">員工ID</th>
-									<th scope="col">標題</th>
-									
+									<th scope="col">標題</th>		
 									<th scope="col">發文時間</th>
-									<th scope="col">圖片</th>
-									<th scope="col">文章內容</th>
+									
 									<th scope="col">
 										<button type="button" class="btn btn-primary btn"
 											data-bs-toggle="modal" data-bs-target="#announcementsAdd" id="insertBtn">新增</button>
@@ -213,13 +224,13 @@ $(document).ready( function () {
 										<td>${arrAnnounce.empID}</td>
 										<td>${arrAnnounce.headline}</td>
 										<td>${arrAnnounce.releaseTime}</td>
-										<td>${arrAnnounce.picture}</td>
-										<td>${arrAnnounce.articleCont}</td>
+										
 										<td>
 											<button type="button" class="btn btn-danger updateBtn"
 												data-bs-toggle="modal" data-bs-target="#announcementsAdd"
 												onclick="select(this)">更新</button>
-											<button type="button" class="btn btn-danger delete"
+											<button type="button" class="btn btn-danger delete" 
+	
 												onclick="del(this)">刪除</button>
 										</td>
 									</tr>
@@ -240,7 +251,7 @@ $(document).ready( function () {
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
 						<form class="add" action="insertAnnouncements.controller" method="POST"
-							id="modalForm">
+							id="modalForm" enctype="multipart/form-data">
 							<div class="modal-body">
 								<div class="row">
 									<div class="text-center" id="mainbox">
@@ -264,10 +275,15 @@ $(document).ready( function () {
 													type="text" id="releaseTime" name="releaseTime" />
 											</div>
 											<hr />
-											<div>
-												<label for="picture" class=""><span>圖片</span></label> <input
-													type="text" id="picture" name="picture" />
-											</div>
+											<span>
+												<label for="mypicture" class=""><span>圖片</span></label> <input
+													type="file" id="picture" name="mypicture" />
+											</span>
+											<span class="col-6 justify-content-center" >
+												<span id="imgPreview" style="margin:0 auto">
+													<img src="" style="width:30%;height:30%;" alt=" "/>
+												</span>
+											</span>
 											
 									
 										<hr />

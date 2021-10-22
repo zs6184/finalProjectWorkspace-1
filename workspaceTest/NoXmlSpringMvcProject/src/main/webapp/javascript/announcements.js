@@ -14,10 +14,34 @@ $(function() {
 $("#insertBtn").click(function(){
 	$("#modalForm").attr("action","insertAnnouncements.controller");
 	$("#modalForm #idSection").prop("hidden","hidden");
+	$("#announcementsAdd input").attr("placeholder","");
+	$("#imgPreview img").attr("src","");
 	$("#modalForm input,textarea,select").val("");
-});
+
 	
 });
+	
+	//上傳檔案預覽圖片
+	$("#mypicture").change(function(){
+		previewImg(this.files);
+	});
+});
+	
+	
+
+
+//預覽上傳檔案圖片
+function previewImg(files){
+	if(files.length==0) 
+	return;
+	var file = files[0];
+	var fr = new FileReader();
+	fr.onload = function(){
+		$("#imgPreview img").attr({src:fr.result});
+	};
+	fr.readAsDataURL(file);
+}
+
 
 //刪除資料欄(連到資料庫)
 function del(obj) {
@@ -51,8 +75,9 @@ function select(obj){
 				$("#modalForm #empID").val(parsed.empID);
 				$("#modalForm #headline").val(parsed.headline);
 				$("#modalForm #releaseTime").val(parsed.releaseTime);
-				$("#modalForm #picture").val(parsed.picture);
+				$("#imgPreview img").attr("src",`data:image/png;base64,${parsed.picture}`);
 				$("#modalForm #articleCont").val(parsed.articleCont);
+		
 				
 			
 				
@@ -66,6 +91,5 @@ function select(obj){
 	
 	
 
-	
 	
 

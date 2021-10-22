@@ -1,0 +1,190 @@
+body {
+    
+    background-color: rgb(240, 245, 240);
+}
+
+@font-face {
+    font-family: AA;
+    src: url(../font/HanyiSentyBubbleTea.ttf);
+}
+@font-face {
+    font-family: BB;
+    src: url(../font/毛筆字體.ttf);
+}
+li, .container {
+    font-family: AA;
+}
+
+
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+    width:20%;
+}
+
+    .topbar li a {
+        font-family: AA;
+        font-size: 20px;
+        
+    }
+   
+
+    
+    #topbar {
+        overflow: hidden;
+    }
+    
+    .sticky{
+        position:fixed;
+        top:0;
+        width:100%;
+        background-color: rgb(6, 121, 121,.8);
+        height: 40px;
+        z-index: 100;
+        transition: 1s;
+        
+    }
+    .sticky a{
+        color:white;
+    }
+    
+.sticky a:hover{
+       color:gray
+      
+    }
+    .topbar li {
+        float: right;
+        height: 60px;
+        padding-left: 30px;
+        
+    }
+
+
+
+
+/* 2 */
+.papper{
+    text-align: center;
+    padding-left: 85px;
+}
+
+
+.papper li {
+    float: left;
+    height: 460px;
+    width: 332px;
+    margin: 30px;
+    font-family: AA;
+   
+}
+
+    .papper li .p1 {
+        height: 121px;
+    }
+
+li p {
+    font-size: 26px;
+    padding: 0 20px;
+}
+
+h3,
+h2 {
+    text-align: center;
+    height: 60px;
+}
+
+.papper li .backpic {
+    background-image: url(../image/11.jfif);
+    background-size: cover;
+}
+
+.papper li .backpic2 {
+    background-image: url(../image/13.jfif);
+    background-size: cover;
+    margin-right: 0px;
+}
+
+#b1,#b2 {
+    height: 120px;
+    width: 180px;
+    font-size: 25px;
+    opacity: .95;
+}
+
+#pageChange button{
+    border:none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#b1:hover,#b2:hover{
+    color:#000000;
+    background-color:lightgray;
+}
+
+.copy_right {
+    padding: 1em 0;
+    text-align: center;
+    background: rgb(6, 121, 121);
+}
+
+.copy_right div {
+    color: #fff;
+    font-size: 1.1em;
+    letter-spacing: 2px;
+}
+
+
+.copy_right div:hover {
+    color: #ccc;
+}
+
+.lowbar li{
+    float: left;
+    width:20%;
+    padding-left: 100px;
+    
+}
+
+.lowbar li a {
+    font-family: BB;
+    font-size: 18px;
+    color:white;
+    
+    
+    
+}
+.lowbar li a:hover{
+   color:#ccc;
+    
+    
+    
+}
+
+.fix{
+    width:60px;
+    height:60px;
+    position:fixed;
+    bottom: 0px;
+    right:0px;
+    z-index:10000000;
+    font-family: AA;
+    font-size: 25px;
+    text-decoration: underline;
+  }
+@media screen and (max-width:1300px){
+   
+    .papper li {
+        float: left;
+        height: 448px;
+        width: 300px;
+        margin: 20px;
+        font-family: AA;
+       
+    }
+}

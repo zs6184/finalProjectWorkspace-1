@@ -100,8 +100,8 @@
 			<div class="row" id="infoContent">
 				<c:forEach var="arrPet" items="${arrPet}">
 					<div class="row offset-1 col-5 border text-white selectResult" id="${arrPet.petId}" style="margin-bottom:20px;border-radius:10px; height:280px; padding:0px;">
-						<div class="col-6 h-100 align-items-center">
-							<img src="image/f5.jpg" class="col w-100 h-100" />
+						<div class="col-6 h-100  align-items-center">
+							<img src="data:image/png;base64,${baseStr[arrPet.petId]}" class="col w-100 h-100"/>
 						</div>
 						<div class="row col-6 align-items-center">
 							<ul>

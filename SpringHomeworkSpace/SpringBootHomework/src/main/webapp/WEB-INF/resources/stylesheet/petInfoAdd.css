@@ -1,0 +1,67 @@
+﻿#mainbox {
+    background-color: #041434;
+    color: honeydew;
+    box-shadow: 10px 10px 25px #00000080;
+    text-align: center;
+    border-radius: 30px;
+}
+    #mainbox div{
+        margin-bottom:10px;
+    }
+    #mainbox label {
+        width: 150px;
+        text-align: left;
+        font-size: 1.2em;
+        font-family: 'Times New Roman';
+    }
+    #mainbox select{
+        width: 250px;
+        text-align: left;
+        background-color:transparent;
+        color:honeydew;
+        border-radius:5px;
+        outline:none;
+        border:0.5px solid lightgray;
+        
+    }
+        #mainbox select option {
+            color: honeydew;
+            background-color: #041434;
+        }
+    #mainbox input {
+        width: 250px;
+        text-align: left;
+    }
+        #mainbox input[type="text"] {
+            border:0.5px solid lightgray;
+            text-align: center;
+            background: none;
+            padding: 12px;
+            border-radius: 20px;
+            outline: none;
+            color: honeydew;
+        }
+            #mainbox input[type="text"]:focus{
+                border: 2px solid #3498db;
+                width: 260px;
+            }
+    #mainbox textarea{
+        border-radius:10px;
+    }
+    #mainbox button {
+        margin: 20px auto;
+        text-align: center;
+        background: none;
+        padding: 12px;
+        font-size: 15px;
+        border-radius: 20px;
+        outline: none;
+        color: #f8f9fa;
+        width: 150px;
+        border: 2px solid #2ecc71;
+        cursor: pointer;
+    }
+        #mainbox button:hover {
+            background-color: #2ecc71;
+            transition: 0.3s;
+        }

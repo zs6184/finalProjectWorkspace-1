@@ -32,8 +32,7 @@ public class CustomerBean implements Serializable {
 	@Column(name = "realName")
 	private String cusRealname;
 
-<<<<<<< HEAD
-=======
+	
 	public CustomerBean() {
 	}
 	
@@ -46,7 +45,7 @@ public class CustomerBean implements Serializable {
 		this.setCusRealname(cusRealname);
 	}
 
->>>>>>> 0a89dbdc21b6af8f74c9917f8e0680305e639135
+
 	public int getCusId() {
 		return cusId;
 	}

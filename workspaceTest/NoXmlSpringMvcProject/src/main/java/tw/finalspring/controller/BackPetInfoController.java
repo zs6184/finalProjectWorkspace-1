@@ -33,7 +33,7 @@ public class BackPetInfoController {
 
 	int ID;//選中資料的ID值
 	List<PetBean> arrPet = new ArrayList<PetBean>();//查詢後用於顯示的寵物資料存放處
-	List<CustomerBean> arrCus = new ArrayList<CustomerBean>();//查詢後用於顯示的寵物資料存放處
+	List<CustomerBean> arrCus = new ArrayList<CustomerBean>();//查詢後用於顯示的客戶資料存放處
 	Set<String> sexSet = new HashSet<String>(); //查詢欄位的性別欄選項
 	Set<String> cateSet = new HashSet<String>();//查詢欄位的類別欄選項
 	
@@ -69,7 +69,6 @@ public class BackPetInfoController {
 	public String processLoadingPage(Model m) {
 		
 		arrPet = loadPet();
-		arrCus = selectAllCus();
 		//處理類別與性別篩選
 		sexSet.clear();		//進行內容刷新避免舊資料殘留
 		cateSet.clear();	//進行內容刷新避免舊資料殘留
@@ -81,7 +80,6 @@ public class BackPetInfoController {
 		m.addAttribute("arrPet",arrPet);
 		m.addAttribute("cateSet",cateSet);
 		m.addAttribute("sexSet",sexSet);
-		m.addAttribute("arrCus",arrCus);
 		
 		return "BackPetInfo";
 	}

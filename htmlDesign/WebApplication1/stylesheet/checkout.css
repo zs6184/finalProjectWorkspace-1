@@ -1,0 +1,232 @@
+﻿body {
+    background-color: rgb(240, 245, 240);
+}
+
+@font-face {
+    font-family: AA;
+    src: url(font/HanyiSentyBubbleTea.ttf);
+}
+
+* {
+    font-family: AA;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+    margin-top:10px;
+}
+    li a {
+        font-family: AA;
+        font-size: 20px;
+    }
+
+#topbar {
+    overflow: hidden;
+    z-index: 2;
+}
+
+a:hover {
+    color: gray;
+}
+
+ .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,.8);
+    height: 40px;
+    transition: 1s;
+}
+
+    .sticky a {
+        color: white;
+    }
+
+.col-12 li {
+    float: right;
+    height: 60px;
+    padding: 0 65px;
+}
+
+.banner-area {
+    position: relative;
+    z-index: 1;
+    height: 300px;
+}
+    .banner-area .banner-content h2{
+        font-size:48px;
+        padding:10px 15px ;
+        margin-bottom:0;
+        background-color:#000000;
+        color:honeydew;
+        display:inline-block;
+        line-height:1;
+    }
+.bg-img {
+    background-position: center bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/*結帳畫面*/
+
+
+.heading-hr, .heading-hr--dotted {
+    letter-spacing: .125rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.s3-heading-title {
+    padding: 0 1.5rem 1rem;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+.heading-hr:after, .heading-hr:before {
+    border-top: 1px solid #d9dde3;
+    content: "";
+    flex: 1;
+    height: 1px;
+    position: relative;
+}
+
+.heading-hr--dotted:before, .heading-hr:before {
+    margin-right: 1rem;
+}
+
+.heading-hr--dotted:after, .heading-hr:after {
+    margin-left: 1rem;
+}
+
+.col-sm-8 {
+    border: 1px solid red;
+}
+
+.col-sm-5 {
+    padding-left: 0;
+}
+
+
+.promocode {
+    width: 200px;
+    text-align: right;
+    font-size: 20px;
+    margin: 0.3em 0;
+    padding: 9px 8px 9px 0px;
+    background-color: #ffd800;
+    border-radius: 50px;
+}
+
+.promocode_text {
+    padding: 0px 0px 0px 22px;
+    float: left;
+}
+
+textarea {
+    width: 280px;
+    resize: none;
+}
+
+.form-control {
+    width: 280px;
+}
+
+textarea,
+input.form-control {
+    border: 1px solid #ffd800;
+}
+
+    textarea:focus {
+        border-color: rgba(253, 215, 21, 0.8);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 219, 46, 0.6);
+        outline: 0 none;
+    }
+
+    input.form-control:focus {
+        border-color: rgba(253, 215, 21, 0.8);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 219, 46, 0.6);
+        outline: 0 none;
+    }
+
+.btn {
+    background-color: #ffd800;
+    margin-left: 0px;
+}
+
+    .btn:focus {
+        border-color: rgba(253, 215, 21, 0.8);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 219, 46, 0.6);
+        outline: 0 none;
+    }
+
+.row {
+    padding-bottom: 1em;
+}
+
+/*.form-control:invalid {
+            border: 1px solid red;
+        }*/
+
+.card {
+    border: 1px solid #ffd800;
+    padding: 6px 0px 6px 15px;
+    margin-bottom: 0.7em;
+    width: 280px;
+    float: left;
+    clear: both;
+}
+
+.form-check > label {
+    height: 100%;
+    width: 100%;
+}
+
+.form-check-input {
+    vertical-align: middle
+}
+
+    .form-check-input:checked {
+        background-color: #ffd800;
+        border-color: #FFD60A;
+    }
+
+    .form-check-input:focus {
+        border-color: #FFD60A;
+        box-shadow: 0 0px 10px #FDA51F;
+        outline: 0 none;
+    }
+
+svg {
+    float: right;
+    margin-right: 1em;
+    margin-top: 3px;
+}
+
+.submitbtn {
+    width: 100%;
+    padding: 5px 0;
+    font-size: 20px;
+    border-color: #ffd800;
+    background-color: #ffd800;
+    border-radius: 50px;
+}
+
+span.orangeprice {
+    position: relative;
+    left: -15px;
+    color: gray;
+    text-decoration: line-through;
+}
+
+
+
+
+
+
+

@@ -2,6 +2,7 @@ package tw.finalspring.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -79,6 +80,7 @@ public class AnnouncementsBean implements Serializable{
 
 
 	public void setReleaseTime(String releaseTime) {
+		
 		this.releaseTime = releaseTime;
 	}
 
@@ -116,15 +118,15 @@ public class AnnouncementsBean implements Serializable{
 
 
 	public AnnouncementsBean() {
-		super();
+		
 	}
 
 
 	@Override
 	public String toString() {
 		return "AnnouncementsBean [announceID=" + announceID + ", empID=" + empID + ", headline=" + headline
-				+ ", releaseTime=" + releaseTime + ", articleCont=" + articleCont + ", picture="
-				+ Arrays.toString(picture) + "]";
+				+ ", releaseTime=" + releaseTime + ", articleCont=" + articleCont +
+				"]";
 	}
 	
 	public AnnouncementsBean setBean(AnnouncementsBean temp) {
