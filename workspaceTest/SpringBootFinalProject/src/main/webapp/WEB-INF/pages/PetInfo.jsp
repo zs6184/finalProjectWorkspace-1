@@ -9,15 +9,14 @@
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="stylesheet/petInfo.css" />
+<link rel="stylesheet" href="/stylesheet/petInfo.css" />
 <!--CSS here-->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0-alpha.1/jquery-ui.min.js"></script>
-<script src="javascript/petInfo.js"></script>
+<script src="/javascript/petInfo.js"></script>
 <!--JS Here-->
-
 
 </head>
 <body style="background-image: url(image/背景4.jpg)">
@@ -27,7 +26,7 @@
 		<div class="container h-100">
 			<div class="row h-100 align-items-center">
 				<div class="col-12">
-					<a href="index.html"><img src="image/浪跡2.png" alt=""></a>
+					<a href="/index.html"><img src="/image/浪跡2.png" alt=""></a>
 					<!--LOGO-->
 				</div>
 			</div>
@@ -41,12 +40,12 @@
 			<div class="row h-100 align-items-center">
 				<div class="col-12">
 					<ul>
-						<li><a href="petInfo.html" target="_self">寵物領養</a></li>
-						<li><a href="index.html" target="_self">線上訂位</a></li>
-						<li><a href="index.html" target="_self">餐點介紹</a></li>
-						<li><a href="index.html" target="_self">公告專區</a></li>
-						<li><a href="index.html" target="_self">登入註冊</a></li>
-						<li><a href="index.html" target="_self">首頁</a></li>
+						<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
+						<li><a href="/index.html" target="_self">線上訂位</a></li>
+						<li><a href="/index.html" target="_self">餐點介紹</a></li>
+						<li><a href="/index.html" target="_self">公告專區</a></li>
+						<li><a href="/index.html" target="_self">登入註冊</a></li>
+						<li><a href="/index.html" target="_self">首頁</a></li>
 					</ul>
 				</div>
 			</div>
@@ -55,7 +54,7 @@
 
 	<!--橫幅圖片區域-->
 	<div class="banner-area bg-img"
-		style="background-image: url(image/img/bg-img/cat1.jpeg);">
+		style="background-image: url(/image/img/bg-img/cat1.jpeg);">
 		<div class="container h-100">
 			<div class="row h-100 align-items-center">
 				<div class="col-12">
@@ -70,7 +69,7 @@
 	<!--內容-->
 	<div class="container" id="container">
 		<!--查詢欄位-->
-		<form action="searchdatafront.controller" method="POST" id="srhForm">
+		<form action="/pet/searchdatafront.controller" method="POST" id="srhForm">
 			<div class="row justify-content-start" style="margin: 30px;">
 				<div class="col-1 text-center">
 					<select name="category" id="srhCategory">
