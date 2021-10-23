@@ -1,6 +1,10 @@
 ﻿body {
     background-color: rgb(240, 245, 240);
 }
-.errMsg, .difMsg, .uATMsg, .pNATMsg, .eATMsg {
-    color: red;
+/* .difMsg, .uATMsg, .pNATMsg, .eATMsg { */
+/*     color: red; */
+/* } */
+/*工具提示框定位*/
+.relative{
+	 position: relative;
 }

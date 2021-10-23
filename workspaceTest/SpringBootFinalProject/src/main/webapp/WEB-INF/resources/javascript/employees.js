@@ -2,7 +2,7 @@
 function selectAccount() {
 	$.ajax({
 		method: "get",
-		url: "http://localhost:8080/NoXmlSpringMvcProject/CreateEmpUsername.Controller",
+		url: "/Users/CreateEmpUsername.Controller",
 		success: function(data) {
 			$("#empUsername").val(data);
 			console.log(data);
@@ -18,7 +18,7 @@ function selectAccount() {
 function selectOneEmp(id) {
 	$.ajax({
 		method: "get",
-		url: "http://localhost:8080/NoXmlSpringMvcProject/SelectEmployeeById.Controller",
+		url: "/Users/SelectEmployeeById.Controller",
 		dataType: "json",
 		contentType: "application/json",
 		data: { "id": `${id}` },
@@ -47,7 +47,7 @@ function deleteOneEmp() {
 
 	$.ajax({
 		method: "get",
-		url: "http://localhost:8080/NoXmlSpringMvcProject/DeleteEmployeeById.Controller",
+		url: "/Users/DeleteEmployeeById.Controller",
 		dataType: "json",
 		contentType: "application/json",
 		data: { "id": `${id}` },
@@ -55,7 +55,7 @@ function deleteOneEmp() {
 			console.log(data);
 			if (data) {
 				console.log("成功");
-				location.href = "EmployeesAll.Controller";
+				location.href = "/Users/EmployeesAll.Controller";
 			} else {
 				console.log("失敗");
 			}
@@ -82,11 +82,11 @@ $(function() {
 		console.log(formData + "測試");
 		$.ajax({
 			method: "post",
-			url: "http://localhost:8080/NoXmlSpringMvcProject/CreateEmpAccount.Controller",
+			url: "/Users/CreateEmpAccount.Controller",
 			data: formData,
 			success: function(data) {
 				console.log(data);
-				location.href = "EmployeesAll.Controller";
+				location.href = "/Users/EmployeesAll.Controller";
 			},
 			error: function(jqXHR, textStatus, errThrown) {
 				alert(`${textStatus}---${errThrown}`)
@@ -102,11 +102,11 @@ $(function() {
 		console.log(formData + "測試");
 		$.ajax({
 			method: "post",
-			url: "http://localhost:8080/NoXmlSpringMvcProject/UpdateEmployeeById.Controller",
+			url: "/Users/UpdateEmployeeById.Controller",
 			data: formData,
 			success: function(data) {
 				console.log(data);
-				location.href = "EmployeesAll.Controller";
+				location.href = "/Users/EmployeesAll.Controller";
 			},
 			error: function(jqXHR, textStatus, errThrown) {
 				alert(`${textStatus}---${errThrown}`)
@@ -119,30 +119,50 @@ $(function() {
 	//判斷電話是否重複
 	$("#phoneNumber").blur(function() {
 		var dataForm = $(this).serialize();
-		var number = $(this).val();
-		var numberSize = number.length;
-		if (numberSize < 10) { //電話號碼小於10時，增加警告效果
-			$("#phoneNumber").addClass("is-invalid");
-			return false;
-		}
-		$.ajax({
-			method: "get",
-			url: "http://localhost:8080/NoXmlSpringMvcProject/SelectPhone.Controller",
-			data: dataForm,
-			success: function(data) {
-				console.log(data);
-				if (data == "pass" && data != "") {
-					$("#phoneNumber").removeClass("is-invalid");
-				} else {
-					$("#phoneNumber").addClass("is-invalid");
-				}
+		var nowPhone = $(this).val();//每次失去焦點後的新電話號碼
+		var num = /[0]{1}[9]{1}\d{8}/;//須符合09開頭並且10碼的數字
+		var zh = /[\u4e00-\u9fa5a-zA-Z]/; //中、英文格式
+		//判斷是否跟剛從資料庫載入時一致
+			if (zh.test(nowPhone)) {
+				$("#phoneInvalid").html("請勿填寫中、英文");
+				$("#phoneNumber").removeClass("is-valid");//移除通過
+				$("#phoneNumber").addClass("is-invalid"); //新增警告
 				return false;
-			},
-			error: function(jqXHR, textStatus, errThrown) {
-				alert(`${textStatus}---${errThrown}`)
+			} else {
+				if (nowPhone.length < 10) {
+					$("#phoneInvalid").html("電話號碼小於 10 碼");
+					$("#phoneNumber").removeClass("is-valid");//移除通過
+					$("#phoneNumber").addClass("is-invalid"); //新增警告
+					return false;
+				} else if (!num.test(nowPhone)) {
+					$("#phoneInvalid").html("請填寫 09 開頭符合電話號碼格式");
+					$("#phoneNumber").removeClass("is-valid");//移除通過
+					$("#phoneNumber").addClass("is-invalid"); //新增警告
+					return false;
+				}
 			}
-		});
-		return false;
+			$.ajax({
+				method: "get",
+				url: "/Users/SelectPhone.Controller",
+				data: dataForm,
+				success: function(data) {
+					console.log(data);
+					if (data == "pass" && data != "") {
+						$("#phoneNumber").removeClass("is-invalid");//移除警告
+						$("#phoneNumber").addClass("is-valid"); //新增通過
+						return false;
+					} else {
+						$("#phoneInvalid").html("電話號碼已被使用");
+						$("#phoneNumber").removeClass("is-valid");//移除通過
+						$("#phoneNumber").addClass("is-invalid"); //新增警告
+						return false;
+					}
+				},
+				error: function(jqXHR, textStatus, errThrown) {
+					alert(`${textStatus}---${errThrown}`)
+				}
+			});
+			return false;
 	});
 
 

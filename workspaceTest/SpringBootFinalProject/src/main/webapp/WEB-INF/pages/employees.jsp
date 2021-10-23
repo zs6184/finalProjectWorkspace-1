@@ -13,16 +13,16 @@
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
-<link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
-<link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
+<link href="/stylesheet/bootstrap.min.css" rel="stylesheet" />
+<link href="/stylesheet/jquery-ui.min.css" rel="stylesheet" />
 <!--自訂樣式表-->
-<link href="stylesheet/backstage.css" rel="stylesheet" />
-<link href="stylesheet/employees.css" rel="stylesheet" />
+<link href="/stylesheet/backstage.css" rel="stylesheet" />
+<link href="/stylesheet/employees.css" rel="stylesheet" />
 <!--<script src="javascript/bootstrap.min.js"></script>-->
-<script src="javascript/jquery-3.6.0.min.js"></script>
+<script src="/javascript/jquery-3.6.0.min.js"></script>
 <!--自訂js-->
-<script src="javascript/backstage.js"></script>
-<script src="javascript/employees.js"></script>
+<script src="/javascript/backstage.js"></script>
+<script src="/javascript/employees.js"></script>
 
 </head>
 <body>
@@ -44,7 +44,7 @@
 						<div class="dropdown">
 							<button class="btn-transparent" type="button"
 								id="dropdownButton01" data-bs-toggle="dropdown">
-								<img src="image/husky.jpg" class="image shadow" />
+								<img src="/image/husky.jpg" class="image shadow" />
 							</button>
 							<ul class="dropdown-menu  dropdown-menu-end shadow"
 								aria-labelledby="dropdownMenuButton01">
@@ -62,13 +62,13 @@
 							<ul class="dropdown-menu  dropdown-menu-end shadow"
 								aria-labelledby="dropdownMenuButton02">
 								<li><a class="dropdown-item me-3" href="#"> <img
-										src="image/husky.jpg" class="imageMessage shadow" /> message
+										src="/image/husky.jpg" class="imageMessage shadow" /> message
 								</a></li>
 								<li><a class="dropdown-item" href="#"> <img
-										src="image/husky.jpg" class="imageMessage shadow" /> message
+										src="/image/husky.jpg" class="imageMessage shadow" /> message
 								</a></li>
 								<li><a class="dropdown-item" href="#"> <img
-										src="image/husky.jpg" class="imageMessage shadow" /> message
+										src="/image/husky.jpg" class="imageMessage shadow" /> message
 								</a></li>
 							</ul>
 						</div>
@@ -115,9 +115,9 @@
 							class="fas fa-utensils mx-2"></i> <span class="items">訂單及訂位管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist02" class="list-unstyled collapse">
-							<li><a href="ordermanage.html" class="itemDetails">訂單管理</a>
+							<li><a href="/ordermanage.html" class="itemDetails">訂單管理</a>
 							</li>
-							<li><a href="promo.html" class="itemDetails">優惠碼管理</a></li>
+							<li><a href="/promo.html" class="itemDetails">優惠碼管理</a></li>
 							<li><a href="#" class="itemDetails">訂位查詢</a></li>
 							<li><a href="#" class="itemDetails">訂位更新</a></li>
 						</ul></li>
@@ -127,7 +127,7 @@
 					</a> <!-- 子連結 -->
 						<ul id="sublist03" class="list-unstyled collapse">
 							<li><a href="#" class="itemDetails">公告總覽</a></li>
-							<li><a href="postCreate.html" class="itemDetails">新增公告</a></li>
+							<li><a href="/postCreate.html" class="itemDetails">新增公告</a></li>
 							<li><a href="#" class="itemDetails">公告更新</a></li>
 						</ul></li>
 					<li><a href="#sublist04" data-bs-toggle="collapse"
@@ -135,7 +135,7 @@
 							<span class="items">寵物管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist04" class="list-unstyled collapse">
-							<li><a href="backPetInfo.html" class="itemDetails">寵物資訊總覽</a>
+							<li><a href="/backPetInfo.html" class="itemDetails">寵物資訊總覽</a>
 							</li>
 							<li><a href="#" class="itemDetails">文章發佈</a></li>
 							<li><a href="#" class="itemDetails">文章更新</a></li>
@@ -143,14 +143,14 @@
 							<li><a href="#" class="itemDetails">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
-					<li class="m-0"><a href="message.html" class="center"> <i
+					<li class="m-0"><a href="/message.html" class="center"> <i
 							class="fas fa-comments-dollar mx-2"></i> <span class="items">客服管理</span>
 					</a></li>
-					<li class="m-0"><a href="SelectCustomerAll.Controller"
+					<li class="m-0"><a href="/Users/SelectCustomerAll.Controller"
 						class="center"> <i class="fas fa-users mx-2"></i> <span
 							class="items">會員管理</span>
 					</a></li>
-					<li class="m-0"><a href="EmployeesAll.Controller"
+					<li class="m-0"><a href="/Users/EmployeesAll.Controller"
 						class="center sidebarLight02"> <i
 							class="fas fa-address-card mx-2"></i> <span class="items">員工管理</span>
 					</a></li>
@@ -178,53 +178,55 @@
 										<button type="button" class="btn-close"
 											data-bs-dismiss="modal"></button>
 									</div>
-									<form action="CreateEmpAccount.Controller" method="post"
+									<form action="/Users/CreateEmpAccount.Controller" method="post"
 										id="empForm">
 										<div class="modal-body">
 											<div class="row">
-												<div class="offset-1 col-4">
+												<div class="offset-1 col-4 my-3">
 													<label for="empUsername" class="form-label">帳號:</label> <input
 														id="empUsername" name="empUsername" type="text" value=""
-														class="form-control mb-3" disabled />
+														class="form-control" disabled />
 												</div>
-												<div class="offset-2 col-4">
+												<div class="offset-2 col-4 my-3">
 													<label for="empPassword" class="form-label">密碼:</label> <input
 														id="empPassword" name="empPassword" type="password"
-														class="form-control mb-3" disabled />
+														class="form-control" disabled/>
 												</div>
 											</div>
 											<div class="row">
-												<div class="offset-1 col-4">
+												<div class="offset-1 col-4 my-3">
 													<label for="empRealname" class="form-label">姓名:</label> <input
 														id="empRealname" name="empRealname" type="text"
-														class="form-control mb-3" maxlength="10" autocomplete="off" autofocus
-														required />
+														class="form-control" maxlength="10"
+														autocomplete="off" autofocus required />
 
 												</div>
-												<div class="offset-2 col-4 d-flex align-items-center">
-													<label for="male" class="form-check-label">性別:</label> <input
+												<div class="offset-2 col-4 d-flex align-items-center my-3">
+													<label for="male" class="form-check-label mt-4">性別:</label> <input
 														id="male" name="gender" value="male" type="radio"
-														class="form-check-input mx-2" required checked /> <label
-														for="male">男</label> <input id="female" name="gender"
-														value="female" type="radio" class="form-check-input mx-2" /> <label
-														for="female">女</label>
+														class="form-check-input mx-2 mt-4" required checked /> <label
+														for="male" class="mt-4">男</label> <input id="female" name="gender"
+														value="female" type="radio" class="form-check-input mx-2 mt-4" />
+													<label for="female" class="mt-4">女</label>
 												</div>
 											</div>
 											<div class="row">
-												<div class="offset-1 col-4">
+												<div class="offset-1 col-4 my-3 relative">
 													<label for="phoneNumber" class="form-label">連絡電話:</label> <input
 														id="phoneNumber" name="phoneNumber" max="10"
 														pattern="[0]{1}[9]{1}\d{8}" type="tel"
-														class="form-control mb-3" maxlength="10" autocomplete="off" required />
+														class="form-control" maxlength="10"
+														autocomplete="off" required />
+													<div class="invalid-tooltip" id="phoneInvalid">電話號碼已被使用</div>
 												</div>
-												<div class="offset-2 col-4">
+												<div class="offset-2 col-4 my-3">
 													<label for="birthdate" class="form-label">生日:</label> <input
 														id="birthdate" name="birthdate" type="date"
-														class="form-control  mb-3" required />
+														class="form-control" required />
 												</div>
 											</div>
 											<div class="row">
-												<div class="offset-1 col-4">
+												<div class="offset-1 col-4 my-3">
 													<label class="form-label">職稱:</label> <select name="title"
 														class="form-select" required>
 														<option selected></option>
@@ -236,15 +238,16 @@
 													</select>
 
 												</div>
-												<div class="offset-2 col-4">
+												<div class="offset-2 col-4 my-3">
 													<label for="hiredate" class="form-label">到職日:</label> <input
 														id="hiredate" name="hiredate" type="date"
-														class="form-control  mb-3" required />
+														class="form-control" required />
 												</div>
-												<div class="offset-1 col-7">
+												<div class="offset-1 col-7 my-3">
 													<label for="address" class="form-label">地址:</label> <input
 														id="address" name="address" type="text"
-														class="form-control  mb-3" maxlength="50" autocomplete="off" required />
+														class="form-control" maxlength="50"
+														autocomplete="off" required />
 												</div>
 											</div>
 										</div>
@@ -305,8 +308,8 @@
 										<td>${emp.hiredate}</td>
 										<td>${emp.address}</td>
 										<td>${emp.note}</td>
-										<td><button type="button" class="btn btn-danger" 
-										onclick="selectOneEmp(${emp.empId})" data-bs-toggle="modal"
+										<td><button type="button" class="btn btn-danger"
+												onclick="selectOneEmp(${emp.empId})" data-bs-toggle="modal"
 												data-bs-target="#empUpdataModal">更新</button></td>
 									</tr>
 								</c:forEach>
@@ -324,23 +327,24 @@
 							<h3 class="modal-title" id="empModalLabel">員工資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-						<form action="UpdateEmployeeById.Controller" id="updateEmpForm" method="post">
+						<form action="/Users/UpdateEmployeeById.Controller" id="updateEmpForm"
+							method="post">
 							<div class="modal-body">
 								<div class="row">
 									<!-- left -->
 									<div class="offset-1 col-4">
 										<div class="ratio ratio-1x1 mt-1 mb-3">
-											<img src="image/m2.jpg" class="rounded-3 shadow" />
+											<img src="/image/m2.jpg" class="rounded-3 shadow" />
 										</div>
-										<input type="hidden" id="empUpdateId" name="empUpdateId" value=""/>
-										<label for="empNameUpdate" class="form-label">姓名:</label> <input
-											id="empNameUpdate" name="empNameUpdate" type="text"
+										<input type="hidden" id="empUpdateId" name="empUpdateId"
+											value="" /> <label for="empNameUpdate" class="form-label">姓名:</label>
+										<input id="empNameUpdate" name="empNameUpdate" type="text"
 											class="form-control mb-3" value="" disabled /> <label
 											for="hiredateUpdate" class="form-label">到職日:</label> <input
 											id="hiredateUpdate" name="hiredateUpdate" type="date"
-											class="form-control mb-3" value="" disabled /> <label
-											for="" class="form-label">職稱:</label> <select
-											id="titleUpdate" name="titleUpdate" class="form-select mb-3" required>
+											class="form-control mb-3" value="" disabled /> <label for=""
+											class="form-label">職稱:</label> <select id="titleUpdate"
+											name="titleUpdate" class="form-select mb-3" required>
 											<option value="waiter">服務生</option>
 											<option value="senior waiter">資深服務生</option>
 											<option value="assistant chef">廚房助手</option>
@@ -361,8 +365,8 @@
 											class="form-control mb-3" value="" disabled /> <label
 											for="addressUpdate" class="form-label">地址:</label> <input
 											id="addressUpdate" name="addressUpdate" type="text"
-											class="form-control mb-3" value=""
-											disabled /> <label for="notesUpdate" class="form-label">備註:</label>
+											class="form-control mb-3" value="" disabled /> <label
+											for="notesUpdate" class="form-label">備註:</label>
 										<textarea id="notesUpdate" name="notesUpdate"
 											class="form-control mb-3" maxlength="200">長期曠職</textarea>
 									</div>
@@ -377,7 +381,8 @@
 											<button type="submit" class="btn btn-primary">完成</button>
 										</div>
 										<div class="offset-2 col-2">
-											<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteButton">刪除帳號</button>
+											<button type="button" class="btn btn-danger"
+												data-bs-toggle="modal" data-bs-target="#deleteButton">刪除帳號</button>
 										</div>
 									</div>
 								</div>
