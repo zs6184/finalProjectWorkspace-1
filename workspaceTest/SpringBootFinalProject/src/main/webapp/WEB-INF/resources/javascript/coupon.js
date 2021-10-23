@@ -2,7 +2,7 @@
 function del(obj,id) {	
 	$.ajax({
 		method:'POST',
-		url:'/NoXmlSpringMvcProject/back.deletecoupon',
+		url:'/back.deletecoupon',
 		data:{couponId:id},
 		success:function(){
 		$(obj).parents("tr").remove();

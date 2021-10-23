@@ -1,4 +1,4 @@
-package tw.finalspring.model;
+package tw.springbootfinal.Coupons.model;
 
 import java.sql.Date;
 
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Table(name = "[Coupons]")
 @Component
 public class Coupons {
-	//Àu´f½XID
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "coupon_ID")
@@ -26,16 +26,16 @@ public class Coupons {
 		return "Coupons [couponId=" + couponId + ", couponName=" + couponName + ", couponCode=" + couponCode
 				+ ", couponDiscount=" + couponDiscount + ", couponDue=" + couponDue + "]";
 	}
-	//Àu´f½X¦WºÙ
+	
 	@Column(name = "coupon_name")
 	private String couponName;
-	//Àu´f½X
+	
 	@Column(name = "coupon_code")
 	private int couponCode;
-	//Àu´f½X§é»ùª÷ÃB
+	
 	@Column(name = "[discount]")
 	private int	couponDiscount;
-	//Àu´f½X¹L´Á¤é
+	
 	@Column(name = "due_date")
 	private Date couponDue;
 	
