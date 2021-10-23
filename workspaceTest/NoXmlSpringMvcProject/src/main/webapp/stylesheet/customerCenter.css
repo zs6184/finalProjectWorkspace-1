@@ -17,7 +17,7 @@
 }
 
 .box {
-    height: 700px;
+    height: 750px;
 }
 
 .colorGray ul li a {
@@ -36,9 +36,11 @@
     float: right;
 }
 
-.sidebarLight01,
-.sidebarLight02 {
+.sidebarLight01{
     background-color: #e6e6e7;
+}
+.sidebarLight02 {
+    background-color: #F0F0F0;
 }
 
 .image {
@@ -61,4 +63,9 @@
 }
 .font1{
     font-size:1.4em;
+}
+
+/*工具提示框定位*/
+.relative{
+	 position: relative;
 }

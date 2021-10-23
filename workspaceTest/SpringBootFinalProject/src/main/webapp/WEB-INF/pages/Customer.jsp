@@ -13,16 +13,16 @@
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
-<link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
-<link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
+<link href="/stylesheet/bootstrap.min.css" rel="stylesheet" />
+<link href="/stylesheet/jquery-ui.min.css" rel="stylesheet" />
 <!--自訂樣式表-->
-<link href="stylesheet/backstage.css" rel="stylesheet" />
-<link href="stylesheet/members.css" rel="stylesheet" />
+<link href="/stylesheet/backstage.css" rel="stylesheet" />
+<link href="/stylesheet/members.css" rel="stylesheet" />
 <!--<script src="javascript/bootstrap.min.js"></script>-->
-<script src="javascript/jquery-3.6.0.min.js"></script>
+<script src="/javascript/jquery-3.6.0.min.js"></script>
 <!--自訂js-->
-<script src="javascript/backstage.js"></script>
-<script src="javascript/customer.js"></script>
+<script src="/javascript/backstage.js"></script>
+<script src="/javascript/customer.js"></script>
 
 </head>
 <body>
@@ -44,7 +44,7 @@
 						<div class="dropdown">
 							<button class="btn-transparent" type="button"
 								id="dropdownButton01" data-bs-toggle="dropdown">
-								<img src="image/husky.jpg" class="image shadow" />
+								<img src="/image/husky.jpg" class="image shadow" />
 							</button>
 							<ul class="dropdown-menu  dropdown-menu-end shadow"
 								aria-labelledby="dropdownMenuButton01">
@@ -62,13 +62,13 @@
 							<ul class="dropdown-menu  dropdown-menu-end shadow"
 								aria-labelledby="dropdownMenuButton02">
 								<li><a class="dropdown-item me-3" href="#"> <img
-										src="image/husky.jpg" class="imageMessage shadow" /> message
+										src="/image/husky.jpg" class="imageMessage shadow" /> message
 								</a></li>
 								<li><a class="dropdown-item" href="#"> <img
-										src="image/husky.jpg" class="imageMessage shadow" /> message
+										src="/image/husky.jpg" class="imageMessage shadow" /> message
 								</a></li>
 								<li><a class="dropdown-item" href="#"> <img
-										src="image/husky.jpg" class="imageMessage shadow" /> message
+										src="/image/husky.jpg" class="imageMessage shadow" /> message
 								</a></li>
 							</ul>
 						</div>
@@ -115,9 +115,9 @@
 							class="fas fa-utensils mx-2"></i> <span class="items">訂單及訂位管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist02" class="list-unstyled collapse">
-							<li><a href="ordermanage.html" class="itemDetails">訂單管理</a>
+							<li><a href="/ordermanage.html" class="itemDetails">訂單管理</a>
 							</li>
-							<li><a href="promo.html" class="itemDetails">優惠碼管理</a></li>
+							<li><a href="/promo.html" class="itemDetails">優惠碼管理</a></li>
 							<li><a href="#" class="itemDetails">訂位查詢</a></li>
 							<li><a href="#" class="itemDetails">訂位更新</a></li>
 						</ul></li>
@@ -127,7 +127,7 @@
 					</a> <!-- 子連結 -->
 						<ul id="sublist03" class="list-unstyled collapse">
 							<li><a href="#" class="itemDetails">公告總覽</a></li>
-							<li><a href="postCreate.html" class="itemDetails">新增公告</a></li>
+							<li><a href="/postCreate.html" class="itemDetails">新增公告</a></li>
 							<li><a href="#" class="itemDetails">公告更新</a></li>
 						</ul></li>
 					<li><a href="#sublist04" data-bs-toggle="collapse"
@@ -143,14 +143,14 @@
 							<li><a href="#" class="itemDetails">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
-					<li class="m-0"><a href="message.html" class="center"> <i
+					<li class="m-0"><a href="/message.html" class="center"> <i
 							class="fas fa-comments-dollar mx-2"></i> <span class="items">客服管理</span>
 					</a></li>
-					<li class="m-0"><a href="SelectCustomerAll.Controller"
+					<li class="m-0"><a href="/Users/SelectCustomerAll.Controller"
 						class="center sidebarLight02"> <i class="fas fa-users mx-2"></i>
 							<span class="items">會員管理</span>
 					</a></li>
-					<li class="m-0"><a href="EmployeesAll.Controller" class="center">
+					<li class="m-0"><a href="/Users/EmployeesAll.Controller" class="center">
 							<i class="fas fa-address-card mx-2"></i> <span class="items">員工管理</span>
 					</a></li>
 
@@ -230,14 +230,14 @@
 							<h3 class="modal-title" id="memberModalLabel">會員資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-						<form action="UpdateCustomerById.Controller" id="updateForm"
+						<form action="/Users/UpdateCustomerById.Controller" id="updateForm"
 							method="post">
 							<div class="modal-body">
 								<div class="row">
 									<!-- left -->
 									<div class="offset-1 col-4">
 										<div class="ratio ratio-1x1 mt-1 mb-3">
-											<img src="image/m6.jpg" class="rounded-3 shadow" />
+											<img src="/image/m6.jpg" class="rounded-3 shadow" />
 										</div>
 										<div class="row">
 											<div class="col text-center">

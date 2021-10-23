@@ -1,4 +1,4 @@
-package tw.finalspring.controller;
+package tw.springbootfinal.users.controller;
 
 import java.io.IOException;
 
@@ -23,11 +23,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.client.RestTemplate;
 
-import tw.finalspring.model.CustomerBean;
-import tw.finalspring.model.Recaptcha;
-import tw.finalspring.service.CustomerService;
+import tw.springbootfinal.users.model.CustomerBean;
+import tw.springbootfinal.users.model.CustomerService;
+import tw.springbootfinal.users.model.Recaptcha;
 
 @Controller
+@RequestMapping(path = "/Users")
 @SessionAttributes(names = { "realName","username" }) //設為session層級
 public class LoginController {
 
@@ -64,9 +65,9 @@ public class LoginController {
 		m.addAttribute("username", username);
 
 		// 使用service的方法查詢使用者資料，並判斷是否存在或正確
-		String result = cusService.selectUsername(cusBean);// 回傳值為pass或fail
+		String result = cusService.findByCusUsername(cusBean);// 回傳值為pass或fail
 		if ("pass".equals(result)) {
-			String realName = cusService.selectUsernameLogin(cusBean);//抓取使用者名稱
+			String realName = cusService.findByCusUsernameLogin(cusBean);//抓取使用者名稱
 			System.out.println(realName);
 			m.addAttribute("realName", realName);
 			return result;
@@ -106,5 +107,5 @@ public class LoginController {
 
 		return "list";
 	}
-
+	
 }

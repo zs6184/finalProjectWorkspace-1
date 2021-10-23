@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,13 +12,17 @@
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
-<link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
-<link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
-<script src="javascript/jquery-3.6.0.min.js"></script>
+<link href="/stylesheet/bootstrap.min.css" rel="stylesheet" />
+<link href="/stylesheet/jquery-ui.min.css" rel="stylesheet" />
+<script src="/javascript/jquery-3.6.0.min.js"></script>
+<!-- reCAPTCHA -->
+<!-- <script src="https://www.google.com/recaptcha/api.js"></script> -->
+<script
+	src="https://www.google.com/recaptcha/api.js?render=6Lcnq94cAAAAAJNYUP_oO0M2EDZ53BrQguAAKfqq"></script>
 <!--自訂樣式表-->
-<link href="stylesheet/login.css" rel="stylesheet" />
+<link href="/stylesheet/login.css" rel="stylesheet" />
 <!--自訂js-->
-<script src="javascript/login.js"></script>
+<script src="/javascript/login.js"></script>
 
 </head>
 <body>
@@ -31,7 +35,7 @@
 					<div class="container">
 						<div class="row align-items-center">
 							<div>
-								<a href="index.html"><img src="image/浪跡.png" alt=""></a>
+								<a href="/index.html"><img src="/image/浪跡.png" alt=""></a>
 							</div>
 						</div>
 					</div>
@@ -45,8 +49,7 @@
 					</div>
 				</div>
 				<hr class="mx-5">
-				<form class="mt-5" id="loginForm"
-					action="checkloginaccount.controller" method="post">
+				<form class="mt-5" id="loginForm" action="/Users/checkloginaccount.controller" method="post">
 					<div class="row" id="account">
 						<!-- 帳號 -->
 						<div class="offset-2 col-8">
@@ -54,7 +57,8 @@
 								<span class="input-group-text" id="basic-addon1"> <i
 									class="fas fa-user"></i>
 								</span> <input type="text" id="username" name="username"
-									class="form-control" maxlength="20" placeholder="Username" autocomplete="off">
+									class="form-control" maxlength="20" placeholder="Username"
+									autocomplete="off">
 							</div>
 						</div>
 						<!--密碼-->
@@ -63,7 +67,8 @@
 								<span class="input-group-text" id="basic-addon2"> <i
 									class="fas fa-lock"></i>
 								</span> <input type="password" id="password" name="password"
-									class="form-control" maxlength="20" placeholder="Password" autocomplete="off">
+									class="form-control" maxlength="20" placeholder="Password"
+									autocomplete="off">
 							</div>
 						</div>
 					</div>
@@ -84,11 +89,12 @@
 						</div>
 						<!-- 註冊及忘記密碼 -->
 						<div class="text-center mt-3 mb-5" id="status1">
-							<button type="submit" class="btn btn-primary btn-lg">登入</button>
+							<button type="submit" class="btn btn-primary btn-lg"
+								id="submit">登入</button>
 						</div>
 
 						<div class="text-center mb-4">
-							<a href="createCusAccount.html">註冊</a> <a href="#" class="ms-5">忘記您的密碼?</a>
+							<a href="/createCusAccount.html">註冊</a> <a href="#" class="ms-5">忘記您的密碼?</a>
 						</div>
 					</div>
 				</form>
