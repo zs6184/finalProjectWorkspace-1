@@ -20,6 +20,7 @@ public class Coupons {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "coupon_ID")
 	private int couponId;
+	
 	@Override
 	public String toString() {
 		return "Coupons [couponId=" + couponId + ", couponName=" + couponName + ", couponCode=" + couponCode

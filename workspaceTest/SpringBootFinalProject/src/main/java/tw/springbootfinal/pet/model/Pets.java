@@ -157,5 +157,20 @@ public class Pets {
 	public void setPic(byte[] pic) {
 		this.pic = pic;
 	}
-
+	
+	public Pets setBean(Pets temp) {
+		this.setPetId(temp.getPetId());
+		this.setCategory(temp.getCategory());
+		this.setSpecies(temp.getSpecies());
+		this.setSex(temp.getSex());
+		this.setPetName(temp.getPetName());
+		this.setAge(temp.getAge());
+		this.setFixStatus(temp.getFixStatus());
+		this.setNote(temp.getNote());
+		this.setAdoptStatus(temp.getAdoptStatus());
+		this.setAdoptDate(temp.getAdoptDate());
+		this.setCusId(temp.getCusId());
+		this.setCusName(temp.getCusName());
+		return this;
+	}
 }
