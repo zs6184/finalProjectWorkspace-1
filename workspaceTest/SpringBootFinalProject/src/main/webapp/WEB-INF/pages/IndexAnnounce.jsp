@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -198,19 +199,20 @@
         </div>
     </div>
     <br>
-   <c:forEach var="arrAnnounce" items="${arrAnnounce}" varStatus="status">
+   <c:set var="startIndex" value="${fn:length(arrAnnounce)-1}"></c:set>
+   <c:forEach var="arrAnnounc" items="${arrAnnounce}" varStatus="status">
             <c:if test="${status.count%2!=0}">
 
                 <div class="row justify-content-center">
                     <div style="display: inline-block; height: 300px;width: 300px;margin:25px" id="imgPreview">
-                        <img src="data:image/png;base64,${baseStr[arrAnnounce.announceID]} " style="width:100%;height:100%;" alt=""/>
+                        <img src="data:image/png;base64,${baseStr[arrAnnounce[startIndex-status.index].announceID]} " style="width:100%;height:100%;" alt=""/>
                     </div>
                     <div style="display: inline-block; height: 300px;width: 700px;margin: 25px;padding-top:10px">
-                        <h6 style="float:right;font-family: AA">${arrAnnounce.releaseTime}</h6>
-                        <h2 style="text-align: center;font-family: AA">${arrAnnounce.headline}</h2>
+                        <h6 style="float:right;font-family: AA">${arrAnnounce[startIndex-status.index].releaseTime}</h6>
+                        <h2 style="text-align: center;font-family: AA">${arrAnnounce[startIndex-status.index].headline}</h2>
 
                         <p style="font-size: 25px;font-family: AA">
-                            ${arrAnnounce.articleCont}
+                            ${arrAnnounce[startIndex-status.index].articleCont}
                         </p>
 
                     </div>
@@ -222,16 +224,16 @@
                 <div class="row justify-content-center">
                     <div class="justify-content-center"
                         style="display: inline-block; height: 300px;width: 700px;margin: 25px 25px;padding-top:10px">
-                        <h6 style="float:left;font-family: AA">${arrAnnounce.releaseTime}</h6>
-                        <h2 style="text-align: center;font-family: AA">${arrAnnounce.headline}</h2>
+                        <h6 style="float:left;font-family: AA">${arrAnnounce[startIndex-status.index].releaseTime}</h6>
+                        <h2 style="text-align: center;font-family: AA">${arrAnnounce[startIndex-status.index].headline}</h2>
 
                         <p style="font-size: 25px;font-family: AA">
-                            ${arrAnnounce.articleCont}
+                            ${arrAnnounce[startIndex-status.index].articleCont}
                         </p>
 
                     </div>
                     <div style="display: inline-block; height: 300px;width: 300px;margin:25px">
-                         <img src="data:image/png;base64,${baseStr[arrAnnounce.announceID]} " style="width:100%;height:100%;" alt=""/>
+                         <img src="data:image/png;base64,${baseStr[arrAnnounce[startIndex-status.index].announceID]} " style="width:100%;height:100%;" alt=""/>
                     </div>
                 </div>
 
