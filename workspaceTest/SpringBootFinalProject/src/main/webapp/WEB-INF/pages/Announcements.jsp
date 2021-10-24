@@ -13,21 +13,23 @@
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 <!--bootstrap & jQuery-ui-->
-<link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
-<link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
+<link href="/stylesheet/bootstrap.min.css" rel="stylesheet" />
+<link href="/stylesheet/jquery-ui.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
 <!--自訂樣式表-->
-<link href="stylesheet/backstage.css" rel="stylesheet" />
-<link href="stylesheet/announcements.css" rel="stylesheet" />
+<link href="/stylesheet/backstage.css" rel="stylesheet" />
+<link href="/stylesheet/announcements.css" rel="stylesheet" />
 
 <!--<script src="javascript/bootstrap.min.js"></script>-->
-<script src="javascript/jquery-3.6.0.min.js"></script>
-<script src="javascript/jquery-ui.min.js"></script>
-<script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
+<script src="/javascript/jquery-3.6.0.min.js"></script>
+<script src="/javascript/jquery-ui.min.js"></script>
+
 <!--datepicker-ui中文補丁-->
 <!--自訂js-->
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="javascript/announcements.js"></script>
+<script src="/javascript/announcements.js"></script>
+<script src="/javascript/backstage.js"></script>
 <script type="text/javascript">
 $(document).ready( function () {
     $('#infoTable').DataTable({
@@ -157,15 +159,15 @@ function t(){
 							<li><a href="ordermanage.html" class="itemDetails">訂單管理</a>
 							</li>
 							<li><a href="promo.html" class="itemDetails">優惠碼管理</a></li>
-							<li><a href="#" class="itemDetails sidebarLight02">訂位查詢</a></li>
+							<li><a href="#" class="itemDetails">訂位查詢</a></li>
 							<li><a href="#" class="itemDetails">訂位更新</a></li>
 						</ul></li>
 					<li><a href="#sublist03" data-bs-toggle="collapse"
 						id="dropdown03" class="center"> <i
-							class="fas fa-bullhorn mx-2"></i> <span class="items">公告管理</span>
+							class="fas fa-bullhorn mx-2 "></i> <span class="items">公告管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist03" class="list-unstyled collapse">
-							<li><a href="#" class="itemDetails">公告總覽</a></li>
+							<li><a href="#" class="itemDetails  sidebarLight02">公告總覽</a></li>
 							<li><a href="postCreate.html" class="itemDetails">新增公告</a></li>
 							<li><a href="#" class="itemDetails">公告更新</a></li>
 						</ul></li>
@@ -250,7 +252,7 @@ function t(){
 							<h3 class="modal-title" id="announcementsModalTitle">文章資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-						<form class="add" action="insertAnnouncements.controller" method="POST"
+						<form class="add" action="/backstage/announcements/insertAnnouncements.controller" method="POST" 
 							id="modalForm" enctype="multipart/form-data">
 							<div class="modal-body">
 								<div class="row">
@@ -259,7 +261,7 @@ function t(){
 											<legend>文章資料</legend>
 											<div id="idSection">
 												<label for="announceID" class=""><span>文章編號</span></label> <input
-													type="text" id="announceID" name="announceID" disabled />
+													type="text" id="announceID" name="announceID"  readonly />
 											</div>
 											<div>
 												<label for="empId" class=""><span>員工ID</span></label> <input
@@ -268,7 +270,7 @@ function t(){
 											</div>
 											<div>
 												<label for="headline" class=""><span>標題</span></label> <input
-													type="text" id="headline" name="headline" />
+													type="text" id="headline" name="headline" required/>
 											</div>
 											<div>
 												<label for="releaseTime" class=""><span>發文時間</span></label> <input
@@ -276,12 +278,13 @@ function t(){
 											</div>
 											<hr />
 											<span>
-												<label for="mypicture" class=""><span>圖片</span></label> <input
-													type="file" id="picture" name="mypicture" />
+											 
+												<label for="mypic" class="" style="" >圖片</label> 
+												<input type="file" style="display:none" id="mypic" name="mypic"  accept="image/*" required />
 											</span>
-											<span class="col-6 justify-content-center" >
+											<span class="col-6" >
 												<span id="imgPreview" style="margin:0 auto">
-													<img src="" style="width:30%;height:30%;" alt=" "/>
+													<img src="" style="width:30%;height:30%;" alt=" " required/>
 												</span>
 											</span>
 											
