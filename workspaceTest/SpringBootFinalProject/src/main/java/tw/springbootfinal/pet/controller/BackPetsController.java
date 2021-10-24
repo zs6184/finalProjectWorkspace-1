@@ -24,6 +24,8 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import tw.springbootfinal.pet.model.Pets;
 import tw.springbootfinal.pet.model.PetsService;
+import tw.springbootfinal.users.model.CustomerBean;
+import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
 @RequestMapping("/backstage/pet")
@@ -32,6 +34,8 @@ public class BackPetsController {
 		
 	@Autowired
 	private PetsService pService;
+	@Autowired
+	private CustomerService cService;
 //--------------------------------------------------------------
 	
 	//取得所有寵物資料
@@ -50,6 +54,18 @@ public class BackPetsController {
 
 		return  "BackPetInfo";
 	}
+	
+	//AJAX取得全部會員資料後續檢測+填值用
+	@GetMapping("/getAllCustomerData.controller")
+	public void processGetAllCus(HttpServletResponse response)throws IOException {
+		List<CustomerBean> arrCus = cService.findAll();
+		JSONObject cusData = new JSONObject();
+		cusData.put("cusData", arrCus);
+		PrintWriter out = response.getWriter();
+		out.println(cusData);
+		out.close();
+	}
+	
 	
 	//使用條件進行查詢
 	@PostMapping("/searchdata.controller")

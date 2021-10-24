@@ -1,35 +1,37 @@
 // JavaScript source code
 
+var indexPage = 1;
 
-$(function () {
-    //stickybar
-    window.onscroll = function () { stickTop() };
-    var topbar = document.getElementById("topbar");
-    var distance = topbar.offsetTop; //抓topbar離頁面頂部距離
+$(function() {
+	//stickybar
+	window.onscroll = function() { stickTop() };
+	var topbar = document.getElementById("topbar");
+	var distance = topbar.offsetTop; //抓topbar離頁面頂部距離
 
-    function stickTop() {
-        if (window.pageYOffset >= distance) { //偏移量>distance時增加stick
-            topbar.classList.add("sticky");
-        } else {
-            topbar.classList.remove("sticky");
-        }
-    }
-	
-	
+	function stickTop() {
+		if (window.pageYOffset >= distance) { //偏移量>distance時增加stick
+			topbar.classList.add("sticky");
+		} else {
+			topbar.classList.remove("sticky");
+		}
+	}
+
+
 	//將不同背景色放入陣列
-	const bgColor = ["bg-success","bg-danger","bg-warning","bg-info"];
+	const bgColor = ["bg-success", "bg-danger", "bg-warning", "bg-info"];
 	//隨機從陣列中取詞彙
-	const getBgColor = () =>bgColor[
-		Math.floor(Math.random()*(bgColor.length))];
+	const getBgColor = () => bgColor[
+		Math.floor(Math.random() * (bgColor.length))];
 	//將搜索結果加上隨機背景色
-	$(".selectResult").each(function(){
+	$(".selectResult").each(function() {
 		$(this).addClass(`${getBgColor()}`)
 	});
-	
-	
-	
-	
-	//
+
+
+});
+
+
+
 //	$.ajax({
 //		type: "GET",
 //		url: "/NoXmlSpringMvcProject/petinfo.controller",
@@ -41,7 +43,7 @@ $(function () {
 //		}
 //
 //	})
-	
+
 
     //將取得backPetInfo資料載入select選項中
 //    $.get("backPetInfo.html", function (data) {
@@ -99,4 +101,3 @@ $(function () {
 //
 //    });
 
-});

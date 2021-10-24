@@ -19,7 +19,7 @@ public class PetsService {
 		return pRepo.findAll();
 	}
 	
-	//取得未領養寵物資料
+	//取得全部未領養寵物資料
 	public List<Pets> findNotAdopt(){
 		return pRepo.findByAdoptStatus("未領養");
 	}
