@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -169,6 +171,13 @@ public class CustomerService {
 			e.printStackTrace();
 		}
 		return "PASS";
+	}
+	
+	//透過Session直接返回用戶物件
+	public CustomerBean getLoginCustomerBean(HttpSession session) {
+		CustomerBean customerBean = new CustomerBean();
+		customerBean.setCusUsername((String) session.getAttribute("username"));
+		return findByCustomerCenterUsername(customerBean).get(0);
 	}
 
 }

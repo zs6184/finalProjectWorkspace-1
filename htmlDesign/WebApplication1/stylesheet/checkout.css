@@ -104,8 +104,9 @@ a:hover {
     margin-left: 1rem;
 }
 
-.col-sm-8 {
-    border: 1px solid red;
+.col-sm-8:first-child {
+    /*border: 1px solid red;*/
+    margin-top:2em;
 }
 
 .col-sm-5 {

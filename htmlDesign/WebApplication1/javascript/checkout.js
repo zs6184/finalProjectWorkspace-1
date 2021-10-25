@@ -1,5 +1,7 @@
 ﻿
 $(function () {
+    ordertime();
+
     //計算總金額
     //var row = $('tbody tr');
     //var endprice = 0;
@@ -39,6 +41,7 @@ $(function () {
                         orangetotalprice();
                         break;
                     case 2:
+                        $("#couponsId").val(data[0].couponId);
                         $("#promoinput").attr("placeholder", "折扣碼正確");
                         $("#promoinput").val("");
                         $(".discount").html(`
@@ -85,5 +88,17 @@ function orangetotalprice() {
     $('span.endprice').text(`$ ${(endprice)}`);
     $('span.orangeprice').text(`$ ${(endprice)}`);
     $('span.orangeprice').hide();
+}
+
+function ordertime() {
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + (today.getMinutes()+10);
+    var dateTime = date + 'T' + time;
+    
+    console.log(dateTime);
+    $("#datePicker").val(dateTime)
+    $("#datePicker").attr('min', dateTime)
+    $("#datePicker").attr('max', dateTime)
 }
 
