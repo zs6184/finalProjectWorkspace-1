@@ -26,23 +26,18 @@ $(function() {
 	$(".selectResult").each(function() {
 		$(this).addClass(`${getBgColor()}`)
 	});
-
+	
+	//datetimepicker
+	jQuery("#reserveTime").datetimepicker({
+		format:'Y-m-d H:i'
+	});
+	
+	//按下領養預約按鈕時清空時間欄位
+	$("#reserveBtn").click(function(){
+		$("#reserveTime").val("");
+	});
 
 });
-
-//選取單一寵物詳細資料
-//function getDetail(obj) {
-//	$.ajax({
-//		type: "GET",
-//		url: "/pet/detaildata/" + $(obj).val(),
-//		success: function() {
-//			console.log("GET SUCCESS");
-//		},
-//		error: function() {
-//			console.log("FAILED TO GET");
-//		}
-//	})
-//};
 
 
 
