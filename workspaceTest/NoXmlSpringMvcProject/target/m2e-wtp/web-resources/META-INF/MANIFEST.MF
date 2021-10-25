@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:fe5ac0a77d55933a14c3296d14f82661ca4488d4285fbb07953f45d896a746ee
-size 88
+Manifest-Version: 1.0
+Build-Jdk-Spec: 15
+Created-By: Maven Integration for Eclipse
+

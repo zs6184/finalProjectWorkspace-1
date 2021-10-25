@@ -19,7 +19,7 @@
 <!--JS Here-->
 
 </head>
-<body style="background-image: url(image/背景4.jpg)">
+<body style="background-image: url(/image/背景4.jpg)">
 	<hr>
 	<!-- 標題logo 部分 -->
 	<div class="logo-area text-center">
@@ -107,9 +107,11 @@
 								<li><span><i class="fa fa-id-card" aria-hidden="true"></i>&nbsp</span><span>寵物姓名:${arrPet.petName}</span></li>	
 								<li><span><i class="fa fa-venus-mars" aria-hidden="true">&nbsp</i></span><span>性別:${arrPet.sex}</span></li>	
 								<li><span><i class="fa fa-paw" aria-hidden="true"></i>&nbsp</span><span>類別:${arrPet.category}</span></li>	
-								<li><span><i class="fa fa-tag" aria-hidden="true"></i>&nbsp</span><span>品種:${arrPet.species}</span></li>	
+								<li><span><i class="fa fa-tag" aria-hidden="true"></i>&nbsp</span><span>品種:${arrPet.species}</span></li>		
 							</ul>
-							<button type="button" class="btn-sm btn-light">詳細資料</button>
+							<a href="/pet/detaildata/${arrPet.petId}">
+							<button class="btn-sm btn-light detailBtn text-center" value="${arrPet.petId}" onclick="getDetail(this)">詳細資料</button>	
+							</a>
 						</div>
 					</div>
 				</c:forEach>
