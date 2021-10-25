@@ -200,7 +200,7 @@
     </div>
     <br>
    <c:set var="startIndex" value="${fn:length(arrAnnounce)-1}"></c:set>
-   <c:forEach var="arrAnnounc" items="${arrAnnounce}" varStatus="status">
+   <c:forEach var="arrAnnoun" items="${arrAnnounce}" varStatus="status">
             <c:if test="${status.count%2!=0}">
 
                 <div class="row justify-content-center">

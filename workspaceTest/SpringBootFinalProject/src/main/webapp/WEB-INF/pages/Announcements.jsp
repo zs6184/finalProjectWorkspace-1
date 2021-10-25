@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	import="tw.springbootfinal.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -220,12 +221,13 @@ function t(){
 								</tr>
 							</thead>
 							<tbody class="align-middle">
-								<c:forEach var="arrAnnounce" items="${arrAnnounce}">
+							<c:set var="startIndex" value="${fn:length(arrAnnounce)-1}"></c:set>
+								<c:forEach var="arrAnnounc" items="${arrAnnounce}"  varStatus="status">
 									<tr>
-										<td class="ID">${arrAnnounce.announceID}</td>
-										<td>${arrAnnounce.empID}</td>
-										<td>${arrAnnounce.headline}</td>
-										<td>${arrAnnounce.releaseTime}</td>
+										<td class="ID">${arrAnnounce[startIndex-status.index].announceID}</td>
+										<td>${arrAnnounce[startIndex-status.index].empID}</td>
+										<td>${arrAnnounce[startIndex-status.index].headline}</td>
+										<td>${arrAnnounce[startIndex-status.index].releaseTime}</td>
 										
 										<td>
 											<button type="button" class="btn btn-danger updateBtn"
