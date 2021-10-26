@@ -13,12 +13,14 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/stylesheet/**").addResourceLocations("/WEB-INF/resources/stylesheet/");
 		registry.addResourceHandler("/javascript/**").addResourceLocations("/WEB-INF/resources/javascript/");
 		registry.addResourceHandler("/font/**").addResourceLocations("/WEB-INF/resources/font/");
-		registry.addResourceHandler("/image/**").addResourceLocations("/WEB-INF/resources/image/");
+		registry.addResourceHandler("/image/**").addResourceLocations("/WEB-INF/resources/image/","/WEB-INF/resources/image/downloadTempDir/","/WEB-INF/resources/image/uploadTempDir/");
 	}
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/login.Controller").setViewName("login");
+		registry.addViewController("/login.Controller").setViewName("login");//登入頁面
+		registry.addViewController("/Users/logout.Controller").setViewName("logout");//登出頁面
+		registry.addViewController("/loginerror.Controller").setViewName("loginerror");//登入失敗頁面
 		
 	}
 

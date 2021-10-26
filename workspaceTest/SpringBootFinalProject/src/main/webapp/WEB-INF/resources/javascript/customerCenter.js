@@ -86,7 +86,7 @@ $(function() {
 			var dataForm = $(this).serialize();
 			$.ajax({
 				method: "post",
-				url: "CustomerCenterCheckPhone.controller",
+				url: "/Users/CustomerCenterCheckPhone.controller",
 				data: dataForm,
 				success: function(data) {
 					console.log(data);
@@ -142,7 +142,7 @@ $(function() {
 			var dataForm = $(this).serialize();
 			$.ajax({
 				method: "post",
-				url: "CustomerCenterCheckEmail.controller",
+				url: "/Users/CustomerCenterCheckEmail.controller",
 				data: dataForm,
 				success: function(data) {
 					if (data == "pass") {
@@ -183,12 +183,12 @@ $(function() {
 		var formData = new FormData(this);
 		$.ajax({
 			method: "post",
-			url: "UpdateCustomer.controller",
+			url: "/Users/UpdateCustomer.controller",
 			data: formData,
 			processData: false,//上傳圖片必須設成false，不要讓系統轉成K=V的型態，new FormData(this)已經幫我們設定好格式
 			contentType: false,//上傳圖片必須設成false，default: 'application/x-www-form-urlencoded; charset=UTF-8'，但是我們不要設成這個，new FormData(this)已經幫我們設定好格式
 			success: function(data) {
-				location.href = 'SelectCustomer.controller';
+				location.href = '/Users/SelectCustomer.controller';
 			},
 			error: function(jqXHR, textStatus, errThrown) {
 				alert(`${textStatus}---${errThrown}`);

@@ -44,7 +44,8 @@
 		<div class="container h-100">
 			<div class="row h-100 align-items-center">
 				<div class="col-12">
-					<a href="/Users/loginIndex.Controller"><img src="/image/浪跡2.png" alt=""></a>
+					<a href="/Users/loginIndex.Controller"><img
+						src="/image/浪跡2.png" alt=""></a>
 				</div>
 			</div>
 		</div>
@@ -58,8 +59,24 @@
 				<div class="row h-100 align-items-center topbar">
 					<div class="col-12">
 						<ul>
-							<li><a href="/Users/SelectCustomer.controller" target="_self">${realName}</a>
-								<a href="/Users/logoutIndex.Controller" target="_self">登出</a></li>
+							<li>
+								<div class="dropdown absolute">
+									<button class="btn btn-link dropdown-toggle " type="button"
+										id="cusCenterDropdown" data-bs-toggle="dropdown">${realName}</button>
+									<ul class="dropdown-menu p-0" role="button">
+										<li id="whp1"><a href="/Users/SelectCustomer.controller"
+											class="dropdown-item d-flex justify-content-center"
+											target="_self">會員中心</a></li>
+										<li id="whp2" class="m-0">
+											<form action="/Users/logout.Controller" method="post">
+												<button type="submit"
+													class="dropdown-item d-flex justify-content-center"
+													value="logout">登出</button>
+											</form>
+										</li>
+									</ul>
+								</div>
+							</li>
 							<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
 							<li><a href="/index.html" target="_self">線上訂位</a></li>
 							<li><a href="/index.html" target="_self">餐點介紹</a></li>
@@ -90,7 +107,8 @@
 							class="far fa-address-book mx-2"></i> <span class="items">我的帳戶</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist01" class="list-unstyled collapse show">
-							<li><a href="/Users/SelectCustomer.controller" class="itemDetails sidebarLight02">個人資料</a></li>
+							<li><a href="/Users/SelectCustomer.controller"
+								class="itemDetails sidebarLight02">個人資料</a></li>
 							<li><a href="#" class="itemDetails">變更密碼</a></li>
 							<li><a href="#" class="itemDetails">暫時保留</a></li>
 						</ul></li>
@@ -205,7 +223,8 @@
 												<input id="email" type="email" value="${cus[0].email}"
 													name="email" class="form-control" maxlength="30"
 													placeholder="Email" autocomplete="off">
-												<div class="invalid-tooltip" id="emailInvalid">E-mail 已被使用</div>
+												<div class="invalid-tooltip" id="emailInvalid">E-mail
+													已被使用</div>
 											</div>
 										</div>
 										<div class="row my-3 offset-1 col-10">
@@ -262,8 +281,24 @@
 								<li><a href="/index.html" target="_self">餐點介紹</a></li>
 								<li><a href="/index.html" target="_self">線上訂位</a></li>
 								<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
-								<li><a href="/Users/SelectCustomer.controller" target="_self">${realName}</a>
-									<a href="/Users/logoutIndex.Controller" target="_self">登出</a></li>
+								<li>
+									<div class="dropdown absolute">
+										<button class="btn btn-link dropdown-toggle text-light" type="button"
+											id="cusCenterDropdown2" data-bs-toggle="dropdown">${realName}</button>
+										<ul class="dropdown-menu p-0" role="button">
+											<li id="whp3"><a href="/Users/SelectCustomer.controller"
+												class="text-dark dropdown-item d-flex justify-content-center"
+												target="_self">會員中心</a></li>
+											<li id="whp4" class="m-0">
+												<form action="/Users/logout.Controller" method="post">
+													<button type="submit"
+														class="dropdown-item d-flex justify-content-center"
+														value="logout">登出</button>
+												</form>
+											</li>
+										</ul>
+									</div>
+								</li>
 							</ul>
 						</div>
 					</div>

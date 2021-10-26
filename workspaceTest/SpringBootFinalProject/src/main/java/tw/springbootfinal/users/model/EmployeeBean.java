@@ -10,8 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name = "Employees")
+@Component
 public class EmployeeBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -53,6 +56,9 @@ public class EmployeeBean implements Serializable {
 
 	@Column(name = "note")
 	private String note;
+
+	@Column(name = "role")
+	private String role;
 
 	@Override
 	public String toString() {
@@ -160,6 +166,14 @@ public class EmployeeBean implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }

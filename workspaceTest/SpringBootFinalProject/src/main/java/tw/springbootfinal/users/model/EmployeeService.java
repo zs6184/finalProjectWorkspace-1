@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import tw.springbootfinal.users.exception.UserNotFoundException;
+
 @Service
 @Transactional
 public class EmployeeService {
@@ -21,6 +23,17 @@ public class EmployeeService {
 		Optional<EmployeeBean> op1 = empReps.findById(eId);
 		return op1.get();
 	}
+	
+	//查詢指定帳號員工
+	public EmployeeBean getByEmpUsername(String empUsername) {
+		Optional<EmployeeBean> op1 = empReps.getByEmpUsername(empUsername);
+		
+		if(op1.isEmpty()) {
+			throw new UserNotFoundException("Can't Find User;");
+		}
+		return op1.get();
+	}
+
 
 	// 查詢全部
 	public List<EmployeeBean> findAll() {

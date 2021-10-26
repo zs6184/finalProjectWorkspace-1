@@ -63,6 +63,9 @@ public class CustomerBean implements Serializable {
 	@Column(name = "missing_count")
 	private int noShow;
 
+	@Column(name = "role")
+	private String role;
+	
 	public CustomerBean() {
 	}
 
@@ -185,4 +188,13 @@ public class CustomerBean implements Serializable {
 	public void setNoShow(int noShow) {
 		this.noShow = noShow;
 	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
 }

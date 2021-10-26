@@ -14,7 +14,7 @@ import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
-@RequestMapping(path = "/Users")
+@RequestMapping(path = "/Backstage")
 public class CustomersController {
 
 	@Autowired

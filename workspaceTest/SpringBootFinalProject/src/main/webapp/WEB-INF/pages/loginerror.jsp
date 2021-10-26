@@ -71,6 +71,7 @@
 									autocomplete="off">
 							</div>
 						</div>
+						<span id="loginStatus" class="offset-4 col-4 d-flex justify-content-center">帳號或密碼錯誤</span>
 					</div>
 					<div class="row">
 						<div class="text-center LoginErrMsg"></div>

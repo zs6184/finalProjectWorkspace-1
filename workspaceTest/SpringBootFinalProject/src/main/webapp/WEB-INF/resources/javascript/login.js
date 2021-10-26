@@ -85,34 +85,31 @@ $(function() {
 		
 
 		//ajax非同步
-		var formData = $(this).serialize();
+		/*var formData = $(this).serialize();
 		$.ajax({
 			method: "post",
-			url: "/Users/checkloginaccount.controller",
+			url: "/checkloginaccount.controller",
 			data: formData,
 			success: function(data) {
 				console.log(data);
 				if (data == "pass") {
-					//if ($("#loginStatus").length == 0) {
-					//    $(".LoginErrMsg").append(`<span id="loginStatus">登入資訊正確</span>`);
-					//    location.href = 'index.html';
-					//} else {
-					//    $("div #loginStatus").remove();
-					//    $(".LoginErrMsg").append(`<span id="loginStatus">登入資訊正確</span>`);
-					location.href = '/Users/loginIndex.Controller';
-					//}
+					location.href = '/loginIndex.Controller';
+				
 				} else if (data == "fail") {
 					if ($("#loginStatus").length == 0) {
 						$(".LoginErrMsg").append(`<span id="loginStatus">帳號或密碼錯誤</span>`);
 						$("#loginForm input:first").focus();
+						return false;
 					}
+						return false;
 				}
 			},
 			error: function(jqXHR, textStatus, errThrown) {
-				alert(`${textStatus}---${errThrown}`)
+				alert(`${textStatus}---${errThrown}`);
+				return false;
 			}
 		});
-		return false;
+		return false;*/
 	});
 
 	//reCAPTCHA

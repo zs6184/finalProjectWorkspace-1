@@ -32,60 +32,66 @@
 			<nav class="navbar navbar-light bg-white m-0 ">
 				<div class="container-fluid">
 					<!-- 超連結到主頁 -->
-					<a class="navbar-brand row" href="backstage.html">後臺管理系統</a>
+					<a class="navbar-brand row" href="/backstage.html">後臺管理系統</a>
 					<!-- 搜尋欄及按鈕 -->
 					<form class="d-flex offset-5 col-3">
 						<input class="form-control me-2 ms-5 " type="search"
 							placeholder="Search" aria-label="Search">
 						<button class="btn btn-outline-success" type="submit">Search</button>
 					</form>
-					<div class="">
-						<!-- 帳號頭像及功能 -->
-						<div class="dropdown">
-							<button class="btn-transparent" type="button"
-								id="dropdownButton01" data-bs-toggle="dropdown">
-								<img src="/image/husky.jpg" class="image shadow" />
-							</button>
-							<ul class="dropdown-menu  dropdown-menu-end shadow"
-								aria-labelledby="dropdownMenuButton01">
-								<li><a class="dropdown-item" href="#">Username</a></li>
-								<li><a class="dropdown-item" href="#">Settings</a></li>
-								<li><a class="dropdown-item" href="#">登出</a></li>
-							</ul>
+					<form action="/Users/logout.Controller" method="post">
+						<div class="">
+							<!-- 帳號頭像及功能 -->
+							<div class="dropdown">
+								<button class="btn-transparent" type="button"
+									id="dropdownButton01" data-bs-toggle="dropdown">
+									<img src="/image/husky.jpg" class="image shadow" />
+								</button>
+								<ul class="dropdown-menu  dropdown-menu-end shadow"
+									aria-labelledby="dropdownMenuButton01">
+									<li><a class="dropdown-item" href="#">Username</a></li>
+									<li><a class="dropdown-item" href="#">Settings</a></li>
+									<li><button type="submit" class="dropdown-item"
+											value="logout">Logout</button></li>
+								</ul>
+							</div>
+							<!-- 訊息資訊 -->
+							<div class="dropdown">
+								<button class="btn-transparent" type="button"
+									id="dropdownButton02" data-bs-toggle="dropdown">
+									<i class="far fa-envelope me-5 navIcon mt-3" id="navIcon"></i>
+								</button>
+								<ul class="dropdown-menu  dropdown-menu-end shadow"
+									aria-labelledby="dropdownMenuButton02">
+									<li><a class="dropdown-item me-3" href="#"> <img
+											src="/image/husky.jpg" class="imageMessage shadow" />
+											message
+									</a></li>
+									<li><a class="dropdown-item" href="#"> <img
+											src="/image/husky.jpg" class="imageMessage shadow" />
+											message
+									</a></li>
+									<li><a class="dropdown-item" href="#"> <img
+											src="/image/husky.jpg" class="imageMessage shadow" />
+											message
+									</a></li>
+								</ul>
+							</div>
+							<!-- 訊息通知 -->
+							<div class="dropdown floatDown">
+								<button class="btn-transparent" type="button"
+									id="dropdownButton03" data-bs-toggle="dropdown">
+									<i class="far fa-bell me-5 navIcon mt-3" id="navIcon"></i>
+								</button>
+								<ul class="dropdown-menu  dropdown-menu-end shadow"
+									aria-labelledby="dropdownMenuButton03">
+									<li><a class="dropdown-item" href="#">notify</a></li>
+									<li><a class="dropdown-item" href="#">notify</a></li>
+									<li><a class="dropdown-item" href="#">notify</a></li>
+								</ul>
+							</div>
 						</div>
-						<!-- 訊息資訊 -->
-						<div class="dropdown">
-							<button class="btn-transparent" type="button"
-								id="dropdownButton02" data-bs-toggle="dropdown">
-								<i class="far fa-envelope me-5 navIcon mt-3" id="navIcon"></i>
-							</button>
-							<ul class="dropdown-menu  dropdown-menu-end shadow"
-								aria-labelledby="dropdownMenuButton02">
-								<li><a class="dropdown-item me-3" href="#"> <img
-										src="/image/husky.jpg" class="imageMessage shadow" /> message
-								</a></li>
-								<li><a class="dropdown-item" href="#"> <img
-										src="/image/husky.jpg" class="imageMessage shadow" /> message
-								</a></li>
-								<li><a class="dropdown-item" href="#"> <img
-										src="/image/husky.jpg" class="imageMessage shadow" /> message
-								</a></li>
-							</ul>
-						</div>
-						<!-- 訊息通知 -->
-						<div class="dropdown floatDown">
-							<button class="btn-transparent" type="button"
-								id="dropdownButton03" data-bs-toggle="dropdown">
-								<i class="far fa-bell me-5 navIcon mt-3" id="navIcon"></i>
-							</button>
-							<ul class="dropdown-menu  dropdown-menu-end shadow"
-								aria-labelledby="dropdownMenuButton03">
-								<li><a class="dropdown-item" href="#">notify</a></li>
-								<li><a class="dropdown-item" href="#">notify</a></li>
-								<li><a class="dropdown-item" href="#">notify</a></li>
-							</ul>
-						</div>
-					</div>
+					</form>
 				</div>
 			</nav>
 		</div>
@@ -146,11 +152,11 @@
 					<li class="m-0"><a href="/message.html" class="center"> <i
 							class="fas fa-comments-dollar mx-2"></i> <span class="items">客服管理</span>
 					</a></li>
-					<li class="m-0"><a href="/Users/SelectCustomerAll.Controller"
+					<li class="m-0"><a href="/Backstage/SelectCustomerAll.Controller"
 						class="center"> <i class="fas fa-users mx-2"></i> <span
 							class="items">會員管理</span>
 					</a></li>
-					<li class="m-0"><a href="/Users/EmployeesAll.Controller"
+					<li class="m-0"><a href="/Backstage/EmployeesAll.Controller"
 						class="center sidebarLight02"> <i
 							class="fas fa-address-card mx-2"></i> <span class="items">員工管理</span>
 					</a></li>
@@ -178,7 +184,7 @@
 										<button type="button" class="btn-close"
 											data-bs-dismiss="modal"></button>
 									</div>
-									<form action="/Users/CreateEmpAccount.Controller" method="post"
+									<form action="/Backstage/CreateEmpAccount.Controller" method="post"
 										id="empForm">
 										<div class="modal-body">
 											<div class="row">
@@ -190,24 +196,25 @@
 												<div class="offset-2 col-4 my-3">
 													<label for="empPassword" class="form-label">密碼:</label> <input
 														id="empPassword" name="empPassword" type="password"
-														class="form-control" disabled/>
+														class="form-control" disabled />
 												</div>
 											</div>
 											<div class="row">
 												<div class="offset-1 col-4 my-3">
 													<label for="empRealname" class="form-label">姓名:</label> <input
 														id="empRealname" name="empRealname" type="text"
-														class="form-control" maxlength="10"
-														autocomplete="off" autofocus required />
+														class="form-control" maxlength="10" autocomplete="off"
+														autofocus required />
 
 												</div>
 												<div class="offset-2 col-4 d-flex align-items-center my-3">
-													<label for="male" class="form-check-label mt-4">性別:</label> <input
-														id="male" name="gender" value="male" type="radio"
+													<label for="male" class="form-check-label mt-4">性別:</label>
+													<input id="male" name="gender" value="male" type="radio"
 														class="form-check-input mx-2 mt-4" required checked /> <label
-														for="male" class="mt-4">男</label> <input id="female" name="gender"
-														value="female" type="radio" class="form-check-input mx-2 mt-4" />
-													<label for="female" class="mt-4">女</label>
+														for="male" class="mt-4">男</label> <input id="female"
+														name="gender" value="female" type="radio"
+														class="form-check-input mx-2 mt-4" /> <label for="female"
+														class="mt-4">女</label>
 												</div>
 											</div>
 											<div class="row">
@@ -215,8 +222,8 @@
 													<label for="phoneNumber" class="form-label">連絡電話:</label> <input
 														id="phoneNumber" name="phoneNumber" max="10"
 														pattern="[0]{1}[9]{1}\d{8}" type="tel"
-														class="form-control" maxlength="10"
-														autocomplete="off" required />
+														class="form-control" maxlength="10" autocomplete="off"
+														required />
 													<div class="invalid-tooltip" id="phoneInvalid">電話號碼已被使用</div>
 												</div>
 												<div class="offset-2 col-4 my-3">
@@ -246,8 +253,8 @@
 												<div class="offset-1 col-7 my-3">
 													<label for="address" class="form-label">地址:</label> <input
 														id="address" name="address" type="text"
-														class="form-control" maxlength="50"
-														autocomplete="off" required />
+														class="form-control" maxlength="50" autocomplete="off"
+														required />
 												</div>
 											</div>
 										</div>
@@ -327,8 +334,8 @@
 							<h3 class="modal-title" id="empModalLabel">員工資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-						<form action="/Users/UpdateEmployeeById.Controller" id="updateEmpForm"
-							method="post">
+						<form action="/Backstage/UpdateEmployeeById.Controller"
+							id="updateEmpForm" method="post">
 							<div class="modal-body">
 								<div class="row">
 									<!-- left -->
