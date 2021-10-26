@@ -9,16 +9,17 @@
 <!--CSS here-->
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/stylesheet/jquery.datetimepicker.css"/>
+<!--bootstrap & jQuery-ui-->
+<link href="/stylesheet/bootstrap.min.css" rel="stylesheet" />
+<link href="/stylesheet/jquery-ui.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="/stylesheet/singlePetInfo.css" />
 <!--JS Here-->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
 <script src="/javascript/jquery-3.6.0.min.js"></script>
 <script src="/javascript/jquery-ui.min.js"></script>
-<script src="/javascript/jquery.datetimepicker.full.min.js"></script>
+<!--datepicker-ui中文補丁-->
+<script src="/javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
 <script src="/javascript/SinglePetInfo.js"></script>
 </head>
 <body style="background-image: url(/image/背景4.jpg)">

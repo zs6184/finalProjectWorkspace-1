@@ -112,7 +112,7 @@ public class BackPetsController {
 	
 	//更新寵物資料
 	@PostMapping("/updateone.controller")
-	public String processUpdateOne(Pets temp,MultipartFile pic) throws IOException {
+	public String processUpdateOne(Pets temp,@RequestParam("mypic") MultipartFile pic) throws IOException {
 		String jsonStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue)).replaceAll("\"\"","null"); // 將所有空白轉為null
 		Pets transfer = JSON.parseObject(jsonStr, Pets.class);
 		pService.updateOne(transfer, pic);

@@ -27,10 +27,13 @@ $(function() {
 		$(this).addClass(`${getBgColor()}`)
 	});
 	
-	//datetimepicker
-	jQuery("#reserveTime").datetimepicker({
-		format:'Y-m-d H:i'
+	//DatePicker
+	$("input[name='reserveTime']").datepicker({
+		dateFormat: 'yy/mm/dd',
+		changeYear: true,
+		changeMonth: true
 	});
+
 	
 	//按下領養預約按鈕時清空時間欄位
 	$("#reserveBtn").click(function(){
@@ -39,6 +42,11 @@ $(function() {
 
 });
 
+
+//datetimepicker
+//	jQuery("#reserveTime").datetimepicker({
+//		format:'Y-m-d H:i'
+//	});
 
 
 //	$.ajax({
