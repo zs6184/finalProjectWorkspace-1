@@ -56,11 +56,12 @@ $(function() {
 	//刪除
 	$('td button[type="button"]').click(function () {
 		var pid = $(this).closest('tr').attr('id');
+		console.log(pid);
 		//假帳號
 		let  username = '123';
 		var cookie = $.cookie(`cart${username}`);
 		var carJSONpart = JSON.parse(cookie)
-		//遍歷所有cooki進行加減
+
 		for (var i in carJSONpart) {
 			if (carJSONpart[i].id == pid) {
 				swal({
@@ -75,7 +76,6 @@ $(function() {
 				},
 					function () {
 						carJSONpart.splice(i, 1);
-						$(this).closest('tr').remove();
 						$(`#${pid}`).remove();
 						totalprice();
 						swal("已移除！", "從購物車移除。", "success");

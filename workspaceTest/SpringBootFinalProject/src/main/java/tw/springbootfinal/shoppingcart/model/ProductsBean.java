@@ -1,16 +1,22 @@
 package tw.springbootfinal.shoppingcart.model;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.annotation.JSONField;
+
+import tw.springbootfinal.order.model.orderDetailsBean;
 
 @Entity
 @Table(name="Products")
@@ -38,6 +44,19 @@ public class ProductsBean {
 	@Transient
 	private int num;
 	
+	@OneToMany(mappedBy = "product")
+	private Set<orderDetailsBean> orderDetails =new  LinkedHashSet<orderDetailsBean>();
+	
+	
+	
+	public Set<orderDetailsBean> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(Set<orderDetailsBean> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+
 	public int getnum() {
 		return  num;
 	}

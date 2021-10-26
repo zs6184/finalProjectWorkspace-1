@@ -1,19 +1,21 @@
-﻿<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <title>結帳</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
     <!--<link rel="stylesheet" href="/stylesheet/petInfo.css" />--><!--CSS here-->
-    <link rel="stylesheet" href="stylesheet/checkout.css" />
+    <link rel="stylesheet" href="/stylesheet/checkout.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="javascript/jquery-3.6.0.min.js"></script>
-    <script src="javascript/jquery-ui.min.js"></script>
-    <script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
+    <script src="/javascript/jquery-3.6.0.min.js"></script>
+    <script src="/javascript/jquery-ui.min.js"></script>
+    <script src="/javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
 
-    <script src="javascript/checkout.js"></script> <!--JS Here-->
+    <script src="/javascript/checkout.js"></script> <!--JS Here-->
     <!--icon-->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
@@ -21,14 +23,14 @@
 
 
 </head>
-<body style="background-image:url(image/背景4.jpg)">
+<body style="background-image:url(/image/背景4.jpg)">
     <hr>
     <!-- 標題logo 部分 -->
     <div class="logo-area text-center">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
-                    <a href="index.html"><img src="image/浪跡2.png" alt=""></a> <!--LOGO-->
+                    <a href="index.html"><img src="/image/浪跡2.png" alt=""></a> <!--LOGO-->
                 </div>
             </div>
         </div>
@@ -54,7 +56,7 @@
     </div>
 
     <!--橫幅圖片區域-->
-    <div class="banner-area bg-img" style="background-image:url(image/img/bg-img/cat1.jpeg);">
+    <div class="banner-area bg-img" style="background-image:url(/image/img/bg-img/cat1.jpeg);">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
@@ -115,11 +117,11 @@
         </div>
         <!--餐點內容結束-->
         <!--備註-->
-        <form class="needs-validation novalidate">
+        <form class="needs-validation novalidate" action="/order/saveorder" enctype="multipart/form-data" method="POST">
             <div class="note row justify-content-around">
                 <div class="col-sm-8 widget">
                     <h4 class="mb-3">備註:</h4>
-                    <textarea name="mytext" rows="4" cols="40"></textarea>
+                    <textarea name="note" rows="4" cols="40"></textarea>
                 </div>
             </div>
             <!--備註結束-->
@@ -129,21 +131,21 @@
                     <h4 class="mb-3">訂購資料:</h4>
                     <div class="col-sm-5">
                         <label for="name" class="form-label">姓名:</label>
-                        <input type="text" class="form-control" id="name" placeholder="" value="" required>
+                        <input type="text" class="form-control" id="name" placeholder="" value="${user.cusRealname}" required>
                         <div class="invalid-feedback">
                             *必填
                         </div>
                     </div>
                     <div class="col-sm-5">
                         <label for="mail" class="form-label">信箱:</label>
-                        <input type="email" class="form-control" id="mail" placeholder="" value="" required>
+                        <input type="email" class="form-control" id="mail" placeholder="" value="${user.email}" required>
                         <div class="invalid-feedback">
                             *必填
                         </div>
                     </div>
                     <div class="col-sm-5">
                         <label for="phone" class="form-label">手機:</label>
-                        <input type="tel" class="form-control" id="phone" placeholder="" value="" required>
+                        <input type="tel" class="form-control" id="phone" placeholder="" value="${user.phoneNumber}" required>
                         <div class="invalid-feedback">
                             *必填
                         </div>
