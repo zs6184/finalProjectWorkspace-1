@@ -29,12 +29,12 @@ import tw.springbootfinal.booking.model.Constant;
 @Controller
 @RequestMapping("bookings")
 public class BookingsController {
-	
+
 	@Autowired
 	private BookingService bookingService;
-	
+
 	int ID;
-	
+
 //	查詢全部資料
 //	@GetMapping()
 	@RequestMapping(method = { RequestMethod.GET })
@@ -114,5 +114,4 @@ public class BookingsController {
 		return "redirect:/bookings";
 	}
 
-	
 }

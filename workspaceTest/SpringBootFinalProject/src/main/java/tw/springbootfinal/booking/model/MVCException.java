@@ -1,17 +1,13 @@
 package tw.springbootfinal.booking.model;
 
+/**
+ * @author
+ **/
 public class MVCException extends RuntimeException{
+    public MVCException(String message) {
+        super(message);
+    }
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	public MVCException(String message) {
-		super(message);
-	}
-	
-	public MVCException() {
-		
-	}
+    public MVCException() {
+    }
 }
