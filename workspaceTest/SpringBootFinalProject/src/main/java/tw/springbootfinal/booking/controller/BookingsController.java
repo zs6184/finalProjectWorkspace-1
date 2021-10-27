@@ -54,7 +54,7 @@ public class BookingsController {
 	@PostMapping(produces = "application/json; charset=utf-8")
 	public String create(@RequestBody BookingsDTO bookingsDTO) {
 		bookingService.save(bookingsDTO);
-		return "訂位成功";
+		return "　　訂位成功";
 	}
 
 	// 新增單一資料
