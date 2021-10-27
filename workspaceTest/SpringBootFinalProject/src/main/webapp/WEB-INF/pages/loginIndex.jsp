@@ -68,7 +68,7 @@
 									<button class="btn btn-link dropdown-toggle " type="button"
 										id="cusCenterDropdown" data-bs-toggle="dropdown">${realName}</button>
 									<ul class="dropdown-menu p-0" role="button">
-										<li id="whp1"><a href="/Users/SelectCustomer.controller"
+										<li id="whp1"><a href="/Users/SelectCustomer.controller#information"
 											style="font-size: 1.1em"
 											class="dropdown-item d-flex justify-content-center"
 											target="_self">會員中心</a></li>

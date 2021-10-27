@@ -21,6 +21,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addViewController("/login.Controller").setViewName("login");//登入頁面
 		registry.addViewController("/Users/logout.Controller").setViewName("logout");//登出頁面
 		registry.addViewController("/loginerror.Controller").setViewName("loginerror");//登入失敗頁面
+		registry.addViewController("/Users/ChangePassword.Controller").setViewName("changePassword");//更換密碼頁面
 		
 	}
 

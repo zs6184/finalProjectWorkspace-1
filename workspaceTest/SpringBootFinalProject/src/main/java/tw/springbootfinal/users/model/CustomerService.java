@@ -24,6 +24,9 @@ public class CustomerService {
 	// 透過id搜尋
 	public CustomerBean findById(int cId) {
 		Optional<CustomerBean> op1 = cusReps.findById(cId);
+		if(op1.isEmpty()) {//如果空的就拋出例外
+			throw new UserNotFoundException("Can't Find User;");//自定義例外
+		}
 		return op1.get();
 	}
 	

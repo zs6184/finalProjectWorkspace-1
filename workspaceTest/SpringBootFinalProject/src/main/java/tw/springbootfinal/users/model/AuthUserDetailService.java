@@ -16,22 +16,16 @@ public class AuthUserDetailService implements UserDetailsService {
 	@Autowired
 	private CustomerService cusService;
 	
-//	@Autowired
-//	private EmployeeService empService;
-	
 	//進行帳號密碼驗證
 	@Override 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		CustomerBean cusBean = cusService.getByCusUsername(username);
-		//EmployeeBean empBean = empService.getByEmpUsername(username);
 		
 		UserAuthorityUtils userAuthority = new UserAuthorityUtils();
 		System.out.println("cusRole: "+userAuthority.createAuthorities(cusBean));
 		
-		//User user = new User(cusBean.getCusUsername(), cusBean.getCusPassword(), userAuthority.createAuthorities(cusBean));
 		
-//		Collections.emptyList()
 		return new User(cusBean.getCusUsername(), cusBean.getCusPassword(), userAuthority.createAuthorities(cusBean));
 	}
 

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,6 +66,7 @@ public class CustomerCenterController {
 			cusService.imageDownload(image, cusId, imageName, path);
 
 			m.addAttribute("imageName", imageName);
+			m.addAttribute("cusId", cusId);
 		}
 		
 		return "customerCenter";
@@ -166,6 +168,88 @@ public class CustomerCenterController {
 		System.out.println(resultEmail);
 
 		return resultEmail;
+	}
+	
+	//進入變更密碼時取得圖片
+	@GetMapping("/CheckPassword.Controller")
+	public String processSelectUserImage(HttpSession session, Model m, HttpServletRequest request) {
+		// 取得登入時session層級的username
+		Object attr = session.getAttribute("username");
+		String str = attr.toString();
+		System.out.println("str"+str);
+		CustomerBean cusBean = new CustomerBean();
+		cusBean.setCusUsername(str);// 設定username到Bean
+		// 利用username取得list結果集
+		List<CustomerBean> cus = cusService.findByCustomerCenterUsername(cusBean);
+		m.addAttribute("cus", cus);// 將結果設成屬性給jsp使用
+
+		int cusId = 0;
+		String imageName = null;
+		byte[] image = {};
+		// 取得資料庫資料
+		for (CustomerBean customerBean : cus) {
+			cusId = customerBean.getCusId();
+			imageName = customerBean.getImageName();
+			image = customerBean.getImage();
+			System.out.println("imageName: "+imageName);
+			System.out.println("cusId: "+cusId);
+			System.out.println("image: "+image);
+		}
+		// 如果會員沒有上傳過圖片就使用預設圖片
+		if (image == null) {
+			m.addAttribute("imageName", "husky.jpg");
+		} else {
+			// 抓到專案路徑加上暫存資料夾名稱
+			String path = request.getSession().getServletContext().getRealPath("/") + "downloadTempDir\\";
+			System.out.println(path);
+			cusService.imageDownload(image, cusId, imageName, path);
+
+			m.addAttribute("imageName", imageName);
+		}
+		
+		return "checkPassword";
+	}
+	
+	//變更密碼前的密碼確認
+	@PostMapping(path = "/CheckPasswordBT.Controller")
+	@ResponseBody
+	public String processCheckPassword(@RequestParam("password") String password,HttpSession session) {
+		Object attr = session.getAttribute("username");
+		String str = attr.toString();
+		System.out.println(str);
+		
+		//取得會員資料
+		CustomerBean cusBean = cusService.getByCusUsername(str);
+		String cusPassword = cusBean.getCusPassword();
+		boolean result = new BCryptPasswordEncoder().matches(password, cusPassword);//加密後的密碼比對
+		System.out.println(result);
+		if(result) {
+			return "pass";
+		}
+		return "fail";
+	}
+	
+	//會員中心密碼更新
+	@PostMapping(path = "/UpdatePassword.Controller")
+	@ResponseBody
+	public String processUpdatePassword(@RequestParam("newPassword") String password,HttpSession session) {
+		
+		Object attr = session.getAttribute("username");
+		String str = attr.toString();
+		System.out.println(str);
+		
+		System.out.println("password: "+password);
+		//取得會員資料
+		CustomerBean cusBean = cusService.getByCusUsername(str);
+		int cusId = cusBean.getCusId();
+		
+		cusBean.setCusPassword(password);
+//		//進行加密
+		String encodePwd = new BCryptPasswordEncoder().encode(cusBean.getCusPassword());
+		System.out.println("encodePwd: "+encodePwd);
+		cusBean.setCusPassword(encodePwd);//存回bean
+		cusService.save(cusBean);//更新密碼
+		return "success";
 	}
 
 }

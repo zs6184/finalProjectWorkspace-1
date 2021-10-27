@@ -1,6 +1,13 @@
 ﻿/// <reference path="jquery-3.6.0.min.js" />
 /// <reference path="jquery-ui.min.js" />
 
+//載入變更密碼的表單
+function changePasswordLoad() {
+	console.log("load");
+	var url = "/Users/ChangePassword.Controller";
+	$('#join').load(url); //有點小問題 //如果不抓整個html的話js無法使用
+	return false;
+}
 
 $(function() {
 	//side
@@ -137,7 +144,7 @@ $(function() {
 				}
 			}
 
-			
+
 			//如果不一致就查詢資料庫是否有重複email
 			var dataForm = $(this).serialize();
 			$.ajax({
@@ -189,6 +196,125 @@ $(function() {
 			contentType: false,//上傳圖片必須設成false，default: 'application/x-www-form-urlencoded; charset=UTF-8'，但是我們不要設成這個，new FormData(this)已經幫我們設定好格式
 			success: function(data) {
 				location.href = '/Users/SelectCustomer.controller';
+			},
+			error: function(jqXHR, textStatus, errThrown) {
+				alert(`${textStatus}---${errThrown}`);
+			}
+		});
+		return false;
+	});
+
+	//確認密碼是否正確
+	$("#checkPasswordForm").submit(function() {
+		var checkPassword = $("#checkPassword");
+		var password = checkPassword.val();
+		console.log(password);
+
+		$.ajax({
+			method: "post",
+			url: "/Users/CheckPasswordBT.Controller",
+			data: { "password": password },
+			success: function(data) {
+				console.log(data);
+				if (data == "pass") {
+					checkPassword.removeClass("is-invalid");//移除警告
+					changePasswordLoad();
+					return false;
+				} else {
+					$("#checkPasswordInvalid").html("密碼錯誤");
+					checkPassword.removeClass("is-valid");//移除通過
+					checkPassword.addClass("is-invalid"); //新增警告
+					return false;
+				}
+			},
+			error: function(jqXHR, textStatus, errThrown) {
+				alert(`${textStatus}---${errThrown}`);
+			}
+		});
+		return false;
+	});
+
+
+	//確認密碼是否符合長度
+	$("#newPassword").blur(function() {
+		console.log("blur");
+		var jqNewPassword = $("#newPassword");
+		var jqPasswordAgain = $("#passwordAgain");
+		var newPassword = jqNewPassword.val();
+		var newPasswordAgain = jqPasswordAgain.val();
+		console.log(newPassword.length);
+
+		if (newPassword.length == 0) {
+			console.log("等於0");
+			$("#newPasswordInvalid").html("請輸入 6~20 碼的英文、數字");
+			jqNewPassword.removeClass("is-valid");//移除通過
+			jqNewPassword.addClass("is-invalid"); //新增警告
+			return false;
+		} else if (newPassword.length >= 1 && newPassword.length < 6) {
+			console.log("小於6");
+			$("#newPasswordInvalid").html("請輸入 6~20 碼的英文、數字");
+			jqNewPassword.removeClass("is-valid");//移除通過
+			jqNewPassword.addClass("is-invalid"); //新增警告
+			return false;
+		} else {
+			console.log("其他");
+			jqNewPassword.removeClass("is-invalid");//移除警告
+			jqNewPassword.addClass("is-valid"); //新增通過
+		}
+	});
+
+	//確認密碼是否符合長度
+	$("#passwordAgain").blur(function() {
+		console.log("blur");
+		var jqNewPassword = $("#newPassword");
+		var jqPasswordAgain = $("#passwordAgain");
+		var newPassword = jqNewPassword.val();
+		var newPasswordAgain = jqPasswordAgain.val();
+		console.log(newPassword.length);
+		if (newPassword != newPasswordAgain && newPassword != "") {
+			jqPasswordAgain.removeClass("is-valid");//移除通過
+			jqPasswordAgain.addClass("is-invalid"); //新增警告
+			jqPasswordAgain.focus();
+			return false;
+		} else {
+			jqPasswordAgain.removeClass("is-invalid");//移除警告
+			jqPasswordAgain.addClass("is-valid"); //新增通過
+		}
+
+	});
+
+	//密碼更新
+	$("#changePasswordForm").submit(function() {
+		var jqNewPassword = $("#newPassword");
+		var jqPasswordAgain = $("#passwordAgain");
+		var newPassword = jqNewPassword.val();
+		var newPasswordAgain = jqPasswordAgain.val();
+		//確認密碼是否一致
+		if (newPassword != newPasswordAgain && newPassword != "") {
+			jqPasswordAgain.removeClass("is-valid");//移除通過
+			jqPasswordAgain.addClass("is-invalid"); //新增警告
+			jqPasswordAgain.focus();
+			return false;
+		} else if (newPassword.length == 0) {
+			jqPasswordAgain.removeClass("is-valid");//移除通過
+			jqPasswordAgain.addClass("is-invalid"); //新增警告
+			jqPasswordAgain.focus();
+			return false;
+		} else if (newPassword.length >= 1 && newPassword.length < 6) {
+			console.log("小於6");
+			$("#newPasswordInvalid").html("請輸入 6~20 碼的英文、數字");
+			jqNewPassword.removeClass("is-valid");//移除通過
+			jqNewPassword.addClass("is-invalid"); //新增警告
+			return false;
+		}
+
+		$.ajax({
+			method: "post",
+			url: "/Users/UpdatePassword.Controller",
+			data: { "newPassword": newPassword },
+			success: function(data) {
+				console.log(data);
+				location.href = '/Users/SelectCustomer.controller#information';
 			},
 			error: function(jqXHR, textStatus, errThrown) {
 				alert(`${textStatus}---${errThrown}`);

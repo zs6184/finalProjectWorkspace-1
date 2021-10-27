@@ -61,6 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.rememberMe().tokenValiditySeconds(3600).key("rememberMe-key")
 		.and()
 		.csrf().disable()
+		//.addFilterBefore(getCustomerLoginFilter(), CustomerLoginFilter.class)//在網頁驗證導向之前，添加自定義過濾器
 		.formLogin().loginPage("/login.Controller")
 		.defaultSuccessUrl("/Users/loginIndex.Controller")
 		.failureUrl("/loginerror.Controller")
@@ -96,4 +97,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //	    .userDetailsService(userDetailsService);
 //	}
 	
+	//自定義過濾器，讓recaptcha在spring security之前攔截，處理安全身分驗證
+//	private CustomerLoginFilter getCustomerLoginFilter() throws Exception {
+//		System.out.println("過濾器");
+//		CustomerLoginFilter filter = new CustomerLoginFilter("/login.Controller", "POST");
+//		filter.setAuthenticationManager(authenticationManager());//由spring默認的身分驗證管理
+//		filter.setAuthenticationFailureHandler(new AuthenticationFailureHandler() {
+//			
+//			@Override //當身分驗證錯誤重新導向到別的頁面
+//			public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+//					AuthenticationException exception) throws IOException, ServletException {
+//				response.sendRedirect("login?error");//spring默認的登入失敗導向網址
+//			}
+//		});//新的身分驗證處理器
+//		return filter;
+//	}
+//	
 }

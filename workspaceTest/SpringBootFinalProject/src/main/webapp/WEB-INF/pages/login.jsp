@@ -49,7 +49,8 @@
 					</div>
 				</div>
 				<hr class="mx-5">
-				<form class="mt-5" id="loginForm" action="/login.Controller" method="post">
+				<form class="mt-5" id="loginForm" action="/login.Controller"
+					method="post">
 					<div class="row" id="account">
 						<!-- 帳號 -->
 						<div class="offset-2 col-8">
@@ -77,21 +78,28 @@
 						<!-- checkBox -->
 						<div class="offset-2 col-8">
 							<div class="form-check">
-								<input class="form-check-input" type="checkbox"
-									id="remember-me" name="remember-me"> <label
-									class="form-check-label" for="autoLogin"> 記住我 </label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox"
-									id="notRobot" name="notRobot"> <label
-									class="form-check-label" for="notRobot"> 我不是機器人? </label>
+								<input class="form-check-input" type="checkbox" id="remember-me"
+									name="remember-me"> <label class="form-check-label"
+									for="autoLogin"> 記住我 </label>
 							</div>
 						</div>
-						<!-- 註冊及忘記密碼 -->
-						<div class="text-center mt-3 mb-5" id="status1">
-							<button type="submit" class="btn btn-primary btn-lg"
-								id="submit" value="login">登入</button>
-						</div>
+						<!-- 註冊及忘記密碼  -->
+												<div class="text-center mt-3 mb-5" id="status1">
+													<button class="btn btn-primary btn-lg"
+														 id="submit"
+														value="login" type="submit">登入</button>
+												</div>
+						<!-- -->
+						<!-- 						<div class="text-center mt-3 mb-5" id="status1"> -->
+						<!-- 							<button class="g-recaptcha btn btn-primary btn-lg" -->
+						<!-- 								data-sitekey="6Lcnq94cAAAAAJNYUP_oO0M2EDZ53BrQguAAKfqq" -->
+						<!-- 								data-callback='onSubmit' data-action='submit' id="submit" -->
+						<!-- 								value="login"  type="submit">登入</button> -->
+						<!-- 						</div> -->
+<!-- 						<div class="text-center mt-3 mb-5" id="status1"> -->
+<!-- 							<button class="btn btn-primary btn-lg" id="submit" value="login" -->
+<!-- 								type="submit">登入</button> -->
+<!-- 						</div> -->
 
 						<div class="text-center mb-4">
 							<a href="/createCusAccount.html">註冊</a> <a href="#" class="ms-5">忘記您的密碼?</a>
@@ -103,5 +111,37 @@
 
 		</div>
 	</div>
+	<!-- 
+	<script type="text/javascript">
+		function onSubmit(token) {
+			console.log("onsubmit");
+			document.getElementById("loginForm").submit();
+		}
+	</script> -->
+	<!--  <script type="text/javascript">
+		function onSubmit(token) {
+			console.log("token" + token);
+
+			$.ajax({
+				method : "post",
+				url : "/reCAPTCHA.controller",
+				data : {
+					"token" : token
+				},
+				success : function(data) {
+					if(data.score>0.7){
+						//location.href = '/Users/loginIndex.Controller';
+						$("#loginForm").submit();
+					}
+					console.log("repa");
+					console.log(data.score);
+				},
+				error : function(jqXHR, textStatus, errThrown) {
+					alert(`${textStatus}---${errThrown}`)
+				}
+
+			});
+		}
+	</script>-->
 </body>
 </html>
