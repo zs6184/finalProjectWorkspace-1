@@ -1,18 +1,13 @@
 // JavaScript source code
 $(function() {
 //datepicker jQuery
-	$("input[name='releaseTime']").datepicker({
-		dateFormat: 'yy/mm/dd',
-		changeYear: true,
-		changeMonth: true
-	});
-
+	
 
 
 //變更按鈕對應表單的action
 
 $("#insertBtn").click(function(){
-	$("#modalForm").attr("action","insertAnnouncements.controller");
+	$("#modalForm").attr("action","/backstage/announcements/insertAnnouncements.controller");
 	$("#modalForm #idSection").prop("hidden","hidden");
 	$("#announcementsAdd input").attr("placeholder","");
 	$("#imgPreview img").attr("src","");
@@ -20,15 +15,15 @@ $("#insertBtn").click(function(){
 
 	
 });
-	
 	//上傳檔案預覽圖片
-	$("#mypicture").change(function(){
+	$("#mypic").change(function(){
 		previewImg(this.files);
 	});
+
+	
 });
 	
 	
-
 
 //預覽上傳檔案圖片
 function previewImg(files){
@@ -49,22 +44,23 @@ function del(obj) {
 	console.log(ID);
 			$.ajax({
 			type:"GET",
-			url:"/NoXmlSpringMvcProject/announcementsDeletebyid.controller",
+			url:"/backstage/announcements/deletebyid.controller",
 			datatype:"JSON",
 			contentType: "application/json",
 			data:{"id":`${ID}`}
 		})
 	$(obj).parents("tr").remove();
+	window.location.reload()
 }
 //選取此筆資料
 function select(obj){
-	$("#modalForm").attr("action","announcementsUpdateone.controller");
+	$("#modalForm").attr("action","/backstage/announcements/updateone.controller");
 	$("#modalForm #idSection").removeAttr("hidden");
 	var ID =$(obj).parent("td").siblings(".ID").text();
 	console.log(ID);
 		$.ajax({
 			type:"GET",
-			url:"/NoXmlSpringMvcProject/announcementsSelectbyid.controller",
+			url:"/backstage/announcements/selectbyid.controller",
 			datatype:"JSON",
 			contentType: "application/json",
 			data:{"id":`${ID}`},
@@ -75,7 +71,7 @@ function select(obj){
 				$("#modalForm #empID").val(parsed.empID);
 				$("#modalForm #headline").val(parsed.headline);
 				$("#modalForm #releaseTime").val(parsed.releaseTime);
-				$("#imgPreview img").attr("src",`data:image/png;base64,${parsed.picture}`);
+				$("#imgPreview img").attr("src",`data:image/png;base64,${parsed.pic}`);
 				$("#modalForm #articleCont").val(parsed.articleCont);
 		
 				

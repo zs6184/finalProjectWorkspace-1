@@ -24,6 +24,8 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import tw.springbootfinal.pet.model.Pets;
 import tw.springbootfinal.pet.model.PetsService;
+import tw.springbootfinal.users.model.CustomerBean;
+import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
 @RequestMapping("/backstage/pet")
@@ -32,6 +34,8 @@ public class BackPetsController {
 		
 	@Autowired
 	private PetsService pService;
+	@Autowired
+	private CustomerService cService;
 //--------------------------------------------------------------
 	
 	//取得所有寵物資料
@@ -49,6 +53,30 @@ public class BackPetsController {
 		m.addAttribute("sexSet",sexSet);
 
 		return  "BackPetInfo";
+	}
+	
+	//AJAX取得全部會員資料後續檢測+填值用
+	@GetMapping("/getAllCustomerData.controller")
+	public void processGetAllCus(HttpServletResponse response)throws IOException {
+		response.setContentType("text/html;charset=utf-8");
+		List<CustomerBean> arrCus = cService.findAll();
+		JSONObject cusData = new JSONObject();
+		cusData.put("cusData", arrCus);
+		PrintWriter out = response.getWriter();
+		out.println(cusData);
+		out.close();
+	}
+	
+	//AJAX取得所有未領養寵物資料後續填值用
+	@GetMapping("/getAllPetAjax")
+	public void processGetAllPet(HttpServletResponse response) throws IOException{
+		response.setContentType("text/html;charset=utf-8");
+		List<Pets> allPets = pService.findNotAdopt();
+		JSONObject petData = new JSONObject();
+		petData.put("petData", allPets);
+		PrintWriter out = response.getWriter();
+		out.println(petData);
+		out.close();
 	}
 	
 	//使用條件進行查詢
@@ -96,7 +124,7 @@ public class BackPetsController {
 	
 	//更新寵物資料
 	@PostMapping("/updateone.controller")
-	public String processUpdateOne(Pets temp,MultipartFile pic) throws IOException {
+	public String processUpdateOne(Pets temp,@RequestParam("mypic") MultipartFile pic) throws IOException {
 		String jsonStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue)).replaceAll("\"\"","null"); // 將所有空白轉為null
 		Pets transfer = JSON.parseObject(jsonStr, Pets.class);
 		pService.updateOne(transfer, pic);

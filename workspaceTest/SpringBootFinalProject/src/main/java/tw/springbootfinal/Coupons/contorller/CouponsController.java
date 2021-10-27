@@ -1,5 +1,6 @@
 package tw.springbootfinal.Coupons.contorller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import tw.springbootfinal.Coupons.model.CouponsService;
 
 @Controller
 public class CouponsController {
+	
 	@Autowired
 	CouponsService couponsService;
 	
@@ -49,6 +51,12 @@ public class CouponsController {
 	public String deleteCoupons(@RequestParam("couponId") int id) {
 		couponsService.deleteCoupon(id);
 		return null;
+	}
+	//檢查折扣碼
+	@RequestMapping(path = "/back.checkcoupon", method = RequestMethod.POST)
+	@ResponseBody
+	public ArrayList<Object> checkcoupon(@RequestParam("ccode") int id) {
+		return couponsService.checkCoupon(id);	
 	}
 
 }

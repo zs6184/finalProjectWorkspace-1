@@ -2,15 +2,20 @@ package tw.springbootfinal.users.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import tw.springbootfinal.order.model.orderBean;
 
 @Entity
 @Table(name = "Customers")
@@ -62,6 +67,19 @@ public class CustomerBean implements Serializable {
 
 	@Column(name = "missing_count")
 	private int noShow;
+	
+	@OneToMany(mappedBy = "customer")
+	private Set<orderBean> orderBean =new LinkedHashSet<orderBean>();
+
+	
+
+	public Set<orderBean> getOrderBean() {
+		return orderBean;
+	}
+
+	public void setOrderBean(Set<orderBean> orderBean) {
+		this.orderBean = orderBean;
+	}
 
 	@Column(name = "role")
 	private String role;

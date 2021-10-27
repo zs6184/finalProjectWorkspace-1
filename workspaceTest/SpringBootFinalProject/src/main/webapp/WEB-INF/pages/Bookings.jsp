@@ -212,16 +212,17 @@ $(document).ready( function () {
 							<tbody class="align-middle">
 								<c:forEach var="arrBook" items="${arrBook}">
 									<tr>
-										<td class="ID">${arrBook.bookingsID}</td>
-										<td>${arrBook.cusID}</td>
-										<td>${arrBook.cusRealName}</td>
-										<td>${arrBook.phone}</td>
-										<td>${arrBook.bookingsNum}</td>
-										<td>${arrBook.bookingsDate}</td>
-										<td>${arrBook.bookingsTime}</td>
-										<td>${arrBook.keepStatus}</td>
-										<td>${arrBook.empID}</td>
-										<td>${arrBook.note}</td>
+										<td id="bookingsID_${arrBook.bookingsID}" class="ID">${arrBook.bookingsID}</td>
+										<td id="cusID_${arrBook.bookingsID}" >${arrBook.cusID}</td>
+										<td id="cusRealName_${arrBook.bookingsID}" >${arrBook.cusRealName}</td>
+										<td id="phone_${arrBook.bookingsID}" >${arrBook.phone}</td>
+										<td id="bookingsNum_${arrBook.bookingsID}" >${arrBook.bookingsNum}</td>
+										<td id="bookingsDate_${arrBook.bookingsID}" >${arrBook.bookingsDate}</td>
+										<input type="hidden" id="bookingsTime_${arrBook.bookingsID}" value="${arrBook.bookingsTime}"/>
+										<td >${arrBook.bookingsTimeText}</td>
+										<td id="keepStatus_${arrBook.bookingsID}" >${arrBook.keepStatus}</td>
+										<td id="empID_${arrBook.bookingsID}" >${arrBook.empID}</td>
+										<td id="note_${arrBook.bookingsID}" >${arrBook.note}</td>
 										<td>
 											<button type="button" class="btn btn-danger updateBtn"
 												data-bs-toggle="modal" data-bs-target="#bookingsAdd"
@@ -233,11 +234,17 @@ $(document).ready( function () {
 								</c:forEach>
 							</tbody>
 						</table>
-
 					</div>
 				</div>
 			</div>
 
+			<div id="loading"  class="overlay-hide">
+				<div class="d-flex justify-content-center">
+					<div class="spinner-border" role="status">
+						<span class="visually-hidden">Loading...</span>
+					</div>
+				</div>
+			</div>
 			<!--訂位資料更新Modal-->
 		<div class="modal fade" id="bookingsAdd" tabindex="-1">
 				<div class="modal-dialog modal-lg">
@@ -246,7 +253,7 @@ $(document).ready( function () {
 							<h3 class="modal-title" id="bookingsModalTitle">訂位資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-						<form class="add" action="insertBookings.controller" method="POST"
+						<form class="add" action="bookings/update" method="POST"
 							id="modalForm">
 							<div class="modal-body">
 								<div class="row">
@@ -254,25 +261,24 @@ $(document).ready( function () {
 										<fieldset>
 											<legend>訂位資料</legend>
 											<div id="idSection">
-												<label for="bookingsID" class=""><span>訂位編號</span></label> <input
-													type="text" id="bookingsID" name="bookingsID" disabled />
+												<label for="bookingsID" class=""><span>訂位編號</span></label>
+												<input type="text" id="bookingsID" name="bookingsID" readonly required/>
 											</div>
 											<div>
-												<label for="cusId" class=""><span>會員ID</span></label> <input
-													type="text" id="cusId" name="cusId"
-													oninput="value=value.replace(/[^\d]/g,'')" min="4" max="13"/>
+												<label for="cusId" class=""><span>會員ID</span></label>
+												<input type="text" id="cusId" name="cusId" oninput="value=value.replace(/[^\d]/g,'')" min="4" max="13" autocomplete="off"/>
 											</div>
 											<div>
 												<label for="cusRealName" class=""><span>姓名</span></label> <input
-													type="text" id="cusRealName" name="cusRealName" />
+													type="text" id="cusRealName" name="cusRealName" autocomplete="off" required/>
 											</div>
 											<div>
 												<label for="phone" class=""><span>電話</span></label> <input
-													type="text" id="phone" name="phone" min="10" max="13"/>
+												type="text" id="phone" name="phone" min="10" max="13" autocomplete="off" required/>
 											</div>
 											<div>
 												<label for="bookingsNum" class=""><span>人數</span></label> <select
-													id="bookingsNum" name="bookingsNum">
+														id="bookingsNum" name="bookingsNum" required>
 													<option value="1">1</option>
 													<option value="2">2</option>
 													<option value="3">3</option>
@@ -283,19 +289,22 @@ $(document).ready( function () {
 											</div>
 											<div>
 												<label for="bookingsDate" class=""><span>預約日期</span></label> <input
-													type="text" id="bookingsDate" name="bookingsDate"
-													data-provide="datepicker" />
+													type="text" autocomplete="off" id="bookingsDate" name="bookingsDate"
+													data-provide="datepicker" required/>
 											</div>
 											<div>
 												<label for="bookingsTime" class=""><span>預約時間</span></label> <select
-													id="bookingsTime" name="bookingsTime">
-													<option value="11:00">11:00</option>
-													<option value="12:00">12:00</option>
-													<option value="13:00">13:00</option>
-													<option value="14:00">14:00</option>
-													<option value="15:00">15:00</option>
-													<option value="16:00">16:00</option>
-													<option value="17:00">17:00</option>
+													id="bookingsTime" name="bookingsTime" required>
+													<option value="1">11:00</option>
+													<option value="2">12:00</option>
+													<option value="3">13:00</option>
+													<option value="4">14:00</option>
+													<option value="5">15:00</option>
+													<option value="6">16:00</option>
+													<option value="7">17:00</option>
+													<option value="8">18:00</option>
+													<option value="9">19:00</option>
+													<option value="10">20:00</option>
 												</select>
 											</div>
 											<div>

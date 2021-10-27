@@ -23,7 +23,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
 	integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link href="/stylesheet/customerCenter.css" rel="stylesheet" />
 
 <!--javaScript掛到這邊-->
 <link rel="stylesheet"
@@ -31,7 +30,6 @@
 	integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="/javascript/index.js"></script>
-
 
 
 
@@ -63,25 +61,9 @@
 					<div class="col-12">
 
 						<ul>
-							<li>
-								<div class="dropdown absolute">
-									<button class="btn btn-link dropdown-toggle " type="button"
-										id="cusCenterDropdown" data-bs-toggle="dropdown">${realName}</button>
-									<ul class="dropdown-menu p-0" role="button">
-										<li id="whp1"><a href="/Users/SelectCustomer.controller#information"
-											style="font-size: 1.1em"
-											class="dropdown-item d-flex justify-content-center"
-											target="_self">會員中心</a></li>
-										<li id="whp2" class="m-0">
-											<form action="/Users/logout.Controller" method="post">
-												<button type="submit"
-													class="dropdown-item d-flex justify-content-center"
-													value="logout">登出</button>
-											</form>
-										</li>
-									</ul>
-								</div>
-							</li>
+							<li><a href="/Users/SelectCustomer.controller"
+								target="_self">${realName}</a> <a
+								href="/Users/logoutIndex.Controller" target="_self">登出</a></li>
 							<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
 							<li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
 							<li><a href="/Users/loginIndex.Controller" target="_self">餐點介紹</a></li>
@@ -317,21 +299,48 @@
 					onclick="getData5()">&nbsp; 5&nbsp;</button></span> <span><button
 					onclick="getData5()">終頁</button></span>
 
-			<hr style="margin-bottom: 0;">
+		        <br> <br> <br>
+     
+       
+          <br> <br> <br>
+     
+       <hr>
+          <div style="width:1100px;margin:0 auto">
 
-			<div
-				style="text-align: center; background-color: rgb(6, 121, 121, .1);">
-				<br>
-				<h1 style="font-size: 68px; margin: 20px 0 0 0;">地圖顯示</h1>
-				<br> <br>
-
-				<iframe src="https://snazzymaps.com/embed/344847" width="100%"
-					height="690px" style="border: none;"></iframe>
-				<br> <br> <br> <br> <br> <br>
-			</div>
-			<hr STYLE="margin-top: 0;">
-			<br> <br> <br> <br> <br> <br>
-			<hr>
+<br><br>
+        <ul>
+            <li style="float:left;margin-right: 30px;">
+                <iframe src="https://snazzymaps.com/embed/344847" width="500px" height="500px"
+                    style="border:none;"></iframe>
+            </li>
+            <li style="float:left;height: 500px;width: 500px; background-color:  rgba(6, 121, 121,.8);">
+                <ul>
+                    <li style="height:50px;">
+                        <h2 style="margin-top:20px;color: ivory;">浪跡寵物餐廳</h2>
+                    </li>
+                    <li>
+                        <p style="margin-top:0px;color: ivory;font-size: 20px;">地址:嘉義市嘉義市西區博愛路二段467號</p>
+                    </li>
+                    <hr style="width: 430px;color: white;height: 8px;margin-bottom:5px ;">
+                    <li>
+                        <h4 style="color: white;">&lt交通資訊&gt - 步行 </h4>
+                        <p style="font-size: 20px;color: white;">從後火車站＞中興路左轉＞沿博愛路一段＞沿博愛路二段</p>
+                        <hr style="width: 430px;color: white;height: 5px;">
+                        <h4 style="color: white;">&lt交通資訊&gt - 公車 </h4>
+                        <p style="font-size: 20px;color: white;">可以搭乘嘉義客運或公車，往朴子.布袋方向，在家樂福站下車</p>
+                        <hr style="width: 430px;color: white;height: 5px;">
+                        <span style="color: white;font-size: 20px;">&lt預約電話&gt </span>
+                        <span style="font-size: 20px;color: white;">0987-654-321</span><br>
+                        <span style="color: white;font-size: 20px;">&lt營業時間&gt </span>
+                        <span style="font-size: 20px;color: white;">週一到週五早上11:00-下午7:00</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+ <div style="clear: both;"></div>
+    <br><br><br>
+    </div>
+			
 			<!--網頁底部輪播  -->
 
 			<div class=" footer">
@@ -378,24 +387,10 @@
 										<li><a href="/Users/loginIndex.Controller" target="_self">餐點介紹</a></li>
 										<li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
 										<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
-										<li><div class="dropdown absolute">
-												<button class="btn btn-link dropdown-toggle text-light"
-													type="button" id="cusCenterDropdown2"
-													data-bs-toggle="dropdown">${realName}</button>
-												<ul class="dropdown-menu p-0" role="button">
-													<li id="whp3"><a
-														href="/Users/SelectCustomer.controller"
-														class="text-dark dropdown-item d-flex justify-content-center"
-														target="_self">會員中心</a></li>
-													<li id="whp4" class="m-0">
-														<form action="/Users/logout.Controller" method="post">
-															<button type="submit"
-																class="dropdown-item d-flex justify-content-center"
-																value="logout">登出</button>
-														</form>
-													</li>
-												</ul>
-											</div></li>
+										<li>
+											<a href="/Users/SelectCustomer.controller" target="_self">${realName}</a>
+											<a href="/Users/logoutIndex.Controller" target="_self">登出</a>
+										</li>
 									</ul>
 								</div>
 							</div>

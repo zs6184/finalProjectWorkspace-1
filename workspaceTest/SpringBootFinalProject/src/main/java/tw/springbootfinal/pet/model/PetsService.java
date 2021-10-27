@@ -19,7 +19,7 @@ public class PetsService {
 		return pRepo.findAll();
 	}
 	
-	//取得未領養寵物資料
+	//取得全部未領養寵物資料
 	public List<Pets> findNotAdopt(){
 		return pRepo.findByAdoptStatus("未領養");
 	}
@@ -64,7 +64,7 @@ public class PetsService {
 		pRepo.save(check);
 	}
 	
-	//根據ID刪除資廖
+	//根據ID刪除資料
 	public void deleteById(int id) {
 		pRepo.deleteById(id);
 	}

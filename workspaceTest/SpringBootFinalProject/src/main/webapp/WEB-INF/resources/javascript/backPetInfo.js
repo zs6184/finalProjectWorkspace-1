@@ -71,7 +71,7 @@ $(function() {
 	//抓取cusData後續檢測使用
 	$.ajax({
 		type: "GET",
-		url: "/NoXmlSpringMvcProject/getAllCustomerData.controller",
+		url: "/backstage/pet/getAllCustomerData.controller",
 		datatype: "JSON",
 		contentType: "application/json",
 		success: function(data) {

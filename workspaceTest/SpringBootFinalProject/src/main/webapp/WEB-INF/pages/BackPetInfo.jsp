@@ -143,12 +143,12 @@
 							<span class="items">寵物管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist04" class="list-unstyled collapse">
-							<li><a href="/backPetInfo.html" class="itemDetails">寵物資訊總覽</a>
+							<li><a href="/backstage/pet/backpetinfo.controller" class="itemDetails">寵物資訊總覽</a>
 							</li>
 							<li><a href="#" class="itemDetails">文章發佈</a></li>
 							<li><a href="#" class="itemDetails">文章更新</a></li>
 							<li><a href="#" class="itemDetails">寵物領養資訊</a></li>
-							<li><a href="#" class="itemDetails">領養預約總覽</a></li>
+							<li><a href="/backstage/reservation/getAll" class="itemDetails">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 					<li class="m-0"><a href="#" class="center"> <i

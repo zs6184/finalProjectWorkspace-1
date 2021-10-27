@@ -70,6 +70,8 @@ public class CouponsController {
 		ArrayList<Object> checkCoupon = couponsService.checkCoupon(id);
 		return checkCoupon;
 	}
+	
+	
 
 //	public String addToCart(@RequestParam("id") String id, @RequestParam("num") int num, RedirectAttributes ra) {
 //		ra.addAttribute("¿é¤Jkey", "¿é¤J­È");
