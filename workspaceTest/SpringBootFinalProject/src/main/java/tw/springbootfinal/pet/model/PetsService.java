@@ -64,7 +64,7 @@ public class PetsService {
 		pRepo.save(check);
 	}
 	
-	//根據ID刪除資廖
+	//根據ID刪除資料
 	public void deleteById(int id) {
 		pRepo.deleteById(id);
 	}

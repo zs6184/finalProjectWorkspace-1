@@ -1,36 +1,41 @@
 package tw.springbootfinal.reservation.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
-
-import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "Adopt_Reservation")
-@Component
-public class AdoptReservation implements Serializable{
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	private int cusId;
+@IdClass(ReservationMultiKeyClass.class)
+public class AdoptReservation implements Serializable {
+
+	private Integer cusId;
+	private String reserveTime;
+	private Integer petId;
 	private String petName;
 	private String cusRealname;
-	@Id
-	private LocalDateTime reserveTime;
 	private String phone;
 	private String keepStatus;
 
-	
-	public int getCusId() {
+	@Id
+	public Integer getCusId() {
 		return cusId;
 	}
 
-	public void setCusId(int cusId) {
+	public void setCusId(Integer cusId) {
 		this.cusId = cusId;
+	}
+
+	@Id
+	public String getReserveTime() {
+		return reserveTime;
+	}
+
+	public void setReserveTime(String reserveTime) {
+		this.reserveTime = reserveTime;
 	}
 
 	public String getPetName() {
@@ -49,14 +54,6 @@ public class AdoptReservation implements Serializable{
 		this.cusRealname = cusRealname;
 	}
 
-	public LocalDateTime getReserveTime() {
-		return reserveTime;
-	}
-
-	public void setReserveTime(LocalDateTime reserveTime) {
-		this.reserveTime = reserveTime;
-	}
-
 	public String getPhone() {
 		return phone;
 	}
@@ -71,6 +68,21 @@ public class AdoptReservation implements Serializable{
 
 	public void setKeepStatus(String keepStatus) {
 		this.keepStatus = keepStatus;
+	}
+
+	public Integer getPetId() {
+		return petId;
+	}
+
+	public void setPetId(Integer petId) {
+		this.petId = petId;
+	}
+
+	// ToString
+	@Override
+	public String toString() {
+		return "AdoptReservation [cusId=" + cusId + ", reserveTime=" + reserveTime + ", petName=" + petName
+				+ ", cusRealname=" + cusRealname + ", phone=" + phone + ", keepStatus=" + keepStatus + "]";
 	}
 
 }

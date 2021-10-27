@@ -77,7 +77,7 @@ public class AnnouncementsController {
 	 * 更新資料
 	 */
 	@PostMapping("/updateone.controller")
-	public String processUpdateOne(Announcements temp,MultipartFile pic) throws IOException {
+	public String processUpdateOne(Announcements temp,@RequestParam("mypic") MultipartFile pic) throws IOException {
 		String jsonStr = (JSON.toJSONString(temp,SerializerFeature.WriteMapNullValue)).replaceAll("\"\"","null");
 		Announcements transfer = JSON.parseObject(jsonStr, Announcements.class);
 		aService.updateOne(transfer, pic);

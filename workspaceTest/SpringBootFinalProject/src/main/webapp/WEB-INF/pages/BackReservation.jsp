@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>寵物資訊管理</title>
+<title>領養預約紀錄管理</title>
 <!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -20,7 +20,7 @@
 	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
 <!--自訂樣式表-->
 <link href="/stylesheet/backstage.css" rel="stylesheet" />
-<link href="/stylesheet/backPetInfo.css" rel="stylesheet" />
+<link href="/stylesheet/backReservation.css" rel="stylesheet" />
 <!--<script src="/javascript/bootstrap.min.js"></script>-->
 <script src="/javascript/jquery-3.6.0.min.js"></script>
 <script src="/javascript/jquery-ui.min.js"></script>
@@ -30,7 +30,7 @@
 <script type="text/javascript"
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <!--自訂js-->
-<script src="/javascript/backPetInfo.js"></script>
+<script src="/javascript/BackReservation.js"></script>
 <script src="/javascript/backstage.js"></script>
 </head>
 <body>
@@ -148,7 +148,7 @@
 							<li><a href="#" class="itemDetails">文章發佈</a></li>
 							<li><a href="#" class="itemDetails">文章更新</a></li>
 							<li><a href="#" class="itemDetails">寵物領養資訊</a></li>
-							<li><a href="/backstage/reservation/getAll" class="itemDetails">領養預約總覽</a></li>
+							<li><a href="#" class="itemDetails">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 					<li class="m-0"><a href="#" class="center"> <i
@@ -168,37 +168,36 @@
 		</div>
 		<!-- container right -->
 		<div class="containerRight">
+<!-- 			<div class="container-fluid"> -->
+<!-- 				查詢欄位 -->
+<!-- 				<div style="margin-top: 20px;"> -->
+<!-- 					<form action="/backstage/pet/searchdata.controller" method="POST" id="srhForm"> -->
+<!-- 						<div class="row justify-content-start"> -->
+<!-- 							<div class="col-1 text-center"> -->
+<!-- 								<select name="category" id="srhCategory"> -->
+<!-- 									<option value="">不限類別</option> -->
+<%-- 									<c:forEach var="cateSet" items="${cateSet}"> --%>
+<%-- 										<option value="${cateSet}" name="${cateSet}">${cateSet}</option> --%>
+<%-- 									</c:forEach> --%>
+<!-- 								</select> -->
+<!-- 							</div> -->
+<!-- 							<div class="col-1 text-center"> -->
+<!-- 								<select name="sex" id="srhSex"> -->
+<!-- 									<option value="">不限性別</option> -->
+<%-- 									<c:forEach var="sexSet" items="${sexSet}"> --%>
+<%-- 										<option value="${sexSet}" name="${sexSet}">${sexSet}</option> --%>
+<%-- 									</c:forEach> --%>
 
-			<div class="container-fluid">
-				<!-- 查詢欄位 -->
-				<div style="margin-top: 20px;">
-					<form action="/backstage/pet/searchdata.controller" method="POST" id="srhForm">
-						<div class="row justify-content-start">
-							<div class="col-1 text-center">
-								<select name="category" id="srhCategory">
-									<option value="">不限類別</option>
-									<c:forEach var="cateSet" items="${cateSet}">
-										<option value="${cateSet}" name="${cateSet}">${cateSet}</option>
-									</c:forEach>
-								</select>
-							</div>
-							<div class="col-1 text-center">
-								<select name="sex" id="srhSex">
-									<option value="">不限性別</option>
-									<c:forEach var="sexSet" items="${sexSet}">
-										<option value="${sexSet}" name="${sexSet}">${sexSet}</option>
-									</c:forEach>
-
-								</select>
-							</div>
-							<div class="col-1 text-center">
-								<button type="submit" class="btn btn-info text-white btn-sm"
-									id="srhBtn">搜尋</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
+<!-- 								</select> -->
+<!-- 							</div> -->
+<!-- 							<div class="col-1 text-center"> -->
+<!-- 								<button type="submit" class="btn btn-info text-white btn-sm" -->
+<!-- 									id="srhBtn">搜尋</button> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</form> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<!-- 主頁內容 -->
 			<div class="container-fluid ">
 				<div class="row">
@@ -208,41 +207,31 @@
 								<tr>
 									<th scope="col">寵物編號</th>
 									<th scope="col">寵物名</th>
-									<th scope="col">類別</th>
-									<th scope="col">品種</th>
-									<th scope="col">性別</th>
-									<th scope="col">年紀</th>
-									<th scope="col">絕育狀態</th>
-									<th scope="col">領養狀態</th>
-									<th scope="col">領養會員ID</th>
-									<th scope="col">領養會員姓名</th>
-									<th scope="col">領養日期</th>
-									<th scope="col" class="notetable">備註</th>
+									<th scope="col">會員編號</th>
+									<th scope="col">會員姓名</th>
+									<th scope="col">會員連絡電話</th>
+									<th scope="col">預約日期</th>
+									<th scope="col">赴約狀態</th>
 									<th scope="col">
 										<button type="button" class="btn btn-primary btn"
-											data-bs-toggle="modal" data-bs-target="#petInfoAdd"
+											data-bs-toggle="modal" data-bs-target="#ReserveAdd"
 											id="insertBtn">新增</button>
 									</th>
 								</tr>
 							</thead>
 							<tbody class="align-middle">
-								<c:forEach var="arrPet" items="${arrPet}">
+								<c:forEach var="arrRes" items="${arrRes}">
 									<tr>
-										<td class="ID">${arrPet.petId}</td>
-										<td class="NAME">${arrPet.petName}</td>
-										<td>${arrPet.category}</td>
-										<td>${arrPet.species}</td>
-										<td>${arrPet.sex}</td>
-										<td>${arrPet.age}</td>
-										<td>${arrPet.fixStatus}</td>
-										<td>${arrPet.adoptStatus}</td>
-										<td>${arrPet.cusId}</td>
-										<td>${arrPet.cusName}</td>
-										<td>${arrPet.adoptDate}</td>
-										<td class="notetable">${arrPet.note}</td>
+										<td>${arrRes.petId}</td>
+										<td>${arrRes.petName}</td>
+										<td class="ID">${arrRes.cusId}</td>
+										<td class="NAME">${arrRes.cusRealname}</td>
+										<td>${arrRes.phone}</td>
+										<td class="DATE">${arrRes.reserveTime}</td>
+										<td>${arrRes.keepStatus}</td>
 										<td>
 											<button type="button" class="btn btn-danger updateBtn"
-												data-bs-toggle="modal" data-bs-target="#petInfoAdd"
+												data-bs-toggle="modal" data-bs-target="#ReserveAdd"
 												onclick="select(this)">更新</button>
 											<button type="button" class="btn btn-danger deleteBtn"
 												data-bs-toggle="modal" data-bs-target="#deleteAlert"
@@ -257,128 +246,64 @@
 				</div>
 			</div>
 
-			<!--寵物資料更新Modal-->
-			<div class="modal fade" id="petInfoAdd" tabindex="-1">
+			<!--新增預約紀錄Modal-->
+			<div class="modal fade" id="ReserveAdd" tabindex="-1">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h3 class="modal-title" id="petModalTitle">寵物資料</h3>
+							<h3 class="modal-title" id="petModalTitle">預約看寵資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-						<form class="add" action="/backstage/pet/insertPetInfo.controller" method="POST"
-							id="modalForm" enctype="multipart/form-data">
-							<div class="modal-body">
-								<div class="row">
-									<div class="text-center" id="mainbox">
-										<fieldset>
-											<legend>基本資料</legend>
-											<div id="idSection">
-												<label for="petId"><span>寵物編號</span></label> <input
-													type="text" id="petId" name="petId" readonly />
-											</div>
-											<div>
-												<label for="petName"><span>*寵物名</span></label> <input
-													type="text" id="petName" name="petName"
-													class="requiredValue" />
-											</div>
-											<div>
-												<label for="category"><span>*類別</span></label> <input
-													type="text" id="category" name="category"
-													class="requiredValue" />
-											</div>
-											<div>
-												<label for="species"><span>*品種</span></label> <input
-													type="text" id="species" name="species"
-													class="requiredValue" />
-											</div>
-											<div>
-												<label for="sex"><span>*性別</span></label> <select id="sex"
-													name="sex" class="requiredValue" required>
-													<option value="" disabled selected></option>
-													<option value="M">Male</option>
-													<option value="F">Female</option>
-												</select>
-											</div>
-											<div>
-												<label for="age"><span>*年齡</span></label> <select id="age"
-													name="age" class="requiredValue" required>
-													<option value="" disabled selected></option>
-													<option value="幼年">幼年</option>
-													<option value="成年">成年</option>
-													<option value="老年">老年</option>
-												</select>
-											</div>
-											<div>
-												<label for="fixStatus"><span>*絕育狀態</span></label> <select
-													id="fixStatus" name="fixStatus" class="requiredValue"
-													required>
-													<option value="" disabled selected></option>
-													<option value="已結紮">已結紮</option>
-													<option value="未結紮">未結紮</option>
-												</select>
-											</div>
-											<div>
-												<label for="adoptStatus"><span>*領養狀態</span></label> <select
-													id="adoptStatus" name="adoptStatus" class="requiredValue"
-													required>
-													<option value="" disabled selected></option>
-													<option value="已領養">已領養</option>
-													<option value="未領養">未領養</option>
-												</select>
-											</div>
-										</fieldset>
-										<hr />
-										<fieldset>
-											<legend>領養資料</legend>
-											<div>
-												<label for="cusId" class=""><span>領養會員ID</span></label> <input
-													type="text" id="cusId" name="cusId"
-													oninput="value=value.replace(/[^\d]/g,'')" />
-											</div>
-											<div>
-												<label for="cusName" class=""><span>領養會員姓名</span></label> <input
-													type="text" id="cusName" name="cusName" />
-											</div>
-											<div>
-												<label for="adoptDate" class=""><span>領養日期</span></label> <input
-													type="text" id="adoptDate" name="adoptDate"
-													data-provide="datepicker" />
-											</div>
-										</fieldset>
-										<hr />
-										<fieldset></fieldset>
-										<legend>相片</legend>
-										<div class="row">
-											<div class="col-6 justify-content-center">
-												<label for="mypic" class="btn btn-outline-success text-center">選擇圖片</label>
-												<input type="file" name="mypic" id="mypic" accept="image/*" style="display:none"/><br>
-											</div>
-											<div class="col-6 justify-content-center">
-												<div id="imgPreview" class="border" style="width:300px; height:200px;">
-													<img src="" style="width:100%;height:100%;" alt="圖片預覽區域"/>
-												</div>
-											</div>
+					<form action="/backstage/reservation/addorupdate" method="POST" id="modalForm">
+						<div class="row">
+							<div class="text-center" id="mainbox">
+								<fieldset>
+									<legend>寵物資訊</legend>
+										<div>
+											<label for="petId"><span>*寵物編號</span></label> 
+											<input type="text" id="petId" name="petId" value="${thePet.petId}" 
+												oninput="value=value.replace(/[^\d]/g,'')" class="requiredValue" readonly />
 										</div>
-										<hr />
-										<fieldset>
-											<legend>備註</legend>
-											<textarea id="note" name="note"></textarea>
-										</fieldset>
-										<div class="modal-footer">
-											<div class="container-fluid">
-												<div class="row justify-content-start">
-													<div class="offset-4 col-4">
-														<button type="submit" class="btn btn-primary">確認</button>
-														<button type="reset" class="btn btn-secondary"
-															data-bs-dismiss="modal">取消</button>
-													</div>
-												</div>
-											</div>
+										<div>
+											<label for="petName"><span>寵物名</span></label> 
+											<input type="text" id="petName" name="petName" value="${thePet.petName}" readonly />
 										</div>
-									</div>
+								</fieldset>
+								<hr/>
+								<fieldset>
+									<legend>預約資訊</legend>
+										<div>
+											<label for="cusId"><span>*會員編號</span></label> 
+											<input type="text" id="cusId" name="cusId" class="requiredValue" oninput="value=value.replace(/[^\d]/g,'')"/>
+										</div>
+										<div>
+											<label for="cusRealname"><span>會員姓名</span></label> 
+											<input type="text" id="cusRealname" name="cusRealname" readonly/>
+										</div>
+										<div>
+											<label for="phone"><span>聯絡電話</span></label> 
+											<input type="text" id="phone" name="phone" readonly/>
+										</div>
+										<div id="datetimepicker" class="mb-4">
+											<label for="reserveTime"><span>預約看寵日期</span></label> 
+											<input type="text" id="reserveTime" name="reserveTime" class="requiredValue"/>
+										</div>
+										<div>
+											<label for="keepStatus"><span>赴約狀態</span></label>
+											<select id="keepStatus" name="keepStatus">
+												<option value="未赴約" selected>未赴約</option>
+												<option value="已赴約">已赴約</option>
+											</select>
+										</div>
+								</fieldset>
+								<hr/>
+								<div class="row justify-content-center">
+									<button type="submit" class="col-2 me-3 btn btn-danger">送出預約</button>
+									<button type="button" class="col-2 btn btn-secondary" data-bs-dismiss="modal">取消</button>
 								</div>
 							</div>
-						</form>
+						</div>	
+					</form>
 					</div>
 				</div>
 			</div>
