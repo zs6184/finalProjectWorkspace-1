@@ -66,6 +66,11 @@ function t(){
 	}
 	setInterval('t()',500);
 </script>
+<style>
+	img[src=""],img:not([src]){
+	display:none;
+	}
+</style>
 </head>
 <body>
 	<!-- 導覽列 -->
@@ -278,17 +283,20 @@ function t(){
 												<label for="releaseTime" class=""><span>發文時間</span></label> <input
 													type="text" id="releaseTime" name="releaseTime" />
 											</div>
-											<hr />
-											<span>
-											 
-												<label for="mypic" class="" style="" >圖片</label> 
-												<input type="file" style="display:none" id="mypic" name="mypic"  accept="image/*" required />
-											</span>
-											<span class="col-6" >
-												<span id="imgPreview" style="margin:0 auto">
-													<img src="" style="width:30%;height:30%;" alt=" " required/>
-												</span>
-											</span>
+											<div class="row">
+											<div class="col-6 justify-content-center mt-6">
+												<label for="mypic" class="btn btn-outline-info text-center">選擇圖片</label>
+												<input type="file" name="mypic" id="mypic" accept="image/*" style="display:none"/><br>
+											</div>
+											<div class="col-6 justify-content-center">
+												<div id="imgPreview" class="border" style="width:200px; height:200px;">
+													<img src="" style="width:100%;height:100%;" alt="請上傳圖片" ; />
+												</div>
+											</div>
+											
+											
+
+										</div>
 											
 									
 										<hr />
