@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import tw.springbootfinal.users.model.CustomerBean;
+
 @Service
 @Transactional
 public class orderServic {
@@ -14,6 +16,12 @@ public class orderServic {
 	public orderBean saveOrder(orderBean orderbean) {
 		return oRepository.save(orderbean);
 	}
+	
+	//搜尋使用者最近一筆訂單
+	public orderBean latestOrder(CustomerBean c) {
+		return oRepository.latestOrder(c.getCusId());
+	}
+	
 	
 	
 
