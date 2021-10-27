@@ -82,11 +82,6 @@
 									id="remember-me" name="remember-me"> <label
 									class="form-check-label" for="autoLogin"> 記住我 </label>
 							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox"
-									id="notRobot" name="notRobot"> <label
-									class="form-check-label" for="notRobot"> 我不是機器人? </label>
-							</div>
 						</div>
 						<!-- 註冊及忘記密碼 -->
 						<div class="text-center mt-3 mb-5" id="status1">
