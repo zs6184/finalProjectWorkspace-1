@@ -222,12 +222,12 @@
 							<tbody class="align-middle">
 								<c:forEach var="arrRes" items="${arrRes}">
 									<tr>
-										<td class="ID">${arrRes.petId}</td>
-										<td class="NAME">${arrRes.petName}</td>
-										<td>${arrRes.cusId}</td>
-										<td>${arrRes.cusRealname}</td>
+										<td>${arrRes.petId}</td>
+										<td>${arrRes.petName}</td>
+										<td class="ID">${arrRes.cusId}</td>
+										<td class="NAME">${arrRes.cusRealname}</td>
 										<td>${arrRes.phone}</td>
-										<td>${arrRes.reserveTime}</td>
+										<td class="DATE">${arrRes.reserveTime}</td>
 										<td>${arrRes.keepStatus}</td>
 										<td>
 											<button type="button" class="btn btn-danger updateBtn"
@@ -254,7 +254,7 @@
 							<h3 class="modal-title" id="petModalTitle">預約看寵資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-					<form action="#" method="POST" id="modalForm">
+					<form action="/backstage/reservation/addorupdate" method="POST" id="modalForm">
 						<div class="row">
 							<div class="text-center" id="mainbox">
 								<fieldset>

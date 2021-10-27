@@ -1,6 +1,8 @@
 // JavaScript source code
 var customers;
+var pets;
 var cusID = new Array();
+var petID = new Array();
 //DocumentReady
 $(function() {
 
@@ -14,10 +16,10 @@ $(function() {
 
 	//不同按鈕對應同一表單的action
 	$("#insertBtn").click(function() {
-		$("#modalForm").attr("action", "/backstage/pet/insertPetInfo.controller");
+		$("#modalForm").attr("action", "/backstage/reservation/addorupdate");
 		$("#modalForm #petId").removeAttr("readonly");
 		$("#petInfoAdd input").attr("placeholder","");
-		$("#modalForm input,textarea,select").val("");
+		$("#modalForm input,textarea").val("");
 		$("#imgPreview img").attr("src","");
 
 	});
@@ -104,25 +106,61 @@ $(function() {
 		}
 	});
 	
-	//上傳檔案預覽圖片
+	//抓取petData後續檢測使用
+	$.ajax({
+		type: "GET",
+		url: "/backstage/pet/getAllPetAjax",
+		datatype: "JSON",
+		contentType: "application/json",
+		success:function(data){
+			console.log("get petData success");
+			pets = jQuery.parseJSON(data).petData;
+			for(let i=0;i<pets.length;i++){
+				petID.push(pets[i].petId);
+			}
+			console.log("petID members ="+petID);
+		},
+		error:function(){
+			console.log("get petData failed");
+		}
+	});
+	
+	//檢測寵物是否存在並自動填值
+	$("#petId").blur(function(){
+		var tempId = parseInt($(this).val());
+		if(petID.includes(tempId)){
+			console.log("find pet success");
+			$("#petName").val(pets.find(i=>i.petId==`${tempId}`).petName);
+		}else{
+			console.log("can't find the pet");
+			$("#petId,#petName").val("");
+			$("#petId,#petName").attr("placeholder","查無此寵物");
+		}
+	});
+	
+	
+	
+//上傳檔案預覽圖片
 //	$("#mypic").change(function(){
 //		previewImg(this.files);
 //	});
-	//當使用者返回前頁時，需重新預覽前回點選擬上傳的圖片
-	//previewImg($("#mypic")[0].files);
+//當使用者返回前頁時，需重新預覽前回點選擬上傳的圖片
+//previewImg($("#mypic")[0].files);
 
 });
 
 //跳出確認刪除對話框
 var ID;
+var DATE;
 var record;
 
 function delAlert(obj) {
 	record = $(obj);
 	ID = $(obj).parent("td").siblings(".ID").text();
+	DATE=$(obj).parent("td").siblings(".DATE").text();
 	var NAME = $(obj).parent("td").siblings(".NAME").text();
 	console.log(ID);
-	$("#alertDialog").html(`確定刪除資料 ${ID} : ${NAME} ?`);
+	$("#alertDialog").html(`確定刪除客戶${ID}:${NAME} 於 ${DATE}的預約 ?`);
 }
 
 
@@ -131,10 +169,10 @@ function del() {
 	console.log(ID);
 	$.ajax({
 		type: "GET",
-		url: "/backstage/pet/deletebyid.controller",
+		url: "/backstage/reservation/deleteOne",
 		datatype: "JSON",
 		contentType: "application/json",
-		data: { "id": `${ID}` }
+		data: { "cusId": `${ID}`,"reserveTime":`${DATE}` }
 	})
 	record.parents("tr").remove();
 	window.location.reload()
@@ -142,33 +180,26 @@ function del() {
 
 //使用更新按鈕選取此筆資料
 function select(obj) {
-	$("#modalForm").attr("action", "/backstage/pet/updateone.controller");
-	$("#modalForm #idSection").removeAttr("hidden");
+	$("#modalForm").attr("action", "/backstage/reservation/addorupdate");
 	ID = $(obj).parent("td").siblings(".ID").text();
-	console.log(ID);
+	DATE=$(obj).parent("td").siblings(".DATE").text();
+	console.log(ID+"--"+DATE);
 	$.ajax({
 		type: "GET",
-		url: "/backstage/pet/selectbyid.controller",
+		url: "/backstage/reservation/selectone",
 		datatype: "JSON",
 		contentType: "application/json",
-		data: { "id": `${ID}` },
+		data: { "cusId": `${ID}`,"reserveTime":`${DATE}` },
 		success: function(result) {
 			console.log("Success");
 			var parsed = jQuery.parseJSON(result);
-			$("#modalForm #petId").val(ID);
+			$("#modalForm #petId").val(parsed.petId);
 			$("#modalForm #petName").val(parsed.petName);
-			$("#modalForm #category").val(parsed.category);
-			$("#modalForm #species").val(parsed.species);
-			$("#modalForm #sex").val(parsed.sex);
-			$("#modalForm #age").val(parsed.age);
-			$("#modalForm #fixStatus").val(parsed.fixStatus);
-			$("#modalForm #adoptStatus").val(parsed.adoptStatus);
 			$("#modalForm #cusId").val(parsed.cusId);
-			$("#modalForm #cusName").val(parsed.cusName);
-			$("#modalForm #adoptDate").val(parsed.adoptDate);
-			$("#modalForm #note").val(parsed.note);
-			$("#imgPreview img").attr("src",`data:image/png;base64,${parsed.pic}`);
-			//console.log(parsed.pic);
+			$("#modalForm #cusRealname").val(parsed.cusRealname);			
+			$("#modalForm #phone").val(parsed.phone);			
+			$("#modalForm #reserveTime").val(parsed.reserveTime);			
+			$("#modalForm #keepStatus").val(parsed.keepStatus);					
 		},
 		error: function() {
 			console.log("failed to get data");
@@ -177,14 +208,14 @@ function select(obj) {
 }
 
 //預覽上傳檔案圖片
-function previewImg(files){
-	if(files.length==0) 
-	return;
-	var file = files[0];
-	var fr = new FileReader();
-	fr.onload = function(){
-		$("#imgPreview img").attr({src:fr.result});
-	};
-	fr.readAsDataURL(file);
-}
+//function previewImg(files){
+//	if(files.length==0) 
+//	return;
+//	var file = files[0];
+//	var fr = new FileReader();
+//	fr.onload = function(){
+//		$("#imgPreview img").attr({src:fr.result});
+//	};
+//	fr.readAsDataURL(file);
+//}
 

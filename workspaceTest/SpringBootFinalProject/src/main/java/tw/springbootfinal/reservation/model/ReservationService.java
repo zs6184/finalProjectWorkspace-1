@@ -18,8 +18,18 @@ public class ReservationService {
 		return rsRepo.findAll();
 	}
 	
+	//根據複合主驗取得單筆資料
+	public AdoptReservation selectOne(AdoptReservation ar) {
+		return rsRepo.findBycusIdAndReserveTime(ar.getCusId(), ar.getReserveTime());
+	}
+	
 	//新增一筆資料
-	public AdoptReservation insertOne(AdoptReservation ar) {
+	public AdoptReservation insertOrUpdate(AdoptReservation ar) {
 		return rsRepo.save(ar);
+	}
+	
+	//刪除一筆資料
+	public void deleteOne(AdoptReservation ar) {
+		rsRepo.deleteBycusIdAndReserveTime(ar.getCusId(), ar.getReserveTime());
 	}
 }

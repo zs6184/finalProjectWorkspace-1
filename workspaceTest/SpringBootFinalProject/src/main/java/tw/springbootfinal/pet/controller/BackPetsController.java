@@ -58,6 +58,7 @@ public class BackPetsController {
 	//AJAX取得全部會員資料後續檢測+填值用
 	@GetMapping("/getAllCustomerData.controller")
 	public void processGetAllCus(HttpServletResponse response)throws IOException {
+		response.setContentType("text/html;charset=utf-8");
 		List<CustomerBean> arrCus = cService.findAll();
 		JSONObject cusData = new JSONObject();
 		cusData.put("cusData", arrCus);
@@ -66,6 +67,17 @@ public class BackPetsController {
 		out.close();
 	}
 	
+	//AJAX取得所有未領養寵物資料後續填值用
+	@GetMapping("/getAllPetAjax")
+	public void processGetAllPet(HttpServletResponse response) throws IOException{
+		response.setContentType("text/html;charset=utf-8");
+		List<Pets> allPets = pService.findNotAdopt();
+		JSONObject petData = new JSONObject();
+		petData.put("petData", allPets);
+		PrintWriter out = response.getWriter();
+		out.println(petData);
+		out.close();
+	}
 	
 	//使用條件進行查詢
 	@PostMapping("/searchdata.controller")

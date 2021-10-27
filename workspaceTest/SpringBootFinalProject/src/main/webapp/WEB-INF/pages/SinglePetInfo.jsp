@@ -134,7 +134,7 @@
 									<legend>預約資訊</legend>
 										<div>
 											<label for="cusId"><span>會員編號</span></label> 
-											<input type="text" id="cusId" name="cusId" />
+											<input type="text" id="cusId" name="cusId" class="requiredValue"/>
 										</div>
 										<div>
 											<label for="cusRealname"><span>會員姓名</span></label> 
@@ -146,14 +146,14 @@
 										</div>
 										<div id="datetimepicker" class="mb-4">
 											<label for="reserveTime"><span>預約看寵日期</span></label> 
-											<input type="text" id="reserveTime" name="reserveTime"/>
+											<input type="text" id="reserveTime" name="reserveTime" class="requiredValue"/>
 										</div>
 										<div>
 											<input type="hidden" id="keepStatus" name="keepStatus" value="未赴約"/>
 										</div>
 								</fieldset>
 								<div class="row justify-content-center modal-footer">
-									<button type="submit" class="col-2 me-3 btn btn-danger">送出預約</button>
+									<button type="button" class="col-2 me-3 btn btn-danger" id="sendReserveBtn" data-bs-dismiss="modal">送出預約</button>
 									<button type="button" class="col-2 btn btn-secondary" data-bs-dismiss="modal">取消</button>
 								</div>
 							</div>
@@ -163,6 +163,24 @@
 			</div>
 		</div>
 	</div>
-	
+	<!-- End of 預約看寵Modal -->
+	<!-- 預約狀態提示框 Modal-->
+	<div class="modal fade text-center" id="statusAlert" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">提示信息</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<div class="modal-body items-align-center">
+						<h4 style="margin-top: 10px; margin-bottom: 50px;"
+							id="alertDialog"></h4>
+				</div>
+				<hr/>
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">確定</button>
+			</div>
+		</div>
+	</div>
+<!-- End Of deleteAlert Modal-->
 </body>
 </html>

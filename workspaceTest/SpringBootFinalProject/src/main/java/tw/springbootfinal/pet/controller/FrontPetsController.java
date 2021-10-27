@@ -81,7 +81,7 @@ public class FrontPetsController {
 	
 	//開啟單一寵物詳細資訊
 	@GetMapping("/detaildata/{petId}")
-	public String processSingleDetail(@PathVariable("petId")int petId, Model m) throws UnsupportedEncodingException {
+	public String processSingleDetail(@PathVariable("petId")int petId,Model m) throws UnsupportedEncodingException {
 		System.out.println("petId="+petId);
 		Pets thePet = pService.selectById(petId);
 		byte[] base64 = Base64.encodeBase64(thePet.getPic()); //轉成base64 byte陣列

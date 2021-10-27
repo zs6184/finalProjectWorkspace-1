@@ -1,6 +1,6 @@
 // JavaScript source code
-
-var indexPage = 1;
+var customers;
+var cusID = new Array();
 
 $(function() {
 	//stickybar
@@ -35,86 +35,98 @@ $(function() {
 	});
 
 	
-	//按下領養預約按鈕時清空時間欄位
+	//按下領養預約按鈕時清空表單欄位
 	$("#reserveBtn").click(function(){
-		$("#reserveTime").val("");
+		$("#reserveTime,#cusId,#cusRealname,#phone").val("");
+		$("#reserveTime,#cusId,#cusRealname,#phone").attr("placeholder","");
+	});
+	
+	//表單事件-生成錯誤提示訊息
+	function createErr(obj) {
+		$(obj).attr("placeholder", "此為必填");
+	}
+
+	//表單事件-新增錯誤提示元素
+	$("#reserveForm .requiredValue").blur(function() {
+		if ($(this).val() == "") {		//若必填的input空值
+			createErr(this);
+		}
 	});
 
+	//表單事件-提交控制
+	$("#reserveForm").submit(function() {
+		var errs = [];
+		$("#reserveForm .requiredValue").each(function() {
+			if ($(this).val() == "") {
+				createErr(this);
+				errs.push(this);
+			}
+		});
+		if (errs.length > 0) {
+			$(errs[0]).focus();
+			return false; //阻止表單提交	
+		}
+	});
+	
+	//抓取cusData後續檢測使用
+	$.ajax({
+		type: "GET",
+		url: "/backstage/pet/getAllCustomerData.controller",
+		datatype: "JSON",
+		contentType: "application/json",
+		success: function(data) {
+			console.log("getCusData Success")
+			customers=jQuery.parseJSON(data).cusData; //客戶的資料JSON陣列
+			//console.log("cusId=1="+customers.find(i=>i.cusId=="1").cusRealname); //JOE
+			
+			for(let i=0;i<customers.length;i++){
+				cusID.push(customers[i].cusId);	
+			}
+			console.log("cusID members ="+cusID);
+		},
+		error:function(){
+			console.log("get cusData failed");
+		}
+	})
+	
+	//更新寵物資料-輸入客戶ID後檢測客戶是否存在
+	$("#cusId").blur(function(){
+		var check = parseInt($(this).val()); //確定轉為整數值
+
+		if(cusID.includes(check)){
+			console.log("find cus success");
+			$("#cusRealname").val(customers.find(i=>i.cusId==`${check}`).cusRealname);
+			$("#phone").val(customers.find(i=>i.cusId==`${check}`).phoneNumber);
+		}else{
+			console.log("Who is it ?");
+			$("#cusId,#cusRealname,#phone").val("");
+			$("#cusId,#cusRealname,#phone").attr("placeholder","查無此會員");
+		}
+	});
+	
+	//送出表單並檢測是否已預約
+	$("#sendReserveBtn").click(function(){
+		var reserveData = $("#reserveForm").serialize();
+		$.ajax({
+			type:"POST",
+			url:"/users/petreserve/checkthenupdate",
+			data:`${reserveData}`,
+			dataType:"JSON",
+			success:function(result){
+				console.log("send success")
+				console.log("result="+result)
+				if(result==1){
+					$("#alertDialog").text("預約成功")
+					$("#statusAlert").modal("show");
+				}else{
+					$("#alertDialog").text("當日已有其他預約，請勿重複預約")
+					$("#statusAlert").modal("show");
+				}
+			},
+			error:function(){
+				console.log("send failed")
+			}
+		});
+	});
+	
 });
-
-
-//datetimepicker
-//	jQuery("#reserveTime").datetimepicker({
-//		format:'Y-m-d H:i'
-//	});
-
-
-//	$.ajax({
-//		type: "GET",
-//		url: "/NoXmlSpringMvcProject/petinfo.controller",
-//		success:function(){
-//			console.log("redirect success");
-//		},
-//		error:function(){
-//			console.log("redirect fail");
-//		}
-//
-//	})
-
-
-    //將取得backPetInfo資料載入select選項中
-//    $.get("backPetInfo.html", function (data) {
-//
-//        $(".category", data).each(function () {
-//            $("#category").append(`<option value="${this.textContent}">${this.textContent}</option>`);
-//            console.log(this.textContent);
-//        });
-//
-//        //使用陣列裝抓到的所有選項(三個F)，因為有重複值，所以丟進Set中篩掉重複值
-//        var sexArr = new Array;
-//        $(".sex", data).each(function () {
-//            sexArr.push(this.textContent);
-//        });
-//        var sexArrSet = new Set(sexArr);
-//        var sexUnique = [...sexArrSet]; //Set轉回陣列
-//        console.log("uniqyeArr = " + sexUnique);
-//
-//        sexUnique.forEach(function (v, i) { //JQ 的forEach 前面value後面index
-//            $("#sex").append(`<option value="${v}">${v}</option>`)
-//            console.log("value = " + v);
-//        });
-//		
-//        var index = 0;
-//		//左半區域
-//        $("#infoTable tr:even:not(':first')", data).each(function () {
-//            $("#infoLeft").append
-//				(`<div class="row col-10 offset-1 border bg-secondary text-white" style="margin-bottom:30px;border-radius:10px;">
-//					<div class="row col-6 border align-items-center" style="margin:0px;">
-//						<img src="image/f5.jpg" class="col w-100 h-w"/>
-//					</div>
-//					<div class="col" id="${index}">
-//					</div>
-//				</div>`);
-//            $("td:not(':last')", this).each(function () {
-//                $(`#${index}`).append(`<div>${this.textContent}</div>`);
-//            });
-//            index++;
-//        });
-//		//右半區域
-//        $("#infoTable tr:odd", data).each(function () {
-//            console.log("RIGHT---" + this.textContent);
-//            $("#infoRight").append(
-//				`<div class="row col-10 offset-1 border bg-secondary text-white" style="margin-bottom:30px;border-radius:10px;">
-//					<div class="row col-6 border align-items-center" style="margin:0px;">
-//						<img src="image/f5.jpg" class="col w-100 h-w"/>
-//					</div>
-//					<div class="col" id="${index}"></div>
-//				</div>`);
-//            $("td:not(':last')", this).each(function () {
-//                $(`#${index}`).append(`<div>${this.textContent}</div>`);
-//            });
-//            index++;
-//        });
-//
-//    });
-
