@@ -137,7 +137,7 @@ $(document).ready( function () {
 							<li><a href="#" class="itemDetails">餐點更新</a></li>
 						</ul></li>
 					<li><a href="#sublist02" data-bs-toggle="collapse"
-						id="dropdown02" class="center"> <i
+						id="dropdown02" class="center  sidebarLight01"> <i
 							class="fas fa-utensils mx-2"></i> <span class="items">訂單及訂位管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist02" class="list-unstyled collapse">

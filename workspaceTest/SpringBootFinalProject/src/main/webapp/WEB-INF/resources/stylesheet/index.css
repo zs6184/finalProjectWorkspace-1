@@ -55,10 +55,20 @@ li {
         color:white;
     }
     
-.sticky a:hover{
+	.sticky a:hover{
        color:gray
       
     }
+    
+     .sticky button{
+    	  color:white !important;
+     }
+      .sticky button:hover{
+    	  color:gray !important;
+     }
+    
+    
+    
     .topbar li {
         float: right;
         height: 60px;
