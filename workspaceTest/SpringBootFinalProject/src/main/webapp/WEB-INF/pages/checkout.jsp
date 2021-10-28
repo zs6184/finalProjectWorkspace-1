@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -84,18 +85,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>可樂</td>
-                            <td>1</td>
-                            <td>1000</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>蘋果</td>
-                            <td>2</td>
-                            <td>500</td>
-                            <td>0</td>
-                        </tr>
+                        <c:forEach var="catitem" items="${catitem}">
+							<tr id="${catitem.id}">
+								<td>${catitem.name}</td>
+								<td>${catitem.num}</td>
+								<td class="price">${catitem.price}</td>
+								<td class="subtotal">0</td>
+							</tr>
+
+						</c:forEach>
                     </tbody>
                     <tfoot>
                         <tr class="discount">
@@ -138,14 +136,14 @@
                     </div>
                     <div class="col-sm-5">
                         <label for="mail" class="form-label">信箱:</label>
-                        <input type="email" class="form-control" id="mail" placeholder="" value="${user.email}" required>
+                        <input type="email" class="form-control" id="mail" placeholder="" value="${user.email}" name="mail" required>
                         <div class="invalid-feedback">
                             *必填
                         </div>
                     </div>
                     <div class="col-sm-5">
                         <label for="phone" class="form-label">手機:</label>
-                        <input type="tel" class="form-control" id="phone" placeholder="" value="${user.phoneNumber}" required>
+                        <input type="tel" class="form-control" id="phone" placeholder="" value="${user.phoneNumber}" name="phone" required>
                         <div class="invalid-feedback">
                             *必填
                         </div>
@@ -157,7 +155,7 @@
             <div class="note row justify-content-around">
                 <div class="col-sm-8 widget">
                     <h4 class="mb-3">取餐時間:</h4>
-                    <input id="datePicker" type="datetime-local"step="600"/>
+                    <input id="datePicker" type="datetime-local"step="600" name="pickuptime1" path="starDate"pattern="MM-DD-YYYY HH:mm"/>
                     
                 </div>
             </div>
@@ -168,7 +166,7 @@
                     <h4 class="mb-3">付款方式:</h4>
                     <div class="card">
                         <div class=" form-check">
-                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                            <input id="credit" name="paymethod" type="radio" class="form-check-input" checked required value="取餐付款">
                             <label class="form-check-label" for="credit">
                                 取餐付款
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-currency-exchange" viewBox="0 0 16 16">
@@ -179,7 +177,7 @@
                     </div>
                     <div class="card">
                         <div class=" form-check">
-                            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                            <input id="debit" name="paymethod" type="radio" class="form-check-input" required value="綠界付款">
                             <label class="form-check-label" for="debit">
                                 綠界
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-credit-card-2-back" viewBox="0 0 16 16">

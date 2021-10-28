@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>重設密碼</title>
+</head>
+<body style="margin:auto;">
+    <!--<h1>用戶名稱${userName}</h1>
+    <div><img src="cid:imgfile"></div>-->
+    <!--<div  style="width:600px;margin:3em auto">
+        <div  style="background-color:white">-->
+            <!--<img src="image/logo.png" title="lego">-->
+            <!--<img src="cid:imgfile" title="lego">
+        </div>
+        <div >
+            <h5 class="card-title">親愛的: ${userName} 您好</h5>
+            <p class="card-text">再忘記密碼阿!</p>
+            <a href="#" class="btn btn-primary">點選重設密碼</a>
+        </div>
+        <div class="card-footer text-muted">
+            -我的改變你看不見-  @浪跡
+        </div>
+    </div>-->
+    <!--<table style="width: 600px; margin: 3em auto; box-shadow: 3px 3px 5px 6px #cccccc; border-radius: 5px 5px 5px 5px;">-->
+    <div style="width: 600px; border-style: solid; border-width: thin; border-color: #dadce0; border-radius: 8px; padding: 20px; margin: 3em auto; ">
+        <!--<table style="width: 600px; margin: 3em auto; border-style: solid; border-width: thin; border-color: #dadce0; border-radius: 8px;">-->
+        <table style=" margin: 3em auto;">
+            <thead>
+                <tr>
+                    <td>
+                        <img src="cid:imgfile" title="lego" style="display:block; margin:auto;">
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align:center">
+                        <h4>親愛的 ${userName} 您好</h4>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div style="width:400px;margin:auto">
+                            <p>
+                                感謝您的光臨~訂單受理中，請耐心等候
+                            </p>
+                            <p>
+                                訂單編號:${orderId?string('#######')}
+                            </p>
+                            <p>
+                                總金額:${price}
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">
+                        <div style="margin: 1em 2em 2em 2em; ">
+                            <a href="http://127.0.0.1:8080/" style="padding: 10px; text-decoration: none; background-color: #0080FF; color: #FFECEC; border-radius: 10px; ">官網</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td style=" background-color: #E0E0E0; color: #ADADAD; text-align: center; border-radius: 5px 5px 5px 5px; padding: 5px 0 5px 0; ">
+                        -我的改變你看不見-  @浪跡
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+</html>

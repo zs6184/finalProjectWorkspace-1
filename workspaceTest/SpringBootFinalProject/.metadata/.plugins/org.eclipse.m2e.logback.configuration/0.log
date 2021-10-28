@@ -200,3 +200,5 @@
 2021-10-24 20:38:44,088 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\houng\Documents\GitHub\finalProjectWorkspace1000\workspaceTest\NoXmlSpringMvcProject\src\main\resources
 2021-10-24 20:38:44,090 [Worker-9: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS950 actually) to copy filtered resources, i.e. build is platform dependent!
 2021-10-24 20:38:44,091 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\houng\Documents\GitHub\finalProjectWorkspace1000\workspaceTest\NoXmlSpringMvcProject\src\test\resources
+2021-10-26 21:27:50,330 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-10-27 20:03:52,815 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

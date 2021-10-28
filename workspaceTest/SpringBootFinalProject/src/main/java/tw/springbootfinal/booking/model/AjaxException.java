@@ -1,13 +1,11 @@
 package tw.springbootfinal.booking.model;
 
+/**
+ * @author
+ **/
 public class AjaxException extends RuntimeException{
 
-		/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-		public AjaxException(String message) {
-			super(message);
-		}
+    public AjaxException(String message) {
+        super(message);
+    }
 }

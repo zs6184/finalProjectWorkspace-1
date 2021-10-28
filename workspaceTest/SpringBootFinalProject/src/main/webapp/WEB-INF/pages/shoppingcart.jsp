@@ -129,7 +129,7 @@
 			<div class="bottm row">
 				<div class="btn">
 					<span>合計:$<span class="totalprice">100</span></span>
-					<button type="button" class="btn btn-dark">結帳</button>
+					<button type="button" class="btn btn-dark" onclick="window.open('/order/chackout')">結帳</button>
 				</div>
 			</div>
 		</div>
