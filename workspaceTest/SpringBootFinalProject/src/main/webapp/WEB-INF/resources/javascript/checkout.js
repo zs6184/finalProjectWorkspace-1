@@ -25,16 +25,18 @@ $(function () {
             url: '/back.checkcoupon',
             data: { ccode: cvalue },
             success: function (data) {
-				console.log("test");
+				console.log(data[1]);
                 //實作
                 switch (data[1]) {
                     case 0:
+						$("#couponsId").val("");
                         $(".discount").html("")
                         $("#promoinput").attr("placeholder", "查無折扣碼");
                         $("#promoinput").val("");
                         orangetotalprice();
                         break;
                     case 1:
+						$("#couponsId").val("");
                         $(".discount").html("")
                         $("#promoinput").attr("placeholder", "折扣碼過期");
                         $("#promoinput").val("");
@@ -99,6 +101,6 @@ function ordertime() {
     console.log(dateTime);
     $("#datePicker").val(dateTime)
     $("#datePicker").attr('min', dateTime)
-    $("#datePicker").attr('max', dateTime)
+    //$("#datePicker").attr('max', dateTime)
 }
 

@@ -39,8 +39,6 @@ public class ShopCartController {
 		//取得Session連線用戶物件
 		CustomerBean resultUser = cService.getLoginCustomerBean(session);
 		System.out.println("用戶名稱"+resultUser.getCusUsername());
-		// 取得商品
-		//ProductsBean selecybyId = sService.selecyProductbyId(id);
 		// 取出cookies
 		Cookie[] cookies = request.getCookies();
 		String cookieStr = null;
@@ -71,6 +69,7 @@ public class ShopCartController {
 		// return "使用者:"+resultUser.getCusUsername()+"選取商品:"+resultProduct.getName();
 		return "shoppingcart";
 	}
+	
 	//假商品頁面
 	@RequestMapping(path = "/fakeProductList.controller")
 	public String testProduct() {

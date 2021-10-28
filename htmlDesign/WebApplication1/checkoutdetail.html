@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>購物車</title>
+    <title>訂單明細</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
     <!--<link rel="stylesheet" href="/stylesheet/petInfo.css" />--><!--CSS here-->
     <link rel="stylesheet" href="/stylesheet/checkoutdetail.css" />
@@ -62,7 +62,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="banner-content text-center">
-                        <h2>訂單詳細資料</h2>
+                        <h2>訂單明細</h2>
                     </div>
                 </div>
             </div>
@@ -70,8 +70,55 @@
     </div>
      
 <!--內容-->
-    <div class="container" id="container">
-        
+    <div class="container" id="container" style="height:700px">
+        <div class="container ">
+            <div class="row step ">
+                <div class="col-sm-12 widget ">
+                    訂單狀態:製作中
+                </div>
+            </div>
+            <div class="row justify-content-around">
+                <!--左邊資訊-->
+                <div class="col-sm-6 widget  bg-light">
+                    <table class="table-hover" style="width:100%" ;>
+                        <tr>
+                            <th>商品名稱</th>
+                            <th>數量</th>
+                            <th>單價</th>
+                            <th>小計</th>
+                        </tr>
+                        <tr>
+                            <td>可樂</td>
+                            <td>1</td>
+                            <td>100</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>可樂</td>
+                            <td>1</td>
+                            <td>100</td>
+                            <td>100</td>
+                        </tr>
+                    </table>
+                    <hr>
+                </div>
+                <!--右邊資訊-->
+                <div class="col-sm-6 widget">
+                    <p>訂單編號:0000</p>
+                    <p>會員編號:xxxx</p>
+                    <p>訂購時間:</p>
+                    <p>取餐時間:</p>
+                    <p>付款方式:到店付款</p>
+                    <p>訂單金額:100</p>
+                    <p>姓名:XXX</p>
+                    <p>行動電話:</p>
+                </div>
+            </div>
+            <div class="foot">
+                <a class="home" href="">回首頁</a>
+                <a class="ecpay" href="">綠界付款</a>
+            </div>
+        </div>
     </div>
 
 </body>

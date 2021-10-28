@@ -29,12 +29,12 @@ import tw.springbootfinal.booking.model.Constant;
 @Controller
 @RequestMapping("bookings")
 public class BookingsController {
-	
+
 	@Autowired
 	private BookingService bookingService;
-	
+
 	int ID;
-	
+
 //	查詢全部資料
 //	@GetMapping()
 	@RequestMapping(method = { RequestMethod.GET })
@@ -54,7 +54,7 @@ public class BookingsController {
 	@PostMapping(produces = "application/json; charset=utf-8")
 	public String create(@RequestBody BookingsDTO bookingsDTO) {
 		bookingService.save(bookingsDTO);
-		return "訂位成功";
+		return "　　訂位成功";
 	}
 
 	// 新增單一資料
@@ -114,5 +114,4 @@ public class BookingsController {
 		return "redirect:/bookings";
 	}
 
-	
 }

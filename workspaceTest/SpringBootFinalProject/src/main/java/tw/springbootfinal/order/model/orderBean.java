@@ -1,6 +1,7 @@
 package tw.springbootfinal.order.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -34,21 +35,21 @@ public class orderBean {
 	private int id;
 	
 	@Column(name="pay_method")
-	private int paymethod;
+	private String paymethod;
 	
 	@Column(name="order_status")
-	private int orderstatus;
+	private String orderstatus;
 	
 	@Column(name="pay_status")
 	private int paystatus;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	@Column(name="order_time")
-	private Date ordertime;
+	private Timestamp ordertime;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	@Column(name="pickup_time")
-	private Date pickuptime;
+	private Timestamp pickuptime;
 	
 	@Column(name = "total")
 	private int total;
@@ -103,19 +104,19 @@ public class orderBean {
 		this.coupons = coupons;
 	}
 
-	public int getPaymethod() {
+	public String getPaymethod() {
 		return paymethod;
 	}
 
-	public void setPaymethod(int paymethod) {
+	public void setPaymethod(String paymethod) {
 		this.paymethod = paymethod;
 	}
 
-	public int getOrderstatus() {
+	public String getOrderstatus() {
 		return orderstatus;
 	}
 
-	public void setOrderstatus(int orderstatus) {
+	public void setOrderstatus(String orderstatus) {
 		this.orderstatus = orderstatus;
 	}
 
@@ -127,19 +128,19 @@ public class orderBean {
 		this.paystatus = paystatus;
 	}
 
-	public Date getOrdertime() {
+	public Timestamp getOrdertime() {
 		return ordertime;
 	}
 
-	public void setOrdertime(Date ordertime) {
+	public void setOrdertime(Timestamp ordertime) {
 		this.ordertime = ordertime;
 	}
 
-	public Date getPickuptime() {
+	public Timestamp getPickuptime() {
 		return pickuptime;
 	}
 
-	public void setPickuptime(Date pickuptime) {
+	public void setPickuptime(Timestamp pickuptime) {
 		this.pickuptime = pickuptime;
 	}
 
@@ -174,5 +175,7 @@ public class orderBean {
 	public void setCustomer(CustomerBean customer) {
 		this.customer = customer;
 	}
+
+	
 	
 }
