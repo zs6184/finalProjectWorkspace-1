@@ -2,6 +2,8 @@ package tw.springbootfinal.users.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,12 +37,32 @@ public class CustomersController {
 	}
 
 	// 用Id查詢指定會員
-	@RequestMapping(path = "/SelectCustomerById.Controller")
+	@RequestMapping(path = "/SelectCustomerImageById.Controller")
 	@ResponseBody
-	public CustomerBean processSelectCustomerById(@RequestParam("id") int id) {
-		CustomerBean selectOne = cusService.findById(id);
-		System.out.println(selectOne);// 查看會員資料
-		return selectOne;
+	public CustomerBean processSelectCustomerById(@RequestParam("id") int id, Model m, HttpServletRequest request) {
+		CustomerBean cusBean = cusService.findById(id);
+System.out.println("id: "+id);
+		// 取得資料庫資料
+		int cusId = cusBean.getCusId();
+		String imageName = cusBean.getImageName();
+		byte[] image = cusBean.getImage();
+		System.out.println("imageName: " + imageName);
+		// 如果會員沒有上傳過圖片就使用預設圖片
+		if (image == null) {
+			System.out.println("照片名null");
+			//m.addAttribute("imageName", "husky.jpg");
+			cusBean.setImageName("husky.jpg");
+		} else {
+			// 抓到專案路徑加上暫存資料夾名稱
+			String path = request.getSession().getServletContext().getRealPath("/") + "downloadTempDir\\";
+			System.out.println(path);
+			cusService.imageDownload(image, cusId, imageName, path);
+
+			m.addAttribute("imageName", imageName);
+		}
+
+		System.out.println(cusBean);// 查看會員資料
+		return cusBean;
 	}
 
 	// 刪除指定會員

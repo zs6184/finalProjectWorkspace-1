@@ -45,14 +45,20 @@ public class EmployeeService {
 		// 搜尋資料庫內帳號最大值
 		List<EmployeeBean> findMaxEmpUsername = empReps.findMaxEmpUsername();
 		String maxUsername = "";// 建立區域變數
-		for (EmployeeBean employeeBean : findMaxEmpUsername) {
-			maxUsername = employeeBean.getEmpUsername();
-		}
-		String maxDay = maxUsername.substring(9, 11);// 取得最大值的日期 EMP202110"12"02
 		LocalDate now = LocalDate.now();// 取得今天日期
 		String nowDate = String.format("%tY%<tm%<td", now);
 		String day = String.format("%td", now); // 取得day
 		String username = "EMP" + nowDate;// EMP20211012
+		if(findMaxEmpUsername.isEmpty()) {
+			String newUsername = username + "01";// 建立今天日期順序為01的帳號
+			return newUsername;
+		}
+		for (EmployeeBean employeeBean : findMaxEmpUsername) {
+			maxUsername = employeeBean.getEmpUsername();
+		}
+		String maxDay = maxUsername.substring(9, 11);// 取得最大值的日期 EMP202110"12"02
+		
+
 
 		if (maxUsername == null || maxUsername == "") {// 如果帳號日期與今天日期相同
 			String newUsername = username + "01";// 建立今天日期順序為01的帳號

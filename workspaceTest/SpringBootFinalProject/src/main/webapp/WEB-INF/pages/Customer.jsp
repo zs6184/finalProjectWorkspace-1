@@ -6,12 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>後臺管理系統</title>
+<script src="/javascript/jquery-3.6.0.min.js"></script>
 <!-- JavaScript Bundle with Popper -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- DataTable js -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <!-- fontawesome icon -->
-<link rel="stylesheet"
-	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+<!-- DataTable css -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
 
 <link href="/stylesheet/bootstrap.min.css" rel="stylesheet" />
 <link href="/stylesheet/jquery-ui.min.css" rel="stylesheet" />
@@ -19,7 +22,7 @@
 <link href="/stylesheet/backstage.css" rel="stylesheet" />
 <link href="/stylesheet/members.css" rel="stylesheet" />
 <!--<script src="javascript/bootstrap.min.js"></script>-->
-<script src="/javascript/jquery-3.6.0.min.js"></script>
+
 <!--自訂js-->
 <script src="/javascript/backstage.js"></script>
 <script src="/javascript/customer.js"></script>
@@ -166,28 +169,11 @@
 		</div>
 		<!-- container right -->
 		<div class="containerRight">
-			<!-- 分頁按鈕 -->
-			<div class="page container">
-				<div class="row">
-					<div class="offset-2 col-8 ">
-						<nav aria-label="Page navigation">
-							<ul class="pagination justify-content-center">
-								<li class="page-item "><a class="page-link"
-									href="history.back()">上一頁</a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">下一頁</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
 			<!-- 主頁內容 -->
-			<div class="container-fluid ">
+			<div class="container-fluid mt-4">
 				<div class="row">
-					<div class="col-11 bg-white mt-3 ms-5 box rounded-3 shadow">
-						<table class="table table-striped table-hover mt-4">
+					<div class="col-11 bg-white mt-3 ms-5 box rounded-3 shadow p-1 mb-4">
+						<table class="table table-striped table-hover mt-4 p-4" id="customerTable">
 							<thead>
 								<tr>
 									<th scope="col">會員ID</th>
@@ -197,7 +183,7 @@
 									<th scope="col">連絡電話</th>
 									<th scope="col">E-mail</th>
 									<th scope="col">生日</th>
-									<th scope="col">地址</th>
+<!-- 									<th scope="col">地址</th> -->
 									<th scope="col">失約次數</th>
 									<th scope="col">備註</th>
 									<th scope="col"></th>
@@ -214,7 +200,7 @@
 										<td>${cus.phoneNumber}</td>
 										<td>${cus.email}</td>
 										<td>${cus.birthdate}</td>
-										<td>${cus.address}</td>
+<%-- 										<td class="textOver">${cus.address}</td> --%>
 										<td>${cus.noShow}</td>
 										<td>${cus.note}</td>
 										<td><button type="button" class="btn btn-danger"
@@ -244,7 +230,7 @@
 									<!-- left -->
 									<div class="offset-1 col-4">
 										<div class="ratio ratio-1x1 mt-1 mb-3">
-											<img src="/image/m6.jpg" class="rounded-3 shadow" />
+											<img id="image" src="/downloadTempDir/${imageName}" class="rounded-3 shadow" />
 										</div>
 										<div class="row">
 											<div class="col text-center">
@@ -346,19 +332,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- 分頁按鈕 -->
-			<div class="page">
-				<nav aria-label="Page navigation">
-					<ul class="pagination justify-content-center">
-						<li class="page-item"><a class="page-link"
-							href="history.back()">上一頁</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">下一頁</a></li>
-					</ul>
-				</nav>
 			</div>
 		</div>
 

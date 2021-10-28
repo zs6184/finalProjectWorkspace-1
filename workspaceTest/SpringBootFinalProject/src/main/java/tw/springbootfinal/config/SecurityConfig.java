@@ -45,7 +45,7 @@ public class SecurityConfig {
 			
 			
 			.antMatchers("/Backstage/**").hasAnyRole("EMPLOYEE","ADMIN")
-			.antMatchers("/Users/**").hasRole("MEMBER")
+			//.antMatchers("/Users/**").hasRole("MEMBER")
 			.antMatchers(HttpMethod.GET,"/Backstage/**").authenticated()
 			.antMatchers(HttpMethod.GET).permitAll()
 			.antMatchers(HttpMethod.POST,"/Backstage/**").authenticated()
@@ -104,7 +104,7 @@ public class SecurityConfig {
 //			.anyRequest()
 //			.hasRole("MEMBER")
 			
-			.antMatchers("/Backstage/**").hasAnyRole("EMPLOYEE","ADMIN")
+			//.antMatchers("/Backstage/**").hasAnyRole("EMPLOYEE","ADMIN")
 			.antMatchers("/Users/**").hasRole("MEMBER")
 			.antMatchers(HttpMethod.GET,"/Users/**").authenticated()
 			.antMatchers(HttpMethod.GET).permitAll()

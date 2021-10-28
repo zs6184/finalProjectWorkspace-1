@@ -40,6 +40,7 @@ public class LoginController {
 	@GetMapping("/Users/loginIndex.Controller")
 	public String processloginIndexMainPage(Principal p, Model m) { 
 		String username = p.getName();//Principal可以用來取得使用者名稱
+		System.out.println("username"+username);
 		CustomerBean cusBean = cusService.getByCusUsername(username);//透過使用者名稱搜尋資料
 		String realName = cusBean.getCusRealname();//取得真實姓名
 		m.addAttribute("username",username);//設為session層級的變數給jsp使用

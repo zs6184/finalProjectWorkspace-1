@@ -6,7 +6,7 @@
 function selectOneCus(id) {
 	$.ajax({
 		method: "get",
-		url: "/Backstage/SelectCustomerById.Controller",
+		url: "/Backstage/SelectCustomerImageById.Controller",
 		dataType: "json",
 		contentType: "application/json",
 		data: { "id": `${id}` },
@@ -20,6 +20,7 @@ function selectOneCus(id) {
 			$("#emailUpdate").val(data.email);
 			$("#addressUpdate").val(data.address);
 			$("#notesUpdate").val(data.note);
+			$("#image").prop("src","/downloadTempDir/"+data.imageName);
 		},
 		error: function(jqXHR, textStatus, errThrown) {
 			alert(`${textStatus}---${errThrown}`)
@@ -80,5 +81,22 @@ $(function() {
 		});
 		return false;
 	});
+		$('#customerTable').DataTable({
+		lengthChange: true, //呈現選單
+		lengthMenu: [5, 10], //選單值
+		pageLength: 10, //固定頁數
+		paging: true, //建立分頁
+		searching: false, //搜尋
+		ordering: false, //取消排序
+		language: { //語言
+			"lengthMenu": "顯示_MENU_ 項",
+			"info": "顯示第 _START_ 至 _END_ 項 , 共 _TOTAL_ 項",
+			"paginate": {
+				"previous": "上一頁",
+				"next": "下一頁"
+			}
+		}
+	});
+	
 
 });

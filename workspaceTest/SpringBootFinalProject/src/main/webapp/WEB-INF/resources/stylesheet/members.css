@@ -1,11 +1,26 @@
-﻿.page{
-    margin-top:30px;
+﻿.page {
+	margin-top: 30px;
 }
 
-.table{
-    text-align:center;
+.table {
+	text-align: center;
 }
+
 textarea {
-    resize: none;
-    height: 125px;
+	resize: none;
+	height: 125px;
+}
+
+.textOver {
+	/* overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    顯示行數超過兩行自動隱藏*/
+	/*-webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;*/
+ /* overflow : hidden;
+  text-overflow : ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;*/
 }
