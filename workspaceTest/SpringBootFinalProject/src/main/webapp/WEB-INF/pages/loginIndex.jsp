@@ -23,13 +23,14 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
 	integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<link href="/stylesheet/customerCenter.css" rel="stylesheet" />
 <!--javaScript掛到這邊-->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
 	integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="/javascript/index.js"></script>
+<script src="/javascript/customerCenter.js"></script>
 
 
 
@@ -61,10 +62,26 @@
 					<div class="col-12">
 
 						<ul>
-							<li><a href="/Users/SelectCustomer.controller"
-								target="_self">${realName}</a> <a
-								href="/Users/logoutIndex.Controller" target="_self">登出</a></li>
-							<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
+							                            <li>
+                                <div class="dropdown absolute">
+                                    <button class="btn btn-link dropdown-toggle " type="button"
+                                        id="cusCenterDropdown" data-bs-toggle="dropdown">${realName}</button>
+                                    <ul class="dropdown-menu p-0" role="button">
+                                        <li id="whp1"><a href="/Users/SelectCustomer.controller"
+                                            style="font-size: 1.1em"
+                                            class="dropdown-item d-flex justify-content-center"
+                                            target="_self">會員中心</a></li>
+                                        <li id="whp2" class="m-0">
+                                            <form action="/Users/logout.Controller" method="post">
+                                                <button type="submit"
+                                                    class="dropdown-item d-flex justify-content-center"
+                                                    value="logout">登出</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+							<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
 							<li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
 							<li><a href="/Users/loginIndex.Controller" target="_self">餐點介紹</a></li>
 							<li><a href="#t1" target="_self">活動訊息</a></li>
@@ -387,10 +404,24 @@
 										<li><a href="/Users/loginIndex.Controller" target="_self">餐點介紹</a></li>
 										<li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
 										<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
-										<li>
-											<a href="/Users/SelectCustomer.controller" target="_self">${realName}</a>
-											<a href="/Users/logoutIndex.Controller" target="_self">登出</a>
-										</li>
+										                                        <li><div class="dropdown absolute">
+                                                <button class="btn btn-link dropdown-toggle text-light"
+                                                    type="button" id="cusCenterDropdown2"
+                                                    data-bs-toggle="dropdown">${realName}</button>
+                                                <ul class="dropdown-menu p-0" role="button">
+                                                    <li id="whp3"><a
+                                                        href="/Users/SelectCustomer.controller"
+                                                        class="text-dark dropdown-item d-flex justify-content-center"
+                                                        target="_self">會員中心</a></li>
+                                                    <li id="whp4" class="m-0">
+                                                        <form action="/Users/logout.Controller" method="post">
+                                                            <button type="submit"
+                                                                class="dropdown-item d-flex justify-content-center"
+                                                                value="logout">登出</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div></li>
 									</ul>
 								</div>
 							</div>

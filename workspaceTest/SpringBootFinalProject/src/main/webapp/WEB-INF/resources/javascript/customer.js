@@ -6,7 +6,7 @@
 function selectOneCus(id) {
 	$.ajax({
 		method: "get",
-		url: "/Users/SelectCustomerById.Controller",
+		url: "/Backstage/SelectCustomerById.Controller",
 		dataType: "json",
 		contentType: "application/json",
 		data: { "id": `${id}` },
@@ -35,7 +35,7 @@ function deleteOneCus() {
 
 	$.ajax({
 		method: "get",
-		url: "/Users/DeleteCustomerById.Controller",
+		url: "/Backstage/DeleteCustomerById.Controller",
 		dataType: "json",
 		contentType: "application/json",
 		data: { "id": `${id}` },
@@ -43,7 +43,7 @@ function deleteOneCus() {
 			console.log(data);
 			if (data) {
 				console.log("成功");
-				location.href = "/Users/SelectCustomerAll.Controller";
+				location.href = "/Backstage/SelectCustomerAll.Controller";
 			} else {
 				console.log("失敗");
 			}
@@ -68,11 +68,11 @@ $(function() {
 		console.log(formData + "測試");
 		$.ajax({
 			method: "post",
-			url: "/Users/UpdateCustomerById.Controller",
+			url: "/Backstage/UpdateCustomerById.Controller",
 			data: formData,
 			success: function(data) {
 				console.log(data);
-				location.href = "/Users/SelectCustomerAll.Controller";
+				location.href = "/Backstage/SelectCustomerAll.Controller";
 			},
 			error: function(jqXHR, textStatus, errThrown) {
 				alert(`${textStatus}---${errThrown}`)

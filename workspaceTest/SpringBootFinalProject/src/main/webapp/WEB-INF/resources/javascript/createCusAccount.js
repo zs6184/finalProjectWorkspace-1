@@ -177,7 +177,7 @@ $(function() {
 		var dataForm = $(this).serialize();
 		$.ajax({
 			method: "post",
-			url: "/Users/CreateCusAccountCheckUsername.controller",
+			url: "/CreateCusAccountCheckUsername.controller",
 			data: dataForm,
 			success: function(data) {
 				console.log(data);
@@ -243,7 +243,7 @@ $(function() {
 		var dataForm = $(this).serialize();
 		$.ajax({
 			method: "post",
-			url: "/Users/CreateCusAccountCheckPhone.controller",
+			url: "/CreateCusAccountCheckPhone.controller",
 			data: dataForm,
 			success: function(data) {
 				console.log(data);
@@ -305,7 +305,7 @@ $(function() {
 		var dataForm = $(this).serialize();
 		$.ajax({
 			method: "post",
-			url: "/Users/CreateCusAccountCheckEmail.controller",
+			url: "/CreateCusAccountCheckEmail.controller",
 			data: dataForm,
 			success: function(data) {
 				if (data == "pass" && $("#email").val() != "") {
@@ -373,12 +373,12 @@ $(function() {
 		var dataForm = $(this).serialize();
 		$.ajax({
 			method: "post",
-			url: "/Users/CreateCusAccount.Controller",
+			url: "/CreateCusAccount.Controller",
 			data: dataForm,
 			success: function(data) {
 				if (data == "pass") {
 					console.log(data);
-					location.href = "/Users/login.Controller";
+					location.href = "/login.Controller";
 				}
 			},
 			error: function(jqXHR, textStatus, errThrown) {

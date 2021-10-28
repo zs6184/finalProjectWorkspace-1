@@ -40,7 +40,6 @@
 						</div>
 					</div>
 				</div>
-
 				<!-- 第三方登入 -->
 				<div class="container">
 					<div class="row justify-content-center">
@@ -49,10 +48,11 @@
 					</div>
 				</div>
 				<hr class="mx-5">
-				<form class="mt-5" id="loginForm" action="/login.Controller"
+				<form class="mt-5" id="loginForm" action="/backstageLogin.Controller"
 					method="post">
 					<div class="row" id="account">
 						<!-- 帳號 -->
+						<p>後台登入頁面(測試用)</p>
 						<div class="offset-2 col-8">
 							<div class="input-group mb-3">
 								<span class="input-group-text" id="basic-addon1"> <i

@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +17,6 @@ import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
-@RequestMapping(path = "/Users")
 public class CreateCusAccountController {
 
 	@Autowired
@@ -29,8 +29,15 @@ public class CreateCusAccountController {
 			throws ServletException, IOException {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 
+		//密碼進行加密
+		String encodePwd = new BCryptPasswordEncoder().encode(cBean.getCusPassword());
+		cBean.setCusPassword(encodePwd);//存回bean
+		
+		//設定為"會員"權限
+		cBean.setRole("MEMBER");
+		
 		// 判斷帳號、電話、email是否存在
-		String resultUsername = cusService.findByCreateCusUsername(cBean);// jpa
+		String resultUsername = cusService.findByCreateCusUsername(cBean);
 		String resultPhone = cusService.findByPhoneNumber(cBean);
 		String resultEmail = cusService.findByEmail(cBean);
 

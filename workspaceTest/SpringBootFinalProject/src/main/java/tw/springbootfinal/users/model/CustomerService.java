@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import tw.springbootfinal.users.exception.UserNotFoundException;
+
 @Service
 @Transactional
 public class CustomerService {
@@ -24,6 +26,9 @@ public class CustomerService {
 	// 透過id搜尋
 	public CustomerBean findById(int cId) {
 		Optional<CustomerBean> op1 = cusReps.findById(cId);
+		if(op1.isEmpty()) {//如果空的就拋出例外
+			throw new UserNotFoundException("Can't Find User;");//自定義例外
+		}
 		return op1.get();
 	}
 	
@@ -38,6 +43,14 @@ public class CustomerService {
 		String cusUsername = cusBean.getCusUsername();
 		List<CustomerBean> theCus = cusReps.findByCusUsername(cusUsername);
 		return theCus;
+	}
+	//根據帳號查詢
+	public CustomerBean getByCusUsername(String name) {
+		Optional<CustomerBean> op1 = cusReps.getByCusUsername(name);
+		if(op1.isEmpty()) {//如果空的就拋出例外
+			throw new UserNotFoundException("Can't Find User;");//自定義例外
+		}
+		return op1.get();
 	}
 	
 	// 登入時帳號密碼驗證
@@ -130,6 +143,12 @@ public class CustomerService {
 			
 			fis.read(b1);//將讀取檔案放入byte陣列
 			fis.close();
+			
+			
+			
+			System.out.println(cusBean.getCusId());
+			System.out.println(cusBean.getCusRealname());
+			System.out.println(cusBean.getEmail());
 			
 			cusBean.setImage(b1);
 			cusReps.save(cusBean);

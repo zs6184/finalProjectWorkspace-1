@@ -3,6 +3,7 @@ package tw.springbootfinal.users.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ import tw.springbootfinal.users.model.EmployeeBean;
 import tw.springbootfinal.users.model.EmployeeService;
 
 @Controller
-@RequestMapping(path = "/Users")
+@RequestMapping(path = "/Backstage")
 public class EmployeesController {
 
 	@Autowired
@@ -48,6 +49,20 @@ public class EmployeesController {
 	@RequestMapping(path = "/CreateEmpAccount.Controller", method = RequestMethod.POST)
 	@ResponseBody
 	public String processCreateEmpAccount(EmployeeBean eBean) {
+		
+		String empPassword = eBean.getEmpPassword();
+		//密碼加密
+		String encodePwd = new BCryptPasswordEncoder().encode(empPassword);
+		eBean.setEmpPassword(encodePwd);
+		String title = eBean.getTitle();
+		
+		//如果職稱是店長就給予管理權限
+		if("store manager".equals(title)) {
+			eBean.setRole("ADMIN");
+		}else {//否則給予員工權限
+			eBean.setRole("EMPLOYEE");
+		}
+		
 		EmployeeBean empBean = empService.save(eBean);
 		System.out.println(empBean);
 		return "pass";
@@ -93,6 +108,15 @@ public class EmployeesController {
 		empBean.setAddress(address);
 		empBean.setNote(note);
 
+		//如果職稱是店長就給予管理權限
+		if("store manager".equals(title)) {
+			empBean.setRole("ADMIN");
+		}else {//否則給予員工權限
+			empBean.setRole("EMPLOYEE");
+		}
+		
+		
+		
 		empService.save(empBean);
 		return "pass";
 	}

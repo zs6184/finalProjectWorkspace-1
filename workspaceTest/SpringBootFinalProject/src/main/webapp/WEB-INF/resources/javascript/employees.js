@@ -2,7 +2,7 @@
 function selectAccount() {
 	$.ajax({
 		method: "get",
-		url: "/Users/CreateEmpUsername.Controller",
+		url: "/Backstage/CreateEmpUsername.Controller",
 		success: function(data) {
 			$("#empUsername").val(data);
 			console.log(data);
@@ -18,7 +18,7 @@ function selectAccount() {
 function selectOneEmp(id) {
 	$.ajax({
 		method: "get",
-		url: "/Users/SelectEmployeeById.Controller",
+		url: "/Backstage/SelectEmployeeById.Controller",
 		dataType: "json",
 		contentType: "application/json",
 		data: { "id": `${id}` },
@@ -47,7 +47,7 @@ function deleteOneEmp() {
 
 	$.ajax({
 		method: "get",
-		url: "/Users/DeleteEmployeeById.Controller",
+		url: "/Backstage/DeleteEmployeeById.Controller",
 		dataType: "json",
 		contentType: "application/json",
 		data: { "id": `${id}` },
@@ -55,7 +55,7 @@ function deleteOneEmp() {
 			console.log(data);
 			if (data) {
 				console.log("成功");
-				location.href = "/Users/EmployeesAll.Controller";
+				location.href = "/Backstage/EmployeesAll.Controller";
 			} else {
 				console.log("失敗");
 			}
@@ -82,11 +82,11 @@ $(function() {
 		console.log(formData + "測試");
 		$.ajax({
 			method: "post",
-			url: "/Users/CreateEmpAccount.Controller",
+			url: "/Backstage/CreateEmpAccount.Controller",
 			data: formData,
 			success: function(data) {
 				console.log(data);
-				location.href = "/Users/EmployeesAll.Controller";
+				location.href = "/Backstage/EmployeesAll.Controller";
 			},
 			error: function(jqXHR, textStatus, errThrown) {
 				alert(`${textStatus}---${errThrown}`)
@@ -102,11 +102,11 @@ $(function() {
 		console.log(formData + "測試");
 		$.ajax({
 			method: "post",
-			url: "/Users/UpdateEmployeeById.Controller",
+			url: "/Backstage/UpdateEmployeeById.Controller",
 			data: formData,
 			success: function(data) {
 				console.log(data);
-				location.href = "/Users/EmployeesAll.Controller";
+				location.href = "/Backstage/EmployeesAll.Controller";
 			},
 			error: function(jqXHR, textStatus, errThrown) {
 				alert(`${textStatus}---${errThrown}`)
@@ -143,7 +143,7 @@ $(function() {
 			}
 			$.ajax({
 				method: "get",
-				url: "/Users/SelectPhone.Controller",
+				url: "/Backstage/SelectPhone.Controller",
 				data: dataForm,
 				success: function(data) {
 					console.log(data);
@@ -166,6 +166,22 @@ $(function() {
 	});
 
 
+	 $('#myTable').DataTable( {
+		lengthChange:true, //呈現選單
+		lengthMenu:[5,10], //選單值
+		pageLength:10, //固定頁數
+		paging:true, //建立分頁
+		searching:false, //搜尋
+		ordering:false, //取消排序
+		language:{ //語言
+			"lengthMenu":"顯示_MENU_ 項",
+			"info":"顯示第 _START_ 至 _END_ 項 , 共 _TOTAL_ 項",
+			"paginate":{
+				"previous":"上一頁",
+				"next":"下一頁"
+			}
+		}
+  } );
 
 
 

@@ -34,7 +34,6 @@
 <script src="/javascript/customerCenter.js"></script>
 
 </head>
-
 <body id="top" style="background-image: url(/image/背景4.jpg)";>
 	<div style="background-color: rgb(6, 121, 121, .1);">
 		<br>
@@ -89,7 +88,7 @@
 	</div>
 
 	<!-- 手風琴 -->
-	<div class="containerAll" id="information">
+	<div class="containerAll">
 		<!-- container left -->
 		<div class="containerLeft shadow">
 			<nav id="sidebar" class=" colorGray">
@@ -108,8 +107,8 @@
 					</a> <!-- 子連結 -->
 						<ul id="sublist01" class="list-unstyled collapse show">
 							<li><a href="/Users/SelectCustomer.controller#information"
-								class="itemDetails sidebarLight02">個人資料</a></li>
-							<li><a href="/Users/CheckPassword.Controller#position" class="itemDetails">變更密碼</a></li>
+								class="itemDetails">個人資料</a></li>
+							<li><a href="/Users/CheckPassword.Controller#position" class="itemDetails sidebarLight02">變更密碼</a></li>
 							<li><a href="#" class="itemDetails">暫時保留</a></li>
 						</ul></li>
 					<li><a href="#sublist02" data-bs-toggle="collapse"
@@ -152,115 +151,28 @@
 		<div class="containerRight">
 			<!-- 主頁內容 -->
 			<div class="container-fluid">
-				<div class="row">
-					<div class="col-11 bg-white my-3 ms-5 box rounded-3 shadow p-5">
-						<p class="font1 border-bottom pb-4">個人資料</p>
+				<div class="row" id="join">
+					<div class="offset-3 col-6 bg-white my-5 box2 rounded-3 shadow p-5">
+						<p class="font1 border-bottom pb-5" id="position">變更密碼</p>
 						<!-- left -->
-						<form class="mt-5" id="customerCenterForm"
-							action="/Users/UpdateCustomer.controller" method="post"
+						<form class="mt-5" id="checkPasswordForm"
+							action="/Users/CheckPasswordBT.Controller" method="post"
 							enctype="multipart/form-data">
-							<div class="row">
-								<div class="col-8">
-									<div class=" row" id="account">
-										<div class="row my-2 offset-1 col-10">
-											<input hidden="true" name="cusId" id="cusId"
-												value="${cus[0].cusId}" /> <label for="username"
-												class="col-3 col-form-label">帳號:</label>
-											<div class="col-9 d-flex align-items-center">
-												<span id="username">${cus[0].cusUsername}</span>
-												<!--<input id="username" type="text" name="cusUsername" class="form-control" maxlength="20" placeholder="Username" autocomplete="off" autofocus>-->
-											</div>
+							<div>
+								<div class="d-flex justify-content-center" id="account">
+									<div class="mb-3">
+										<label for="checkPassword" class="col-form-label mb-2">如要繼續操作，請先驗證您的身分:</label>
+										<div class="relative" >
+											<input id="checkPassword" type="password"
+												name="checkPassword"
+												maxlength="20" class="form-control"
+												autocomplete="off" placeholder="請輸入您的密碼">
+											<div class="invalid-tooltip" id="checkPasswordInvalid">密碼錯誤</div>
 										</div>
-										<div class="row my-2 offset-1 col-10">
-											<label for="cusRealname" class="col-3 col-form-label">姓名:</label>
-											<div class="col-9">
-												<input id="cusRealname" type="text"
-													value="${cus[0].cusRealname}" name="cusRealname"
-													class="form-control" maxlength="10" placeholder="Name"
-													autocomplete="off">
-											</div>
-										</div>
-										<div class="row my-3 offset-1 col-10">
-											<label for="aka" class="col-3 col-form-label">暱稱:</label>
-											<div class="col-9">
-												<input id="aka" type="text" name="aka" value="${cus[0].aka}"
-													class="form-control" maxlength="10" placeholder="Nickname"
-													autocomplete="off">
-											</div>
-										</div>
-										<div class="row my-2 offset-1 col-10">
-											<label for="male" class="col-3 ${cus[0].gender}" id="gender">性別:</label>
-											<div class="col-9">
-												<label for="male" class="form-check-label">男</label> <input
-													id="male" type="radio" value="male" name="gender"
-													class="form-check-input"> <label for="female"
-													class="form-check-label ms-3">女</label> <input id="female"
-													type="radio" value="female" name="gender"
-													class="form-check-input">
-											</div>
-										</div>
-										<div class="row my-2 offset-1 col-10">
-											<label for="birthdate" class="col-3 col-form-label">生日:</label>
-											<div class="col-9">
-												<input id="birthdate" type="date"
-													value="${cus[0].birthdate}" name="birthdate"
-													class="form-control" autocomplete="off">
-											</div>
-										</div>
-										<div class="row my-3 offset-1 col-10">
-											<label for="phoneNumber" class="col-3 col-form-label">聯絡電話:</label>
-											<div class="col-9 relative">
-												<input id="phoneNumber" type="tel"
-													value="${cus[0].phoneNumber}" name="phoneNumber"
-													maxlength="10" class="form-control"
-													placeholder="Phone Number" autocomplete="off">
-												<div class="invalid-tooltip" id="phoneInvalid">電話號碼已被使用</div>
-											</div>
-										</div>
-										<div class="row my-3 offset-1 col-10">
-											<label for="email" class="col-3 col-form-label">E-mail:</label>
-											<div class="col-9 relative">
-												<input id="email" type="email" value="${cus[0].email}"
-													name="email" class="form-control" maxlength="30"
-													placeholder="Email" autocomplete="off">
-												<div class="invalid-tooltip" id="emailInvalid">E-mail
-													已被使用</div>
-											</div>
-										</div>
-										<div class="row my-3 offset-1 col-10">
-											<label for="address" class="col-3 col-form-label">地址:</label>
-											<div class="col-9">
-												<input id="address" type="text" value="${cus[0].address}"
-													name="address" class="form-control" maxlength="50"
-													placeholder="Address" autocomplete="off">
-											</div>
-										</div>
-									</div>
-									<div class="text-center mt-3 mb-5">
-										<button type="submit" class="btn btn-success">儲存</button>
 									</div>
 								</div>
-								<!-- right -->
-								<div class="col-4 mt-5">
-									<div class="border-start d-flex justify-content-center">
-										<div>
-											<div class="mx-5 my-2">
-												<div id="cursor">
-													<label for="file" id="imgPreview" class="bg-white"
-														style="border: hidden"> <img
-														src="/downloadTempDir/${imageName}" class="image" />
-													</label>
-													<!-- image/husky.jpg -->
-												</div>
-												<div class="d-flex justify-content-center">
-													<label for="file" class="btn btn-outline-success mt-3">選擇圖片</label>
-													<input type="file" name="image" id="file"
-														accept=".jpg,.jpeg,.png" style="display: none" />
-												</div>
-											</div>
-											<div class="mt-2 text-center">檔案限制: .JPG, .JPEG, .PNG</div>
-										</div>
-									</div>
+								<div class="text-center mt-3 mb-5">
+									<button type="submit" class="btn btn-success">確認</button>
 								</div>
 							</div>
 						</form>
@@ -283,8 +195,9 @@
 								<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
 								<li>
 									<div class="dropdown absolute">
-										<button class="btn btn-link dropdown-toggle text-light" type="button"
-											id="cusCenterDropdown2" data-bs-toggle="dropdown">${realName}</button>
+										<button class="btn btn-link dropdown-toggle text-light"
+											type="button" id="cusCenterDropdown2"
+											data-bs-toggle="dropdown">${realName}</button>
 										<ul class="dropdown-menu p-0" role="button">
 											<li id="whp3"><a href="/Users/SelectCustomer.controller"
 												class="text-dark dropdown-item d-flex justify-content-center"
