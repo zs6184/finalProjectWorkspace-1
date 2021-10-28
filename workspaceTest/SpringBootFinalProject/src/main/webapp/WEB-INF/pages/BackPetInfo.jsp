@@ -168,13 +168,12 @@
 		</div>
 		<!-- container right -->
 		<div class="containerRight">
-
 			<div class="container-fluid">
 				<!-- 查詢欄位 -->
 				<div style="margin-top: 20px;">
 					<form action="/backstage/pet/searchdata.controller" method="POST" id="srhForm">
 						<div class="row justify-content-start">
-							<div class="col-1 text-center">
+							<div class="col-1 text-center" >
 								<select name="category" id="srhCategory">
 									<option value="">不限類別</option>
 									<c:forEach var="cateSet" items="${cateSet}">

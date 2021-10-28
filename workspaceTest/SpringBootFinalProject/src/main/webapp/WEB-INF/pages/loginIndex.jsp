@@ -64,7 +64,7 @@
 							<li><a href="/Users/SelectCustomer.controller"
 								target="_self">${realName}</a> <a
 								href="/Users/logoutIndex.Controller" target="_self">登出</a></li>
-							<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
+							<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
 							<li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
 							<li><a href="/Users/loginIndex.Controller" target="_self">餐點介紹</a></li>
 							<li><a href="#t1" target="_self">活動訊息</a></li>
