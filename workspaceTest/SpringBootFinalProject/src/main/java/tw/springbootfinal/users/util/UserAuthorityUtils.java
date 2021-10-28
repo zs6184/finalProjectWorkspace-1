@@ -13,7 +13,7 @@ public class UserAuthorityUtils {
 	// 利用Spring提供的AuthorityUtils中createAuthorityList將該群組加入相關roles
 	// 以便用一個List變數就儲存所有roles
 	private static final List<GrantedAuthority> ADMIN_ROLES = AuthorityUtils.createAuthorityList("ROLE_ADMIN",
-			"ROLE_USER", "ROLE_MEMBER");
+			"ROLE_EMPLOYEE", "ROLE_MEMBER");
 
 	private static final List<GrantedAuthority> EMPLOYEE_ROLES = AuthorityUtils.createAuthorityList("ROLE_MEMBER",
 			"ROLE_EMPLOYEE");

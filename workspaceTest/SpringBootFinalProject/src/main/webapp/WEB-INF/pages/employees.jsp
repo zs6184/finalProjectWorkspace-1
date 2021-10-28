@@ -7,22 +7,27 @@
 <meta charset="UTF-8">
 <title>後臺管理系統</title>
 <!-- JavaScript Bundle with Popper -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- DataTable js -->
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <!-- fontawesome icon -->
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+<!-- DataTable css -->
 
 <link href="/stylesheet/bootstrap.min.css" rel="stylesheet" />
 <link href="/stylesheet/jquery-ui.min.css" rel="stylesheet" />
 <!--自訂樣式表-->
 <link href="/stylesheet/backstage.css" rel="stylesheet" />
 <link href="/stylesheet/employees.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
 <!--<script src="javascript/bootstrap.min.js"></script>-->
 <script src="/javascript/jquery-3.6.0.min.js"></script>
 <!--自訂js-->
 <script src="/javascript/backstage.js"></script>
 <script src="/javascript/employees.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
@@ -270,25 +275,14 @@
 						</div>
 					</div>
 
-					<div class="col-8 ">
-						<nav aria-label="Page navigation">
-							<ul class="pagination justify-content-center">
-								<li class="page-item "><a class="page-link"
-									href="history.back()">上一頁</a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">下一頁</a></li>
-							</ul>
-						</nav>
-					</div>
+					
 				</div>
 			</div>
 			<!-- 主頁內容 -->
 			<div class="container-fluid ">
 				<div class="row">
 					<div class="col-11 bg-white mt-3 ms-5 box rounded-3 shadow">
-						<table class="table table-striped table-hover mt-4">
+						<table class="table table-striped table-hover mt-4 display" id="myTable">
 							<thead>
 								<tr>
 									<th scope="col">員工ID</th>
@@ -417,19 +411,7 @@
 				</div>
 			</div>
 
-			<!-- 分頁按鈕 -->
-			<div class="page">
-				<nav aria-label="Page navigation">
-					<ul class="pagination justify-content-center">
-						<li class="page-item"><a class="page-link"
-							href="history.back()">上一頁</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">下一頁</a></li>
-					</ul>
-				</nav>
-			</div>
+			
 		</div>
 
 	</div>
