@@ -38,6 +38,7 @@
 	<hr>
 
 	<!-- nav欄部分 -->
+	<div id="sessionUsername" style="display:none;"><%=session.getAttribute("username") %></div> <!-- 檢查SessionAttribute是否存在用 -->
 	<div id="topbar">
 		<div class="container h-100">
 			<div class="row h-100 align-items-center">
@@ -68,7 +69,6 @@
 			</div>
 		</div>
 	</div>
-	<div id="sessionUsername" style="display:none;"><%=session.getAttribute("username") %></div>
 	<!--內容-->
 	<div class="container" id="container">
 		<!--寵物詳細資訊-->
