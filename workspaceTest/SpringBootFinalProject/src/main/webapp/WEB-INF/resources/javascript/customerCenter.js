@@ -8,8 +8,32 @@ function changePasswordLoad() {
 	$('#join').load(url); //有點小問題 //如果不抓整個html的話js無法使用
 	return false;
 }
+//載入變更信箱的表單
+function changeEmailLoad() {
+	console.log("load");
+	var url = "/Users/ChangeEmail.Controller";
+	$('#join').load(url); //有點小問題 //如果不抓整個html的話js無法使用
+	return false;
+}
+
 
 $(function() {
+
+	//確認權限，如果為EMPLOYEE就顯示後台按鈕
+	var emp = $(".backstage").hasClass("EMPLOYEE");
+	var admin = $(".backstage").hasClass("ADMIN");
+
+	console.log(emp);
+	console.log(admin);
+	if (emp || admin) {
+		$(".backstage").each(function() {
+			$(this).find("li:first").after(`<li id="whp5"><a id="backstage" href="/Backstage/SelectCustomerAll.Controller"
+											style="font-size: 1.1em;color:black"
+											class="dropdown-item d-flex justify-content-center"
+											target="_self">後台管理</a></li>`);
+		});
+	}
+
 	//side
 	$("#collapse").on("click", function() {
 		if ($("#sidebar").hasClass("close")) {
@@ -322,5 +346,61 @@ $(function() {
 		});
 		return false;
 	});
+
+
+
+
+
+
+
+
+
+
+
+	//確認密碼是否正確
+	$("#emailCheckPasswordForm").submit(function() {
+		var checkPassword = $("#checkPassword");
+		var password = checkPassword.val();
+		console.log(password);
+
+		$.ajax({
+			method: "post",
+			url: "/Users/CheckPasswordBT.Controller",
+			data: { "password": password },
+			success: function(data) {
+				console.log(data);
+				if (data == "pass") {
+					checkPassword.removeClass("is-invalid");//移除警告
+					changeEmailLoad();
+					return false;
+				} else {
+					$("#checkPasswordInvalid").html("密碼錯誤");
+					checkPassword.removeClass("is-valid");//移除通過
+					checkPassword.addClass("is-invalid"); //新增警告
+					return false;
+				}
+			},
+			error: function(jqXHR, textStatus, errThrown) {
+				alert(`${textStatus}---${errThrown}`);
+			}
+		});
+		return false;
+	});
+
+	$("#changeEmailForm").submit(function() {
+		var email = $("#email").val();
+		if (email == "" || email.length == 0) {
+			$("#email").focus();
+			$("#emailInvalid").html("請填寫Email");
+			$("#email").removeClass("is-valid");//移除通過
+			$("#email").addClass("is-invalid"); //新增警告
+		console.log("進");
+			return false;
+		}
+		console.log("沒進");
+		return false;
+
+	});
+
 
 });

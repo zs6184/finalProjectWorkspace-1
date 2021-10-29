@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -172,41 +173,10 @@ public class CustomerCenterController {
 	
 	//進入變更密碼時取得圖片
 	@GetMapping("/CheckPassword.Controller")
-	public String processSelectUserImage(HttpSession session, Model m, HttpServletRequest request) {
-		// 取得登入時session層級的username
-		Object attr = session.getAttribute("username");
-		String str = attr.toString();
-		System.out.println("str"+str);
-		CustomerBean cusBean = new CustomerBean();
-		cusBean.setCusUsername(str);// 設定username到Bean
-		// 利用username取得list結果集
-		List<CustomerBean> cus = cusService.findByCustomerCenterUsername(cusBean);
-		m.addAttribute("cus", cus);// 將結果設成屬性給jsp使用
-
-		int cusId = 0;
-		String imageName = null;
-		byte[] image = {};
-		// 取得資料庫資料
-		for (CustomerBean customerBean : cus) {
-			cusId = customerBean.getCusId();
-			imageName = customerBean.getImageName();
-			image = customerBean.getImage();
-			System.out.println("imageName: "+imageName);
-			System.out.println("cusId: "+cusId);
-			System.out.println("image: "+image);
-		}
-		// 如果會員沒有上傳過圖片就使用預設圖片
-		if (image == null) {
-			m.addAttribute("imageName", "husky.jpg");
-		} else {
-			// 抓到專案路徑加上暫存資料夾名稱
-			String path = request.getSession().getServletContext().getRealPath("/") + "downloadTempDir\\";
-			System.out.println(path);
-			cusService.imageDownload(image, cusId, imageName, path);
-
-			m.addAttribute("imageName", imageName);
-		}
+	public String processSelectUserImage(@SessionAttribute("username") String username, Model m, HttpServletRequest request) {
 		
+		String selectUserImage = cusService.SelectUserImage(username, m, request);
+		System.out.println(selectUserImage);
 		return "checkPassword";
 	}
 	
@@ -250,6 +220,15 @@ public class CustomerCenterController {
 		cusBean.setCusPassword(encodePwd);//存回bean
 		cusService.save(cusBean);//更新密碼
 		return "success";
+	}
+	
+	//進入變更信箱時取得圖片
+	@GetMapping("/EmailCheckPassword.Controller")
+	public String processEmailSelectUserImage(@SessionAttribute("username") String username, Model m, HttpServletRequest request) {
+		
+		String selectUserImage = cusService.SelectUserImage(username, m, request);
+		System.out.println(selectUserImage);
+		return "emailCheckPassword";
 	}
 
 }

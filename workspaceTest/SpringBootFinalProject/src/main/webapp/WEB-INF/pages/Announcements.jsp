@@ -169,8 +169,8 @@ function t(){
 							<li><a href="#" class="itemDetails">訂位更新</a></li>
 						</ul></li>
 					<li><a href="#sublist03" data-bs-toggle="collapse"
-						id="dropdown03" class="center"> <i
-							class="fas fa-bullhorn mx-2 "></i> <span class="items">公告管理</span>
+						id="dropdown03" class="center  sidebarLight01"> <i
+							class="fas fa-bullhorn mx-2 "></i> <span class="items ">公告管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist03" class="list-unstyled collapse">
 							<li><a href="#" class="itemDetails  sidebarLight02">公告總覽</a></li>

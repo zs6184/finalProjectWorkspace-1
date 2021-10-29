@@ -60,7 +60,8 @@
 					<div class="col-12">
 
 						<ul>
-							<li><a href="/Users/login.Controller" target="_self">登入註冊</a></li>
+
+							<li><a href="/login.Controller" target="_self">登入註冊</a></li>
 							<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
 							<li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
 							<li><a href="/Users/loginIndex.Controller" target="_self">餐點介紹</a></li>

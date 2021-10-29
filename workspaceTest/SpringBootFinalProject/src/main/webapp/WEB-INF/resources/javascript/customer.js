@@ -6,7 +6,7 @@
 function selectOneCus(id) {
 	$.ajax({
 		method: "get",
-		url: "/Backstage/SelectCustomerById.Controller",
+		url: "/Backstage/SelectCustomerImageById.Controller",
 		dataType: "json",
 		contentType: "application/json",
 		data: { "id": `${id}` },
@@ -20,6 +20,7 @@ function selectOneCus(id) {
 			$("#emailUpdate").val(data.email);
 			$("#addressUpdate").val(data.address);
 			$("#notesUpdate").val(data.note);
+			$("#image").prop("src","/downloadTempDir/"+data.imageName);
 		},
 		error: function(jqXHR, textStatus, errThrown) {
 			alert(`${textStatus}---${errThrown}`)
@@ -60,6 +61,13 @@ function deleteOneCus() {
 
 
 $(function() {
+	//如果是admin權限，就取消隱藏的員工管理
+	var role = $("#role").hasClass("ADMIN");
+		console.log(role);
+	if(role){
+		console.log("成功");
+		$("#employeeManagement").removeClass("d-none");
+	}
 	
 	//更新指定會員資料
 	$("#updateForm").submit(function() {
@@ -80,5 +88,24 @@ $(function() {
 		});
 		return false;
 	});
+		$('#customerTable').DataTable({
+		lengthChange: true, //呈現選單
+		lengthMenu: [5, 10], //選單值
+		pageLength: 10, //固定頁數
+		paging: true, //建立分頁
+		searching: true, //搜尋
+		ordering: true, //取消排序
+		language: { //語言
+			"lengthMenu": "顯示_MENU_ 項",
+			"info": "顯示第 _START_ 至 _END_ 項 , 共 _TOTAL_ 項",
+			"paginate": {
+				"previous": "上一頁",
+				"next": "下一頁"
+			},
+			"search":`<i class="fas fa-search"></i>`
+			
+		}
+	});
+	
 
 });

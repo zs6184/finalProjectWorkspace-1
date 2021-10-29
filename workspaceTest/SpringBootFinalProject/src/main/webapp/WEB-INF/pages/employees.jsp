@@ -7,28 +7,24 @@
 <meta charset="UTF-8">
 <title>後臺管理系統</title>
 <!-- JavaScript Bundle with Popper -->
-<!-- DataTable js -->
-<script type="text/javascript"
-	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- fontawesome icon -->
-<link rel="stylesheet"
-	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-<!-- DataTable css -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
 <link href="/stylesheet/bootstrap.min.css" rel="stylesheet" />
 <link href="/stylesheet/jquery-ui.min.css" rel="stylesheet" />
 <!--自訂樣式表-->
 <link href="/stylesheet/backstage.css" rel="stylesheet" />
 <link href="/stylesheet/employees.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
 <!--<script src="javascript/bootstrap.min.js"></script>-->
 <script src="/javascript/jquery-3.6.0.min.js"></script>
+<!-- DataTable css -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
 <!--自訂js-->
 <script src="/javascript/backstage.js"></script>
 <script src="/javascript/employees.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-
+<!-- DataTable js -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 	<!-- 導覽列 -->
@@ -50,12 +46,12 @@
 							<div class="dropdown">
 								<button class="btn-transparent" type="button"
 									id="dropdownButton01" data-bs-toggle="dropdown">
-									<img src="/image/husky.jpg" class="image shadow" />
+									<img src="/downloadTempDir/${imageName}" class="image shadow" />
 								</button>
 								<ul class="dropdown-menu  dropdown-menu-end shadow"
 									aria-labelledby="dropdownMenuButton01">
-									<li><a class="dropdown-item" href="#">Username</a></li>
-									<li><a class="dropdown-item" href="#">Settings</a></li>
+									<li><a class="dropdown-item" href="/Users/SelectCustomer.controller#information">${realName}</a></li>
+									<li><a class="dropdown-item" href="/Users/loginIndex.Controller">浪跡</a></li>
 									<li><button type="submit" class="dropdown-item"
 											value="logout">Logout</button></li>
 								</ul>
@@ -157,9 +153,9 @@
 					<li class="m-0"><a href="/message.html" class="center"> <i
 							class="fas fa-comments-dollar mx-2"></i> <span class="items">客服管理</span>
 					</a></li>
-					<li class="m-0"><a href="/Backstage/SelectCustomerAll.Controller"
-						class="center"> <i class="fas fa-users mx-2"></i> <span
-							class="items">會員管理</span>
+					<li class="m-0"><a
+						href="/Backstage/SelectCustomerAll.Controller" class="center">
+							<i class="fas fa-users mx-2"></i> <span class="items">會員管理</span>
 					</a></li>
 					<li class="m-0"><a href="/Backstage/EmployeesAll.Controller"
 						class="center sidebarLight02"> <i
@@ -173,12 +169,13 @@
 		<div class="containerRight">
 			<!-- 分頁按鈕 -->
 			<div class="page container">
-				<div class="row">
+				<div class="row d-flex justify-content-end">
 					<div class="col-2">
 						<!-- Button trigger modal      -->
+						<div class="">
 						<button type="button" onclick="selectAccount()"
 							class="btn btn-primary btn-lg ms-5" data-bs-toggle="modal"
-							data-bs-target="#empModal">新增</button>
+							data-bs-target="#empModal">新增</button></div>
 						<!-- Modal:員工帳號建立頁面 -->
 						<!--fade為動畫-->
 						<div class="modal fade" id="empModal" tabindex="-1">
@@ -189,8 +186,8 @@
 										<button type="button" class="btn-close"
 											data-bs-dismiss="modal"></button>
 									</div>
-									<form action="/Backstage/CreateEmpAccount.Controller" method="post"
-										id="empForm">
+									<form action="/Backstage/CreateEmpAccount.Controller"
+										method="post" id="empForm">
 										<div class="modal-body">
 											<div class="row">
 												<div class="offset-1 col-4 my-3">
@@ -275,14 +272,15 @@
 						</div>
 					</div>
 
-					
+
 				</div>
 			</div>
 			<!-- 主頁內容 -->
 			<div class="container-fluid ">
 				<div class="row">
-					<div class="col-11 bg-white mt-3 ms-5 box rounded-3 shadow">
-						<table class="table table-striped table-hover mt-4 display" id="myTable">
+					<div class="col-11 bg-white mt-3 ms-5 box rounded-3 shadow p-1 mb-5">
+						<table class="table table-striped table-hover mt-4 display p-4"
+							id="myTable">
 							<thead>
 								<tr>
 									<th scope="col">員工ID</th>
@@ -411,7 +409,7 @@
 				</div>
 			</div>
 
-			
+
 		</div>
 
 	</div>
