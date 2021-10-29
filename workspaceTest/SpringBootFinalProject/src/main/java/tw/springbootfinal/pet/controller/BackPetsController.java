@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -47,7 +48,7 @@ public class BackPetsController {
 		for(Pets aPet:arrPet) {
 			sexSet.add(aPet.getSex());		//用Set將重複值篩選掉
 			cateSet.add(aPet.getCategory());//用Set將重複值篩選掉
-		}		
+		}
 		m.addAttribute("arrPet",arrPet);
 		m.addAttribute("cateSet",cateSet);
 		m.addAttribute("sexSet",sexSet);

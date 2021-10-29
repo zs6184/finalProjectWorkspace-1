@@ -13,18 +13,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import tw.springbootfinal.users.model.AuthEmpUserDetailService;
 import tw.springbootfinal.users.model.AuthUserDetailService;
 
-@Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 	
 	@Configuration
-	@Order(2) //用來設定順序
+	@Order(1)//用來設定順序
 	public static class EmployeeConfigurationAdapter extends WebSecurityConfigurerAdapter{
-		public EmployeeConfigurationAdapter() {
-			super();
-		}
-		
-		@Autowired
+
+		@Autowired //實作UserDetailsService進行員工帳密驗證
 		private AuthEmpUserDetailService authEmpUserDetailService;
 
 		@Override
@@ -38,17 +34,11 @@ public class SecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			System.out.println("employee httpSecurity");
 			http
-			//.antMatcher("/Backstage/**")
+			.antMatcher("/Backstage/**")
 			.authorizeRequests()
-			//.anyRequest()
-			//.hasAnyRole("EMPLOYEE","ADMIN")
-			
-			
+
 			.antMatchers("/Backstage/**").hasAnyRole("EMPLOYEE","ADMIN")
-			.antMatchers("/Users/**").hasRole("MEMBER")
-			.antMatchers(HttpMethod.GET,"/Backstage/**").authenticated()
 			.antMatchers(HttpMethod.GET).permitAll()
-			.antMatchers(HttpMethod.POST,"/Backstage/**").authenticated()
 			.antMatchers(HttpMethod.POST).permitAll()
 			.anyRequest().authenticated()
 			
@@ -64,19 +54,16 @@ public class SecurityConfig {
 			
 			.and()
 			.logout().logoutUrl("/Users/logout.Controller")
-			.logoutSuccessUrl("/index.html");
+			.logoutSuccessUrl("/logout.Controller");
 		}
 	}
 	
 	
 	@Configuration
-	@Order(1) //用來設定順序
+	@Order(2) //用來設定順序
 	public static class CustomerConfigurationAdapter extends WebSecurityConfigurerAdapter{
-		public CustomerConfigurationAdapter() {
-			super();
-		}
 
-		@Autowired
+		@Autowired //實作UserDetailsService進行會員帳密驗證
 		private AuthUserDetailService authUserDetailService;
 		
 		@Override
@@ -90,25 +77,11 @@ public class SecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			System.out.println("customer httpSecurity");
 			http
-			
-            //.antMatcher("/Users/**")
+			//.antMatcher("/Users/**")
             .authorizeRequests()
 
-
-//            .antMatcher("/Users/**")
-//            .authorizeRequests()
-//            .anyRequest()
-//            .authenticated()
-//			.antMatcher("/Users/**")
-			//.authorizeRequests()
-//			.anyRequest()
-//			.hasRole("MEMBER")
-			
-			.antMatchers("/Backstage/**").hasAnyRole("EMPLOYEE","ADMIN")
-			.antMatchers("/Users/**").hasRole("MEMBER")
-			.antMatchers(HttpMethod.GET,"/Users/**").authenticated()
+            .antMatchers("/Users/**").hasRole("MEMBER")
 			.antMatchers(HttpMethod.GET).permitAll()
-			.antMatchers(HttpMethod.POST,"/Users/**").authenticated()
 			.antMatchers(HttpMethod.POST).permitAll()
 			.anyRequest().authenticated()
 			
@@ -124,7 +97,7 @@ public class SecurityConfig {
 			
 			.and()
 			.logout().logoutUrl("/Users/logout.Controller")
-			.logoutSuccessUrl("/index.html");
+			.logoutSuccessUrl("/logout.Controller");
 		}
 	}
 }

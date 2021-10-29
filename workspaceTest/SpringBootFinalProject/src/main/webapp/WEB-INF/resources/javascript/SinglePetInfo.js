@@ -35,10 +35,31 @@ $(function() {
 	});
 
 	
-	//按下領養預約按鈕時清空表單欄位
+	//按下領養預約按鈕時清空表單欄位並檢測是否有登入，未登入則跳轉登入頁面
 	$("#reserveBtn").click(function(){
+		var username = $("#sessionUsername").text();
 		$("#reserveTime,#cusId,#cusRealname,#phone").val("");
 		$("#reserveTime,#cusId,#cusRealname,#phone").attr("placeholder","");
+		console.log("session username="+username);
+			$.ajax({
+				type: "GET",
+				url: "/users/petreserve/checktheCus",
+				datatype: "JSON",
+				contentType: "application/json",
+				success:function(data){
+					console.log('get theCus successfully');
+					var theCus = jQuery.parseJSON(data).theCus;
+					console.log("cusId="+theCus.cusId)
+					$("#cusId").val(`${theCus.cusId}`);
+					$("#cusRealname").val(`${theCus.cusRealname}`);
+					$("#phone").val(`${theCus.phoneNumber}`);
+					$("#reservePet").modal("show");					
+				},
+				error:function(){
+					console.log('get the cus fail');
+					window.location.replace("http://localhost:8080/login.Controller");
+				}
+			});
 	});
 	
 	//表單事件-生成錯誤提示訊息
@@ -68,41 +89,41 @@ $(function() {
 		}
 	});
 	
-	//抓取cusData後續檢測使用
-	$.ajax({
-		type: "GET",
-		url: "/backstage/pet/getAllCustomerData.controller",
-		datatype: "JSON",
-		contentType: "application/json",
-		success: function(data) {
-			console.log("getCusData Success")
-			customers=jQuery.parseJSON(data).cusData; //客戶的資料JSON陣列
-			//console.log("cusId=1="+customers.find(i=>i.cusId=="1").cusRealname); //JOE
-			
-			for(let i=0;i<customers.length;i++){
-				cusID.push(customers[i].cusId);	
-			}
-			console.log("cusID members ="+cusID);
-		},
-		error:function(){
-			console.log("get cusData failed");
-		}
-	})
-	
-	//更新寵物資料-輸入客戶ID後檢測客戶是否存在
-	$("#cusId").blur(function(){
-		var check = parseInt($(this).val()); //確定轉為整數值
-
-		if(cusID.includes(check)){
-			console.log("find cus success");
-			$("#cusRealname").val(customers.find(i=>i.cusId==`${check}`).cusRealname);
-			$("#phone").val(customers.find(i=>i.cusId==`${check}`).phoneNumber);
-		}else{
-			console.log("Who is it ?");
-			$("#cusId,#cusRealname,#phone").val("");
-			$("#cusId,#cusRealname,#phone").attr("placeholder","查無此會員");
-		}
-	});
+//	//抓取cusData後續檢測使用
+//	$.ajax({
+//		type: "GET",
+//		url: "/backstage/pet/getAllCustomerData.controller",
+//		datatype: "JSON",
+//		contentType: "application/json",
+//		success: function(data) {
+//			console.log("getCusData Success")
+//			customers=jQuery.parseJSON(data).cusData; //客戶的資料JSON陣列
+//			//console.log("cusId=1="+customers.find(i=>i.cusId=="1").cusRealname); //JOE
+//			
+//			for(let i=0;i<customers.length;i++){
+//				cusID.push(customers[i].cusId);	
+//			}
+//			console.log("cusID members ="+cusID);
+//		},
+//		error:function(){
+//			console.log("get cusData failed");
+//		}
+//	})
+//	
+//	//更新寵物資料-輸入客戶ID後檢測客戶是否存在
+//	$("#cusId").blur(function(){
+//		var check = parseInt($(this).val()); //確定轉為整數值
+//
+//		if(cusID.includes(check)){
+//			console.log("find cus success");
+//			$("#cusRealname").val(customers.find(i=>i.cusId==`${check}`).cusRealname);
+//			$("#phone").val(customers.find(i=>i.cusId==`${check}`).phoneNumber);
+//		}else{
+//			console.log("Who is it ?");
+//			$("#cusId,#cusRealname,#phone").val("");
+//			$("#cusId,#cusRealname,#phone").attr("placeholder","查無此會員");
+//		}
+//	});
 	
 	//送出表單並檢測是否已預約
 	$("#sendReserveBtn").click(function(){

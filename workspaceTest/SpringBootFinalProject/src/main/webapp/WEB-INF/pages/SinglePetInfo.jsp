@@ -68,7 +68,7 @@
 			</div>
 		</div>
 	</div>
-
+	<div id="sessionUsername" style="display:none;"><%=session.getAttribute("username") %></div>
 	<!--內容-->
 	<div class="container" id="container">
 		<!--寵物詳細資訊-->
@@ -97,8 +97,7 @@
 									 readonly>${thePet.note}</textarea>
 						</div>
 						<div class="row justify-content-end">
-							<button type="button" class="col-3 btn btn-danger text-white" id="reserveBtn"
-									data-bs-toggle="modal" data-bs-target="#reservePet">預約領養</button>
+							<button type="button" class="col-3 btn btn-danger text-white" id="reserveBtn">預約領養</button>
 						</div>
 					</div>
 				</div>
