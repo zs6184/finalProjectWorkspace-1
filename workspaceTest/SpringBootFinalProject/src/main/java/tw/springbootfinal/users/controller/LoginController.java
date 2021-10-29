@@ -27,7 +27,7 @@ import tw.springbootfinal.users.model.Recaptcha;
 import tw.springbootfinal.users.model.RecaptchaService;
 
 @Controller
-@SessionAttributes(names = { "realName","username" }) //設為session層級
+@SessionAttributes(names = { "realName","username","role" }) //設為session層級
 public class LoginController {
 
 	@Autowired
@@ -43,8 +43,10 @@ public class LoginController {
 		System.out.println("username"+username);
 		CustomerBean cusBean = cusService.getByCusUsername(username);//透過使用者名稱搜尋資料
 		String realName = cusBean.getCusRealname();//取得真實姓名
+		String role = cusBean.getRole();
 		m.addAttribute("username",username);//設為session層級的變數給jsp使用
 		m.addAttribute("realName",realName);//設為session層級的變數給jsp使用
+		m.addAttribute("role",role);
 		return "loginIndex";
 	}
 

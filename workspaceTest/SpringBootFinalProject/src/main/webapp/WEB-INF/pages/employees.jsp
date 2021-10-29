@@ -46,12 +46,12 @@
 							<div class="dropdown">
 								<button class="btn-transparent" type="button"
 									id="dropdownButton01" data-bs-toggle="dropdown">
-									<img src="/image/husky.jpg" class="image shadow" />
+									<img src="/downloadTempDir/${imageName}" class="image shadow" />
 								</button>
 								<ul class="dropdown-menu  dropdown-menu-end shadow"
 									aria-labelledby="dropdownMenuButton01">
-									<li><a class="dropdown-item" href="#">Username</a></li>
-									<li><a class="dropdown-item" href="#">Settings</a></li>
+									<li><a class="dropdown-item" href="/Users/SelectCustomer.controller#information">${realName}</a></li>
+									<li><a class="dropdown-item" href="/Users/loginIndex.Controller">浪跡</a></li>
 									<li><button type="submit" class="dropdown-item"
 											value="logout">Logout</button></li>
 								</ul>

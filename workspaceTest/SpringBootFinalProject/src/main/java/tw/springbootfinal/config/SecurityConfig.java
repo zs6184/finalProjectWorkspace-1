@@ -64,7 +64,7 @@ public class SecurityConfig {
 			
 			.and()
 			.logout().logoutUrl("/Users/logout.Controller")
-			.logoutSuccessUrl("/index.html");
+			.logoutSuccessUrl("/logout.Controller");
 		}
 	}
 	
@@ -104,7 +104,7 @@ public class SecurityConfig {
 //			.anyRequest()
 //			.hasRole("MEMBER")
 			
-			//.antMatchers("/Backstage/**").hasAnyRole("EMPLOYEE","ADMIN")
+			.antMatchers("/Backstage/**").hasAnyRole("EMPLOYEE","ADMIN")
 			.antMatchers("/Users/**").hasRole("MEMBER")
 			.antMatchers(HttpMethod.GET,"/Users/**").authenticated()
 			.antMatchers(HttpMethod.GET).permitAll()
@@ -124,7 +124,7 @@ public class SecurityConfig {
 			
 			.and()
 			.logout().logoutUrl("/Users/logout.Controller")
-			.logoutSuccessUrl("/index.html");
+			.logoutSuccessUrl("/logout.Controller");
 		}
 	}
 }

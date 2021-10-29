@@ -48,18 +48,18 @@
 							<div class="dropdown">
 								<button class="btn-transparent" type="button"
 									id="dropdownButton01" data-bs-toggle="dropdown">
-									<img src="/image/husky.jpg" class="image shadow" />
+									<img src="/downloadTempDir/${imageName}" class="image shadow" />
 								</button>
 								<ul class="dropdown-menu  dropdown-menu-end shadow"
 									aria-labelledby="dropdownMenuButton01">
-									<li><a class="dropdown-item" href="#">Username</a></li>
-									<li><a class="dropdown-item" href="#">Settings</a></li>
+									<li><a class="dropdown-item" href="/Users/SelectCustomer.controller#information">${realName}</a></li>
+									<li><a class="dropdown-item" href="/Users/loginIndex.Controller">浪跡</a></li>
 									<li><button type="submit" class="dropdown-item"
 											value="logout">Logout</button></li>
 								</ul>
 							</div>
 							<!-- 訊息資訊 -->
-							<div class="dropdown">
+							<div class="dropdown" >
 								<button class="btn-transparent" type="button"
 									id="dropdownButton02" data-bs-toggle="dropdown">
 									<i class="far fa-envelope me-5 navIcon mt-3" id="navIcon"></i>
@@ -157,9 +157,9 @@
 					</a></li>
 					<li class="m-0"><a href="/Backstage/SelectCustomerAll.Controller"
 						class="center sidebarLight02"> <i class="fas fa-users mx-2"></i>
-							<span class="items">會員管理</span>
+							<span class="items ${role}" id="role">會員管理</span>
 					</a></li>
-					<li class="m-0"><a href="/Backstage/EmployeesAll.Controller"
+					<li class="m-0 d-none" id="employeeManagement"><a href="/Backstage/EmployeesAll.Controller"
 						class="center"> <i class="fas fa-address-card mx-2"></i> <span
 							class="items">員工管理</span>
 					</a></li>

@@ -73,7 +73,7 @@
     color:black;
 }
 .btn-transparent {
-    background-color: white;
+    background-color: transparent;
     outline: none;
     border: none;
 }

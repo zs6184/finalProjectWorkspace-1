@@ -61,6 +61,13 @@ function deleteOneCus() {
 
 
 $(function() {
+	//如果是admin權限，就取消隱藏的員工管理
+	var role = $("#role").hasClass("ADMIN");
+		console.log(role);
+	if(role){
+		console.log("成功");
+		$("#employeeManagement").removeClass("d-none");
+	}
 	
 	//更新指定會員資料
 	$("#updateForm").submit(function() {
@@ -86,15 +93,17 @@ $(function() {
 		lengthMenu: [5, 10], //選單值
 		pageLength: 10, //固定頁數
 		paging: true, //建立分頁
-		searching: false, //搜尋
-		ordering: false, //取消排序
+		searching: true, //搜尋
+		ordering: true, //取消排序
 		language: { //語言
 			"lengthMenu": "顯示_MENU_ 項",
 			"info": "顯示第 _START_ 至 _END_ 項 , 共 _TOTAL_ 項",
 			"paginate": {
 				"previous": "上一頁",
 				"next": "下一頁"
-			}
+			},
+			"search":`<i class="fas fa-search"></i>`
+			
 		}
 	});
 	

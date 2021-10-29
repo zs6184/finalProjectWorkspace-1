@@ -2,6 +2,8 @@ package tw.springbootfinal.users.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import tw.springbootfinal.users.model.CustomerBean;
+import tw.springbootfinal.users.model.CustomerService;
 import tw.springbootfinal.users.model.EmployeeBean;
 import tw.springbootfinal.users.model.EmployeeService;
 
@@ -20,6 +25,9 @@ public class EmployeesController {
 
 	@Autowired
 	private EmployeeService empService;
+	
+	@Autowired
+	private CustomerService cusService;
 
 	@RequestMapping("/Employees.Controller")
 	public String processEmployees() {
@@ -28,8 +36,29 @@ public class EmployeesController {
 
 	// 抓取所有資料更新頁面
 	@RequestMapping("/EmployeesAll.Controller")
-	public String processSelectEmployeesAll(Model m) {
+	public String processSelectEmployeesAll(@SessionAttribute("username") String username,Model m, HttpServletRequest request) {
 		List<EmployeeBean> selectAll = empService.findAll();
+
+		// 此處無法使用@RequestParam("id")來抓取id，網頁會陷入過多重新導向問題，因此改採session方式抓會員資料
+		CustomerBean cusBean = cusService.getByCusUsername(username);
+		// 取得資料庫資料
+		int cusId = cusBean.getCusId();
+		String imageName = cusBean.getImageName();
+		byte[] image = cusBean.getImage();
+		System.out.println("imageName: " + imageName);
+		// 如果會員沒有上傳過圖片就使用預設圖片
+		if (image == null) {
+			System.out.println("照片名null");
+			m.addAttribute("imageName", "husky.jpg");
+		} else {
+			// 抓到專案路徑加上暫存資料夾名稱
+			String path = request.getSession().getServletContext().getRealPath("/") + "downloadTempDir\\";
+			System.out.println(path);
+			cusService.imageDownload(image, cusId, imageName, path);
+
+			m.addAttribute("imageName", imageName);
+		}
+
 		m.addAttribute("emp", selectAll);
 		return "employees";
 	}
@@ -49,20 +78,20 @@ public class EmployeesController {
 	@RequestMapping(path = "/CreateEmpAccount.Controller", method = RequestMethod.POST)
 	@ResponseBody
 	public String processCreateEmpAccount(EmployeeBean eBean) {
-		
+
 		String empPassword = eBean.getEmpPassword();
-		//密碼加密
+		// 密碼加密
 		String encodePwd = new BCryptPasswordEncoder().encode(empPassword);
 		eBean.setEmpPassword(encodePwd);
 		String title = eBean.getTitle();
-		
-		//如果職稱是店長就給予管理權限
-		if("store manager".equals(title)) {
+
+		// 如果職稱是店長就給予管理權限
+		if ("store manager".equals(title)) {
 			eBean.setRole("ADMIN");
-		}else {//否則給予員工權限
+		} else {// 否則給予員工權限
 			eBean.setRole("EMPLOYEE");
 		}
-		
+
 		EmployeeBean empBean = empService.save(eBean);
 		System.out.println(empBean);
 		return "pass";
@@ -108,15 +137,13 @@ public class EmployeesController {
 		empBean.setAddress(address);
 		empBean.setNote(note);
 
-		//如果職稱是店長就給予管理權限
-		if("store manager".equals(title)) {
+		// 如果職稱是店長就給予管理權限
+		if ("store manager".equals(title)) {
 			empBean.setRole("ADMIN");
-		}else {//否則給予員工權限
+		} else {// 否則給予員工權限
 			empBean.setRole("EMPLOYEE");
 		}
-		
-		
-		
+
 		empService.save(empBean);
 		return "pass";
 	}

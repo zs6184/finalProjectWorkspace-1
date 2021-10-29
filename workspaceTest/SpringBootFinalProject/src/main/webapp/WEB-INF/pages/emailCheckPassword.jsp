@@ -108,8 +108,8 @@
 						<ul id="sublist01" class="list-unstyled collapse show">
 							<li><a href="/Users/SelectCustomer.controller#information"
 								class="itemDetails">個人資料</a></li>
-							<li><a href="/Users/CheckPassword.Controller#position" class="itemDetails sidebarLight02">變更密碼</a></li>
-							<li><a href="/Users/EmailCheckPassword.Controller#position" class="itemDetails">變更信箱</a></li>
+							<li><a href="/Users/CheckPassword.Controller#position" class="itemDetails">變更密碼</a></li>
+							<li><a href="/Users/EmailCheckPassword.Controller#position" class="itemDetails  sidebarLight02">變更電子信箱</a></li>
 						</ul></li>
 					<li><a href="#sublist02" data-bs-toggle="collapse"
 						id="dropdown02" class="center"> <i
@@ -153,9 +153,9 @@
 			<div class="container-fluid">
 				<div class="row" id="join">
 					<div class="offset-3 col-6 bg-white my-5 box2 rounded-3 shadow p-5">
-						<p class="font1 border-bottom pb-5" id="position">變更密碼</p>
+						<p class="font1 border-bottom pb-5" id="position">變更電子信箱</p>
 						<!-- left -->
-						<form class="mt-5" id="checkPasswordForm"
+						<form class="mt-5" id="emailCheckPasswordForm"
 							action="/Users/CheckPasswordBT.Controller" method="post"
 							enctype="multipart/form-data">
 							<div>

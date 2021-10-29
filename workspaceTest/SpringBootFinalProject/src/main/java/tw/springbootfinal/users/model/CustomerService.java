@@ -8,56 +8,63 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.springbootfinal.users.exception.UserNotFoundException;
 
 @Service
+@SessionAttributes(value = { "cusId","realName" })
 @Transactional
 public class CustomerService {
-	
+
 	@Autowired
 	private CustomerRepository cusReps;
 
 	// 透過id搜尋
 	public CustomerBean findById(int cId) {
 		Optional<CustomerBean> op1 = cusReps.findById(cId);
-		if(op1.isEmpty()) {//如果空的就拋出例外
-			throw new UserNotFoundException("Can't Find User;");//自定義例外
+		if (op1.isEmpty()) {// 如果空的就拋出例外
+			throw new UserNotFoundException("Can't Find User;");// 自定義例外
 		}
 		return op1.get();
 	}
-	
+
 	// 搜尋全部會員資料
 	public List<CustomerBean> findAll() {
 		List<CustomerBean> cusAll = cusReps.findAll();
 		return cusAll;
 	}
-	
-	//會員中心用username查詢
+
+	// 會員中心用username查詢
 	public List<CustomerBean> findByCustomerCenterUsername(CustomerBean cusBean) {
 		String cusUsername = cusBean.getCusUsername();
 		List<CustomerBean> theCus = cusReps.findByCusUsername(cusUsername);
 		return theCus;
 	}
-	//根據帳號查詢
+
+	// 根據帳號查詢
 	public CustomerBean getByCusUsername(String name) {
 		Optional<CustomerBean> op1 = cusReps.getByCusUsername(name);
-		if(op1.isEmpty()) {//如果空的就拋出例外
-			throw new UserNotFoundException("Can't Find User;");//自定義例外
+		if (op1.isEmpty()) {// 如果空的就拋出例外
+			throw new UserNotFoundException("Can't Find User;");// 自定義例外
 		}
 		return op1.get();
 	}
-	
+
 	// 登入時帳號密碼驗證
-	public String findByCusUsername(CustomerBean cusBean){
+	public String findByCusUsername(CustomerBean cusBean) {
 		String cusPassword = cusBean.getCusPassword();
 		String cusUsername = cusBean.getCusUsername();
-		
+
 		List<CustomerBean> theCus = cusReps.findByCusUsername(cusUsername);
 		if (theCus.isEmpty()) {
 			System.out.println("無此帳號");
@@ -77,9 +84,9 @@ public class CustomerService {
 		}
 		return "fail";
 	}
-	
+
 	// 登入時查詢會員真實名稱
-	public String findByCusUsernameLogin(CustomerBean cusBean){
+	public String findByCusUsernameLogin(CustomerBean cusBean) {
 		String cusUsername = cusBean.getCusUsername();
 		String cusRealname = "";
 		List<CustomerBean> theCus = cusReps.findByCusUsername(cusUsername);
@@ -88,7 +95,7 @@ public class CustomerService {
 		}
 		return cusRealname;
 	}
-	
+
 	// 會員註冊時判斷帳號是否存在
 	public String findByCreateCusUsername(CustomerBean cBean) {
 		String cusUsername = cBean.getCusUsername();
@@ -112,7 +119,7 @@ public class CustomerService {
 		System.out.println("phoneFail");
 		return "fail";
 	}
-	
+
 	// 會員註冊時判斷Email是否存在
 	public String findByEmail(CustomerBean cBean) {
 		String email = cBean.getEmail();
@@ -124,8 +131,8 @@ public class CustomerService {
 		System.out.println("emailFail");
 		return "fail";
 	}
-	
-	//新增(沒給id)、更新(有給id)
+
+	// 新增(沒給id)、更新(有給id)
 	public CustomerBean save(CustomerBean cusBean) {
 		return cusReps.save(cusBean);
 	}
@@ -140,28 +147,26 @@ public class CustomerService {
 		try {
 			FileInputStream fis = new FileInputStream(saveFilePath);
 			byte[] b1 = new byte[fis.available()];
-			
-			fis.read(b1);//將讀取檔案放入byte陣列
+
+			fis.read(b1);// 將讀取檔案放入byte陣列
 			fis.close();
-			
-			
-			
+
 			System.out.println(cusBean.getCusId());
 			System.out.println(cusBean.getCusRealname());
 			System.out.println(cusBean.getEmail());
-			
+
 			cusBean.setImage(b1);
 			cusReps.save(cusBean);
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return "";
 	}
-	
-	//從資料庫下載圖片
-	public String imageDownload(byte[] image,int cusId, String imageName,String path) {
-		//建立資料夾
+
+	// 從資料庫下載圖片
+	public String imageDownload(byte[] image, int cusId, String imageName, String path) {
+		// 建立資料夾
 		File file = new File(path);
 		if (!file.exists()) {
 			file.mkdirs();
@@ -176,9 +181,9 @@ public class CustomerService {
 				deleteFile2.delete();
 			}
 		}
-		
+
 		String filePath1 = path + imageName;
-		try { 
+		try {
 			FileOutputStream fos = new FileOutputStream(filePath1);
 			fos.write(image);
 			fos.close();
@@ -191,12 +196,76 @@ public class CustomerService {
 		}
 		return "PASS";
 	}
-	
-	//透過Session直接返回用戶物件
+
+	// 透過Session直接返回用戶物件
 	public CustomerBean getLoginCustomerBean(HttpSession session) {
 		CustomerBean customerBean = new CustomerBean();
 		customerBean.setCusUsername((String) session.getAttribute("username"));
 		return findByCustomerCenterUsername(customerBean).get(0);
+	}
+
+//	// 進入變更密碼時取得圖片
+//	public String SelectUserImage(HttpSession session, Model m, HttpServletRequest request) {
+//		// 取得登入時session層級的username
+//		Object attr = session.getAttribute("username");
+//		String str = attr.toString();
+//		System.out.println("str" + str);
+//		CustomerBean cusBean = new CustomerBean();
+//		cusBean.setCusUsername(str);// 設定username到Bean
+//		// 利用username取得list結果集
+//		List<CustomerBean> cus = findByCustomerCenterUsername(cusBean);
+//		m.addAttribute("cus", cus);// 將結果設成屬性給jsp使用
+//
+//		int cusId = 0;
+//		String imageName = null;
+//		byte[] image = {};
+//		// 取得資料庫資料
+//		for (CustomerBean customerBean : cus) {
+//			cusId = customerBean.getCusId();
+//			imageName = customerBean.getImageName();
+//			image = customerBean.getImage();
+//			System.out.println("imageName: " + imageName);
+//			System.out.println("cusId: " + cusId);
+//			System.out.println("image: " + image);
+//		}
+//		// 如果會員沒有上傳過圖片就使用預設圖片
+//		if (image == null) {
+//			m.addAttribute("imageName", "husky.jpg");
+//		} else {
+//			// 抓到專案路徑加上暫存資料夾名稱
+//			String path = request.getSession().getServletContext().getRealPath("/") + "downloadTempDir\\";
+//			System.out.println(path);
+//			imageDownload(image, cusId, imageName, path);
+//
+//			m.addAttribute("imageName", imageName);
+//		}
+//
+//		return "success";
+//	}
+
+	// 進入變更密碼時取得圖片
+	public String SelectUserImage(String username, Model m, HttpServletRequest request) {
+
+		CustomerBean cusBean = getByCusUsername(username);
+		// m.addAttribute("cus", cusBean);// 將結果設成屬性給jsp使用
+
+		int cusId = cusBean.getCusId();
+		String imageName = cusBean.getImageName();
+		byte[] image = cusBean.getImage();
+
+		// 如果會員沒有上傳過圖片就使用預設圖片
+		if (image == null) {
+			m.addAttribute("imageName", "husky.jpg");
+		} else {
+			// 抓到專案路徑加上暫存資料夾名稱
+			String path = request.getSession().getServletContext().getRealPath("/") + "downloadTempDir\\";
+			System.out.println(path);
+			imageDownload(image, cusId, imageName, path);
+
+			m.addAttribute("imageName", imageName);
+			m.addAttribute("cusId", cusId);
+		}
+		return "checkPassword";
 	}
 
 }

@@ -60,7 +60,7 @@
 					<div class="col-12">
 						<ul>
 							<li>
-								<div class="dropdown absolute">
+								<div class="dropdown absolute backstage">
 									<button class="btn btn-link dropdown-toggle " type="button"
 										id="cusCenterDropdown" data-bs-toggle="dropdown">${realName}</button>
 									<ul class="dropdown-menu p-0" role="button">
@@ -110,7 +110,7 @@
 							<li><a href="/Users/SelectCustomer.controller#information"
 								class="itemDetails sidebarLight02">個人資料</a></li>
 							<li><a href="/Users/CheckPassword.Controller#position" class="itemDetails">變更密碼</a></li>
-							<li><a href="#" class="itemDetails">暫時保留</a></li>
+							<li><a href="/Users/EmailCheckPassword.Controller#position" class="itemDetails">變更信箱</a></li>
 						</ul></li>
 					<li><a href="#sublist02" data-bs-toggle="collapse"
 						id="dropdown02" class="center"> <i
@@ -282,7 +282,7 @@
 								<li><a href="/index.html" target="_self">線上訂位</a></li>
 								<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
 								<li>
-									<div class="dropdown absolute">
+									<div class="dropdown absolute backstage ${role}">
 										<button class="btn btn-link dropdown-toggle text-light" type="button"
 											id="cusCenterDropdown2" data-bs-toggle="dropdown">${realName}</button>
 										<ul class="dropdown-menu p-0" role="button">
