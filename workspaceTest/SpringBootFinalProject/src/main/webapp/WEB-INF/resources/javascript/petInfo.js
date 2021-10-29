@@ -3,11 +3,41 @@
 var indexPage = 1;
 
 $(function() {
+	//確認權限，如果為EMPLOYEE就顯示後台按鈕
+	var emp = $(".backstage").hasClass("EMPLOYEE");
+	var admin = $(".backstage").hasClass("ADMIN");
+
+	console.log(emp);
+	console.log(admin);
+	if (emp || admin) {
+		$(".backstage").each(function() {
+			$(this).find("li:first").after(`<li id="whp5"><a id="backstage" href="/Backstage/SelectCustomerAll.Controller"
+											style="font-size: 1.1em;color:black"
+											class="dropdown-item d-flex justify-content-center"
+											target="_self">後台管理</a></li>`);
+		});
+	}
+	
+	//檢測是否有SessionAttribute 根據結果變更顯示的選項
+	var sessioncheck = $("#sessionUsername").val();
+	console.log("sessioncheck="+sessioncheck);
+	if(sessioncheck=="null"){//沒抓到就換回來
+		console.log("隱藏");
+		$(".memberOption").addClass("d-none");
+		$(".loginOption").removeClass("d-none");
+	}else{//當有抓到SessionAttribute時顯示會員選項	、隱藏登入選項
+		console.log("顯示");
+		$(".memberOption").removeClass("d-none");
+		$(".loginOption").addClass("d-none");
+	}
+
+	
 	//stickybar
 	window.onscroll = function() { stickTop() };
 	var topbar = document.getElementById("topbar");
 	var distance = topbar.offsetTop; //抓topbar離頁面頂部距離
-
+	
+	//Stickytop
 	function stickTop() {
 		if (window.pageYOffset >= distance) { //偏移量>distance時增加stick
 			topbar.classList.add("sticky");
@@ -15,7 +45,7 @@ $(function() {
 			topbar.classList.remove("sticky");
 		}
 	}
-
+	
 
 	//將不同背景色放入陣列
 	const bgColor = ["bg-success", "bg-danger", "bg-warning", "bg-info"];
