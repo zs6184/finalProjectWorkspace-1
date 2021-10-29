@@ -45,7 +45,7 @@ public class MailService {
 			//配置信息
 			helper.setFrom("ik2469181@gmail.com");
 			//helper.setTo(user.getEmail());
-			helper.setTo("請填入mail");
+			helper.setTo("barinhow850715@gmail.com");
 			helper.setSubject(head);
 			//存入佔位符參數
 //			Map<String, Object> model = new HashMap<String, Object>();

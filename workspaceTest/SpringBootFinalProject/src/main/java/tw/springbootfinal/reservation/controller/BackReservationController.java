@@ -26,7 +26,7 @@ public class BackReservationController {
 	@Autowired
 	private ReservationService rsService;
 	
-	//取得所有資料
+	//取得所有資料 
 	@GetMapping("/getAll")
 	public String findAll(Model m){
 		List<AdoptReservation> arrRes = rsService.findAll();

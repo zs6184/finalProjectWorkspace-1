@@ -11,7 +11,6 @@ $(function() {
 		changeMonth: true
 	});
 
-
 	//不同按鈕對應同一表單的action
 	$("#insertBtn").click(function() {
 		$("#modalForm").attr("action", "/backstage/pet/insertPetInfo.controller");

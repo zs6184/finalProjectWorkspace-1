@@ -6,7 +6,7 @@ $(function() {
 	$('.fa-minus').click(function() {
 		//抓id
 		var id = $(this).closest('tr').attr('id');
-		carjsonpart('123', id, '-',$(this));
+		carjsonpart('aaa123', id, '-',$(this));
 		var num = $(this).siblings('input').val();
 		if (num == 1) {
 			$(this).siblings('input').val(1);
@@ -21,7 +21,7 @@ $(function() {
 	$('.fa-plus').click(function() {
 		//抓id
 		var id = $(this).closest('tr').attr('id');
-		carjsonpart('123', id, '+');
+		carjsonpart('aaa123', id, '+');
 		var num = parseInt($(this).siblings('input').val());
 		var price = parseInt($(this).parent().parent().children().filter('td.price').text());
 		var numm = parseInt($(this).parent().parent().children().filter('td.subtotal').text((num + 1) * price));
@@ -58,7 +58,7 @@ $(function() {
 		var pid = $(this).closest('tr').attr('id');
 		console.log(pid);
 		//假帳號
-		let  username = '123';
+		let  username = 'aaa123';
 		var cookie = $.cookie(`cart${username}`);
 		var carJSONpart = JSON.parse(cookie)
 
