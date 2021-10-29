@@ -1,7 +1,12 @@
 package tw.springbootfinal.users.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +26,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 
+import tw.springbootfinal.announcements.model.Announcements;
+import tw.springbootfinal.announcements.model.AnnouncementsService;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
 import tw.springbootfinal.users.model.Recaptcha;
@@ -35,10 +42,14 @@ public class LoginController {
 	
 	@Autowired
 	private RecaptchaService recaptchaService;
+	
+	
+	@Autowired
+	private AnnouncementsService aService;
 
 	//登入後取得realName
 	@GetMapping("/Users/loginIndex.Controller")
-	public String processloginIndexMainPage(Principal p, Model m) { 
+	public String processloginIndexMainPage(Principal p, Model m) throws UnsupportedEncodingException { 
 		String username = p.getName();//Principal可以用來取得使用者名稱
 		System.out.println("username"+username);
 		CustomerBean cusBean = cusService.getByCusUsername(username);//透過使用者名稱搜尋資料
@@ -47,9 +58,48 @@ public class LoginController {
 		m.addAttribute("username",username);//設為session層級的變數給jsp使用
 		m.addAttribute("realName",realName);//設為session層級的變數給jsp使用
 		m.addAttribute("role",role);
+		
+		//導入公告內容
+		List<Announcements>arrAnnounce = aService.getAll();
+		Map<Integer,String> baseStr = new HashMap<>();
+		for(Announcements aAnn:arrAnnounce) {
+			byte[] base64 = Base64.encodeBase64(aAnn.getPic());
+			String base64Str = new String (base64,"UTF-8");
+			baseStr.put(aAnn.getAnnounceID(), base64Str);
+			
+		}
+		m.addAttribute("arrAnnounce",arrAnnounce);
+		m.addAttribute("baseStr",baseStr);
+		
+		
+		
 		return "loginIndex";
 	}
-
+	/**
+	 * 
+	 * @param m
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 * 
+	 * 尚未登入前頁面公告載入
+	 */
+	@GetMapping("/logout.Controller")
+	public String processLoadingPage2(Model m) throws UnsupportedEncodingException {
+		List<Announcements>arrAnnounce = aService.getAll();
+		Map<Integer,String> baseStr = new HashMap<>();
+		for(Announcements aAnn:arrAnnounce) {
+			byte[] base64 = Base64.encodeBase64(aAnn.getPic());
+			String base64Str = new String (base64,"UTF-8");
+			baseStr.put(aAnn.getAnnounceID(), base64Str);
+			
+		}
+		m.addAttribute("arrAnnounce",arrAnnounce);
+		m.addAttribute("baseStr",baseStr);
+		
+		return "logout";
+	}
+	
+	
 //	//判斷帳密是否存在
 //	@RequestMapping(path = "/checkloginaccount.controller", method = RequestMethod.GET)
 //	//@ResponseBody
