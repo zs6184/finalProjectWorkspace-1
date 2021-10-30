@@ -293,13 +293,16 @@
 											<select id="keepStatus" name="keepStatus">
 												<option value="未赴約" selected>未赴約</option>
 												<option value="已赴約">已赴約</option>
+												<option hidden value="失約" >失約</option>
 											</select>
 										</div>
 								</fieldset>
 								<hr/>
-								<div class="row justify-content-center">
-									<button type="submit" class="col-2 me-3 btn btn-danger">送出預約</button>
+								<div class="row justify-content-start">
+									<button type="submit" class="offset-4 col-2 me-3 btn btn-danger">送出預約</button>
 									<button type="button" class="col-2 btn btn-secondary" data-bs-dismiss="modal">取消</button>
+									<button type="button" id="missingBtn" class="offset-2 col-1 btn btn-warning text-white"
+											 data-bs-toggle="modal" data-bs-target="#missingAlert" onclick="missAlert(this)">失約</button>
 								</div>
 							</div>
 						</div>	
@@ -330,7 +333,30 @@
 				</div>
 			</div>
 			<!-- End Of deleteAlert Modal-->
-
+			
+			<!-- 確認失約提示框 Modal-->
+			
+			<div class="modal fade text-center" id="missingAlert" tabindex="-1">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">提示信息</h4>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+						</div>
+						<div class="modal-body items-align-center">
+							<h4 style="margin-top: 10px; margin-bottom: 50px;"
+								id="alertMissDialog">確認標註此預約為客戶失約?</h4>
+							<button type="button" class="btn btn-danger"
+								data-bs-dismiss="modal" onclick="confirmMiss()">確定</button>
+							<button type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal">取消</button>
+						</div>
+					</div>
+				</div>
+			</div>	
+			
+			<!-- End Of 確認失約提示框 Modal-->
+			
 		</div>
 	</div>
 </body>

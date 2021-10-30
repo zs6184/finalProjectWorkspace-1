@@ -136,31 +136,29 @@ $(function() {
 			$("#petId,#petName").val("");
 			$("#petId,#petName").attr("placeholder","查無此寵物");
 		}
-	});
-	
-	
-	
-//上傳檔案預覽圖片
-//	$("#mypic").change(function(){
-//		previewImg(this.files);
-//	});
-//當使用者返回前頁時，需重新預覽前回點選擬上傳的圖片
-//previewImg($("#mypic")[0].files);
-
+	});	
 });
+
 
 //跳出確認刪除對話框
 var ID;
 var DATE;
+var NAME
 var record;
 
 function delAlert(obj) {
 	record = $(obj);
 	ID = $(obj).parent("td").siblings(".ID").text();
 	DATE=$(obj).parent("td").siblings(".DATE").text();
-	var NAME = $(obj).parent("td").siblings(".NAME").text();
+	NAME = $(obj).parent("td").siblings(".NAME").text();
 	console.log(ID);
-	$("#alertDialog").html(`確定刪除客戶${ID}:${NAME} 於 ${DATE}的預約 ?`);
+	$("#alertDialog").html(`確定刪除客戶${ID} : ${NAME} 於 ${DATE}的預約 ?`);
+}
+
+//跳出確認失約確認提示框
+function missAlert(obj){
+	record=$(obj);
+	$("#alertMissDialog").html(`確定標註客戶${ID} : ${NAME} 於 ${DATE}的預約為失約 ?`);
 }
 
 
@@ -199,7 +197,20 @@ function select(obj) {
 			$("#modalForm #cusRealname").val(parsed.cusRealname);			
 			$("#modalForm #phone").val(parsed.phone);			
 			$("#modalForm #reserveTime").val(parsed.reserveTime);			
-			$("#modalForm #keepStatus").val(parsed.keepStatus);					
+			$("#modalForm #keepStatus").val(parsed.keepStatus);	
+			NAME=parsed.cusRealname;
+			if(parsed.keepStatus=="失約"){
+				$("#modalForm #keepStatus").attr("disabled","disabled");
+				$("#modalForm #keepStatus").attr("disabled","disabled");
+				$("#missingBtn").removeClass("btn-warning");
+				$("#missingBtn").addClass("btn-secondary");
+				$("#missingBtn").attr("disabled","disabled");
+			}else{
+				$("#modalForm #keepStatus").attr("disabled",false);
+				$("#missingBtn").addClass("btn-warning");
+				$("#missingBtn").removeClass("btn-secondary");
+				$("#missingBtn").attr("disabled",false);
+			}			
 		},
 		error: function() {
 			console.log("failed to get data");
@@ -207,15 +218,15 @@ function select(obj) {
 	})
 }
 
-//預覽上傳檔案圖片
-//function previewImg(files){
-//	if(files.length==0) 
-//	return;
-//	var file = files[0];
-//	var fr = new FileReader();
-//	fr.onload = function(){
-//		$("#imgPreview img").attr({src:fr.result});
-//	};
-//	fr.readAsDataURL(file);
-//}
+//確定送出失約請求
+function confirmMiss(){
+	
+		$.ajax({
+		type: "GET",
+		url: "/backstage/reservation/dealmissing",
+		datatype: "JSON",
+		contentType: "application/json",
+		data: { "cusId": `${ID}`,"reserveTime":`${DATE}`}
+	})
+}
 

@@ -18,6 +18,8 @@ import com.alibaba.fastjson.JSONObject;
 
 import tw.springbootfinal.reservation.model.AdoptReservation;
 import tw.springbootfinal.reservation.model.ReservationService;
+import tw.springbootfinal.users.model.CustomerBean;
+import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
 @RequestMapping("/backstage/reservation")
@@ -25,6 +27,8 @@ public class BackReservationController {
 	
 	@Autowired
 	private ReservationService rsService;
+	@Autowired
+	private CustomerService cService;
 	
 	//取得所有資料 
 	@GetMapping("/getAll")
@@ -61,6 +65,24 @@ public class BackReservationController {
 	public String deleteOne(AdoptReservation temp) {
 		rsService.deleteOne(temp);
 		
-		return "BackReservation";
+		return "redirect:/backstage/reservation/getAll";
+	}
+	
+	//處理失約的情形並做紀錄
+	@GetMapping("/dealmissing")
+	public void dealMissing(AdoptReservation temp) {
+		//客戶失約+1
+		CustomerBean theCus = cService.findById(temp.getCusId());
+		int misscount =theCus.getNoShow();
+		misscount++;
+		theCus.setNoShow(misscount);
+		System.out.println("客戶ID:"+theCus.getCusId()+"失約紀錄+1完成");
+		cService.save(theCus);
+		//處理預約紀錄狀態
+		AdoptReservation theRecord = rsService.selectOne(temp);
+		String status =theRecord.getKeepStatus();
+		status="失約";
+		theRecord.setKeepStatus(status);
+		rsService.insertOrUpdate(theRecord);
 	}
 }

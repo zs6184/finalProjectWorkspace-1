@@ -31,7 +31,7 @@ public class FrontReservationController {
 	@Autowired
 	private CustomerService cService;
 	
-	//確認以登入後回傳客戶資料
+	//確認已登入後回傳客戶資料
 	@GetMapping("/checktheCus")
 	public void returnTheCus(@SessionAttribute("username")String username,HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
