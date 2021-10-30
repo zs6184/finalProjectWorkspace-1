@@ -63,7 +63,7 @@
 									<button class="btn btn-link dropdown-toggle " type="button"
 										id="cusCenterDropdown" data-bs-toggle="dropdown">${realName}</button>
 									<ul class="dropdown-menu p-0" role="button">
-										<li id="whp1"><a href="/Users/SelectCustomer.controller"
+										<li id="whp1"><a href="/Users/SelectCustomer.controller#information"
 											class="dropdown-item d-flex justify-content-center"
 											target="_self">會員中心</a></li>
 										<li id="whp2" class="m-0">
@@ -199,7 +199,7 @@
 											type="button" id="cusCenterDropdown2"
 											data-bs-toggle="dropdown">${realName}</button>
 										<ul class="dropdown-menu p-0" role="button">
-											<li id="whp3"><a href="/Users/SelectCustomer.controller"
+											<li id="whp3"><a href="/Users/SelectCustomer.controller#information"
 												class="text-dark dropdown-item d-flex justify-content-center"
 												target="_self">會員中心</a></li>
 											<li id="whp4" class="m-0">

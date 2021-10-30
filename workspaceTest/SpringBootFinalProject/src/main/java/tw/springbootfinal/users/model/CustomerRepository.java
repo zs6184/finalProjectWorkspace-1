@@ -11,6 +11,8 @@ public interface CustomerRepository extends JpaRepository<CustomerBean, Integer>
 	public List<CustomerBean> findByPhoneNumber(String phoneNumber); 
 	public List<CustomerBean> findByEmail(String Email);
 	Optional<CustomerBean> getByCusUsername(String username);
+	public Optional<CustomerBean> getByEmail(String email);
+	public Optional<CustomerBean> getBySecretkey(String secretkey);
 	
 
 }

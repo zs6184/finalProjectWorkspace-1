@@ -267,5 +267,24 @@ public class CustomerService {
 		}
 		return "checkPassword";
 	}
+	
+	//會員忘記密碼或更換信箱時查詢身分用
+	public CustomerBean getByEmail(String email) {
+		Optional<CustomerBean> op1 = cusReps.getByEmail(email);
+		if(op1.isEmpty()) {
+			throw new UserNotFoundException("Can't Find User;");// 自定義例外
+		}
+		return op1.get();
+	}
+	//會員忘記密碼或更換信箱時查詢身分用
+	public CustomerBean getBySecretkey(String secretkey) {
+		Optional<CustomerBean> op1 = cusReps.getBySecretkey(secretkey);
+		if(op1.isEmpty()) {
+			throw new UserNotFoundException("Can't Find Secretkey;");// 自定義例外
+		}
+		return op1.get();
+	}
+	
+	
 
 }

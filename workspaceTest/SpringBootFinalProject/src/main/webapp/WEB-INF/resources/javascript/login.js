@@ -8,7 +8,7 @@ function createErrDiv(input) {
 	$(input).parent().parent().after(errDiv);//在兩個父元素之後加入div
 }
 $(function() {
-	
+
 	/*$("#submit").click(function(e){
 		e.preventDefault();
 		console.log("ccc");
@@ -40,7 +40,7 @@ $(function() {
 			});
 		});
 	});*/
-	
+
 	//recaptcha
 	/*function onClick(e) {
 		console.log("onclick");
@@ -109,8 +109,95 @@ $(function() {
 			$(errs[0]).focus();
 			return false;//如果欄位有空直接提早結束submit
 		}
+	});
 
+	//判斷email是否重複
+	$("#email").blur(function() {
+		var email = $("#email");
+		var nowEmail = $(this).val();//每次失去焦點後的新email
+		//符合英文、數字_-. 加 @ 加英文、數字_-.及2~4位數的英文
+		var pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+		if (nowEmail.length < 1) {
+			$("#emailInvalid").html("請填寫Email");
+			email.removeClass("is-valid");//移除通過
+			email.addClass("is-invalid"); //新增警告
+			return false;
+		} else if (!pattern.test(nowEmail)) {
+			$("#emailInvalid").html("請符合Email格式的英文、數字、@");
+			email.removeClass("is-valid");//移除通過
+			email.addClass("is-invalid"); //新增警告
+			return false;
+		}
+		email.removeClass("is-invalid");//移除警告
 
+	});
+
+	$("#email").submit(function() {
+		//如果不一致就查詢資料庫是否有重複email
+		var dataForm = $(this).serialize();
+		$.ajax({
+			method: "post",
+			url: "/ForgetEmail.controller",
+			data: dataForm,
+			success: function(data) {
+				console.log("success");
+				if (data == "pass") {//此處pass代表資料庫沒資料
+					console.log("沒資料");
+					$("#emailInvalid").html("Email 不存在或尚未驗證");
+					email.removeClass("is-valid");//移除通過
+					email.addClass("is-invalid"); //新增警告
+					return false;
+				} else if (data == "fail") {
+					console.log("有資料");
+					email.removeClass("is-invalid");//移除警告
+					return false;
+				}
+			},
+			error: function(jqXHR, textStatus, errThrown) {
+				alert(`${textStatus}---${errThrown}`)
+			}
+		});
+		return false;
+	});
+	
+	//密碼更新
+	$("#changePasswordForm").submit(function() {
+		var jqNewPassword = $("#newPassword");
+		var jqPasswordAgain = $("#passwordAgain");
+		var newPassword = jqNewPassword.val();
+		var newPasswordAgain = jqPasswordAgain.val();
+		//確認密碼是否一致
+		if (newPassword != newPasswordAgain && newPassword != "") {
+			jqPasswordAgain.removeClass("is-valid");//移除通過
+			jqPasswordAgain.addClass("is-invalid"); //新增警告
+			jqPasswordAgain.focus();
+			return false;
+		} else if (newPassword.length == 0) {
+			jqPasswordAgain.removeClass("is-valid");//移除通過
+			jqPasswordAgain.addClass("is-invalid"); //新增警告
+			jqPasswordAgain.focus();
+			return false;
+		} else if (newPassword.length >= 1 && newPassword.length < 6) {
+			console.log("小於6");
+			$("#newPasswordInvalid").html("請輸入 6~20 碼的英文、數字");
+			jqNewPassword.removeClass("is-valid");//移除通過
+			jqNewPassword.addClass("is-invalid"); //新增警告
+			return false;
+		}
+
+		$.ajax({
+			method: "post",
+			url: "/UpdateEmailPassword.Controller",
+			data: { "newPassword": newPassword },
+			success: function(data) {
+				console.log(data);
+				location.href = '/login.Controller';
+			},
+			error: function(jqXHR, textStatus, errThrown) {
+				alert(`${textStatus}---${errThrown}`);
+			}
+		});
+		return false;
 	});
 
 });

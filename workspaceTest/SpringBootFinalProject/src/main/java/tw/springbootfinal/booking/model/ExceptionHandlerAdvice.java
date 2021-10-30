@@ -20,14 +20,14 @@ public class ExceptionHandlerAdvice {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(MVCException.class)
-    public String errorHandler(MVCException exception){
-        // TODO
-        return "redirect:/bookings/get";
-    }
-    @ExceptionHandler(Exception.class)
-    public String errorHandler(Exception exception){
-        // TODO
-        return "redirect:/bookings/get";
-    }
+//    @ExceptionHandler(MVCException.class)
+//    public String errorHandler(MVCException exception){
+//        // TODO
+//        return "redirect:/bookings/get";
+//    }
+//    @ExceptionHandler(Exception.class)
+//    public String errorHandler(Exception exception){
+//        // TODO
+//        return "redirect:/bookings/get";
+//    }
 }

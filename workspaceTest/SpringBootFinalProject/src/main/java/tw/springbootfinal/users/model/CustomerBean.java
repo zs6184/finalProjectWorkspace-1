@@ -67,11 +67,15 @@ public class CustomerBean implements Serializable {
 
 	@Column(name = "missing_count")
 	private int noShow;
-	
-	@OneToMany(mappedBy = "customer")
-	private Set<orderBean> orderBean =new LinkedHashSet<orderBean>();
 
-	
+	@Column(name = "secretkey")
+	private String secretkey;
+
+	@Column(name = "temp_email")
+	private String tempEmail;
+
+	@OneToMany(mappedBy = "customer")
+	private Set<orderBean> orderBean = new LinkedHashSet<orderBean>();
 
 	public Set<orderBean> getOrderBean() {
 		return orderBean;
@@ -83,7 +87,7 @@ public class CustomerBean implements Serializable {
 
 	@Column(name = "role")
 	private String role;
-	
+
 	public CustomerBean() {
 	}
 
@@ -214,5 +218,21 @@ public class CustomerBean implements Serializable {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
+	public String getSecretkey() {
+		return secretkey;
+	}
+
+	public void setSecretkey(String secretkey) {
+		this.secretkey = secretkey;
+	}
+
+	public String getTempEmail() {
+		return tempEmail;
+	}
+
+	public void setTempEmail(String tempEmail) {
+		this.tempEmail = tempEmail;
+	}
+
 }

@@ -102,7 +102,7 @@
 <!-- 						</div> -->
 
 						<div class="text-center mb-4">
-							<a href="/createCusAccount.html">註冊</a> <a href="#" class="ms-5">忘記您的密碼?</a>
+							<a href="/createCusAccount.html">註冊</a> <a href="/forget.Controller" class="ms-5">忘記您的密碼?</a>
 						</div>
 					</div>
 				</form>

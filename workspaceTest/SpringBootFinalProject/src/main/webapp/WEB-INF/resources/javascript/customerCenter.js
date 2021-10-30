@@ -298,7 +298,6 @@ $(function() {
 		if (newPassword != newPasswordAgain && newPassword != "") {
 			jqPasswordAgain.removeClass("is-valid");//移除通過
 			jqPasswordAgain.addClass("is-invalid"); //新增警告
-			jqPasswordAgain.focus();
 			return false;
 		} else {
 			jqPasswordAgain.removeClass("is-invalid");//移除警告
@@ -320,9 +319,10 @@ $(function() {
 			jqPasswordAgain.focus();
 			return false;
 		} else if (newPassword.length == 0) {
-			jqPasswordAgain.removeClass("is-valid");//移除通過
-			jqPasswordAgain.addClass("is-invalid"); //新增警告
-			jqPasswordAgain.focus();
+			$("#newPasswordInvalid").html("請輸入 6~20 碼的英文、數字");
+			jqNewPassword.removeClass("is-valid");//移除通過
+			jqNewPassword.addClass("is-invalid"); //新增警告
+			jqNewPassword.focus();
 			return false;
 		} else if (newPassword.length >= 1 && newPassword.length < 6) {
 			console.log("小於6");
@@ -346,16 +346,6 @@ $(function() {
 		});
 		return false;
 	});
-
-
-
-
-
-
-
-
-
-
 
 	//確認密碼是否正確
 	$("#emailCheckPasswordForm").submit(function() {
@@ -387,20 +377,63 @@ $(function() {
 		return false;
 	});
 
+
+	//變更email
 	$("#changeEmailForm").submit(function() {
-		var email = $("#email").val();
+		var jqEmail = $("#email");
+		var email = jqEmail.val();
 		if (email == "" || email.length == 0) {
-			$("#email").focus();
+			jqEmail.focus();
 			$("#emailInvalid").html("請填寫Email");
-			$("#email").removeClass("is-valid");//移除通過
-			$("#email").addClass("is-invalid"); //新增警告
-		console.log("進");
+			jqEmail.removeClass("is-valid");//移除通過
+			jqEmail.addClass("is-invalid"); //新增警告
+			console.log("email已存在");
 			return false;
 		}
-		console.log("沒進");
+
+		//符合英文、數字_-. 加 @ 加英文、數字_-.及2~4位數的英文
+		var pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+		//判斷是否跟剛從資料庫載入時一致
+		if (!pattern.test(email)) {
+			$("#emailInvalid").html("請符合Email格式的英文、數字、@");
+			jqEmail.removeClass("is-valid");//移除通過
+			jqEmail.addClass("is-invalid"); //新增警告
+			jqEmail.focus();
+			return false;
+		} else if (email.length < 1) {
+			$("#emailInvalid").html("請填寫Email");
+			jqEmail.removeClass("is-valid");//移除通過
+			jqEmail.addClass("is-invalid"); //新增警告
+			jqEmail.focus();
+			return false;
+		}
+		jqEmail.removeClass("is-invalid");
+		jqEmail.addClass("is-valid");
+
+
+
+		console.log("email可以使用");
+		//按鈕load...動畫
+		$("#submit").prop("disabled", true);
+		$("#submit").html(
+			`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  			<span class="visually-hidden">Loading...</span>`);
+		$.ajax({
+			method: "post",
+			url: "/Users/ChangeEmailSendMail.Controller",
+			data: { "email": email },
+			success: function(data) {
+				console.log(data);
+				$("#datasource").find("form").after().html(
+					`<div style="text-align: center; margin: 120px" class="">
+					<p class="fs-6">信件已寄出，請至信箱完成驗證。</p>
+				</div>`);
+			},
+			error: function(jqXHR, textStatus, errThrown) {
+				alert(`${textStatus}---${errThrown}`);
+			}
+		});
 		return false;
-
 	});
-
 
 });

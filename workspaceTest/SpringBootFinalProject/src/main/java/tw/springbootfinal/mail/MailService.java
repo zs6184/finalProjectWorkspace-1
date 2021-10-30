@@ -24,7 +24,6 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateNotFoundException;
 import tw.springbootfinal.users.model.CustomerBean;
 
-
 @Component
 public class MailService {
 	@Autowired
@@ -33,30 +32,62 @@ public class MailService {
 
 	@Autowired
 	FreeMarkerConfigurer freemarkerConfig;
-	
-	
-	public boolean sendMail(HttpServletRequest request,CustomerBean user,Map<String, Object> model,String templateNmae,String head) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
-			IOException, TemplateException {
+
+	public boolean sendMail(HttpServletRequest request, CustomerBean user, Map<String, Object> model,
+			String templateNmae, String head) throws TemplateNotFoundException, MalformedTemplateNameException,
+			ParseException, IOException, TemplateException {
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
-		//取得lego路徑
+		// 取得lego路徑
 		String path = request.getSession().getServletContext().getRealPath("/WEB-INF/templates/image/logo.png");
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "utf-8");
-			//配置信息
+			// 配置信息
 			helper.setFrom("ik2469181@gmail.com");
-			//helper.setTo(user.getEmail());
-			helper.setTo("barinhow850715@gmail.com");
+			helper.setTo(user.getEmail());
+			// helper.setTo("azure.test.1120@gmail.com");
 			helper.setSubject(head);
-			//存入佔位符參數
+			// 存入佔位符參數
 //			Map<String, Object> model = new HashMap<String, Object>();
-			//載入模板
+			// 載入模板
 			String templateString = FreeMarkerTemplateUtils
 					.processTemplateIntoString(freemarkerConfig.getConfiguration().getTemplate(templateNmae), model);
 			helper.setText(templateString, true);
-			FileSystemResource file = new FileSystemResource(new File(path));			
-			//圖片
+			FileSystemResource file = new FileSystemResource(new File(path));
+			// 圖片
 			helper.addInline("imgfile", file);
-			//送出回傳true
+			// 送出回傳true
+			mailSender.send(mimeMessage);
+			return true;
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public boolean sendMail(HttpServletRequest request, String email, Map<String, Object> model, String templateNmae,
+			String head) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException,
+			TemplateException {
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
+//取得lego路徑
+		String path = request.getSession().getServletContext().getRealPath("/WEB-INF/templates/image/logo.png");
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "utf-8");
+			// 配置信息
+			helper.setFrom("ik2469181@gmail.com");
+			helper.setTo(email);
+			// helper.setTo("azure.test.1120@gmail.com");
+			helper.setSubject(head);
+			// 存入佔位符參數
+//	Map<String, Object> model = new HashMap<String, Object>();
+			// 載入模板
+			String templateString = FreeMarkerTemplateUtils
+					.processTemplateIntoString(freemarkerConfig.getConfiguration().getTemplate(templateNmae), model);
+			helper.setText(templateString, true);
+			FileSystemResource file = new FileSystemResource(new File(path));
+			// 圖片
+			helper.addInline("imgfile", file);
+			// 送出回傳true
 			mailSender.send(mimeMessage);
 			return true;
 		} catch (MessagingException e) {
