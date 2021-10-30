@@ -10,6 +10,7 @@
 <!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+	
 <!-- fontawesome icon -->
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
@@ -64,15 +65,15 @@ $(document).ready( function () {
     		    ['color', ['color']],
     		    ['para', ['ul', 'ol', 'paragraph']],
     		    ['height', ['height']],
-    		    ['insert', ['link', 'picture', 'video']],
+    		    ['insert', ['link', 'picture']],
     		    ['view', ['fullscreen', 'codeview', 'help']]
     		  ]
     });
     
     $('#articleCont').summernote({
-    	  fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New']
+    	  fontNames: ['AA', 'Arial Black', 'Comic Sans MS', 'Courier New']
     	});
-    $('#articleCont').summernote('fontSize', 30);
+    $('#articleCont').summernote('fontSize', 25);
 
     
     $('#articleCont').summernote({
@@ -97,6 +98,11 @@ function t(){
 	img[src=""],img:not([src]){
 	display:none;
 	}
+	
+	@font-face {
+    font-family: AA;
+    src: url(../resource/font/HanyiSentyBubbleTea.ttf);
+}
 </style>
 </head>
 <body>
