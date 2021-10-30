@@ -285,7 +285,9 @@
                 </div>
 
             </c:if>
+            
             <c:if test="${status.count%2==0}">
+            	<hr>
                 <div class="row justify-content-center">
                     <div class="justify-content-center"
                         style="display: inline-block; height: 300px;width: 700px;margin: 25px 25px;padding-top:10px">
@@ -304,10 +306,10 @@
 
             </c:if>
 
-            <hr>
+            
         </c:forEach>
 
-  
+  <hr>
 
         <br> <br> <br>
      

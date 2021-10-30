@@ -25,7 +25,8 @@
 <!--<script src="javascript/bootstrap.min.js"></script>-->
 <script src="/javascript/jquery-3.6.0.min.js"></script>
 <script src="/javascript/jquery-ui.min.js"></script>
-
+ <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <!--datepicker-ui中文補丁-->
 <!--自訂js-->
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -50,6 +51,32 @@ $(document).ready( function () {
 			}
 		}
 	 
+    });
+    
+    
+    $('#articleCont').summernote({
+    	height: 300,        
+    	 toolbar: [
+    		    // [groupName, [list of button]]
+    		    ['style', ['bold', 'italic', 'underline', 'clear']],
+    		    ['font', ['strikethrough', 'superscript', 'subscript']],
+    		    ['fontsize', ['fontsize']],
+    		    ['color', ['color']],
+    		    ['para', ['ul', 'ol', 'paragraph']],
+    		    ['height', ['height']],
+    		    ['insert', ['link', 'picture', 'video']],
+    		    ['view', ['fullscreen', 'codeview', 'help']]
+    		  ]
+    });
+    
+    $('#articleCont').summernote({
+    	  fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New']
+    	});
+    $('#articleCont').summernote('fontSize', 30);
+
+    
+    $('#articleCont').summernote({
+    height: 600
     });
 } );
 
