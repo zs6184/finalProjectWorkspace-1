@@ -115,7 +115,7 @@ $(function(){
 							</li>
 							<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
 							<li><a href="#Reservation" role="button" data-bs-toggle="modal" target="_self">線上訂位</a></li>
-							<li><a href="/Users/loginIndex.Controller" target="_self">餐點介紹</a></li>
+							<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
 							<li><a href="#t1" target="_self">活動訊息</a></li>
 						</ul>
 					</div>
@@ -418,7 +418,7 @@ $(function(){
 								<div class="col-12">
 									<ul>
 										<li><a href="#t1" target="_self">活動訊息</a></li>
-										<li><a href="/Users/loginIndex.Controller" target="_self">餐點介紹</a></li>
+										<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
 										  <li><a href="#Reservation" role="button" data-bs-toggle="modal" target="_self">線上訂位</a></li>
 										<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
 										<li><div class="dropdown absolute backstage">
