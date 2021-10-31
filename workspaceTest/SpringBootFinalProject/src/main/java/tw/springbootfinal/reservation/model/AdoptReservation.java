@@ -7,12 +7,16 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "Adopt_Reservation")
 @IdClass(ReservationMultiKeyClass.class)
 public class AdoptReservation implements Serializable {
-
+	
+	@Id
 	private Integer cusId;
+	@Id @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
 	private String reserveTime;
 	private Integer petId;
 	private String petName;
@@ -20,7 +24,7 @@ public class AdoptReservation implements Serializable {
 	private String phone;
 	private String keepStatus;
 
-	@Id
+
 	public Integer getCusId() {
 		return cusId;
 	}
@@ -29,7 +33,7 @@ public class AdoptReservation implements Serializable {
 		this.cusId = cusId;
 	}
 
-	@Id
+
 	public String getReserveTime() {
 		return reserveTime;
 	}
@@ -85,4 +89,14 @@ public class AdoptReservation implements Serializable {
 				+ ", cusRealname=" + cusRealname + ", phone=" + phone + ", keepStatus=" + keepStatus + "]";
 	}
 
+	//SetBean
+	public void setBean(AdoptReservation temp) {
+		this.cusId=temp.getCusId();
+		this.cusRealname=temp.getCusRealname();
+		this.keepStatus=temp.getKeepStatus();
+		this.petId=temp.getPetId();
+		this.petName=temp.getPetName();
+		this.phone=temp.getPhone();
+		this.reserveTime=temp.getReserveTime();
+	}
 }

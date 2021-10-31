@@ -49,7 +49,7 @@ public class FrontReservationController {
 	public Integer checkIfRepeat(AdoptReservation temp, Model m) throws UnsupportedEncodingException {
 		AdoptReservation check = rsService.selectOne(temp);
 		if(check==null) {
-			rsService.insertOrUpdate(temp);
+			rsService.insertOne(temp);
 			return 1;
 		}else {
 			return 2;

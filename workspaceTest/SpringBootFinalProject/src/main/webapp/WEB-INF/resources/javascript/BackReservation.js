@@ -16,12 +16,11 @@ $(function() {
 
 	//不同按鈕對應同一表單的action
 	$("#insertBtn").click(function() {
-		$("#modalForm").attr("action", "/backstage/reservation/addorupdate");
+		$("#modalForm").attr("action", "/backstage/reservation/addone");
 		$("#modalForm #petId").removeAttr("readonly");
 		$("#petInfoAdd input").attr("placeholder","");
 		$("#modalForm input,textarea").val("");
 		$("#imgPreview img").attr("src","");
-
 	});
 
 	//表單事件-生成錯誤提示訊息
@@ -137,6 +136,11 @@ $(function() {
 			$("#petId,#petName").attr("placeholder","查無此寵物");
 		}
 	});	
+	
+	
+	//檢測是否重複預約
+	checkUpdateStatus();
+	
 });
 
 
@@ -178,7 +182,7 @@ function del() {
 
 //使用更新按鈕選取此筆資料
 function select(obj) {
-	$("#modalForm").attr("action", "/backstage/reservation/addorupdate");
+	$("#modalForm").attr("action", "/backstage/reservation/updateone");
 	ID = $(obj).parent("td").siblings(".ID").text();
 	DATE=$(obj).parent("td").siblings(".DATE").text();
 	console.log(ID+"--"+DATE);
@@ -205,11 +209,13 @@ function select(obj) {
 				$("#missingBtn").removeClass("btn-warning");
 				$("#missingBtn").addClass("btn-secondary");
 				$("#missingBtn").attr("disabled","disabled");
+				$("#sendReserveBtn").attr("disabled","disabled").removeClass("btn-danger").addClass("btn-secondary");
 			}else{
 				$("#modalForm #keepStatus").attr("disabled",false);
 				$("#missingBtn").addClass("btn-warning");
 				$("#missingBtn").removeClass("btn-secondary");
 				$("#missingBtn").attr("disabled",false);
+				$("#sendReserveBtn").attr("disabled",false).removeClass("btn-secondary").addClass("btn-danger");
 			}			
 		},
 		error: function() {
@@ -218,15 +224,25 @@ function select(obj) {
 	})
 }
 
+
 //確定送出失約請求
 function confirmMiss(){
-	
-		$.ajax({
+	$.ajax({
 		type: "GET",
 		url: "/backstage/reservation/dealmissing",
 		datatype: "JSON",
 		contentType: "application/json",
 		data: { "cusId": `${ID}`,"reserveTime":`${DATE}`}
 	})
+}
+
+//檢測是否重複預約
+function checkUpdateStatus(){
+	var status = $("#status").val()
+	console.log("status="+status);
+		if(status=="已預約"){
+		$("#statusAlert").modal("show");
+		$("#status").val("");	
+	}
 }
 

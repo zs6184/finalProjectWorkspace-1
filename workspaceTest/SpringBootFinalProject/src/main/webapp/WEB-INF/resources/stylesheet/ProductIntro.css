@@ -1,0 +1,246 @@
+﻿body {
+    background-color: rgb(240, 245, 240);
+}
+
+@font-face {
+    font-family: AA;
+    src: url(../font/HanyiSentyBubbleTea.ttf);
+}
+@font-face {
+    font-family: BB;
+    src: url(../font/毛筆字體.ttf);
+}
+li, .container {
+    font-family: AA;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+    margin-top:10px;
+}
+    li a {
+        font-family: AA;
+        font-size: 20px;
+    }
+
+#topbar {
+    overflow: hidden;
+    z-index: 2;
+}
+
+a:hover {
+    color: gray;
+}
+
+    .sticky{
+        position:fixed;
+        top:0;
+        width:100%;
+        background-color: rgb(6, 121, 121,.8);
+        height: 40px;
+        z-index: 100;
+        transition: 1s;
+        
+    }
+    .sticky a{
+        color:white;
+    }
+    
+	.sticky a:hover{
+       color:gray
+      
+    }
+    
+     .sticky button{
+    	  color:white !important;
+     }
+      .sticky button:hover{
+    	  color:gray !important;
+     }
+    
+    
+    
+    .topbar li {
+        float: right;
+        height: 60px;
+        padding-left: 30px;
+        width:20%;
+    }
+
+.copy_right {
+    padding: 1em 0;
+    text-align: center;
+    background: rgb(6, 121, 121);
+}
+
+.copy_right div {
+    color: #fff;
+    font-size: 1.1em;
+    letter-spacing: 2px;
+}
+
+
+.copy_right div:hover {
+    color: #ccc;
+}
+
+.lowbar li{
+    float: left;
+    width:20%;
+    padding-left: 100px;
+}
+
+.lowbar li a {
+    font-family: BB;
+    font-size: 18px;
+    color:white;  
+}
+.lowbar li a:hover{
+   color:#ccc; 
+}
+
+.fix{
+    width:60px;
+    height:60px;
+    position:fixed;
+    bottom: 0px;
+    right:0px;
+    z-index:10000000;
+    font-family: AA;
+    font-size: 25px;
+    text-decoration: underline;
+  }
+
+.dropdown {
+    float: right;
+}
+
+.relative{
+	 position: relative;
+}
+
+#whp1,#whp2,#whp5{
+	width:100%;
+	height:100%;
+	padding:0;
+	font-size: 1.1em;
+}
+#whp3,#whp4{
+	width:100%;
+	height:100%;
+	padding:0;
+	color: black;
+}
+
+#cusCenterDropdown{
+	 font-size:1.2em;
+	 border:none;
+	 color:black;
+	 text-decoration:none;
+}
+#cusCenterDropdown2{
+	 font-size:18px;
+	 border:none;
+	 color:black;
+	 text-decoration:none;
+}
+
+.absolute{
+	position:absolute;
+}
+
+
+.banner-area {
+    position: relative;
+    z-index: 1;
+    height: 300px;
+}
+    .banner-area .banner-content h2{
+        font-size:48px;
+        padding:10px 15px ;
+        margin-bottom:0;
+        background-color:#000000;
+        color:honeydew;
+        display:inline-block;
+        line-height:1;
+    }
+.bg-img {
+    background-position: center bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.ui-tabs .ui-tabs-nav li
+{
+background: rgb(6, 121, 121);
+}
+
+.ui-tabs .ui-tabs-nav li:hover
+{
+background: green;
+}
+
+.detailBtn:hover{
+	color:#000000;
+    background-color:lightgray;
+}
+
+.detailBtn{
+	color:white;
+}
+
+    #mainbox div {
+        margin-bottom: 10px;
+    }
+
+    #mainbox label {
+        width: 150px;
+        text-align: left;
+        font-size: 1.2em;
+        font-family: 'Times New Roman';
+    }
+
+    #mainbox select {
+        width: 250px;
+        text-align: left;
+        background-color: transparent;
+        border-radius: 5px;
+        outline: none;
+        border: 0.5px solid lightgray;
+    }
+
+    #mainbox input {
+        width: 250px;
+        text-align: left;
+    }
+
+        #mainbox input[type="text"],input[type="datetime-local"] {
+            border: 0.5px solid lightgray;
+            text-align: center;
+            background: none;
+            padding: 12px;
+            border-radius: 20px;
+            outline: none;
+        }
+
+            #mainbox input[type="text"]:focus {
+                border: 2px solid #3498db;
+                width: 260px;
+            }
+
+#mainbox textarea {
+    border-radius: 10px;
+    height: 300px;
+    width: 500px;
+    resize: none;
+    overflow: auto;
+}
+
+
+
+

@@ -21,7 +21,7 @@ public class ProductService {
 	}
 	
 	//ID查詢單筆
-	public Products selectById(int id) {
+	public Products selectById(Integer id) {
 		return prodRepo.getById(id);
 	}
 	

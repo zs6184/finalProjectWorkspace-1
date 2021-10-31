@@ -114,7 +114,7 @@
 							class="fas fa-pizza-slice mx-2"></i> <span class="items">餐點管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist01" class="list-unstyled collapse">
-							<li><a href="#" class="itemDetails">餐點總覽</a></li>
+							<li><a href="/backstage/product/findAll" class="itemDetails">餐點總覽</a></li>
 							<li><a href="#" class="itemDetails">新品上架</a></li>
 							<li><a href="#" class="itemDetails">餐點更新</a></li>
 						</ul></li>
@@ -148,7 +148,7 @@
 							<li><a href="#" class="itemDetails">文章發佈</a></li>
 							<li><a href="#" class="itemDetails">文章更新</a></li>
 							<li><a href="#" class="itemDetails">寵物領養資訊</a></li>
-							<li><a href="#" class="itemDetails">領養預約總覽</a></li>
+							<li><a href="#" class="/backstage/reservation/getAll">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 					<li class="m-0"><a href="#" class="center"> <i
@@ -247,6 +247,7 @@
 			</div>
 
 			<!--新增預約紀錄Modal-->
+			<input type="hidden" id="status" value="${status}"/>
 			<div class="modal fade" id="ReserveAdd" tabindex="-1">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
@@ -254,7 +255,7 @@
 							<h3 class="modal-title" id="petModalTitle">預約看寵資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-					<form action="/backstage/reservation/addorupdate" method="POST" id="modalForm">
+					<form action="/backstage/reservation/addone" method="POST" id="modalForm">
 						<div class="row">
 							<div class="text-center" id="mainbox">
 								<fieldset>
@@ -299,7 +300,7 @@
 								</fieldset>
 								<hr/>
 								<div class="row justify-content-start">
-									<button type="submit" class="offset-4 col-2 me-3 btn btn-danger">送出預約</button>
+									<button type="submit" id="sendReserveBtn" class="offset-4 col-2 me-3 btn btn-danger">送出預約</button>
 									<button type="button" class="col-2 btn btn-secondary" data-bs-dismiss="modal">取消</button>
 									<button type="button" id="missingBtn" class="offset-2 col-1 btn btn-warning text-white"
 											 data-bs-toggle="modal" data-bs-target="#missingAlert" onclick="missAlert(this)">失約</button>
@@ -334,8 +335,7 @@
 			</div>
 			<!-- End Of deleteAlert Modal-->
 			
-			<!-- 確認失約提示框 Modal-->
-			
+			<!-- 確認失約提示框 Modal-->			
 			<div class="modal fade text-center" id="missingAlert" tabindex="-1">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
@@ -353,9 +353,27 @@
 						</div>
 					</div>
 				</div>
-			</div>	
-			
+			</div>		
 			<!-- End Of 確認失約提示框 Modal-->
+			
+			<!-- 預約狀態提示框 Modal-->
+			<div class="modal fade text-center" id="statusAlert" tabindex="-1">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">提示信息</h4>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+						</div>
+						<div class="modal-body items-align-center">
+							<h4 style="margin-top: 10px; margin-bottom: 50px;"
+								id="alertDialog">修改失敗，該會員當日已有其他預約，無須重複預約</h4>
+						</div>
+						<hr/>
+						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">確定</button>
+					</div>
+				</div>
+			</div>
+			<!-- End of 預約狀態提示框 Modal-->
 			
 		</div>
 	</div>
