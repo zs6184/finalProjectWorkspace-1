@@ -52,6 +52,15 @@ $(document).ready( function () {
 			}
 		}
 	 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     });
     
     
@@ -65,7 +74,7 @@ $(document).ready( function () {
     		    ['color', ['color']],
     		    ['para', ['ul', 'ol', 'paragraph']],
     		    ['height', ['height']],
-    		    ['insert', ['link', 'picture']],
+    		    ['insert', ['link', 'picture', 'video']],
     		    ['view', ['fullscreen', 'codeview', 'help']]
     		  ]
     });
@@ -79,6 +88,9 @@ $(document).ready( function () {
     $('#articleCont').summernote({
     height: 600
     });
+    
+    $('#articleCont').summernote('fontSize', 25);
+
 } );
 
 function t(){
@@ -103,6 +115,14 @@ function t(){
     font-family: AA;
     src: url(../resource/font/HanyiSentyBubbleTea.ttf);
 }
+
+
+	iframe{
+		display:block;
+		border:none;
+		height:30%;
+		width:30%;
+	}
 </style>
 </head>
 <body>

@@ -32,6 +32,7 @@
 <!--自訂js-->
 <script src="/javascript/backPetInfo.js"></script>
 <script src="/javascript/backstage.js"></script>
+ <link rel="icon" type="image/png" size=192x192 href="../font/favicon.png">
 </head>
 <body>
 	<!-- 導覽列 -->

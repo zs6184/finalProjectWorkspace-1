@@ -29,6 +29,7 @@
 <!--自訂js-->
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="javascript/bookings.js"></script>
+ <link rel="icon" type="image/png" size=192x192 href="../font/favicon.png">
 <script type="text/javascript">
 $(document).ready( function () {
     $('#infoTable').DataTable({
