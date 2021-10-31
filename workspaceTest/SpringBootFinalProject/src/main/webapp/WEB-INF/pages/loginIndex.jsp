@@ -13,14 +13,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>index</title>
+
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/stylesheet/index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
+<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/material_green.css"> -->
 <!--CSS在這邊 要注意放在bootstrap樣式表CDN後面 不然權重相同的部分會被bootstrap蓋過去-->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0-alpha.1/jquery-ui.min.js"></script>
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
 	integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
@@ -36,9 +40,29 @@
 
 
 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+<script>
+$(function(){
+	 $("#orderDate").flatpickr({
+		    enableTime: true,
+		    dateFormat: "Y-m-d",
+		    "disable": [
+		      function (date) {
+		        return (date.getDay() === 0 || date.getDay() === 6);  // disable weekends
+		      }
+		    ],
+		    "locale": {
+		      "firstDayOfWeek": 1 // set start day of week to Monday
+		    }
+		  });
+	
+})
+ 
+</script>
 </head>
 
 <body id="top" style="background-image: url(/image/背景4.jpg)";>
+
 	<div style="background-color: rgb(6, 121, 121, .1);">
 		<br>
 	</div>
@@ -217,7 +241,7 @@
 
                                 <label for="orderDate" class="form-label" style="margin-right: 13px;">訂位日期</label>
                                 <input style="width:280px;height: 40px;display: inline-block;margin-left: 25px;border:2px solid #ccc"
-                                       id="orderDate" name="orderDate" type="date" class="form-control" required />
+                                       id="orderDate" name="orderDate" class="form-control" data-input required placeholder="點擊選擇您的日期" />
 
                                 <div style="overflow: hidden;height:40px;"></div>
 
@@ -232,8 +256,7 @@
                                     <option value="6">16:00</option>
                                     <option value="7">17:00</option>
                                     <option value="8">18:00</option>
-                                    <option value="9">19:00</option>
-                                    <option value="10">20:00</option>
+                              
                                 </select>
 
 
@@ -440,5 +463,6 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

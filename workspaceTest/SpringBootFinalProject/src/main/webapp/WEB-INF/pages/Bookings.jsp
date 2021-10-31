@@ -52,6 +52,12 @@ $(document).ready( function () {
     });
 } );
 </script>
+<style>
+	th.ui-datepicker-week-end, 
+	td.ui-datepicker-week-end { 
+    display: none; 
+} 
+</style>
 </head>
 <body>
 	<!-- 導覽列 -->
@@ -287,6 +293,11 @@ $(document).ready( function () {
 													<option value="4">4</option>
 													<option value="5">5</option>
 													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+													<option value="9">9</option>
+													<option value="10">10</option>
+																	
 												</select>
 											</div>
 											<div>
@@ -305,8 +316,8 @@ $(document).ready( function () {
 													<option value="6">16:00</option>
 													<option value="7">17:00</option>
 													<option value="8">18:00</option>
-													<option value="9">19:00</option>
-													<option value="10">20:00</option>
+													
+												
 												</select>
 											</div>
 											<div>
