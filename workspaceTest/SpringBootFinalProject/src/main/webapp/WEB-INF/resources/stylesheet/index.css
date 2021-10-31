@@ -16,7 +16,7 @@ li, .container {
 }
 
 
-	iframe{
+	.row iframe{
 		float:left;
 		display:inline;
 		border:none;
