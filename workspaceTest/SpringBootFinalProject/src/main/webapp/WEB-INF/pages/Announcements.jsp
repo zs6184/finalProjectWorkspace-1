@@ -33,6 +33,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="/javascript/announcements.js"></script>
 <script src="/javascript/backstage.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 <script type="text/javascript">
 $(document).ready( function () {
     $('#infoTable').DataTable({
