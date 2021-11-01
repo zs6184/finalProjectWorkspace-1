@@ -11,30 +11,34 @@ import javax.persistence.Table;
 @Table(name = "products")
 public class Products {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="product_ID")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "product_ID")
 	private Integer productID;
-	
-	@Column(name="product_name")
+
+	@Column(name = "product_name")
 	private String productName;
-	
-	@Column(name="unitprice")
+
+	@Column(name = "unitprice")
 	private int unitprice;
-	
-	@Column(name="category")
+
+	@Column(name = "category")
 	private String category;
-	
-	@Column(name="total_instore")
+
+	@Column(name = "total_instore")
 	private int totalInstore;
-	
-	@Column(name="total_inorder")
+
+	@Column(name = "total_inorder")
 	private int totalInorder;
-	
-	@Column(name="note")
+
+	@Column(name = "note")
 	private String note;
-	
-	@Column(name="pic")
+
+	@Column(name = "pic")
 	private byte[] pic;
+
+	@Column(name = "on_shelve")
+	private String onShelve;
 
 	public Integer getProductID() {
 		return productID;
@@ -99,13 +103,22 @@ public class Products {
 	public void setPic(byte[] pic) {
 		this.pic = pic;
 	}
-	
+
+	public String getOnShelve() {
+		return onShelve;
+	}
+
+	public void setOnShelve(String onShelve) {
+		this.onShelve = onShelve;
+	}
+
 	public void setBean(Products temp) {
-		this.productID=temp.getProductID();
-		this.productName=temp.getProductName();
-		this.category=temp.getCategory();
-		this.totalInstore=temp.getTotalInstore();
-		this.unitprice=temp.getUnitprice();
-		this.note=temp.getNote();
+		this.productID = temp.getProductID();
+		this.productName = temp.getProductName();
+		this.category = temp.getCategory();
+		this.totalInstore = temp.getTotalInstore();
+		this.unitprice = temp.getUnitprice();
+		this.note = temp.getNote();
+		this.onShelve=temp.getOnShelve();
 	}
 }

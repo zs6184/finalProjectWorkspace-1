@@ -148,7 +148,7 @@
 							<li><a href="#" class="itemDetails">文章發佈</a></li>
 							<li><a href="#" class="itemDetails">文章更新</a></li>
 							<li><a href="#" class="itemDetails">寵物領養資訊</a></li>
-							<li><a href="#" class="/backstage/reservation/getAll">領養預約總覽</a></li>
+							<li><a href="/backstage/reservation/getAll" class="itemDetails">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 					<li class="m-0"><a href="#" class="center"> <i
@@ -211,6 +211,7 @@
 									<th scope="col">單價</th>
 									<th scope="col">庫存剩餘量</th>
 									<th scope="col">在訂總量</th>
+									<th scope="col">上架狀態</th>
 									<th scope="col">
 										<button type="button" class="btn btn-primary btn"
 											data-bs-toggle="modal" data-bs-target="#ProductModal"
@@ -227,6 +228,7 @@
 										<td>${arrRes.unitprice}</td>
 										<td>${arrRes.totalInstore}</td>
 										<td>${arrRes.totalInorder}</td>
+										<td>${arrRes.onShelve}</td>
 										<td>
 											<button type="button" class="btn btn-danger updateBtn"
 												data-bs-toggle="modal" data-bs-target="#ProductModal"
@@ -263,11 +265,11 @@
 											<input type="text" id="productID" name="productID" value="${theProd.productID}" readonly />
 										</div>
 										<div>
-											<label for="productName"><span>商品名稱</span></label> 
+											<label for="productName"><span>*商品名稱</span></label> 
 											<input type="text" id="productName" class="requiredValue" name="productName" value="${theProd.productName}"/>
 										</div>
 										<div>
-											<label for="category"><span>類別</span></label>
+											<label for="category"><span>*類別</span></label>
 											<select id="category" name="category" required>
 												<option value="" disabled selected></option>
 												<option value="飯">飯</option>
@@ -277,18 +279,26 @@
 											</select>
 										</div>
 										<div>
-											<label for="unitprice"><span>單價</span></label> 
+											<label for="unitprice"><span>*單價</span></label> 
 											<input type="text" id="unitprice" name="unitprice" value="${theProd.unitprice}" 
 												oninput="value=value.replace(/[^\d]/g,'')" class="requiredValue"/>
 										</div>
 										<div>
-											<label for="totalInstore"><span>庫存剩餘量</span></label> 
+											<label for="totalInstore"><span>*庫存剩餘量</span></label> 
 											<input type="text" id="totalInstore" name="totalInstore" value="${theProd.totalInstore}" 
 												oninput="value=value.replace(/[^\d]/g,'')" class="requiredValue"/>
 										</div>
 										<div>
 											<label for="totalInorder"><span>在訂總量</span></label> 
 											<input type="text" id="totalInorder" name="totalInorder" value="${theProd.totalInorder}" disabled/>
+										</div>
+										<div>
+											<label for="onShelve"><span>*上架狀態</span></label> 
+											<select id="onShelve" name="onShelve" required>
+												<option value="" disabled selected></option>
+												<option value="已上架">已上架</option>
+												<option value="已下架">已下架</option>
+											</select>
 										</div>
 								</fieldset>
 								<hr/>
@@ -344,31 +354,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- End Of deleteAlert Modal-->
-			
-			<!-- 確認失約提示框 Modal-->
-			
-			<div class="modal fade text-center" id="missingAlert" tabindex="-1">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title">提示信息</h4>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-						</div>
-						<div class="modal-body items-align-center">
-							<h4 style="margin-top: 10px; margin-bottom: 50px;"
-								id="alertMissDialog">確認標註此預約為客戶失約?</h4>
-							<button type="button" class="btn btn-danger"
-								data-bs-dismiss="modal" onclick="confirmMiss()">確定</button>
-							<button type="button" class="btn btn-secondary"
-								data-bs-dismiss="modal">取消</button>
-						</div>
-					</div>
-				</div>
-			</div>	
-			
-			<!-- End Of 確認失約提示框 Modal-->
-			
+			<!-- End Of 確認刪除提示框 Modal-->
+						
 		</div>
 	</div>
 </body>

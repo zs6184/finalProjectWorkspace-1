@@ -120,6 +120,7 @@ function select(obj) {
 			$("#modalForm #totalInstore").val(parsed.totalInstore);			
 			$("#modalForm #totalInorder").val(parsed.totalInorder);	
 			$("#modalForm #note").val(parsed.note);						
+			$("#modalForm #onShelve").val(parsed.onShelve);						
 			$("#imgPreview img").attr("src",`data:image/png;base64,${parsed.pic}`);				
 		},
 		error: function() {

@@ -20,6 +20,11 @@ public class ProductService {
 		return prodRepo.findAll();
 	}
 	
+	//取得已上架產品資料
+	public List<Products> findAllOnShelve(String status){
+		return prodRepo.findByOnShelve(status);
+	}
+	
 	//ID查詢單筆
 	public Products selectById(Integer id) {
 		return prodRepo.getById(id);

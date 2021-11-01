@@ -69,7 +69,13 @@ public class BackReservationController {
 	//新增一筆
 	@PostMapping("/addone")
 	public String insertOne(AdoptReservation temp) {
-		rsService.insertOne(temp);
+		AdoptReservation check= rsService.selectOne(temp);
+		if(check==null) {
+			rsService.insertOne(temp);
+		}else {
+			status=1;
+		}
+		
 		return "redirect:/backstage/reservation/getAll";
 	}
 	

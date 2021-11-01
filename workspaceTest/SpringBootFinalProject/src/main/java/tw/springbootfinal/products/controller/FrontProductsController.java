@@ -32,10 +32,10 @@ public class FrontProductsController {
 	private ProductService prodService;
 //----------------------------------------------
 
-	// 查詢所有產品並依照類別分類回傳
+	// 查詢所有已上架產品並依照類別分類回傳
 	@GetMapping("/findallproduct")
 	public String findAllProduct(Model m) throws UnsupportedEncodingException {
-		List<Products> allProd = prodService.findAll();
+		List<Products> allProd = prodService.findAllOnShelve("已上架");
 		List<Products> arrRice = new ArrayList<>();
 		List<Products> arrNoodle = new ArrayList<>();
 		List<Products> arrBeverage = new ArrayList<>();
