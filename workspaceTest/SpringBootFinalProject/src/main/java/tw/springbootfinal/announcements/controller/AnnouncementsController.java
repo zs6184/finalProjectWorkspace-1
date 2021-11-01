@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
@@ -21,6 +23,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import tw.springbootfinal.announcements.model.Announcements;
 import tw.springbootfinal.announcements.model.AnnouncementsService;
+import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
 @RequestMapping("/backstage/announcements")
@@ -30,13 +33,19 @@ public class AnnouncementsController {
 	@Autowired
 	private AnnouncementsService aService;
 	
+	@Autowired
+	private CustomerService cusService;
+	
 	/*
 	 * 取得所有文章資料
 	 */
 	@GetMapping("/backannouncements.controller")
-	public String processGetAll(Model m) {
+	public String processGetAll(@SessionAttribute("username") String username, Model m, HttpServletRequest request) {
 		List<Announcements> arrAnnounce = aService.getAll();
 		m.addAttribute("arrAnnounce",arrAnnounce);
+		//會員圖片
+		String imageName = cusService.selectImage(username, request);
+		m.addAttribute("imageName",imageName);
 		return "Announcements";
 	}
 	

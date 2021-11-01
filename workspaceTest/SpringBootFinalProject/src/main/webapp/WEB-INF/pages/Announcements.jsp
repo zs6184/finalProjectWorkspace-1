@@ -86,53 +86,59 @@ function t(){
 							placeholder="Search" aria-label="Search">
 						<button class="btn btn-outline-success" type="submit">Search</button>
 					</form>
-					<div class="">
-						<!-- 帳號頭像及功能 -->
-						<div class="dropdown">
-							<button class="btn-transparent" type="button"
-								id="dropdownButton01" data-bs-toggle="dropdown">
-								<img src="image/husky.jpg" class="image shadow" />
-							</button>
-							<ul class="dropdown-menu  dropdown-menu-end shadow"
-								aria-labelledby="dropdownMenuButton01">
-								<li><a class="dropdown-item" href="#">Username</a></li>
-								<li><a class="dropdown-item" href="#">Settings</a></li>
-								<li><a class="dropdown-item" href="#">登出</a></li>
-							</ul>
+					<form action="/Users/logout.Controller" method="post">
+						<div class="">
+							<!-- 帳號頭像及功能 -->
+							<div class="dropdown">
+								<button class="btn-transparent" type="button"
+									id="dropdownButton01" data-bs-toggle="dropdown">
+									<img src="/downloadTempDir/${imageName}" class="image shadow" />
+								</button>
+								<ul class="dropdown-menu  dropdown-menu-end shadow"
+									aria-labelledby="dropdownMenuButton01">
+									<li><a class="dropdown-item" href="/Users/SelectCustomer.controller#information">${realName}</a></li>
+									<li><a class="dropdown-item" href="/Users/loginIndex.Controller">浪跡</a></li>
+									<li><button type="submit" class="dropdown-item"
+											value="logout">Logout</button></li>
+								</ul>
+							</div>
+							<!-- 訊息資訊 -->
+							<div class="dropdown" >
+								<button class="btn-transparent" type="button"
+									id="dropdownButton02" data-bs-toggle="dropdown">
+									<i class="far fa-envelope me-5 navIcon mt-3" id="navIcon"></i>
+								</button>
+								<ul class="dropdown-menu  dropdown-menu-end shadow"
+									aria-labelledby="dropdownMenuButton02">
+									<li><a class="dropdown-item me-3" href="#"> <img
+											src="/image/husky.jpg" class="imageMessage shadow" />
+											message
+									</a></li>
+									<li><a class="dropdown-item" href="#"> <img
+											src="/image/husky.jpg" class="imageMessage shadow" />
+											message
+									</a></li>
+									<li><a class="dropdown-item" href="#"> <img
+											src="/image/husky.jpg" class="imageMessage shadow" />
+											message
+									</a></li>
+								</ul>
+							</div>
+							<!-- 訊息通知 -->
+							<div class="dropdown floatDown">
+								<button class="btn-transparent" type="button"
+									id="dropdownButton03" data-bs-toggle="dropdown">
+									<i class="far fa-bell me-5 navIcon mt-3" id="navIcon"></i>
+								</button>
+								<ul class="dropdown-menu  dropdown-menu-end shadow"
+									aria-labelledby="dropdownMenuButton03">
+									<li><a class="dropdown-item" href="#">notify</a></li>
+									<li><a class="dropdown-item" href="#">notify</a></li>
+									<li><a class="dropdown-item" href="#">notify</a></li>
+								</ul>
+							</div>
 						</div>
-						<!-- 訊息資訊 -->
-						<div class="dropdown">
-							<button class="btn-transparent" type="button"
-								id="dropdownButton02" data-bs-toggle="dropdown">
-								<i class="far fa-envelope me-5 navIcon mt-3" id="navIcon"></i>
-							</button>
-							<ul class="dropdown-menu  dropdown-menu-end shadow"
-								aria-labelledby="dropdownMenuButton02">
-								<li><a class="dropdown-item me-3" href="#"> <img
-										src="image/husky.jpg" class="imageMessage shadow" /> message
-								</a></li>
-								<li><a class="dropdown-item" href="#"> <img
-										src="image/husky.jpg" class="imageMessage shadow" /> message
-								</a></li>
-								<li><a class="dropdown-item" href="#"> <img
-										src="image/husky.jpg" class="imageMessage shadow" /> message
-								</a></li>
-							</ul>
-						</div>
-						<!-- 訊息通知 -->
-						<div class="dropdown floatDown">
-							<button class="btn-transparent" type="button"
-								id="dropdownButton03" data-bs-toggle="dropdown">
-								<i class="far fa-bell me-5 navIcon mt-3" id="navIcon"></i>
-							</button>
-							<ul class="dropdown-menu  dropdown-menu-end shadow"
-								aria-labelledby="dropdownMenuButton03">
-								<li><a class="dropdown-item" href="#">notify</a></li>
-								<li><a class="dropdown-item" href="#">notify</a></li>
-								<li><a class="dropdown-item" href="#">notify</a></li>
-							</ul>
-						</div>
-					</div>
+					</form>
 				</div>
 			</nav>
 		</div>

@@ -292,6 +292,36 @@ public class CustomerService {
 		return op1.get();
 	}
 	
-	
+	//抓取照片
+	// 查詢全部會員
+	public String selectImage(String username,HttpServletRequest request) {
+		//List<CustomerBean> selectAll = findAll();// 搜尋所有會員資料
+		//此處無法使用@RequestParam("id")來抓取id，網頁會陷入過多重新導向問題，因此改採session方式抓會員資料
+		CustomerBean cusBean = getByCusUsername(username);
+		// 取得資料庫資料
+		int cusId = cusBean.getCusId();
+		String imageName = cusBean.getImageName();
+		byte[] image = cusBean.getImage();
+		System.out.println("imageName: " + imageName);
+		// 如果會員沒有上傳過圖片就使用預設圖片
+		if (image == null) {
+			System.out.println("照片名null");
+			//m.addAttribute("imageName", "husky.jpg");
+			return "husky.jpg";
+		} else {
+			// 抓到專案路徑加上暫存資料夾名稱
+			String path = request.getSession().getServletContext().getRealPath("/") + "downloadTempDir\\";
+			System.out.println(path);
+			imageDownload(image, cusId, imageName, path);
 
+			//m.addAttribute("imageName", imageName);
+			return imageName;
+		}
+		
+		// 將整個陣列傳到jsp的forEach
+		//m.addAttribute("cus", selectAll);
+		//return "Customer";
+	}
+	
+	
 }
