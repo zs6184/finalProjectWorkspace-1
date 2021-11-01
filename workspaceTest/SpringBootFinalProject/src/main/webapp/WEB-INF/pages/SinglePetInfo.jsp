@@ -15,12 +15,15 @@
 <link rel="stylesheet" href="/stylesheet/singlePetInfo.css" />
 <!--JS Here-->
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
-<script src="/javascript/jquery-3.6.0.min.js"></script>
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="/javascript/jquery-ui.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0-alpha.1/jquery-ui.min.js"></script>
+
 <!--datepicker-ui中文補丁-->
 <script src="/javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
 <script src="/javascript/SinglePetInfo.js"></script>
+
 </head>
 <body style="background-image: url(/image/背景4.jpg)">
 	<hr>
@@ -38,18 +41,42 @@
 	<hr>
 
 	<!-- nav欄部分 -->
-	<div id="topbar">
-		<div class="container h-100">
-			<div class="row h-100 align-items-center">
-				<div class="col-12">
-					<ul>
-						<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
-						<li><a href="/index.html" target="_self">線上訂位</a></li>
-						<li><a href="/index.html" target="_self">餐點介紹</a></li>
-						<li><a href="/index.html" target="_self">公告專區</a></li>
-						<li><a href="/index.html" target="_self">登入註冊</a></li>
-						<li><a href="/index.html" target="_self">首頁</a></li>
-					</ul>
+	<input type="hidden" id="sessionUsername" value="<%=session.getAttribute("username") %>">
+	<!-- 檢查SessionAttribute是否存在用 -->
+	<div>
+		<div id="topbar">
+			<div class="container h-100">
+				<div class="row h-100 align-items-center topbar">
+					<div class="col-12">
+						<ul>
+							<li id="memberOption" class="memberOption d-none">
+								<div class="dropdown absolute backstage ${role}">
+									<button class="btn btn-link dropdown-toggle " type="button"
+										id="cusCenterDropdown" data-bs-toggle="dropdown">${realName}</button>
+									<ul class="dropdown-menu p-0" role="button">
+										<li id="whp1"><a href="/Users/SelectCustomer.controller"
+											style="font-size: 1.1em"
+											class="dropdown-item d-flex justify-content-center"
+											target="_self">會員中心</a>
+										</li>
+										<li id="whp2" class="m-0">
+											<form action="/Users/logout.Controller" method="post">
+												<button type="submit"
+													class="dropdown-item d-flex justify-content-center"
+													value="logout">登出</button>
+											</form>
+										</li>
+									</ul>
+								</div>
+							</li>
+							
+							<li id="loginOption" class="loginOption"><a href="/login.Controller" target="_self">登入註冊</a></li>
+							<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
+							<li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
+							<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
+							<li><a href="#t1" target="_self">活動訊息</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -68,7 +95,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!--內容-->
 	<div class="container" id="container">
 		<!--寵物詳細資訊-->
@@ -97,8 +123,7 @@
 									 readonly>${thePet.note}</textarea>
 						</div>
 						<div class="row justify-content-end">
-							<button type="button" class="col-3 btn btn-danger text-white" id="reserveBtn"
-									data-bs-toggle="modal" data-bs-target="#reservePet">預約領養</button>
+							<button type="button" class="col-3 btn btn-danger text-white" id="reserveBtn">預約領養</button>
 						</div>
 					</div>
 				</div>
@@ -182,5 +207,55 @@
 		</div>
 	</div>
 <!-- End Of deleteAlert Modal-->
+            <div class="copy_right">
+                <div>
+                    <div id="lowbar">
+                        <div class="container h-100">
+                            <div class="row h-100 align-items-center lowbar">
+                                <div class="col-12 ">
+                                    <ul>
+                                        <li><a href="#t1" target="_self">活動訊息</a></li>
+                                        <li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
+                                     	 <li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
+                                        <li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
+                                        <li class="loginOption"><a href="/login.Controller" target="_self">登入註冊</a></li>
+										<li class="memberOption"><div class="dropdown absolute backstage">
+												<button class="btn btn-link dropdown-toggle text-light"
+													type="button" id="cusCenterDropdown2"
+													data-bs-toggle="dropdown">${realName}</button>
+												<ul class="dropdown-menu p-0" role="button">
+													<li id="whp3"><a
+														href="/Users/SelectCustomer.controller"
+														class="text-dark dropdown-item d-flex justify-content-center"
+														target="_self">會員中心</a></li>
+													<li id="whp4" class="m-0">
+														<form action="/Users/logout.Controller" method="post">
+															<button type="submit"
+																class="dropdown-item d-flex justify-content-center"
+																value="logout">登出</button>
+														</form>
+													</li>
+												</ul>
+											</div></li>
+                                   </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="container">
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+                    is made with
+                    <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#top">
+                        JAVA team4
+                    </a>
+                </div>
+            </div>
+
+	<div class="fix"><a href="#top" style="font-size: 40px;">TOP</a></div>
+
 </body>
 </html>

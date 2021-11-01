@@ -132,7 +132,7 @@ function del() {
 		url: "/backstage/pet/deletebyid.controller",
 		datatype: "JSON",
 		contentType: "application/json",
-		data: { "id": `${ID}` }
+		data: { "id": `${ID}`}
 	})
 	record.parents("tr").remove();
 	window.location.reload()

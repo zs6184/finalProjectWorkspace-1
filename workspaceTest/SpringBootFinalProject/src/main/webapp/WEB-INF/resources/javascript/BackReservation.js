@@ -16,12 +16,11 @@ $(function() {
 
 	//不同按鈕對應同一表單的action
 	$("#insertBtn").click(function() {
-		$("#modalForm").attr("action", "/backstage/reservation/addorupdate");
+		$("#modalForm").attr("action", "/backstage/reservation/addone");
 		$("#modalForm #petId").removeAttr("readonly");
 		$("#petInfoAdd input").attr("placeholder","");
 		$("#modalForm input,textarea").val("");
 		$("#imgPreview img").attr("src","");
-
 	});
 
 	//表單事件-生成錯誤提示訊息
@@ -136,31 +135,34 @@ $(function() {
 			$("#petId,#petName").val("");
 			$("#petId,#petName").attr("placeholder","查無此寵物");
 		}
-	});
+	});	
 	
 	
+	//檢測是否重複預約
+	checkUpdateStatus();
 	
-//上傳檔案預覽圖片
-//	$("#mypic").change(function(){
-//		previewImg(this.files);
-//	});
-//當使用者返回前頁時，需重新預覽前回點選擬上傳的圖片
-//previewImg($("#mypic")[0].files);
-
 });
+
 
 //跳出確認刪除對話框
 var ID;
 var DATE;
+var NAME
 var record;
 
 function delAlert(obj) {
 	record = $(obj);
 	ID = $(obj).parent("td").siblings(".ID").text();
 	DATE=$(obj).parent("td").siblings(".DATE").text();
-	var NAME = $(obj).parent("td").siblings(".NAME").text();
+	NAME = $(obj).parent("td").siblings(".NAME").text();
 	console.log(ID);
-	$("#alertDialog").html(`確定刪除客戶${ID}:${NAME} 於 ${DATE}的預約 ?`);
+	$("#alertDialog").html(`確定刪除客戶${ID} : ${NAME} 於 ${DATE}的預約 ?`);
+}
+
+//跳出確認失約確認提示框
+function missAlert(obj){
+	record=$(obj);
+	$("#alertMissDialog").html(`確定標註客戶${ID} : ${NAME} 於 ${DATE}的預約為失約 ?`);
 }
 
 
@@ -180,7 +182,7 @@ function del() {
 
 //使用更新按鈕選取此筆資料
 function select(obj) {
-	$("#modalForm").attr("action", "/backstage/reservation/addorupdate");
+	$("#modalForm").attr("action", "/backstage/reservation/updateone");
 	ID = $(obj).parent("td").siblings(".ID").text();
 	DATE=$(obj).parent("td").siblings(".DATE").text();
 	console.log(ID+"--"+DATE);
@@ -199,7 +201,22 @@ function select(obj) {
 			$("#modalForm #cusRealname").val(parsed.cusRealname);			
 			$("#modalForm #phone").val(parsed.phone);			
 			$("#modalForm #reserveTime").val(parsed.reserveTime);			
-			$("#modalForm #keepStatus").val(parsed.keepStatus);					
+			$("#modalForm #keepStatus").val(parsed.keepStatus);	
+			NAME=parsed.cusRealname;
+			if(parsed.keepStatus=="失約"){
+				$("#modalForm #keepStatus").attr("disabled","disabled");
+				$("#modalForm #keepStatus").attr("disabled","disabled");
+				$("#missingBtn").removeClass("btn-warning");
+				$("#missingBtn").addClass("btn-secondary");
+				$("#missingBtn").attr("disabled","disabled");
+				$("#sendReserveBtn").attr("disabled","disabled").removeClass("btn-danger").addClass("btn-secondary");
+			}else{
+				$("#modalForm #keepStatus").attr("disabled",false);
+				$("#missingBtn").addClass("btn-warning");
+				$("#missingBtn").removeClass("btn-secondary");
+				$("#missingBtn").attr("disabled",false);
+				$("#sendReserveBtn").attr("disabled",false).removeClass("btn-secondary").addClass("btn-danger");
+			}			
 		},
 		error: function() {
 			console.log("failed to get data");
@@ -207,15 +224,25 @@ function select(obj) {
 	})
 }
 
-//預覽上傳檔案圖片
-//function previewImg(files){
-//	if(files.length==0) 
-//	return;
-//	var file = files[0];
-//	var fr = new FileReader();
-//	fr.onload = function(){
-//		$("#imgPreview img").attr({src:fr.result});
-//	};
-//	fr.readAsDataURL(file);
-//}
+
+//確定送出失約請求
+function confirmMiss(){
+	$.ajax({
+		type: "GET",
+		url: "/backstage/reservation/dealmissing",
+		datatype: "JSON",
+		contentType: "application/json",
+		data: { "cusId": `${ID}`,"reserveTime":`${DATE}`}
+	})
+}
+
+//檢測是否重複預約
+function checkUpdateStatus(){
+	var status = $("#status").val()
+	console.log("status="+status);
+		if(status=="已預約"){
+		$("#statusAlert").modal("show");
+		$("#status").val("");	
+	}
+}
 

@@ -10,6 +10,7 @@
 <!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+	
 <!-- fontawesome icon -->
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
@@ -25,12 +26,14 @@
 <!--<script src="javascript/bootstrap.min.js"></script>-->
 <script src="/javascript/jquery-3.6.0.min.js"></script>
 <script src="/javascript/jquery-ui.min.js"></script>
-
+ <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <!--datepicker-ui中文補丁-->
 <!--自訂js-->
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="/javascript/announcements.js"></script>
 <script src="/javascript/backstage.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 <script type="text/javascript">
 $(document).ready( function () {
     $('#infoTable').DataTable({
@@ -50,7 +53,45 @@ $(document).ready( function () {
 			}
 		}
 	 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     });
+    
+    
+    $('#articleCont').summernote({
+    	height: 300,        
+    	 toolbar: [
+    		    // [groupName, [list of button]]
+    		    ['style', ['bold', 'italic', 'underline', 'clear']],
+    		    ['font', ['strikethrough', 'superscript', 'subscript']],
+    		    ['fontsize', ['fontsize']],
+    		    ['color', ['color']],
+    		    ['para', ['ul', 'ol', 'paragraph']],
+    		    ['height', ['height']],
+    		    ['insert', ['link', 'picture', 'video']],
+    		    ['view', ['fullscreen', 'codeview', 'help']]
+    		  ]
+    });
+    
+    $('#articleCont').summernote({
+    	  fontNames: ['AA', 'Arial Black', 'Comic Sans MS', 'Courier New']
+    	});
+    $('#articleCont').summernote('fontSize', 25);
+
+    
+    $('#articleCont').summernote({
+    height: 600
+    });
+    
+    $('#articleCont').summernote('fontSize', 25);
+
 } );
 
 function t(){
@@ -69,6 +110,19 @@ function t(){
 <style>
 	img[src=""],img:not([src]){
 	display:none;
+	}
+	
+	@font-face {
+    font-family: AA;
+    src: url(../resource/font/HanyiSentyBubbleTea.ttf);
+}
+
+
+	iframe{
+		display:block;
+		border:none;
+		height:30%;
+		width:30%;
 	}
 </style>
 </head>

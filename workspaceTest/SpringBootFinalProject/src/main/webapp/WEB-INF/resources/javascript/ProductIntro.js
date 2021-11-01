@@ -3,6 +3,10 @@
 var indexPage = 1;
 
 $(function() {
+	
+	//製造頁籤
+	$("#tabs").tabs();
+	
 	//確認權限，如果為EMPLOYEE就顯示後台按鈕
 	var emp = $(".backstage").hasClass("EMPLOYEE");
 	var admin = $(".backstage").hasClass("ADMIN");
@@ -57,8 +61,66 @@ $(function() {
 		$(this).addClass(`${getBgColor()}`)
 	});
 
+	//表單事件-生成錯誤提示訊息
+	function createErr(obj) {
+		$(obj).attr("placeholder", "此為必填");
+	}
+
+	//表單事件-新增錯誤提示元素
+	$("#reserveForm .requiredValue").blur(function() {
+		if ($(this).val() == "") {		//若必填的input空值
+			createErr(this);
+		}
+	});
+
+	//表單事件-提交控制
+	$("#reserveForm").submit(function() {
+		var errs = [];
+		$("#reserveForm .requiredValue").each(function() {
+			if ($(this).val() == "") {
+				createErr(this);
+				errs.push(this);
+			}
+		});
+		if (errs.length > 0) {
+			$(errs[0]).focus();
+			return false; //阻止表單提交	
+		}
+	});
 
 });
+
+var ID;
+var record;
+
+//取得選擇的產品資料
+function getTheProd(obj){
+	ID = $(obj).parent().siblings("input").val();
+	console.log("ID="+ID);
+	$.ajax({
+		type: "GET",
+		url: "/product/selectbyid",
+		data:{"id":ID},
+		datatype: "JSON",
+		contentType: "application/json",
+		success:function(data){
+			console.log("get theProd Success");
+			var theProd = jQuery.parseJSON(data);
+			$("#imgPreview img").attr("src",`data:image/png;base64,${theProd.pic}`);
+			$("#productForm #productID").val(theProd.productID);
+			$("#productForm #productName").val(theProd.productName);
+			$("#productForm #category").val(theProd.category);
+			$("#productForm #unitprice").val(theProd.unitprice);
+			$("#productForm #totalInstore").val(theProd.totalInstore);
+			$("#productForm #totalInstore").val(theProd.totalInstore);
+		},
+		error:function(){
+			console.log("get the Prod fail");
+		}
+	});
+}
+
+
 
 //選取單一寵物詳細資料
 //function getDetail(obj) {
@@ -87,61 +149,3 @@ $(function() {
 //		}
 //
 //	})
-
-
-    //將取得backPetInfo資料載入select選項中
-//    $.get("backPetInfo.html", function (data) {
-//
-//        $(".category", data).each(function () {
-//            $("#category").append(`<option value="${this.textContent}">${this.textContent}</option>`);
-//            console.log(this.textContent);
-//        });
-//
-//        //使用陣列裝抓到的所有選項(三個F)，因為有重複值，所以丟進Set中篩掉重複值
-//        var sexArr = new Array;
-//        $(".sex", data).each(function () {
-//            sexArr.push(this.textContent);
-//        });
-//        var sexArrSet = new Set(sexArr);
-//        var sexUnique = [...sexArrSet]; //Set轉回陣列
-//        console.log("uniqyeArr = " + sexUnique);
-//
-//        sexUnique.forEach(function (v, i) { //JQ 的forEach 前面value後面index
-//            $("#sex").append(`<option value="${v}">${v}</option>`)
-//            console.log("value = " + v);
-//        });
-//		
-//        var index = 0;
-//		//左半區域
-//        $("#infoTable tr:even:not(':first')", data).each(function () {
-//            $("#infoLeft").append
-//				(`<div class="row col-10 offset-1 border bg-secondary text-white" style="margin-bottom:30px;border-radius:10px;">
-//					<div class="row col-6 border align-items-center" style="margin:0px;">
-//						<img src="image/f5.jpg" class="col w-100 h-w"/>
-//					</div>
-//					<div class="col" id="${index}">
-//					</div>
-//				</div>`);
-//            $("td:not(':last')", this).each(function () {
-//                $(`#${index}`).append(`<div>${this.textContent}</div>`);
-//            });
-//            index++;
-//        });
-//		//右半區域
-//        $("#infoTable tr:odd", data).each(function () {
-//            console.log("RIGHT---" + this.textContent);
-//            $("#infoRight").append(
-//				`<div class="row col-10 offset-1 border bg-secondary text-white" style="margin-bottom:30px;border-radius:10px;">
-//					<div class="row col-6 border align-items-center" style="margin:0px;">
-//						<img src="image/f5.jpg" class="col w-100 h-w"/>
-//					</div>
-//					<div class="col" id="${index}"></div>
-//				</div>`);
-//            $("td:not(':last')", this).each(function () {
-//                $(`#${index}`).append(`<div>${this.textContent}</div>`);
-//            });
-//            index++;
-//        });
-//
-//    });
-

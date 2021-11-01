@@ -16,6 +16,14 @@ li, .container {
 }
 
 
+	.row iframe{
+		float:left;
+		display:inline;
+		border:none;
+		height:240px;
+		width:400px;
+		
+	}
 
 
 a {

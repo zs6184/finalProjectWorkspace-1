@@ -4,10 +4,13 @@
 
 @font-face {
     font-family: AA;
-    src: url(/font/HanyiSentyBubbleTea.ttf);
+    src: url(../font/HanyiSentyBubbleTea.ttf);
 }
-
-* {
+@font-face {
+    font-family: BB;
+    src: url(../font/毛筆字體.ttf);
+}
+li, .container {
     font-family: AA;
 }
 
@@ -34,23 +37,121 @@ a:hover {
     color: gray;
 }
 
- .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: rgba(0,0,0,.8);
-    height: 40px;
-    transition: 1s;
-}
-
-    .sticky a {
-        color: white;
+    .sticky{
+        position:fixed;
+        top:0;
+        width:100%;
+        background-color: rgb(6, 121, 121,.8);
+        height: 40px;
+        z-index: 100;
+        transition: 1s;
+        
+    }
+    .sticky a{
+        color:white;
+    }
+    
+	.sticky a:hover{
+       color:gray
+      
+    }
+    
+     .sticky button{
+    	  color:white !important;
+     }
+      .sticky button:hover{
+    	  color:gray !important;
+     }
+    
+    
+    
+    .topbar li {
+        float: right;
+        height: 60px;
+        padding-left: 30px;
+        width:20%;
     }
 
-.col-12 li {
+.copy_right {
+    padding: 1em 0;
+    text-align: center;
+    background: rgb(6, 121, 121);
+}
+
+.copy_right div {
+    color: #fff;
+    font-size: 1.1em;
+    letter-spacing: 2px;
+}
+
+
+.copy_right div:hover {
+    color: #ccc;
+}
+
+.lowbar li{
+    float: left;
+    width:20%;
+    padding-left: 100px;
+}
+
+.lowbar li a {
+    font-family: BB;
+    font-size: 18px;
+    color:white;  
+}
+.lowbar li a:hover{
+   color:#ccc; 
+}
+
+.fix{
+    width:60px;
+    height:60px;
+    position:fixed;
+    bottom: 0px;
+    right:0px;
+    z-index:10000000;
+    font-family: AA;
+    font-size: 25px;
+    text-decoration: underline;
+  }
+
+.dropdown {
     float: right;
-    height: 60px;
-    padding: 0 65px;
+}
+
+.relative{
+	 position: relative;
+}
+
+#whp1,#whp2,#whp5{
+	width:100%;
+	height:100%;
+	padding:0;
+	font-size: 1.1em;
+}
+#whp3,#whp4{
+	width:100%;
+	height:100%;
+	padding:0;
+	color: black;
+}
+
+#cusCenterDropdown{
+	 font-size:1.2em;
+	 border:none;
+	 color:black;
+	 text-decoration:none;
+}
+#cusCenterDropdown2{
+	 font-size:18px;
+	 border:none;
+	 color:black;
+	 text-decoration:none;
+}
+
+.absolute{
+	position:absolute;
 }
 
 .banner-area {

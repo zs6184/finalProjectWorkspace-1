@@ -18,13 +18,23 @@ public class ReservationService {
 		return rsRepo.findAll();
 	}
 	
-	//根據複合主驗取得單筆資料
+	//根據複合主驗取得單筆資料(使用Bean物件承接)
 	public AdoptReservation selectOne(AdoptReservation ar) {
 		return rsRepo.findBycusIdAndReserveTime(ar.getCusId(), ar.getReserveTime());
 	}
 	
+	//根據複合主驗取得單筆資料(單獨給出複合主鍵的變數)
+	public AdoptReservation selectByMultiKey(Integer id, String time) {
+		return rsRepo.findBycusIdAndReserveTime(id, time);
+	}
+	
 	//新增一筆資料
-	public AdoptReservation insertOrUpdate(AdoptReservation ar) {
+	public AdoptReservation insertOne(AdoptReservation ar) {
+		return rsRepo.save(ar);
+	}
+	
+	//修改一筆資料
+	public AdoptReservation updateOne(AdoptReservation ar) {
 		return rsRepo.save(ar);
 	}
 	

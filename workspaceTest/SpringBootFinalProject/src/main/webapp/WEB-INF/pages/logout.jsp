@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>		
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +66,7 @@
 							<li><a href="/login.Controller" target="_self">登入註冊</a></li>
 							<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
 							<li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
-							<li><a href="/Users/loginIndex.Controller" target="_self">餐點介紹</a></li>
+							<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
 							<li><a href="#t1" target="_self">活動訊息</a></li>
 						</ul>
 					</div>
@@ -118,7 +120,7 @@
 							class="row justify-content-center align-items-center">
 							<div class="btn">
 								<button type="button" class="btn btn-dark" id="b2"
-									data-bs-toggle="modal" data-bs-target="#Reservation">我要訂位</button>
+									onclick="javascript:location.href='http://localhost:8080/login.Controller'">我要訂位</button>
 							</div>
 						</div>
 					</div>
@@ -127,182 +129,62 @@
 		</ul>
 	</div>
 	<hr id="t1">
-	<div class="modal fade" id="Reservation" tabindex="-1">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content"
-				style="background-image: url(/image/背景1.jpg); background-size: cover; background-position: 100px 60px;">
-				<div class="modal-header">
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-				</div>
-				<form action="#" method="get">
-					<div class="modal-body" style="font-family: BB; font-size: 25px;";>
-						<div class="row">
-							<div class="text-center" id="mainbox">
-								<img src="/image/浪跡.png" style="width: 25%;">
-								<hr>
-
-								<BR> <label for="Name" class=""><span>顧客姓名&nbsp&nbsp&nbsp</span></label>
-								<input type="text" id="Name" name="Name" required
-									style="border: 2px solid #ccc" /> <BR> <BR> <label
-									for="Phone" class="">電話號碼&nbsp&nbsp&nbsp</span></label> <input
-									type="text" id="Phone" name="Phone" required
-									style="border: 2px solid #ccc" /> <BR> <BR> <span>訂位人數&nbsp&nbsp&nbsp</span>
-								<select name="peopleNum"
-									style="width: 280px; height: 40px; border: 2px solid #ccc"
-									required>
-									<option value="" selected>選擇人數</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select> <BR> <BR> <label for="orderdate" class="form-label"
-									style="margin-right: 13px;">訂位日期</label> <input
-									style="width: 280px; height: 40px; display: inline-block; margin-left: 25px; border: 2px solid #ccc"
-									id="orderdate" name="orderdate" type="date"
-									class="form-control" required />
-
-								<div style="overflow: hidden; height: 40px;"></div>
-
-								<span>訂位人數&nbsp&nbsp&nbsp</span> <select name="time"
-									style="width: 280px; height: 40px; border: 2px solid #ccc"
-									required>
-									<option value="" selected>選擇時間</option>
-									<option value="1">11:00</option>
-									<option value="2">12:00</option>
-									<option value="3">13:00</option>
-									<option value="4">14:00</option>
-									<option value="5">15:00</option>
-									<option value="6">16:00</option>
-									<option value="7">17:00</option>
-									<option value="8">18:00</option>
-									<option value="9">19:00</option>
-									<option value="10">20:00</option>
-								</select> <BR> <BR>
-								<div class="modal-footer">
-									<div class="container-fluid">
-										<div class="row justify-content-start">
-											<div class="offset-4 col-4">
-												<button type="submit" class="btn btn-primary">送出</button>
-												<button type="reset" class="btn btn-secondary"
-													data-bs-dismiss="modal">取消</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<br>
-	<div style="text-align: center; font-family: BB;" class="clearfix "
-		id="pageChange">
-		<span><button onclick="getData()">首頁</button></span> <span><button
-				onclick="getData()">&nbsp&nbsp1</button></span> <span><button
-				onclick="getData2()">&nbsp; 2&nbsp;</button></span> <span><button
-				onclick="getData3()">&nbsp; 3&nbsp;</button></span> <span><button
-				onclick="getData4()">&nbsp; 4&nbsp;</button></span> <span><button
-				onclick="getData5()">&nbsp; 5&nbsp;</button></span> <span><button
-				onclick="getData5()">終頁</button></span> <br> <br> <br>
+	
+	
+		
 		<!-- 公告 -->
-		<div id="content">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div
-						style="display: inline-block; height: 300px; width: 300px; margin: 25px">
-						<img src="/image/food1_adobespark.jfif">
-					</div>
-					<div
-						style="display: inline-block; height: 300px; width: 700px; margin: 25px; padding-top: 10px">
-						<h6 style="float: right">2021年11月15號 22:38</h6>
-						<h2 style="text-align: center;">特價特價大特價</h2>
+	<br>
+   <c:set var="startIndex" value="${fn:length(arrAnnounce)-1}"></c:set>
+   <c:forEach var="arrAnnoun" items="${arrAnnounce}" varStatus="status">
+            <c:if test="${status.count%2!=0}">
 
-						<p style="font-size: 25px;">
-							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp三人同行一人免費,吃吐司配寵物,是你唯一的選擇,還等甚麼呢?
-							一堆毛毛怪在等你來七逃RRR<br> <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp四人套餐原價:1699元<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp現在只要:1000元喔
-						</p>
+                <div class="row justify-content-center">
+                    <div style="display: inline-block; height: 300px;width: 300px;margin:25px" id="imgPreview">
+                        <img src="data:image/png;base64,${baseStr[arrAnnounce[startIndex-status.index].announceID]} " style="width:100%;height:100%;" alt=""/>
+                    </div>
+                    <div style="display: inline-block; height: 300px;width: 700px;margin: 25px;padding-top:10px">
+                        <h6 style="float:right;font-family: AA">${arrAnnounce[startIndex-status.index].releaseTime}</h6>
+                        <h2 style="text-align: center;font-family: AA">${arrAnnounce[startIndex-status.index].headline}</h2>
 
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="justify-content-center"
-						style="display: inline-block; height: 300px; width: 700px; margin: 25px 25px; padding-top: 10px">
-						<h6 style="float: left">2021年11月15號 22:38</h6>
-						<h2 style="text-align: center;">新餐點來享受</h2>
+                        <p style="font-size: 25px;font-family: AA">
+                            ${arrAnnounce[startIndex-status.index].articleCont}
+                        </p>
 
-						<p style="font-size: 25px;">
-							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp人生中最美好的時光就是吃
-							紅羅波佐火腿佐魚肉佐菠菜佐哈密瓜拌飯才是人間美味。: D<br>快來享受美好餐點,現在只要189元就吃的到唷。<br>
-							<br> <br &nbsp>&nbsp哈密瓜魚肉紅羅波拌飯&nbsp189元!!!!!!!
-						</p>
+                    </div>
 
-					</div>
-					<div
-						style="display: inline-block; height: 300px; width: 300px; margin: 25px">
-						<img src="/image/food2_adobespark.jfif">
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="container">
-				<div class="row justify-content-center">
-					<div
-						style="display: inline-block; height: 300px; width: 300px; margin: 25px">
-						<img src="/image/c1.jpg">
-					</div>
-					<div
-						style="display: inline-block; height: 300px; width: 700px; margin: 25px 25px; padding-top: 10px">
-						<h6 style="float: right">2021年11月15號 22: 38</h6>
-						<h2 style="text-align: center;">小波今天去看醫生嚕</h2>
+                </div>
 
-						<p style="font-size: 25px;">
-							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp最近小波的眼睛好像怪怪的,於是我們請我們最美麗的小倩店長帶她去看醫生嚕!!還好醫生說沒怎麼樣,不然采臣跟我會很欲哭無淚的嗚嗚嗚
-						</p>
+            </c:if>
+            <c:if test="${status.count%2==0}">
+            	<hr>
+                <div class="row justify-content-center">
+                    <div class="justify-content-center"
+                        style="display: inline-block; height: 300px;width: 700px;margin: 25px 25px;padding-top:10px">
+                        <h6 style="float:left;font-family: AA">${arrAnnounce[startIndex-status.index].releaseTime}</h6>
+                        <h2 style="text-align: center;font-family: AA">${arrAnnounce[startIndex-status.index].headline}</h2>
 
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div
-						style="display: inline-block; height: 300px; width: 700px; margin: 25px 25px; padding-top: 10px">
-						<h6 style="float: left">2021年11月15號 22: 38</h6>
-						<h2 style="text-align: center;">預防大於治療</h2>
+                        <p style="font-size: 25px;font-family: AA">
+                            ${arrAnnounce[startIndex-status.index].articleCont}
+                        </p>
 
-						<p style="font-size: 25px;">
-							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp最近小春的眼睛好像怪怪的,於是我們請我們最美麗的小倩店長帶她去看醫生嚕!!還好醫生說沒怎麼樣,不然采臣跟我會很欲哭無淚的嗚嗚嗚
-						</p>
+                    </div>
+                    <div style="display: inline-block; height: 300px;width: 300px;margin:25px">
+                         <img src="data:image/png;base64,${baseStr[arrAnnounce[startIndex-status.index].announceID]} " style="width:100%;height:100%;" alt=""/>
+                    </div>
+                </div>
 
-					</div>
-					<div
-						style="display: inline-block; height: 300px; width: 300px; margin: 25px">
-						<img src="/image/c2.jpg">
-					</div>
-				</div>
-			</div>
-		</div>
-		<div style="text-align: center; font-family: BB;" class="clearfix "
-			id="pageChange">
-			<span><button onclick="getData()">首頁</button></span> <span><button
-					onclick="getData()">&nbsp&nbsp1</button></span> <span><button
-					onclick="getData2()">&nbsp; 2&nbsp;</button></span> <span><button
-					onclick="getData3()">&nbsp; 3&nbsp;</button></span> <span><button
-					onclick="getData4()">&nbsp; 4&nbsp;</button></span> <span><button
-					onclick="getData5()">&nbsp; 5&nbsp;</button></span> <span><button
-					onclick="getData5()">終頁</button></span>
+            </c:if>
 
-		        <br> <br> <br>
+        </c:forEach>
+
+  
+
+        <br> <br> <br>
      
-       <hr>
+       
           <div style="width:1100px;margin:0 auto">
 
-<br><br>
+
         <ul>
             <li style="float:left;margin-right: 30px;">
                 <iframe src="https://snazzymaps.com/embed/344847" width="500px" height="500px"
@@ -334,7 +216,8 @@
         </ul>
  <div style="clear: both;"></div>
     <br><br><br>
-    </div>
+
+</div>
 			<!--網頁底部輪播  -->
 
 			<div class=" footer">
@@ -379,9 +262,9 @@
 									<ul>
 										
 										<li><a href="#t1" target="_self">活動訊息</a></li>
-										<li><a href="/Users/loginIndex.Controller" target="_self">餐點介紹</a></li>
+										<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
 										<li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
-										<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
+										<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
 										<li><a href="/Users/login.Controller" target="_self">登入註冊</a></li>
 									</ul>
 								</div>

@@ -1,7 +1,6 @@
 package tw.springbootfinal.users.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import tw.springbootfinal.users.util.UserAuthorityUtils;
 
-@Service @Primary
+@Service
 public class AuthUserDetailService implements UserDetailsService {
 
 	@Autowired

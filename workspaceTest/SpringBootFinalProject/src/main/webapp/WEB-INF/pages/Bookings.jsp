@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	import="tw.springbootfinal.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +29,7 @@
 <!--自訂js-->
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="javascript/bookings.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 <script type="text/javascript">
 $(document).ready( function () {
     $('#infoTable').DataTable({
@@ -50,6 +52,12 @@ $(document).ready( function () {
     });
 } );
 </script>
+<style>
+	th.ui-datepicker-week-end, 
+	td.ui-datepicker-week-end { 
+    display: none; 
+} 
+</style>
 </head>
 <body>
 	<!-- 導覽列 -->
@@ -285,6 +293,11 @@ $(document).ready( function () {
 													<option value="4">4</option>
 													<option value="5">5</option>
 													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+													<option value="9">9</option>
+													<option value="10">10</option>
+																	
 												</select>
 											</div>
 											<div>
@@ -303,8 +316,8 @@ $(document).ready( function () {
 													<option value="6">16:00</option>
 													<option value="7">17:00</option>
 													<option value="8">18:00</option>
-													<option value="9">19:00</option>
-													<option value="10">20:00</option>
+													
+												
 												</select>
 											</div>
 											<div>

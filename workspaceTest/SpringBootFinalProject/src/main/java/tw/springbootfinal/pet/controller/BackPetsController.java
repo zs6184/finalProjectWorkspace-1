@@ -47,7 +47,7 @@ public class BackPetsController {
 		for(Pets aPet:arrPet) {
 			sexSet.add(aPet.getSex());		//用Set將重複值篩選掉
 			cateSet.add(aPet.getCategory());//用Set將重複值篩選掉
-		}		
+		}
 		m.addAttribute("arrPet",arrPet);
 		m.addAttribute("cateSet",cateSet);
 		m.addAttribute("sexSet",sexSet);
