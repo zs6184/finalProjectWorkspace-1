@@ -40,7 +40,7 @@
 						</div>
 					</div>
 				</div>
-				<form class="" id="loginForm" action="/ForgotPasswordSendMail"
+				<form class="" id="ForgotPasswordForm" action="/ForgotPasswordSendMail"
 					method="post">
 					<div class="row" id="account">
 						<div class="offset-3 col-6">

@@ -27,6 +27,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addViewController("/backstageLogin.Controller").setViewName("backstageLogin");//後台登入頁面
 		registry.addViewController("/backstageLoginerror.Controller").setViewName("backstageLoginerror");//後台登入失敗頁面
 		registry.addViewController("/forget.Controller").setViewName("forgotPassword");//忘記密碼頁面
+		registry.addViewController("/forgetWait.Controller").setViewName("forgotPasswordWait");//忘記密碼等待驗證信頁面
+		registry.addViewController("/Users/accessDenied").setViewName("accessDenied");//403無權限頁面
 		
 	}
 

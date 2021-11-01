@@ -1,5 +1,6 @@
 package tw.springbootfinal.users.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
@@ -21,6 +24,7 @@ import tw.springbootfinal.users.model.EmployeeService;
 
 @Controller
 @RequestMapping(path = "/Backstage")
+@SessionAttributes(names = { "realName","username","role" }) //設為session層級
 public class EmployeesController {
 
 	@Autowired
@@ -34,13 +38,21 @@ public class EmployeesController {
 		return "employees";
 	}
 
-	// 抓取所有資料更新頁面
+	// 抓取所有資料更新頁面 @SessionAttribute("username") String username
 	@RequestMapping("/EmployeesAll.Controller")
-	public String processSelectEmployeesAll(@SessionAttribute("username") String username,Model m, HttpServletRequest request) {
+	public String processSelectEmployeesAll(Principal p,Model m, HttpServletRequest request) {
 		List<EmployeeBean> selectAll = empService.findAll();
-
+		String username = p.getName();
+		m.addAttribute("username",username);
 		// 此處無法使用@RequestParam("id")來抓取id，網頁會陷入過多重新導向問題，因此改採session方式抓會員資料
 		CustomerBean cusBean = cusService.getByCusUsername(username);
+		String realName = cusBean.getCusRealname();
+		String role = cusBean.getRole();
+		
+		m.addAttribute("username",username);//設為session層級的變數給jsp使用
+		m.addAttribute("realName",realName);//設為session層級的變數給jsp使用
+		m.addAttribute("role",role); //設為session層級的變數給jsp使用
+		
 		// 取得資料庫資料
 		int cusId = cusBean.getCusId();
 		String imageName = cusBean.getImageName();

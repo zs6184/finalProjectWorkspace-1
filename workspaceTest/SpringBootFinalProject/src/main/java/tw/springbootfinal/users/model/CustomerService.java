@@ -131,6 +131,12 @@ public class CustomerService {
 		System.out.println("emailFail");
 		return "fail";
 	}
+	
+	// 會員註冊時判斷Email是否存在
+	public List<CustomerBean> findByEmail(String email) {
+		List<CustomerBean> theCus = cusReps.findByEmail(email);
+		return theCus;
+	}
 
 	// 新增(沒給id)、更新(有給id)
 	public CustomerBean save(CustomerBean cusBean) {
@@ -269,13 +275,14 @@ public class CustomerService {
 	}
 	
 	//會員忘記密碼或更換信箱時查詢身分用
-	public CustomerBean getByEmail(String email) {
-		Optional<CustomerBean> op1 = cusReps.getByEmail(email);
-		if(op1.isEmpty()) {
-			throw new UserNotFoundException("Can't Find User;");// 自定義例外
-		}
-		return op1.get();
-	}
+//	public CustomerBean getByEmail(String email) {
+//		Optional<CustomerBean> op1 = cusReps.getByEmail(email);
+//		if(op1.isEmpty()) {
+//			throw new UserNotFoundException("Can't Find User;");// 自定義例外
+//		}
+//		return op1.get();
+//	}
+	
 	//會員忘記密碼或更換信箱時查詢身分用
 	public CustomerBean getBySecretkey(String secretkey) {
 		Optional<CustomerBean> op1 = cusReps.getBySecretkey(secretkey);

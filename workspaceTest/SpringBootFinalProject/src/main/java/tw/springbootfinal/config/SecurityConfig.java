@@ -53,6 +53,8 @@ public class SecurityConfig {
 			.anyRequest().authenticated()
 			
 			.and()
+			.exceptionHandling().accessDeniedPage("/Users/accessDenied")
+			.and()
 			.rememberMe().tokenValiditySeconds(3600).key("rememberMe-key")
 			
 			.and()
@@ -115,6 +117,8 @@ public class SecurityConfig {
 			.and()
 			.rememberMe().tokenValiditySeconds(3600).key("rememberMe-key")
 			
+			.and()
+			.exceptionHandling().accessDeniedPage("/Users/accessDenied")
 			.and()
 			.csrf().disable()
 			.formLogin()

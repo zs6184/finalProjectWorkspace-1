@@ -5,6 +5,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -84,10 +85,21 @@ public class LoginController {
 		
 		//忘記密碼寄送email
 		@PostMapping("/ForgotPasswordSendMail")
+		@ResponseBody
 		public String processForgotPasswordSendMail(@RequestParam("email") String email,Model m, HttpServletRequest request) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
-			CustomerBean cusBean = cusService.getByEmail(email);
-			String realname = cusBean.getCusRealname();
-			String username = cusBean.getCusUsername();
+			//CustomerBean cusBean = cusService.getByEmail(email);
+			List<CustomerBean> cus = cusService.findByEmail(email);
+			if(cus.isEmpty()) {
+				//return "test";
+				return "pass";
+			}
+			String realname = null; 
+			String username = null;
+			for (CustomerBean customerBean : cus) {
+				realname = customerBean.getCusRealname();
+				username = customerBean.getCusUsername();
+			}
+			CustomerBean cusBean = cusService.getByCusUsername(username);
 			
 			//抓取當下時間參數
 			Date date = new Date();
@@ -118,7 +130,8 @@ public class LoginController {
 			String head = "通知:浪跡變更密碼驗證通知。"; //信件主旨
 			boolean sendMail = mService.sendMail(request, cusBean, model, templateNmae, head);
 			System.out.println(sendMail);
-			return "forgotPasswordWait";
+//			return "forgotPasswordWait";
+			return "fail";
 		}
 		
 		@GetMapping(path = "/CheckEmailUsername.Controller")
@@ -142,7 +155,6 @@ public class LoginController {
 			System.out.println("password: "+password);
 			//取得會員資料
 			CustomerBean cusBean = cusService.getByCusUsername(username);
-			int cusId = cusBean.getCusId();
 			
 			cusBean.setCusPassword(password);
 			cusBean.setSecretkey("");

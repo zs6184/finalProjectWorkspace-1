@@ -206,9 +206,6 @@ $(function() {
 		if ($("#phoneNumber").hasClass("is-invalid")) {
 			$("#phoneNumber").focus();
 			return false;
-		} else if ($("#email").hasClass("is-invalid")) {
-			$("#email").focus();
-			return false;
 		}
 
 		var formData = new FormData(this);

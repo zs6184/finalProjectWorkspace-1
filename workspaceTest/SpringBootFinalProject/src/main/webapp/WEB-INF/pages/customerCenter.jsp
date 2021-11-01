@@ -220,7 +220,8 @@
 										<div class="row my-3 offset-1 col-10">
 											<label for="email" class="col-3 col-form-label">E-mail:</label>
 											<div class="col-9 align-items-center my-2">
-												<span id="email">${cus[0].email}</span>
+												<input id="email" hidden="true" name="email" value="${cus[0].email}">
+												<span>${cus[0].email}</span>
 											</div>
 										</div>
 										<div class="row my-3 offset-1 col-10">
