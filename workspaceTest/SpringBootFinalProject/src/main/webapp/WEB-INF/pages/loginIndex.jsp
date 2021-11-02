@@ -240,7 +240,7 @@ $(function(){
 
                                 <div style="overflow: hidden;height:40px;"></div>
 
-                                <span>訂位人數&nbsp&nbsp&nbsp</span>
+                                <span>訂位時間&nbsp&nbsp&nbsp</span>
                                 <select id="time" name="time" style="width: 280px;height:40px;border:2px solid #ccc" required>
                                     <option value="" selected>選擇時間</option>
                                     <option value="1">11:00</option>
