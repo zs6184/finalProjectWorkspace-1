@@ -93,16 +93,11 @@ $(function(){
 									<button class="btn btn-link dropdown-toggle " type="button"
 										id="cusCenterDropdown" data-bs-toggle="dropdown">${realName}</button>
 									<ul class="dropdown-menu p-0" role="button">
-										<li id="whp1"><a href="/Users/SelectCustomer.controller"
+										<li id="whp1"><a href="/Users/SelectCustomer.controller#information"
 											style="font-size: 1.1em"
 											class="dropdown-item d-flex justify-content-center"
 											target="_self">會員中心</a>
 										</li>
-<!-- 										<li id="whp5"><a id="backstage" href="/Backstage/SelectCustomerAll.Controller" -->
-<!-- 											style="font-size: 1.1em" -->
-<%-- 											class="dropdown-item d-flex justify-content-center d-none ${role}" --%>
-<!-- 											target="_self">後台管理</a> -->
-<!-- 										</li> -->
 										<li id="whp2" class="m-0">
 											<form action="/Users/logout.Controller" method="post">
 												<button type="submit"
@@ -427,7 +422,7 @@ $(function(){
 													data-bs-toggle="dropdown">${realName}</button>
 												<ul class="dropdown-menu p-0" role="button">
 													<li id="whp3"><a
-														href="/Users/SelectCustomer.controller"
+														href="/Users/SelectCustomer.controller#information"
 														class="text-dark dropdown-item d-flex justify-content-center"
 														target="_self">會員中心</a></li>
 													<li id="whp4" class="m-0">

@@ -32,7 +32,7 @@ public class BookingsController {
 
 	@Autowired
 	private BookingService bookingService;
-
+	
 	int ID;
 
 //	查詢全部資料

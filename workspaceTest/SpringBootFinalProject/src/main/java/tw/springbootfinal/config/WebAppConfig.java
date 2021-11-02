@@ -23,10 +23,12 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addViewController("/Users/logout.Controller").setViewName("logout");//給security的登出頁面
 		registry.addViewController("/logout.Controller").setViewName("logout");//登出後頁面
 		registry.addViewController("/Users/ChangePassword.Controller").setViewName("changePassword");//更換密碼頁面
-		registry.addViewController("/Users/ChangeEmail.Controller").setViewName("changeEmail");//更換密碼頁面
+		registry.addViewController("/Users/ChangeEmail.Controller").setViewName("changeEmail");//更換信箱頁面
 		registry.addViewController("/backstageLogin.Controller").setViewName("backstageLogin");//後台登入頁面
 		registry.addViewController("/backstageLoginerror.Controller").setViewName("backstageLoginerror");//後台登入失敗頁面
-		
+		registry.addViewController("/forget.Controller").setViewName("forgotPassword");//忘記密碼頁面
+		registry.addViewController("/forgetWait.Controller").setViewName("forgotPasswordWait");//忘記密碼等待驗證信頁面
+		registry.addViewController("/Users/accessDenied").setViewName("accessDenied");//403無權限頁面
 		
 	}
 

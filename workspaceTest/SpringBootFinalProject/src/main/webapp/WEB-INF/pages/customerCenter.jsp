@@ -64,7 +64,7 @@
 									<button class="btn btn-link dropdown-toggle " type="button"
 										id="cusCenterDropdown" data-bs-toggle="dropdown">${realName}</button>
 									<ul class="dropdown-menu p-0" role="button">
-										<li id="whp1"><a href="/Users/SelectCustomer.controller"
+										<li id="whp1"><a href="/Users/SelectCustomer.controller#information"
 											class="dropdown-item d-flex justify-content-center"
 											target="_self">會員中心</a></li>
 										<li id="whp2" class="m-0">
@@ -219,12 +219,9 @@
 										</div>
 										<div class="row my-3 offset-1 col-10">
 											<label for="email" class="col-3 col-form-label">E-mail:</label>
-											<div class="col-9 relative">
-												<input id="email" type="email" value="${cus[0].email}"
-													name="email" class="form-control" maxlength="30"
-													placeholder="Email" autocomplete="off">
-												<div class="invalid-tooltip" id="emailInvalid">E-mail
-													已被使用</div>
+											<div class="col-9 align-items-center my-2">
+												<input id="email" hidden="true" name="email" value="${cus[0].email}">
+												<span>${cus[0].email}</span>
 											</div>
 										</div>
 										<div class="row my-3 offset-1 col-10">
@@ -286,7 +283,7 @@
 										<button class="btn btn-link dropdown-toggle text-light" type="button"
 											id="cusCenterDropdown2" data-bs-toggle="dropdown">${realName}</button>
 										<ul class="dropdown-menu p-0" role="button">
-											<li id="whp3"><a href="/Users/SelectCustomer.controller"
+											<li id="whp3"><a href="/Users/SelectCustomer.controller#information"
 												class="text-dark dropdown-item d-flex justify-content-center"
 												target="_self">會員中心</a></li>
 											<li id="whp4" class="m-0">
