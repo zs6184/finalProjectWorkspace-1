@@ -77,10 +77,10 @@
 									</ul>
 								</div>
 							</li>
-							<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
-							<li><a href="/index.html" target="_self">線上訂位</a></li>
-							<li><a href="/index.html" target="_self">餐點介紹</a></li>
-							<li><a href="#t1" target="_self">活動訊息</a></li>
+							<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
+							<li><a href="/Users/loginIndex.Controller#Reservation" target="_self">線上訂位</a></li>
+							<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
+							<li><a href="/Users/loginIndex.Controller#t1" target="_self">活動訊息</a></li>
 						</ul>
 					</div>
 				</div>
@@ -274,10 +274,10 @@
 					<div class="row h-100 align-items-center lowbar">
 						<div class="col-12">
 							<ul>
-								<li><a href="#t1" target="_self">活動訊息</a></li>
-								<li><a href="/index.html" target="_self">餐點介紹</a></li>
-								<li><a href="/index.html" target="_self">線上訂位</a></li>
-								<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
+								<li><a href="/Users/loginIndex.Controller#t1" target="_self">活動訊息</a></li>
+								<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
+								<li><a href="/Users/loginIndex.Controller#Reservation" target="_self">線上訂位</a></li>
+								<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
 								<li>
 									<div class="dropdown absolute backstage ${role}">
 										<button class="btn btn-link dropdown-toggle text-light" type="button"

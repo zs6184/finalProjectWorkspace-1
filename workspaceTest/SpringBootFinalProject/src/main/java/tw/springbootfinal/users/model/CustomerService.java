@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.springbootfinal.users.exception.UserNotFoundException;
@@ -275,13 +273,13 @@ public class CustomerService {
 	}
 	
 	//會員忘記密碼或更換信箱時查詢身分用
-//	public CustomerBean getByEmail(String email) {
-//		Optional<CustomerBean> op1 = cusReps.getByEmail(email);
-//		if(op1.isEmpty()) {
-//			throw new UserNotFoundException("Can't Find User;");// 自定義例外
-//		}
-//		return op1.get();
-//	}
+	public CustomerBean getByEmail(String email) {
+		Optional<CustomerBean> op1 = cusReps.getByEmail(email);
+		if(op1.isEmpty()) {
+			throw new UserNotFoundException("Can't Find User;");// 自定義例外
+		}
+		return op1.get();
+	}
 	
 	//會員忘記密碼或更換信箱時查詢身分用
 	public CustomerBean getBySecretkey(String secretkey) {
@@ -295,7 +293,6 @@ public class CustomerService {
 	//抓取照片
 	// 查詢全部會員
 	public String selectImage(String username,HttpServletRequest request) {
-		//List<CustomerBean> selectAll = findAll();// 搜尋所有會員資料
 		//此處無法使用@RequestParam("id")來抓取id，網頁會陷入過多重新導向問題，因此改採session方式抓會員資料
 		CustomerBean cusBean = getByCusUsername(username);
 		// 取得資料庫資料
@@ -306,22 +303,37 @@ public class CustomerService {
 		// 如果會員沒有上傳過圖片就使用預設圖片
 		if (image == null) {
 			System.out.println("照片名null");
-			//m.addAttribute("imageName", "husky.jpg");
 			return "husky.jpg";
 		} else {
 			// 抓到專案路徑加上暫存資料夾名稱
 			String path = request.getSession().getServletContext().getRealPath("/") + "downloadTempDir\\";
 			System.out.println(path);
 			imageDownload(image, cusId, imageName, path);
-
-			//m.addAttribute("imageName", imageName);
 			return imageName;
 		}
-		
-		// 將整個陣列傳到jsp的forEach
-		//m.addAttribute("cus", selectAll);
-		//return "Customer";
 	}
+	
+	//將會員的google資訊建立到資料庫
+	public void createNewCustomerAfterOAuthLoginSuccess(String realName, String email
+			, AuthenticationProvider provider) {
+		CustomerBean cusBean = new CustomerBean();
+		cusBean.setCusRealname(realName);
+		cusBean.setEmail(email);
+		cusBean.setCusUsername(email);
+		cusBean.setAuthProvide(provider); //提供權限的來源，例如:google
+		cusBean.setRole("MEMBER");//新增權限
+		cusReps.save(cusBean);
+	}
+	
+	//如果google資料有變動，將會更新資料庫內的資料
+	public void updateCustomerAfterOAuthLoginSuccess(CustomerBean cusBean, String realName,
+			AuthenticationProvider provider) {
+		cusBean.setCusRealname(realName);
+		cusBean.setAuthProvide(provider);
+		
+		cusReps.save(cusBean);
+	}
+
 	
 	
 }

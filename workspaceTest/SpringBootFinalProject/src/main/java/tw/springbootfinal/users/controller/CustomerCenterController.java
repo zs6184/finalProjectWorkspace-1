@@ -46,16 +46,18 @@ public class CustomerCenterController {
 	@Autowired
 	private MailService mService;
 	
-	// 進入會員中心時取得基本資料及圖片
+	// 進入會員中心時取得基本資料及圖片 Principal p
 	@GetMapping("/SelectCustomer.controller")
-	public String processSelectCustomer(Principal p, HttpSession session, Model m, HttpServletRequest request) {
+	public String processSelectCustomer(@SessionAttribute("username") String username, HttpSession session, Model m, HttpServletRequest request) {
 		// 取得登入時session層級的username
 //		Object attr = session.getAttribute("username");
 //		String str = attr.toString();
 //		System.out.println(str);
-		String str = p.getName();
-		CustomerBean cusBean = new CustomerBean();
-		cusBean.setCusUsername(str);// 設定username到Bean
+//		String str = p.getName();
+		//System.out.println("帳號str: "+str);
+		CustomerBean cusBean = cusService.getByCusUsername(username);
+//		CustomerBean cusBean = new CustomerBean();
+		cusBean.setCusUsername(username);// 設定username到Bean
 		// 利用username取得list結果集
 		List<CustomerBean> cus = cusService.findByCustomerCenterUsername(cusBean);
 		m.addAttribute("cus", cus);// 將結果設成屬性給jsp使用
@@ -65,7 +67,7 @@ public class CustomerCenterController {
 		byte[] image = {};
 		String realName = null;
 		String role = null;
-		String username = null;
+		//String username = null;
 		// 取得資料庫資料
 		for (CustomerBean customerBean : cus) {
 			cusId = customerBean.getCusId();

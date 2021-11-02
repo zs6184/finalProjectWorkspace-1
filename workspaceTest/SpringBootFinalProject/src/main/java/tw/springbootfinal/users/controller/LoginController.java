@@ -52,7 +52,17 @@ public class LoginController {
 
 	@Autowired
 	private AnnouncementsService aService;
-
+	
+	@GetMapping("/")
+	public String processGoogleLoginIndexPage(@SessionAttribute("username") String username,Model m) {
+		CustomerBean cusBean = cusService.getByCusUsername(username);
+		String realName = cusBean.getCusRealname();
+		String role = cusBean.getRole();
+		m.addAttribute("realName", realName);// 設為session層級的變數給jsp使用
+		m.addAttribute("role", role);
+		return "loginIndex";
+	}
+	
 	// 登入後取得realName
 	@GetMapping("/Users/loginIndex.Controller")
 	public String processloginIndexMainPage(Principal p, Model m) throws UnsupportedEncodingException {

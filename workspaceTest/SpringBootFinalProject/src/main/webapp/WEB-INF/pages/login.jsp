@@ -45,8 +45,22 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<button class="btn btn-info btn-lg me-5 col-2">F</button>
-						<button class="btn btn-danger btn-lg ms-5 col-2">G</button>
+						<a href="/oauth2/authorization/google" class="btn btn-danger btn-lg ms-5 col-2">G</a>
 					</div>
+<!-- 					      <script src="https://accounts.google.com/gsi/client" async defer></script> -->
+<!--       <div id="g_id_onload" -->
+<!--          data-client_id="1075076214507-131f385a4sebt4f0n6d40vebj7kqrpvl.apps.googleusercontent.com" -->
+<!--          data-login_uri="/login.controller" -->
+<!--          data-auto_prompt="false"> -->
+<!--       </div> -->
+<!--       <div class="g_id_signin" -->
+<!--          data-type="standard" -->
+<!--          data-size="large" -->
+<!--          data-theme="outline" -->
+<!--          data-text="sign_in_with" -->
+<!--          data-shape="rectangular" -->
+<!--          data-logo_alignment="left"> -->
+<!--       </div> -->
 				</div>
 				<hr class="mx-5">
 				<form class="mt-5" id="loginForm" action="/login.Controller"

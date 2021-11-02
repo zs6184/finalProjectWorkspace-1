@@ -113,7 +113,7 @@
 							class="fas fa-pizza-slice mx-2"></i> <span class="items">餐點管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist01" class="list-unstyled collapse">
-							<li><a href="#" class="itemDetails">餐點總覽</a></li>
+							<li><a href="/backstage/product/findAll" class="itemDetails">餐點總覽</a></li>
 							<li><a href="#" class="itemDetails">新品上架</a></li>
 							<li><a href="#" class="itemDetails">餐點更新</a></li>
 						</ul></li>
