@@ -316,6 +316,7 @@ public class CustomerService {
 	//將會員的google資訊建立到資料庫
 	public void createNewCustomerAfterOAuthLoginSuccess(String realName, String email
 			, AuthenticationProvider provider) {
+		System.out.println("createNewCustomerAfterOAuthLoginSuccess: 中文");
 		CustomerBean cusBean = new CustomerBean();
 		cusBean.setCusRealname(realName);
 		cusBean.setEmail(email);
