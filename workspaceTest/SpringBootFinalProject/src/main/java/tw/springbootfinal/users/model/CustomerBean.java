@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 import org.springframework.stereotype.Component;
 
 import tw.springbootfinal.order.model.orderBean;
