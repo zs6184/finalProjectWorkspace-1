@@ -24,7 +24,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/javascript/ProductIntro.js"></script>
 <!--JS Here-->
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 <body style="background-image: url(/image/背景4.jpg)">
 	<hr>

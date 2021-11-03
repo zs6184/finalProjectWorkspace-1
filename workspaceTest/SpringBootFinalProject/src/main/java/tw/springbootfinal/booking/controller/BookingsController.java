@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -25,22 +27,29 @@ import tw.springbootfinal.booking.model.BookingService;
 import tw.springbootfinal.booking.model.BookingsBean;
 import tw.springbootfinal.booking.model.BookingsDTO;
 import tw.springbootfinal.booking.model.Constant;
+import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
-@RequestMapping("bookings")
+@RequestMapping("/backstage/bookings")
 public class BookingsController {
 
 	@Autowired
 	private BookingService bookingService;
 	
+	@Autowired
+	private CustomerService cusService;
 	int ID;
 
 //	查詢全部資料
 //	@GetMapping()
 	@RequestMapping(method = { RequestMethod.GET })
-	public String processLoadingPage(Model m) {
+	public String processLoadingPage(@SessionAttribute("username") String username, Model m, HttpServletRequest request) {
 		List<BookingsBean> arrBook = bookingService.getAll();
 		m.addAttribute("arrBook", arrBook);
+		
+		String imageName = cusService.selectImage(username, request);
+		m.addAttribute("imageName",imageName);
+		
 		return "Bookings";
 	}
 
@@ -62,7 +71,7 @@ public class BookingsController {
 	@PostMapping("insert")
 	public String processAddBookings(BookingsBean temp) {
 		bookingService.save(temp);
-		return "redirect:/bookings";
+		return "redirect:/backstage/bookings";
 	}
 
 	// 選取單一資料
@@ -111,7 +120,7 @@ public class BookingsController {
 	public String processUpdateOne(BookingsBean temp) {
 
 		bookingService.update(temp);
-		return "redirect:/bookings";
+		return "redirect:/backstage/bookings";
 	}
 
 }

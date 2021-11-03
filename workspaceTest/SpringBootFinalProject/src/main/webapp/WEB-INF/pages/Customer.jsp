@@ -26,6 +26,7 @@
 <!--自訂js-->
 <script src="/javascript/backstage.js"></script>
 <script src="/javascript/customer.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 
 </head>
 <body>

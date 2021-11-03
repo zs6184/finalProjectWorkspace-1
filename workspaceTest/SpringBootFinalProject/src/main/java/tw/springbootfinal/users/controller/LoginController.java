@@ -55,12 +55,26 @@ public class LoginController {
 	private AnnouncementsService aService;
 	
 	@GetMapping("/")
-	public String processGoogleLoginIndexPage(@SessionAttribute("username") String username,Model m) {
+	public String processGoogleLoginIndexPage(@SessionAttribute("username") String username,Model m) throws UnsupportedEncodingException {
 		CustomerBean cusBean = cusService.getByCusUsername(username);
 		String realName = cusBean.getCusRealname();
 		String role = cusBean.getRole();
 		m.addAttribute("realName", realName);// 設為session層級的變數給jsp使用
 		m.addAttribute("role", role);
+		
+		// 導入公告內容
+				List<Announcements> arrAnnounce = aService.getAll();
+				Map<Integer, String> baseStr = new HashMap<>();
+				for (Announcements aAnn : arrAnnounce) {
+					byte[] base64 = Base64.encodeBase64(aAnn.getPic());
+					String base64Str = new String(base64, "UTF-8");
+					baseStr.put(aAnn.getAnnounceID(), base64Str);
+
+				}
+				m.addAttribute("arrAnnounce", arrAnnounce);
+				m.addAttribute("baseStr", baseStr);
+		
+		
 		return "loginIndex";
 	}
 	

@@ -22,8 +22,28 @@
 	integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/javascript/petInfo.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 <!--JS Here-->
+<style>
+	.bg-success{
+		background-color:rgb(100, 150, 115) !important;
+	}
+	.bg-danger{
+		background-color:rgb(133, 218, 254)!important;
+	}
 
+	.bg-warning{
+		background-color:rgb(169, 150, 115)!important;
+	}
+
+	.bg-info{
+		background-color:rgb(173, 180, 225)!important;
+	}
+	
+	.bg-primary{
+		background-color:rgb(244, 204, 206)!important;
+	}
+</style>
 </head>
 <body style="background-image: url(/image/背景4.jpg)">
 	<hr>

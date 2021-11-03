@@ -26,7 +26,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="javascript/index.js"></script>
 
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 
 <body id="top" style="background-image:url(image/背景4.jpg)" ;>
