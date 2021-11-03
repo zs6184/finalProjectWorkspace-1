@@ -32,6 +32,7 @@ import freemarker.template.TemplateNotFoundException;
 import tw.springbootfinal.announcements.model.Announcements;
 import tw.springbootfinal.announcements.model.AnnouncementsService;
 import tw.springbootfinal.mail.MailService;
+import tw.springbootfinal.users.model.AuthenticationProvider;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
 import tw.springbootfinal.users.model.Recaptcha;
@@ -63,17 +64,40 @@ public class LoginController {
 		return "loginIndex";
 	}
 	
-	// 登入後取得realName
-	@GetMapping("/Users/loginIndex.Controller")
-	public String processloginIndexMainPage(Principal p, Model m) throws UnsupportedEncodingException {
-		String username = p.getName();// Principal可以用來取得使用者名稱
-		System.out.println("username" + username);
-		CustomerBean cusBean = cusService.getByCusUsername(username);// 透過使用者名稱搜尋資料
-		String realName = cusBean.getCusRealname();// 取得真實姓名
-		String role = cusBean.getRole();
-		m.addAttribute("username", username);// 設為session層級的變數給jsp使用
-		m.addAttribute("realName", realName);// 設為session層級的變數給jsp使用
-		m.addAttribute("role", role);
+	// 登入後判斷是一般登入還是第三方登入並取得realName、role、公告內容
+	@GetMapping("/Users/loginIndex.Controller") //Principal抓取資料時，一般登入抓到帳號，第三方登入抓到姓名，因此須判斷是哪種登入方式
+	public String processloginIndexMainPage(Principal p, Model m, HttpServletRequest request) throws UnsupportedEncodingException {
+		
+		//取得session資料
+		HttpSession session = request.getSession();
+		String googleUsername = (String)session.getAttribute("username");
+		
+		if(googleUsername==null) { //如果沒有取得session資料，代表是用一般帳密登入
+			String username = p.getName();// Principal可以用來取得使用者名稱
+			System.out.println("username: " + username);
+			
+			CustomerBean cusBean = cusService.getByCusUsername(username);// 透過使用者名稱搜尋資料
+			String realName = cusBean.getCusRealname();// 取得真實姓名
+			String role = cusBean.getRole(); //取得權限
+			
+			// 設為session層級的變數給jsp使用
+			m.addAttribute("username", username);
+			m.addAttribute("realName", realName);
+			m.addAttribute("role", role);
+
+		}else {//如果有取得session代表為google登入
+			CustomerBean theCus = cusService.googleSelectUser(googleUsername);
+			System.out.println("googleUsername: "+googleUsername);
+			
+			String realName = theCus.getCusRealname();// 取得真實姓名
+			String role = theCus.getRole(); //取得權限
+			
+			// 設為session層級的變數給jsp使用
+			m.addAttribute("username", googleUsername);
+			m.addAttribute("realName", realName);
+			m.addAttribute("role", role);
+		}
+		
 
 		// 導入公告內容
 		List<Announcements> arrAnnounce = aService.getAll();

@@ -36,43 +36,33 @@ public class CustomerOAuth2User implements OAuth2User {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		System.out.println("MEMBER_ROLES: "+MEMBER_ROLES);
-		return MEMBER_ROLES; // 否則則為一般使用者
-//		
+		return MEMBER_ROLES;//會員權限
 	}
 
 	//取得使用者名稱
 	@Override
 	public String getName() {
-//		String attribute = (String)oauth2User.getAttribute("name");
-//		String email = (String)oauth2User.getAttribute("email");
-//		String phone = (String)oauth2User.getAttribute("phone number");
-//		String address = (String)oauth2User.getAttribute("address");
-//		String gender = (String)oauth2User.getAttribute("gender");
-//		System.out.println("attribute1:　"+attribute);
-//		System.out.println("email:　"+email);
-//		System.out.println("phone:　"+phone);
-//		System.out.println("address:　"+address);
-//		System.out.println("gender:　"+gender);
-//		CustomerBean cusBean = new CustomerBean();
-//		cusBean.setCusRealname(attribute);
-//		cusBean.setEmail(email);
-		
-		return oauth2User.getAttribute("name"); //返回google帳戶名稱
+		return oauth2User.getAttribute("name"); //返回google帳戶名稱，例如:王小明
 	}
 	
     public String getEmail() {
     	System.out.println("email測試: "+oauth2User.getAttribute("email"));
-        return oauth2User.getAttribute("email");     
+        return oauth2User.getAttribute("email");   
     }
 	
+    //測試區
 	public String getRealName() {
 		CustomerBean cusBean = cusService.getByCusUsername(getName());
+		
+		//取得資料庫的provider資料:如google
 		AuthenticationProvider authProvide = cusBean.getAuthProvide();
 		System.out.println("authProvide: "+authProvide);
-		String attribute = (String)oauth2User.getAttribute("name");
+		
+		String realName = (String)oauth2User.getAttribute("name");
 		String email = (String)oauth2User.getAttribute("email");
-		System.out.println("attribute2:　"+attribute);
-		System.out.println("email2:　"+email);
+		System.out.println("realName: "+realName);
+		System.out.println("email: "+email);
+		
 		return oauth2User.getAttribute("name"); //返回google帳戶名稱
 	}
 

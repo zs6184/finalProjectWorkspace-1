@@ -77,7 +77,7 @@ public class CustomerBean implements Serializable {
 	@Column(name = "temp_email")
 	private String tempEmail;
 	
-	//使用自定義的annocation
+	//使用自定義的annotation
 	@Enumerated(EnumType.STRING)
 	@Column(name = "auth_provide")
 	private AuthenticationProvider authProvide;

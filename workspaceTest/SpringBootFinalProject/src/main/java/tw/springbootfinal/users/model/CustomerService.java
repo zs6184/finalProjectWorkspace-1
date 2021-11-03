@@ -281,7 +281,7 @@ public class CustomerService {
 		return op1.get();
 	}
 	
-	public List<CustomerBean> getByEmailForGoogleAuth(String email) {
+	public List<CustomerBean> findByEmailForGoogleOAuth(String email) {
 		List<CustomerBean> op1 = cusReps.findByEmail(email);
 		return op1;
 	}
@@ -321,8 +321,7 @@ public class CustomerService {
 	//將會員的google資訊建立到資料庫
 	public void createNewCustomerAfterOAuthLoginSuccess(String realName, String email
 			, AuthenticationProvider provider) {
-		System.out.println("createNewCustomerAfterOAuthLoginSuccess: 中文");
-		System.out.println("小夫我要進來了");
+		System.out.println("createNewCustomerAfterOAuthLoginSuccess: 首次登入建立使用者帳號");
 		CustomerBean cusBean = new CustomerBean();
 		cusBean.setCusRealname(realName);
 		cusBean.setEmail(email);
@@ -335,10 +334,16 @@ public class CustomerService {
 	//如果google資料有變動，將會更新資料庫內的資料
 	public void updateCustomerAfterOAuthLoginSuccess(CustomerBean cusBean, String realName,
 			AuthenticationProvider provider) {
+		System.out.println("updateCustomerAfterOAuthLoginSuccess: 已有使用者帳號進行資料更新");
 		cusBean.setCusRealname(realName);
 		cusBean.setAuthProvide(provider);
-		
 		cusReps.save(cusBean);
+	}
+	
+	//抓取provider
+	public CustomerBean googleSelectUser(String username) {
+		List<CustomerBean> findByCusUsername = cusReps.findByCusUsername(username);
+		return findByCusUsername.get(0);
 	}
 
 	
