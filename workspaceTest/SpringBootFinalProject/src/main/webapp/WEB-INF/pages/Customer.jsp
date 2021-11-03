@@ -26,6 +26,7 @@
 <!--自訂js-->
 <script src="/javascript/backstage.js"></script>
 <script src="/javascript/customer.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 
 </head>
 <body>
@@ -115,7 +116,7 @@
 							class="fas fa-pizza-slice mx-2"></i> <span class="items">餐點管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist01" class="list-unstyled collapse">
-							<li><a href="#" class="itemDetails">餐點總覽</a></li>
+							<li><a href="/Backstage/product/findAll" class="itemDetails">餐點總覽</a></li>
 							<li><a href="#" class="itemDetails">新品上架</a></li>
 							<li><a href="#" class="itemDetails">餐點更新</a></li>
 						</ul></li>
@@ -127,7 +128,7 @@
 							<li><a href="/order/back.ordermanage.controller" class="itemDetails">訂單管理</a>
 							</li>
 							<li><a href="/back.coupons" class="itemDetails">優惠碼管理</a></li>
-							<li><a href="/bookings" class="itemDetails">訂位查詢</a></li>
+							<li><a href="/Backstage/bookings" class="itemDetails">訂位查詢</a></li>
 							<li><a href="#" class="itemDetails">訂位更新</a></li>
 						</ul></li>
 					<li><a href="#sublist03" data-bs-toggle="collapse"
@@ -136,7 +137,7 @@
 					</a> <!-- 子連結 -->
 						<ul id="sublist03" class="list-unstyled collapse">
 							<li><a href="#" class="itemDetails">公告總覽</a></li>
-							<li><a href="/backstage/announcements/backannouncements.controller" class="itemDetails">新增公告</a></li>
+							<li><a href="/Backstage/announcements/backannouncements.controller" class="itemDetails">新增公告</a></li>
 							<li><a href="#" class="itemDetails">公告更新</a></li>
 						</ul></li>
 					<li><a href="#sublist04" data-bs-toggle="collapse"
@@ -144,9 +145,9 @@
 							<span class="items">寵物管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist04" class="list-unstyled collapse">
-							<li><a href="/backstage/pet/backpetinfo.controller" class="itemDetails">寵物資訊總覽</a>
+							<li><a href="/Backstage/pet/backpetinfo.controller" class="itemDetails">寵物資訊總覽</a>
 							</li>
-							<li><a href="/backstage/reservation/getAll" class="itemDetails">領養預約總覽</a></li>
+							<li><a href="/Backstage/reservation/getAll" class="itemDetails">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 					<li class="m-0"><a href="/message.html" class="center"> <i

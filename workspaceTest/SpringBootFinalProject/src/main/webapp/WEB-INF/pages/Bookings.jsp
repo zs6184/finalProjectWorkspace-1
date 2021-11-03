@@ -14,21 +14,21 @@
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 <!--bootstrap & jQuery-ui-->
-<link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
-<link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
+<link href="/stylesheet/bootstrap.min.css" rel="stylesheet" />
+<link href="/stylesheet/jquery-ui.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
 <!--自訂樣式表-->
-<link href="stylesheet/backstage.css" rel="stylesheet" />
-<link href="stylesheet/bookings.css" rel="stylesheet" />
+<link href="/stylesheet/backstage.css" rel="stylesheet" />
+<link href="/stylesheet/bookings.css" rel="stylesheet" />
 
 <!--<script src="javascript/bootstrap.min.js"></script>-->
-<script src="javascript/jquery-3.6.0.min.js"></script>
-<script src="javascript/jquery-ui.min.js"></script>
-<script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
+<script src="/javascript/jquery-3.6.0.min.js"></script>
+<script src="/javascript/jquery-ui.min.js"></script>
+<script src="/javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
 <!--datepicker-ui中文補丁-->
 <!--自訂js-->
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="javascript/bookings.js"></script>
+<script src="/javascript/bookings.js"></script>
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
 <script type="text/javascript">
 $(document).ready( function () {
@@ -73,53 +73,59 @@ $(document).ready( function () {
 							placeholder="Search" aria-label="Search">
 						<button class="btn btn-outline-success" type="submit">Search</button>
 					</form>
-					<div class="">
-						<!-- 帳號頭像及功能 -->
-						<div class="dropdown">
-							<button class="btn-transparent" type="button"
-								id="dropdownButton01" data-bs-toggle="dropdown">
-								<img src="image/husky.jpg" class="image shadow" />
-							</button>
-							<ul class="dropdown-menu  dropdown-menu-end shadow"
-								aria-labelledby="dropdownMenuButton01">
-								<li><a class="dropdown-item" href="#">Username</a></li>
-								<li><a class="dropdown-item" href="#">Settings</a></li>
-								<li><a class="dropdown-item" href="#">登出</a></li>
-							</ul>
+					<form action="/Users/logout.Controller" method="post">
+						<div class="">
+							<!-- 帳號頭像及功能 -->
+							<div class="dropdown">
+								<button class="btn-transparent" type="button"
+									id="dropdownButton01" data-bs-toggle="dropdown">
+									<img src="/downloadTempDir/${imageName}" class="image shadow" />
+								</button>
+								<ul class="dropdown-menu  dropdown-menu-end shadow"
+									aria-labelledby="dropdownMenuButton01">
+									<li><a class="dropdown-item" href="/Users/SelectCustomer.controller#information">${realName}</a></li>
+									<li><a class="dropdown-item" href="/Users/loginIndex.Controller">浪跡</a></li>
+									<li><button type="submit" class="dropdown-item"
+											value="logout">Logout</button></li>
+								</ul>
+							</div>
+							<!-- 訊息資訊 -->
+							<div class="dropdown" >
+								<button class="btn-transparent" type="button"
+									id="dropdownButton02" data-bs-toggle="dropdown">
+									<i class="far fa-envelope me-5 navIcon mt-3" id="navIcon"></i>
+								</button>
+								<ul class="dropdown-menu  dropdown-menu-end shadow"
+									aria-labelledby="dropdownMenuButton02">
+									<li><a class="dropdown-item me-3" href="#"> <img
+											src="/image/husky.jpg" class="imageMessage shadow" />
+											message
+									</a></li>
+									<li><a class="dropdown-item" href="#"> <img
+											src="/image/husky.jpg" class="imageMessage shadow" />
+											message
+									</a></li>
+									<li><a class="dropdown-item" href="#"> <img
+											src="/image/husky.jpg" class="imageMessage shadow" />
+											message
+									</a></li>
+								</ul>
+							</div>
+							<!-- 訊息通知 -->
+							<div class="dropdown floatDown">
+								<button class="btn-transparent" type="button"
+									id="dropdownButton03" data-bs-toggle="dropdown">
+									<i class="far fa-bell me-5 navIcon mt-3" id="navIcon"></i>
+								</button>
+								<ul class="dropdown-menu  dropdown-menu-end shadow"
+									aria-labelledby="dropdownMenuButton03">
+									<li><a class="dropdown-item" href="#">notify</a></li>
+									<li><a class="dropdown-item" href="#">notify</a></li>
+									<li><a class="dropdown-item" href="#">notify</a></li>
+								</ul>
+							</div>
 						</div>
-						<!-- 訊息資訊 -->
-						<div class="dropdown">
-							<button class="btn-transparent" type="button"
-								id="dropdownButton02" data-bs-toggle="dropdown">
-								<i class="far fa-envelope me-5 navIcon mt-3" id="navIcon"></i>
-							</button>
-							<ul class="dropdown-menu  dropdown-menu-end shadow"
-								aria-labelledby="dropdownMenuButton02">
-								<li><a class="dropdown-item me-3" href="#"> <img
-										src="image/husky.jpg" class="imageMessage shadow" /> message
-								</a></li>
-								<li><a class="dropdown-item" href="#"> <img
-										src="image/husky.jpg" class="imageMessage shadow" /> message
-								</a></li>
-								<li><a class="dropdown-item" href="#"> <img
-										src="image/husky.jpg" class="imageMessage shadow" /> message
-								</a></li>
-							</ul>
-						</div>
-						<!-- 訊息通知 -->
-						<div class="dropdown floatDown">
-							<button class="btn-transparent" type="button"
-								id="dropdownButton03" data-bs-toggle="dropdown">
-								<i class="far fa-bell me-5 navIcon mt-3" id="navIcon"></i>
-							</button>
-							<ul class="dropdown-menu  dropdown-menu-end shadow"
-								aria-labelledby="dropdownMenuButton03">
-								<li><a class="dropdown-item" href="#">notify</a></li>
-								<li><a class="dropdown-item" href="#">notify</a></li>
-								<li><a class="dropdown-item" href="#">notify</a></li>
-							</ul>
-						</div>
-					</div>
+					</form>
 				</div>
 			</nav>
 		</div>

@@ -20,6 +20,7 @@
 <script src="/javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
 <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="/javascript/shoppingcart.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 
 <!--JS Here-->
 <!--icon-->

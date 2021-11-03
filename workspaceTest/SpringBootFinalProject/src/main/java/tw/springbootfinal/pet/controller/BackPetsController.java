@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,7 +42,7 @@ public class BackPetsController {
 	
 	//取得所有寵物資料
 	@GetMapping("/backpetinfo.controller")
-	public String processGetAll(Model m) {
+	public String processGetAll(@SessionAttribute("username")String username,HttpServletRequest request,Model m) {
 		List<Pets>arrPet = pService.getAll();
 		Set<String> sexSet = new HashSet<String>();
 		Set<String> cateSet = new HashSet<String>();
@@ -51,6 +53,9 @@ public class BackPetsController {
 		m.addAttribute("arrPet",arrPet);
 		m.addAttribute("cateSet",cateSet);
 		m.addAttribute("sexSet",sexSet);
+		//會員圖片
+		String imageName = cService.selectImage(username, request);
+		m.addAttribute("imageName",imageName);
 
 		return  "BackPetInfo";
 	}

@@ -12,7 +12,7 @@ $(function() {
 //變更按鈕對應表單的action
 
 $("#insertBtn").click(function(){
-	$("#modalForm").attr("action","bookings/insert");
+	$("#modalForm").attr("action","/backstage/bookings/insert");
 	$("#modalForm #idSection").prop("hidden","hidden");
 	$("#modalForm input,textarea,select").val("");
 });
@@ -28,7 +28,7 @@ function del(obj) {
 			$.ajax({
 			method:"DELETE",
 			datatype: "text", // 回傳型態
-			url:`bookings/${id}`,
+			url:`/backstage/bookings/${id}`,
 			success: function (){
 				$(obj).parents("tr").remove();
 			},
@@ -43,7 +43,7 @@ function del(obj) {
 //選取此筆資料
 function select(obj){
 		console.log('select obj', obj)
-	$("#modalForm").attr("action","bookings/update");
+	$("#modalForm").attr("action","/backstage/bookings/update");
 	$("#modalForm #idSection").removeAttr("hidden");
 	let id =$(obj).parent("td").siblings(".ID").text();
 

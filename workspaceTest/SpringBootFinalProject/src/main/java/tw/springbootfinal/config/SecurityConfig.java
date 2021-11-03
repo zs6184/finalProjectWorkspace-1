@@ -10,12 +10,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import tw.springbootfinal.security.oauth.CustomerOAuth2User;
+import tw.springbootfinal.security.oauth.CustomerOAuth2UserService;
+import tw.springbootfinal.security.oauth.OAuth2LoginSuccessHandler;
 import tw.springbootfinal.users.model.AuthEmpUserDetailService;
 import tw.springbootfinal.users.model.AuthUserDetailService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+	
+
 	
 	@Configuration
 	@Order(2) //用來設定順序
@@ -27,6 +32,9 @@ public class SecurityConfig {
 		@Autowired
 		private AuthEmpUserDetailService authEmpUserDetailService;
 
+		@Autowired
+		private CustomerOAuth2UserService oAuth2UserService;
+		
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 			auth
@@ -40,6 +48,7 @@ public class SecurityConfig {
 			http
 			//.antMatcher("/Backstage/**")
 			.authorizeRequests()
+			.antMatchers("/oauth2/**").permitAll() //google登入的權限
 			//.anyRequest()
 			//.hasAnyRole("EMPLOYEE","ADMIN")
 			
@@ -81,6 +90,12 @@ public class SecurityConfig {
 		@Autowired
 		private AuthUserDetailService authUserDetailService;
 		
+		@Autowired
+		private CustomerOAuth2UserService oAuth2UserService;
+		
+		@Autowired
+		private OAuth2LoginSuccessHandler oAuth2loginSuccessHandler;
+		
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 			auth
@@ -95,7 +110,7 @@ public class SecurityConfig {
 			
             //.antMatcher("/Users/**")
             .authorizeRequests()
-
+            .antMatchers("/oauth2/**").permitAll() //google登入的權限
 
 //            .antMatcher("/Users/**")
 //            .authorizeRequests()
@@ -127,8 +142,20 @@ public class SecurityConfig {
 			.failureUrl("/loginerror.Controller")
 			
 			.and()
+			.oauth2Login() //oauth登入設定
+			.loginPage("/login.Controller")
+			.userInfoEndpoint().userService(oAuth2UserService) //取得google使用者資訊
+			.and()
+			.successHandler(oAuth2loginSuccessHandler) //驗證成功後的處理
+			
+			.and()
 			.logout().logoutUrl("/Users/logout.Controller")
 			.logoutSuccessUrl("/logout.Controller");
+			
+			
+			
+			
+			
 		}
 	}
 }

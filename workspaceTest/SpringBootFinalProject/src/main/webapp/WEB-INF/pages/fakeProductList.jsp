@@ -10,7 +10,7 @@
     <script src="/javascript/sweetalert.min.js"></script>
     <script src="/javascript/sweetalert-dev.js"></script>
     <script src="/javascript/ShoppingCartTEST.js"></script>
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
     <title>購物車項目測試中2</title>
     <style type="text/css">
         .center div {

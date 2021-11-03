@@ -81,7 +81,7 @@ $(document).ready(function () {
             time: $('#time').val()
         })
         $.ajax({
-            url: '/bookings',
+            url: '/backstage/bookings',
             method: 'POST',
             dataType: 'text', // 預期回傳的型態 [html, text, json]
             contentType: 'application/json;charset="utf-8"',

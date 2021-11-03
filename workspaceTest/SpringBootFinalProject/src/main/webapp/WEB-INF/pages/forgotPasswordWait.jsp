@@ -23,7 +23,7 @@
 <link href="/stylesheet/login.css" rel="stylesheet" />
 <!--自訂js-->
 <script src="/javascript/login.js"></script>
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 <body>
 	<div class="container-fluid mt-5">

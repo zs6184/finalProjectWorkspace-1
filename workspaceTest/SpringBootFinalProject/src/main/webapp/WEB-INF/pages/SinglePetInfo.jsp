@@ -23,7 +23,7 @@
 <!--datepicker-ui中文補丁-->
 <script src="/javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
 <script src="/javascript/SinglePetInfo.js"></script>
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 <body style="background-image: url(/image/背景4.jpg)">
 	<hr>
@@ -74,7 +74,7 @@
 							<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
 							<li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
 							<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
-							<li><a href="#t1" target="_self">活動訊息</a></li>
+							<li><a href="/indexAnn.controller" target="_self">活動訊息</a></li>
 						</ul>
 					</div>
 				</div>

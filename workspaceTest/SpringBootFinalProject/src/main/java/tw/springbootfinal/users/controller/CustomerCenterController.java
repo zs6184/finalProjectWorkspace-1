@@ -32,12 +32,13 @@ import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateNotFoundException;
 import tw.springbootfinal.mail.MailService;
+import tw.springbootfinal.users.model.AuthenticationProvider;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
 @RequestMapping(path = "/Users")
-@SessionAttributes(value = { "cusId", "realName", "role", "username" })
+@SessionAttributes(value = { "cusId", "realName", "role", "username", "provider" })
 public class CustomerCenterController {
 
 	@Autowired
@@ -46,16 +47,18 @@ public class CustomerCenterController {
 	@Autowired
 	private MailService mService;
 	
-	// 進入會員中心時取得基本資料及圖片
+	// 進入會員中心時取得基本資料及圖片 Principal p
 	@GetMapping("/SelectCustomer.controller")
-	public String processSelectCustomer(Principal p, HttpSession session, Model m, HttpServletRequest request) {
+	public String processSelectCustomer(@SessionAttribute("username") String username, HttpSession session, Model m, HttpServletRequest request) {
 		// 取得登入時session層級的username
 //		Object attr = session.getAttribute("username");
 //		String str = attr.toString();
 //		System.out.println(str);
-		String str = p.getName();
-		CustomerBean cusBean = new CustomerBean();
-		cusBean.setCusUsername(str);// 設定username到Bean
+//		String str = p.getName();
+		//System.out.println("帳號str: "+str);
+		CustomerBean cusBean = cusService.getByCusUsername(username);
+//		CustomerBean cusBean = new CustomerBean();
+		cusBean.setCusUsername(username);// 設定username到Bean
 		// 利用username取得list結果集
 		List<CustomerBean> cus = cusService.findByCustomerCenterUsername(cusBean);
 		m.addAttribute("cus", cus);// 將結果設成屬性給jsp使用
@@ -65,7 +68,8 @@ public class CustomerCenterController {
 		byte[] image = {};
 		String realName = null;
 		String role = null;
-		String username = null;
+		String provider = null;
+		//String username = null;
 		// 取得資料庫資料
 		for (CustomerBean customerBean : cus) {
 			cusId = customerBean.getCusId();
@@ -74,6 +78,14 @@ public class CustomerCenterController {
 			realName = customerBean.getCusRealname();
 			role = customerBean.getRole();
 			username = customerBean.getCusUsername();
+			
+			AuthenticationProvider authProvide = customerBean.getAuthProvide();//取得provider
+			if(authProvide!=null) { //如果不是空的就用toString方法轉成字串
+				provider = authProvide.toString();
+			}else {
+				System.out.println("authProvide:為null");
+			}
+			
 			System.out.println("imageName: " + imageName);
 		}
 		// 如果會員沒有上傳過圖片就使用預設圖片
@@ -91,6 +103,7 @@ public class CustomerCenterController {
 		m.addAttribute("realName", realName);
 		m.addAttribute("role", role);
 		m.addAttribute("username", username);
+		m.addAttribute("provider", provider);
 		return "customerCenter";
 	}
 

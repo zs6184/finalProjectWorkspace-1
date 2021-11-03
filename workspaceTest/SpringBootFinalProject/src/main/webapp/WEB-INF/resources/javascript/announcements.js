@@ -21,6 +21,16 @@ $("#insertBtn").click(function(){
 	});
 
 	
+	//如果是admin權限，就取消隱藏的員工管理
+	var role = $("#role").hasClass("ADMIN");
+		console.log(role);
+	if(role){
+		console.log("成功");
+		$("#employeeManagement").removeClass("d-none");
+	}
+	
+	
+	
 });
 	
 	

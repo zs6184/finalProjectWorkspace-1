@@ -7,11 +7,14 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 import org.springframework.stereotype.Component;
 
@@ -73,6 +76,11 @@ public class CustomerBean implements Serializable {
 
 	@Column(name = "temp_email")
 	private String tempEmail;
+	
+	//使用自定義的annotation
+	@Enumerated(EnumType.STRING)
+	@Column(name = "auth_provide")
+	private AuthenticationProvider authProvide;
 
 	@OneToMany(mappedBy = "customer")
 	private Set<orderBean> orderBean = new LinkedHashSet<orderBean>();
@@ -233,6 +241,14 @@ public class CustomerBean implements Serializable {
 
 	public void setTempEmail(String tempEmail) {
 		this.tempEmail = tempEmail;
+	}
+
+	public AuthenticationProvider getAuthProvide() {
+		return authProvide;
+	}
+
+	public void setAuthProvide(AuthenticationProvider authProvide) {
+		this.authProvide = authProvide;
 	}
 
 }

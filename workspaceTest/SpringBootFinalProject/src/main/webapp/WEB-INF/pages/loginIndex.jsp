@@ -24,7 +24,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0-alpha.1/jquery-ui.min.js"></script>
-
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
 	integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
@@ -37,7 +37,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="/javascript/index.js"></script>
 <script src="/javascript/customerCenter.js"></script>
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
@@ -203,7 +203,7 @@ $(function(){
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                  <form id="bookingForm" action="/bookings" method="post" >
+                  <form id="bookingForm" action="/backstage/bookings" method="post" >
                     <div class="modal-body" style="font-family:BB;font-size: 25px;" ;>
                         <div class="row">
                             <div class="text-center" id="mainbox">
@@ -240,7 +240,7 @@ $(function(){
 
                                 <div style="overflow: hidden;height:40px;"></div>
 
-                                <span>訂位人數&nbsp&nbsp&nbsp</span>
+                                <span>訂位時間&nbsp&nbsp&nbsp</span>
                                 <select id="time" name="time" style="width: 280px;height:40px;border:2px solid #ccc" required>
                                     <option value="" selected>選擇時間</option>
                                     <option value="1">11:00</option>

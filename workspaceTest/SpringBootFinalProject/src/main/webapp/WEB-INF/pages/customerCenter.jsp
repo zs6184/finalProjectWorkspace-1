@@ -32,7 +32,7 @@
 <link href="/stylesheet/customerCenter.css" rel="stylesheet" />
 <!--自訂js-->
 <script src="/javascript/customerCenter.js"></script>
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 
 <body id="top" style="background-image: url(/image/背景4.jpg)";>
@@ -77,10 +77,10 @@
 									</ul>
 								</div>
 							</li>
-							<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
-							<li><a href="/index.html" target="_self">線上訂位</a></li>
-							<li><a href="/index.html" target="_self">餐點介紹</a></li>
-							<li><a href="#t1" target="_self">活動訊息</a></li>
+							<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
+							<li><a href="/Users/loginIndex.Controller#Reservation" target="_self">線上訂位</a></li>
+							<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
+							<li><a href="/Users/loginIndex.Controller#t1" target="_self">活動訊息</a></li>
 						</ul>
 					</div>
 				</div>
@@ -103,14 +103,14 @@
 				</div>
 				<ul class="list-unstyled">
 					<li><a href="#sublist01" data-bs-toggle="collapse"
-						id="dropdown01" class="center sidebarLight01"> <i
+						id="dropdown01" class="center sidebarLight01 ${provider}"> <i
 							class="far fa-address-book mx-2"></i> <span class="items">我的帳戶</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist01" class="list-unstyled collapse show">
 							<li><a href="/Users/SelectCustomer.controller#information"
 								class="itemDetails sidebarLight02">個人資料</a></li>
-							<li><a href="/Users/CheckPassword.Controller#position" class="itemDetails">變更密碼</a></li>
-							<li><a href="/Users/EmailCheckPassword.Controller#position" class="itemDetails">變更信箱</a></li>
+							<li id="pwd"><a href="/Users/CheckPassword.Controller#position" class="itemDetails">變更密碼</a></li>
+							<li id="mail"><a href="/Users/EmailCheckPassword.Controller#position" class="itemDetails">變更信箱</a></li>
 						</ul></li>
 					<li><a href="#sublist02" data-bs-toggle="collapse"
 						id="dropdown02" class="center"> <i
@@ -274,10 +274,10 @@
 					<div class="row h-100 align-items-center lowbar">
 						<div class="col-12">
 							<ul>
-								<li><a href="#t1" target="_self">活動訊息</a></li>
-								<li><a href="/index.html" target="_self">餐點介紹</a></li>
-								<li><a href="/index.html" target="_self">線上訂位</a></li>
-								<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
+								<li><a href="/Users/loginIndex.Controller#t1" target="_self">活動訊息</a></li>
+								<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
+								<li><a href="/Users/loginIndex.Controller#Reservation" target="_self">線上訂位</a></li>
+								<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
 								<li>
 									<div class="dropdown absolute backstage ${role}">
 										<button class="btn btn-link dropdown-toggle text-light" type="button"

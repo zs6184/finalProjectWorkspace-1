@@ -164,7 +164,7 @@ $(function() {
 function checkIfLogin(){
 	var emp = $(".backstage").hasClass("EMPLOYEE");
 	var admin = $(".backstage").hasClass("ADMIN");
-	console.log("sessioncheck="+sessioncheck);
+	console.log("sessioncheck="+$("#sessionUsername").val());
 	console.log(emp);
 	console.log(admin);
 	if (emp || admin) {
