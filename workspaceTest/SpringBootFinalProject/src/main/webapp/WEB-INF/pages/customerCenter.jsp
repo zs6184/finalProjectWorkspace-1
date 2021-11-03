@@ -32,7 +32,7 @@
 <link href="/stylesheet/customerCenter.css" rel="stylesheet" />
 <!--自訂js-->
 <script src="/javascript/customerCenter.js"></script>
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 
 <body id="top" style="background-image: url(/image/背景4.jpg)";>
@@ -103,14 +103,14 @@
 				</div>
 				<ul class="list-unstyled">
 					<li><a href="#sublist01" data-bs-toggle="collapse"
-						id="dropdown01" class="center sidebarLight01"> <i
+						id="dropdown01" class="center sidebarLight01 ${provider}"> <i
 							class="far fa-address-book mx-2"></i> <span class="items">我的帳戶</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist01" class="list-unstyled collapse show">
 							<li><a href="/Users/SelectCustomer.controller#information"
 								class="itemDetails sidebarLight02">個人資料</a></li>
-							<li><a href="/Users/CheckPassword.Controller#position" class="itemDetails">變更密碼</a></li>
-							<li><a href="/Users/EmailCheckPassword.Controller#position" class="itemDetails">變更信箱</a></li>
+							<li id="pwd"><a href="/Users/CheckPassword.Controller#position" class="itemDetails">變更密碼</a></li>
+							<li id="mail"><a href="/Users/EmailCheckPassword.Controller#position" class="itemDetails">變更信箱</a></li>
 						</ul></li>
 					<li><a href="#sublist02" data-bs-toggle="collapse"
 						id="dropdown02" class="center"> <i

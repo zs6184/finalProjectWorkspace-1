@@ -31,10 +31,12 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 		//取得google使用者資訊
 		CustomerOAuth2User oAuthUser = (CustomerOAuth2User) authentication.getPrincipal();
 		String email = oAuthUser.getEmail();
-		System.out.println("Customer's email: "+email);
 		String realName = oAuthUser.getName();
+		
+		System.out.println("Customer's email: "+email);
 		System.out.println("email="+email+"realName="+realName);
-		List<CustomerBean> cusList = cusService.getByEmailForGoogleAuth(email);
+		
+		List<CustomerBean> cusList = cusService.findByEmailForGoogleOAuth(email);
 		HttpSession session = request.getSession();
 		//設成session讓網站使用
 		session.setAttribute("realName", realName);

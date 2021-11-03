@@ -37,7 +37,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="/javascript/index.js"></script>
 <script src="/javascript/customerCenter.js"></script>
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
@@ -203,7 +203,7 @@ $(function(){
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                  <form id="bookingForm" action="/bookings" method="post" >
+                  <form id="bookingForm" action="/backstage/bookings" method="post" >
                     <div class="modal-body" style="font-family:BB;font-size: 25px;" ;>
                         <div class="row">
                             <div class="text-center" id="mainbox">

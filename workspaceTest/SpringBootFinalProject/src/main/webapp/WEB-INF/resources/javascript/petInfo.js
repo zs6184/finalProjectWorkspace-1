@@ -48,7 +48,7 @@ $(function() {
 	
 
 	//將不同背景色放入陣列
-	const bgColor = ["bg-success", "bg-danger", "bg-warning", "bg-info"];
+	const bgColor = ["bg-success", "bg-danger", "bg-warning", "bg-info","bg-primary"];
 	//隨機從陣列中取詞彙
 	const getBgColor = () => bgColor[
 		Math.floor(Math.random() * (bgColor.length))];
