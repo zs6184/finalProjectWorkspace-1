@@ -32,12 +32,13 @@ import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateNotFoundException;
 import tw.springbootfinal.mail.MailService;
+import tw.springbootfinal.users.model.AuthenticationProvider;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
 @RequestMapping(path = "/Users")
-@SessionAttributes(value = { "cusId", "realName", "role", "username" })
+@SessionAttributes(value = { "cusId", "realName", "role", "username", "provider" })
 public class CustomerCenterController {
 
 	@Autowired
@@ -67,6 +68,7 @@ public class CustomerCenterController {
 		byte[] image = {};
 		String realName = null;
 		String role = null;
+		String provider = null;
 		//String username = null;
 		// 取得資料庫資料
 		for (CustomerBean customerBean : cus) {
@@ -76,6 +78,14 @@ public class CustomerCenterController {
 			realName = customerBean.getCusRealname();
 			role = customerBean.getRole();
 			username = customerBean.getCusUsername();
+			
+			AuthenticationProvider authProvide = customerBean.getAuthProvide();//取得provider
+			if(authProvide!=null) { //如果不是空的就用toString方法轉成字串
+				provider = authProvide.toString();
+			}else {
+				System.out.println("authProvide:為null");
+			}
+			
 			System.out.println("imageName: " + imageName);
 		}
 		// 如果會員沒有上傳過圖片就使用預設圖片
@@ -93,6 +103,7 @@ public class CustomerCenterController {
 		m.addAttribute("realName", realName);
 		m.addAttribute("role", role);
 		m.addAttribute("username", username);
+		m.addAttribute("provider", provider);
 		return "customerCenter";
 	}
 

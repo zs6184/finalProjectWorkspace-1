@@ -18,6 +18,14 @@ function changeEmailLoad() {
 
 
 $(function() {
+	
+	//確認是否為google登入，如果是就隱藏變更密碼跟變更信箱
+	var provider = $("#dropdown01").hasClass("GOOGLE");
+	console.log("provider: "+provider);
+	if(provider){
+		$("#pwd").addClass("d-none");
+		$("#mail").addClass("d-none");
+	}
 
 	//確認權限，如果為EMPLOYEE就顯示後台按鈕
 	var emp = $(".backstage").hasClass("EMPLOYEE");
