@@ -24,6 +24,7 @@
 <!--自訂js-->
 <script src="/javascript/login.js"></script>
 <script src="/javascript/accessDenied.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 
 </head>
 <body>

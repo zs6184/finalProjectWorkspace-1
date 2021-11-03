@@ -37,7 +37,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="/javascript/index.js"></script>
 <script src="/javascript/customerCenter.js"></script>
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>

@@ -22,6 +22,7 @@
 	integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/javascript/petInfo.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 <!--JS Here-->
 <style>
 	.bg-success{

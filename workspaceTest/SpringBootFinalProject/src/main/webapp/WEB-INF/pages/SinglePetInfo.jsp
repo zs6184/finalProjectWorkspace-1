@@ -23,7 +23,7 @@
 <!--datepicker-ui中文補丁-->
 <script src="/javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
 <script src="/javascript/SinglePetInfo.js"></script>
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 <body style="background-image: url(/image/背景4.jpg)">
 	<hr>

@@ -32,6 +32,7 @@
 <!--自訂js-->
 <script src="/javascript/BackProducts.js"></script>
 <script src="/javascript/backstage.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 <body>
 	<!-- 導覽列 -->

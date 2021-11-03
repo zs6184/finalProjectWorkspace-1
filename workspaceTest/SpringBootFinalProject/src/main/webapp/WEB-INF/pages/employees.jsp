@@ -25,6 +25,7 @@
 <script src="/javascript/employees.js"></script>
 <!-- DataTable js -->
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 <body>
 	<!-- 導覽列 -->

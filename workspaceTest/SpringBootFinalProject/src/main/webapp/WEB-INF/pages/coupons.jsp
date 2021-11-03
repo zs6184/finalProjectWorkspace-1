@@ -26,6 +26,7 @@
     <script src="javascript/backPetInfo.js"></script>
     <script src="javascript/backstage.js"></script>
     <script src="javascript/coupon.js"></script>
+    <link rel="icon" type="image/png"  href="/font/favicon1.png">
     
 </head>
 <body>

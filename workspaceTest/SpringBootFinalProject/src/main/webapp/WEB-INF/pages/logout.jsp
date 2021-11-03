@@ -32,6 +32,7 @@
 	integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="/javascript/index.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 
 
 

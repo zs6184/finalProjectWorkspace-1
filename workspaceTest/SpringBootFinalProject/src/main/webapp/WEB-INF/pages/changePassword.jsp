@@ -32,7 +32,7 @@
 <link href="/stylesheet/customerCenter.css" rel="stylesheet" />
 <!--自訂js-->
 <script src="/javascript/customerCenter.js"></script>
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 <body>
 	<div class="offset-3 col-6 bg-white my-5 box2 rounded-3 shadow p-5"
