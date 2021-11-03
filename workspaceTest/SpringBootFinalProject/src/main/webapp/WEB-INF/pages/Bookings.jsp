@@ -14,21 +14,21 @@
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 <!--bootstrap & jQuery-ui-->
-<link href="stylesheet/bootstrap.min.css" rel="stylesheet" />
-<link href="stylesheet/jquery-ui.min.css" rel="stylesheet" />
+<link href="/stylesheet/bootstrap.min.css" rel="stylesheet" />
+<link href="/stylesheet/jquery-ui.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
 <!--自訂樣式表-->
 <link href="/stylesheet/backstage.css" rel="stylesheet" />
 <link href="/stylesheet/bookings.css" rel="stylesheet" />
 
 <!--<script src="javascript/bootstrap.min.js"></script>-->
-<script src="javascript/jquery-3.6.0.min.js"></script>
-<script src="javascript/jquery-ui.min.js"></script>
-<script src="javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
+<script src="/javascript/jquery-3.6.0.min.js"></script>
+<script src="/javascript/jquery-ui.min.js"></script>
+<script src="/javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
 <!--datepicker-ui中文補丁-->
 <!--自訂js-->
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="javascript/bookings.js"></script>
+<script src="/javascript/bookings.js"></script>
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
 <script type="text/javascript">
 $(document).ready( function () {
