@@ -1,6 +1,7 @@
 package tw.springbootfinal.security.oauth;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,8 +33,8 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 		String email = oAuthUser.getEmail();
 		System.out.println("Customer's email: "+email);
 		String realName = oAuthUser.getName();
-		
-		CustomerBean cusBean = cusService.getByEmail(email);
+		System.out.println("email="+email+"realName="+realName);
+		List<CustomerBean> cusList = cusService.getByEmailForGoogleAuth(email);
 		HttpSession session = request.getSession();
 		//設成session讓網站使用
 		session.setAttribute("realName", realName);
@@ -41,9 +42,10 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 		
 		
 		//如果這個google帳號未登入過，就將資料寫進資料庫
-		if(cusBean == null) {
+		if(cusList.isEmpty()) {
 			cusService.createNewCustomerAfterOAuthLoginSuccess(realName, email, AuthenticationProvider.GOOGLE);
 		}else {//登入過就進行資料更新
+			CustomerBean cusBean=cusList.get(0);
 			cusService.updateCustomerAfterOAuthLoginSuccess(cusBean, realName, AuthenticationProvider.GOOGLE);
 		}
 		

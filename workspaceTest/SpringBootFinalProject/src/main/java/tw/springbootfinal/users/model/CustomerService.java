@@ -281,6 +281,11 @@ public class CustomerService {
 		return op1.get();
 	}
 	
+	public List<CustomerBean> getByEmailForGoogleAuth(String email) {
+		List<CustomerBean> op1 = cusReps.findByEmail(email);
+		return op1;
+	}
+	
 	//會員忘記密碼或更換信箱時查詢身分用
 	public CustomerBean getBySecretkey(String secretkey) {
 		Optional<CustomerBean> op1 = cusReps.getBySecretkey(secretkey);
@@ -316,6 +321,7 @@ public class CustomerService {
 	//將會員的google資訊建立到資料庫
 	public void createNewCustomerAfterOAuthLoginSuccess(String realName, String email
 			, AuthenticationProvider provider) {
+		System.out.println("小夫我要進來了");
 		CustomerBean cusBean = new CustomerBean();
 		cusBean.setCusRealname(realName);
 		cusBean.setEmail(email);
