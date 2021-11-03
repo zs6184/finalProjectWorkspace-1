@@ -87,6 +87,33 @@ $(function() {
 			return false; //阻止表單提交	
 		}
 	});
+	
+	//點擊我要點餐按鈕時清空表單
+	$(".detailBtn").click(function(){
+		$("#num,#totalInstore,#subtotal").val("");
+		$("#num,#totalInstore,#subtotal").attr("placeholder","");		
+	});
+	
+	//輸入訂購數量前清空小計
+	$("#num").focus(function(){
+		$("#subtotal").val("");
+	});
+	
+	//檢測是否超過庫存量
+	$("#num").blur(function(){
+		var numValue=$(this).val();
+		var totalValue=$("#totalInstore").val();
+		var subTotal=numValue*totalValue;
+		if(numValue>totalValue){
+			console.log("into error");
+			console.log("total="+totalValue);
+			$(this).val("");
+			$(this).attr("placeholder","請勿超過剩餘庫存");			
+		}else{
+			console.log("into OK");
+			$("#subtotal").val(`${subTotal}`);
+		}
+	});
 
 });
 
@@ -111,7 +138,6 @@ function getTheProd(obj){
 			$("#productForm #productName").val(theProd.productName);
 			$("#productForm #category").val(theProd.category);
 			$("#productForm #unitprice").val(theProd.unitprice);
-			$("#productForm #totalInstore").val(theProd.totalInstore);
 			$("#productForm #totalInstore").val(theProd.totalInstore);
 		},
 		error:function(){
