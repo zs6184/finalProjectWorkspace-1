@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
@@ -21,6 +23,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import tw.springbootfinal.products.model.ProductService;
 import tw.springbootfinal.products.model.Products;
+import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
 @RequestMapping("/backstage/product")
@@ -28,15 +31,19 @@ public class BackProductsController {
 
 	@Autowired
 	private ProductService prodService;
+	@Autowired
+	private CustomerService cService;
 	
 //-----------------------------------------------------------------	
 	
 	//抓出所有產品的資料
 	@GetMapping("/findAll")
-	public String findAllProd(Model m) {
+	public String findAllProd(@SessionAttribute("username")String username,HttpServletRequest request,Model m) {
 		List<Products> arrRes = prodService.findAll();
-		
 		m.addAttribute("arrRes",arrRes);
+		//會員圖片
+		String imageName = cService.selectImage(username, request);
+		m.addAttribute("imageName",imageName);
 		return "BackProducts";
 	}
 	

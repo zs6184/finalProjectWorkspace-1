@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -37,7 +39,7 @@ public class BackReservationController {
 	
 	//取得所有資料 
 	@GetMapping("/getAll")
-	public String findAll(Model m){
+	public String findAll(@SessionAttribute("username")String username,HttpServletRequest request,Model m){
 		List<AdoptReservation> arrRes = rsService.findAll();
 		
 		m.addAttribute("arrRes",arrRes);
@@ -45,6 +47,9 @@ public class BackReservationController {
 			m.addAttribute("status","已預約");
 			status=0;
 		}
+		//會員圖片
+		String imageName = cService.selectImage(username, request);
+		m.addAttribute("imageName",imageName);
 		
 		return "BackReservation";
 	}
