@@ -52,15 +52,7 @@ $(document).ready( function () {
 				"next":"下一頁"
 			}
 		}
-	 
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     });
     
@@ -213,7 +205,7 @@ function t(){
 							class="fas fa-pizza-slice mx-2"></i> <span class="items">餐點管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist01" class="list-unstyled collapse">
-							<li><a href="#" class="itemDetails">餐點總覽</a></li>
+							<li><a href="#" class="/backstage/product/findAll">餐點總覽</a></li>
 							<li><a href="#" class="itemDetails">新品上架</a></li>
 							<li><a href="#" class="itemDetails">餐點更新</a></li>
 						</ul></li>
@@ -222,10 +214,10 @@ function t(){
 							class="fas fa-utensils mx-2"></i> <span class="items">訂單及訂位管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist02" class="list-unstyled collapse">
-							<li><a href="ordermanage.html" class="itemDetails">訂單管理</a>
+							<li><a href="/order/back.ordermanage.controller" class="itemDetails">訂單管理</a>
 							</li>
-							<li><a href="promo.html" class="itemDetails">優惠碼管理</a></li>
-							<li><a href="#" class="itemDetails">訂位查詢</a></li>
+							<li><a href="/back.coupons" class="itemDetails">優惠碼管理</a></li>
+							<li><a href="/bookings" class="itemDetails">訂位查詢</a></li>
 							<li><a href="#" class="itemDetails">訂位更新</a></li>
 						</ul></li>
 					<li><a href="#sublist03" data-bs-toggle="collapse"
@@ -233,28 +225,24 @@ function t(){
 							class="fas fa-bullhorn mx-2 "></i> <span class="items ">公告管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist03" class="list-unstyled collapse">
-							<li><a href="#" class="itemDetails  sidebarLight02">公告總覽</a></li>
-							<li><a href="postCreate.html" class="itemDetails">新增公告</a></li>
-							<li><a href="#" class="itemDetails">公告更新</a></li>
+							<li><a href="/backstage/announcements/backannouncements.controller" class="itemDetails  sidebarLight02">公告總覽</a></li>
+							<li><a href="/backstage/announcements/backannouncements.controller" class="itemDetails">新增公告</a></li>
+							<li><a href="/backstage/announcements/backannouncements.controller" class="itemDetails">公告更新</a></li>
 						</ul></li>
 					<li><a href="#sublist04" data-bs-toggle="collapse"
 						id="dropdown04" class="center"> <i class="fas fa-cat mx-2"></i>
 							<span class="items">寵物管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist04" class="list-unstyled collapse">
-							<li><a href="backPetInfo.html" class="itemDetails">寵物資訊總覽</a>
-							</li>
-							<li><a href="#" class="itemDetails">文章發佈</a></li>
-							<li><a href="#" class="itemDetails">文章更新</a></li>
-							<li><a href="#" class="itemDetails">寵物領養資訊</a></li>
-							<li><a href="#" class="itemDetails">領養預約總覽</a></li>
+							<li><a href="/backstage/pet/backpetinfo.controller" class="itemDetails">寵物資訊總覽</a></li>
+							<li><a href="/backstage/reservation/getAll" class="itemDetails">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 					<li class="m-0"><a href="#" class="center"> <i
 							class="fas fa-comments-dollar mx-2"></i> <span class="items">客服管理</span>
 					</a></li>
-					<li class="m-0"><a href="members.html"
-						class="center"> <i class="fas fa-users mx-2"></i>
+				<li class="m-0"><a href="/Backstage/SelectCustomerAll.Controller"
+						class="center sidebarLight02"> <i class="fas fa-users mx-2"></i>
 							<span class="items">會員管理</span>
 					</a></li>
 					<li class="m-0"><a href="employees.html" class="center"> <i
