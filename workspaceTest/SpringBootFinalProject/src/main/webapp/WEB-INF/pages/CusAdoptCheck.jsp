@@ -164,11 +164,12 @@
 						<p class="font1 border-bottom pb-4">領養預約紀錄</p>
 						<div class="row align-item-center justify-content-center h-75">
 							<div class="col-10 rounded-3 shadow p-5 overflow">
-								<div class="row justify-content-center">
+								<div class="row justify-content-center text-center">
 									<div class="col-4">到訪次數：${arrive}次</div>
 									<div class="col-4">尚未赴約：${notyet}筆</div>
 									<div class="col-4">失約次數：${miss}次</div>
 								</div>
+								<hr/>
 								<table class="table table-striped table-hover mt-4 text-center"
 									id="infoTable">
 									<thead>
@@ -185,7 +186,7 @@
 											<tr>
 												<td class="ID d-none">${arrRes.cusId}</td>
 												<td class="NAME d-none">${arrRes.cusRealname}</td>
-												<td>${arrRes.petId}</td>
+												<td><a href="javascript:void(0)" onclick="checkIfAdopted(this)">${arrRes.petId}</a></td>
 												<td>${arrRes.petName}</td>
 												<td class="DATE">${arrRes.reserveTime}</td>
 												<td>${arrRes.keepStatus}</td>
@@ -303,7 +304,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				</div>
 				<div class="modal-body items-align-center">
-					<h4 style="margin-top: 10px; margin-bottom: 50px;" id="alertDialog">當日已有其他預約，無須重複預約</h4>
+					<h4 style="margin-top: 10px; margin-bottom: 50px;" id="statusAlertDialog">當日已有其他預約，無須重複預約</h4>
 				</div>
 				<hr />
 				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">確定</button>

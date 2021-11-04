@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.springbootfinal.pet.model.Pets;
@@ -79,7 +81,7 @@ public class FrontPetsController {
 		return "PetInfo";
 	}
 	
-	//開啟單一寵物詳細資訊
+	//開啟單一寵物詳細資訊(寵物資訊頁面用)
 	@GetMapping("/detaildata/{petId}")
 	public String processSingleDetail(@PathVariable("petId")int petId,Model m) throws UnsupportedEncodingException {
 		System.out.println("petId="+petId);
@@ -91,6 +93,18 @@ public class FrontPetsController {
 		m.addAttribute("baseStr",base64Str);
 		
 		return "SinglePetInfo";
+	}
+	
+	//開啟寵物單一資訊頁面(個人中心用)
+	@GetMapping("/checkIfAfopted") @ResponseBody
+	public int checkIfAdopted(@RequestParam("petId") int petId) {
+		System.out.println("進入檢查環節");
+		Pets check = pService.findByIdAndAdoptStatus(petId, "未領養");
+		if(check==null) {
+			return 0;
+		}else {
+			return 1;
+		}
 	}
 	
 }

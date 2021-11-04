@@ -233,8 +233,33 @@ function checkUpdateStatus(){
 	var Dualstatus = $("#Dualstatus").val()
 	console.log("Dualstatus="+Dualstatus);
 		if(Dualstatus=="已預約"){
+		$("#statusAlertDialog").text("當日已有其他預約，無須重複預約");	
 		$("#statusAlert").modal("show");
 		$("#Dualstatus").val("");
 	}
+}
+
+function checkIfAdopted(obj){
+	var thePetId = $(obj).text();
+	console.log("petId= "+thePetId);
+	$.ajax({
+		type: "GET",
+		url: "/pet/checkIfAfopted",
+		datatype: "JSON",
+		data: { "petId": `${thePetId}`},
+		success:function(result){
+			console.log("get result success");
+			console.log("result= "+result);
+			if(result==1){
+				$(window).attr('location',`/pet/detaildata/${thePetId}`);
+			}else{
+				$("#statusAlertDialog").text("這隻寵物已經找到愛主囉");	
+				$("#statusAlert").modal("show");
+			}
+		},
+		error:function(){
+			console.log("get result failed");
+		}
+	});
 }
 
