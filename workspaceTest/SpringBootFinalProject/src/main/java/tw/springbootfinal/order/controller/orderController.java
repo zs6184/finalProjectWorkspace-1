@@ -10,6 +10,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONException;
 
 import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.TemplateException;
@@ -142,7 +145,7 @@ public class orderController {
 				detail.setNum(o.getnum());
 				detail.setUnitprice(target.getPrice());
 				detail.setSubtotal(target.getPrice() * o.getnum());
-				totalprice += target.getPrice() * o.getnum();
+				totalprice += detail.getSubtotal();
 				orderDetails.add(detail);
 			}
 		}
@@ -225,7 +228,84 @@ public class orderController {
 		
 		return"checkoutdetail";
 	}
+	// 後臺訂單首頁
+		@RequestMapping("/back.ordermanage.controller")
+		public String BackOrdermanage(Model m) {
+			// 尋找新訂單
+			List<orderBean> resoultOrder = oService.findByOrderstatus("新訂單");
+			// 反轉排序
+			Collections.reverse(resoultOrder);
+			if (!resoultOrder.isEmpty()) {
+				for (orderBean o : resoultOrder) {
+					System.out.println("訂單id:" + o.getId());
+					System.out.println("總金額:" + o.getTotal());
+					System.out.println("備註:" + o.getNote());
+				}
+				m.addAttribute("newOrder", resoultOrder);
+			} else {
+				System.out.println("查無結果");
+			}
+
+			return "ordermanage";
+		}
+		//取得後台訂單
+		@RequestMapping(value = "/getbackorders.controller")
+		@ResponseBody 
+		public ArrayList<Object> getneworder(@RequestParam("status")String status) throws IOException, JSONException {
+			System.out.println("=============");
+			ArrayList<orderBean> resoultOrder =  (ArrayList<orderBean>)oService.findByOrderstatus(status);
+			ArrayList<Object> List = new ArrayList<Object>();
+			System.out.println("toString:" + resoultOrder);
+//			PrintWriter out = response.getWriter();
+			if (!resoultOrder.isEmpty()) {
+				for (orderBean o : resoultOrder) {
+					o.getCustomer().setOrderBean(null);
+					List.add(JSON.toJSONString(o));
+				}
+				return List;
+			} else {
+				System.out.println("查無結果");
+			}
+			return null;
+		}
+	//變更訂單狀態
+	@RequestMapping(value = "/changestate",method = RequestMethod.POST)
+	@ResponseBody
+	public String changestate(@RequestParam("orderid")int id,@RequestParam("status")String status) {
+		//取得訂單
+		orderBean order = oService.selectbyid(id);
+		if(status.equals("已取餐")) {
+			order.setPaystatus(1);
+		}
+		order.setOrderstatus(status);
+		//保存訂單
+		oService.saveOrder(order);
+		return "訂單狀態變更完成";
+	}
+	//後台搜尋訂單
+	@RequestMapping("/back.searchorder")
+	@ResponseBody
+	public ArrayList<Object> searchorder(@RequestParam("str")String str){
+		System.out.println(str);
+		ArrayList<orderBean> resoultOrder = (ArrayList<orderBean>)oService.backsearchOrder(str);
+		ArrayList<Object> List = new ArrayList<Object>();
+		System.out.println("toString:" + resoultOrder);
+		if (!resoultOrder.isEmpty()) {
+			for (orderBean o : resoultOrder) {
+				o.getCustomer().setOrderBean(null);
+				List.add(JSON.toJSONString(o));
+				System.out.println(o.getNote());
+			}
+			return List;
+		} else {
+			System.out.println("查無結果");
+		}
+		return null;
+	}
 	
+	
+	//以下測試用
+	//結帳
 	@RequestMapping("/checkout")
 	@ResponseBody
 	public String saveOrder2(HttpSession session) {
