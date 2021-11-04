@@ -174,7 +174,7 @@
 <!-- 			<div class="container-fluid"> -->
 <!-- 				查詢欄位 -->
 <!-- 				<div style="margin-top: 20px;"> -->
-<!-- 					<form action="/backstage/pet/searchdata.controller" method="POST" id="srhForm"> -->
+<!-- 					<form action="/Backstage/pet/searchdata.controller" method="POST" id="srhForm"> -->
 <!-- 						<div class="row justify-content-start"> -->
 <!-- 							<div class="col-1 text-center"> -->
 <!-- 								<select name="category" id="srhCategory"> -->
@@ -257,7 +257,7 @@
 							<h3 class="modal-title">商品資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-					<form action="/backstage/product/insertone" method="POST" 
+					<form action="/Backstage/product/insertone" method="POST" 
 							id="modalForm" enctype="multipart/form-data">
 						<div class="row">
 							<div class="text-center" id="mainbox">

@@ -164,6 +164,11 @@
 						<p class="font1 border-bottom pb-4">領養預約紀錄</p>
 						<div class="row align-item-center justify-content-center h-75">
 							<div class="col-10 rounded-3 shadow p-5 overflow">
+								<div class="row justify-content-center">
+									<div class="col-4">到訪次數：${arrive}次</div>
+									<div class="col-4">尚未赴約：${notyet}筆</div>
+									<div class="col-4">失約次數：${miss}次</div>
+								</div>
 								<table class="table table-striped table-hover mt-4 text-center"
 									id="infoTable">
 									<thead>
@@ -179,8 +184,9 @@
 										<c:forEach var="arrRes" items="${arrRes}">
 											<tr>
 												<td class="ID d-none">${arrRes.cusId}</td>
+												<td class="NAME d-none">${arrRes.cusRealname}</td>
 												<td>${arrRes.petId}</td>
-												<td class="NAME">${arrRes.petName}</td>
+												<td>${arrRes.petName}</td>
 												<td class="DATE">${arrRes.reserveTime}</td>
 												<td>${arrRes.keepStatus}</td>
 												<td>
@@ -201,7 +207,7 @@
 	</div>
 
 	<!--預約紀錄Modal-->
-	<input type="hidden" id="status" value="${status}" />
+	<input type="hidden" id="Dualstatus" value="${status}" />
 	<div class="modal fade" id="reservePet" tabindex="-1">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -233,7 +239,7 @@
 								<div>
 									<label for="cusId"><span>*會員編號</span></label> <input
 										type="text" id="cusId" name="cusId" class="requiredValue"
-										oninput="value=value.replace(/[^\d]/g,'')" />
+										oninput="value=value.replace(/[^\d]/g,'')" readonly/>
 								</div>
 								<div>
 									<label for="cusRealname"><span>會員姓名</span></label> <input
@@ -251,20 +257,18 @@
 										class="requiredValue" />
 								</div>
 								<div>
-									<label for="keepStatus"><span>赴約狀態</span></label> <select
-										id="keepStatus" name="keepStatus">
-										<option value="未赴約" selected>未赴約</option>
-										<option value="已赴約">已赴約</option>
-										<option hidden value="失約">失約</option>
-									</select>
+									<label for="keepStatus"><span>赴約狀態</span></label> 
+									<input
+										type="text" id="keepStatus" name="keepStatus"
+										class="requiredValue" readonly/>
 								</div>
 							</fieldset>
 							<hr/>
 							<div class="row justify-content-start">
-									<button type="submit" id="sendReserveBtn" class="offset-4 col-2 me-3 btn btn-danger">送出修改</button>
+									<button type="button" id="sendReserveBtn" class="offset-4 col-2 me-3 btn btn-danger">送出修改</button>
 									<button type="button" class="col-2 btn btn-secondary" data-bs-dismiss="modal">取消</button>
 									<button type="button" id="missingBtn" class="offset-1 col-2 btn btn-warning text-white"
-											 data-bs-toggle="modal" data-bs-target="#missingAlert" onclick="missAlert(this)">刪除預約</button>
+											 data-bs-toggle="modal" data-bs-target="#delAlert" onclick="delAlert(this)">刪除預約</button>
 							</div>
 						</div>
 					</div>
@@ -273,6 +277,23 @@
 		</div>
 	</div>
 	<!-- End Of 預約紀錄Modal -->
+	<!-- 刪除提示框 Modal-->
+	<div class="modal fade text-center" id="delAlert" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">提示信息</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<div class="modal-body items-align-center">
+					<h4 style="margin-top: 10px; margin-bottom: 50px;" id="alertDialog">確認刪除此筆預約?</h4>
+				</div>
+				<hr />
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="del()">確定</button>
+			</div>
+		</div>
+	</div>
+	<!-- 刪除提示框 Modal-->
 	<!-- 預約狀態提示框 Modal-->
 	<div class="modal fade text-center" id="statusAlert" tabindex="-1">
 		<div class="modal-dialog modal-lg">
@@ -282,7 +303,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				</div>
 				<div class="modal-body items-align-center">
-					<h4 style="margin-top: 10px; margin-bottom: 50px;" id="alertDialog">確認刪除此筆預約?</h4>
+					<h4 style="margin-top: 10px; margin-bottom: 50px;" id="alertDialog">當日已有其他預約，無須重複預約</h4>
 				</div>
 				<hr />
 				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">確定</button>

@@ -166,8 +166,9 @@
 											<input type="text" id="cusRealname" name="cusRealname" readonly/>
 										</div>
 										<div>
-											<label for="phone"><span>聯絡電話</span></label> 
-											<input type="text" id="phone" name="phone" readonly/>
+											<label for="phone"><span>聯絡手機號</span></label> 
+											<input type="text" id="phone" name="phone" pattern="[0]{1}[9]{1}\d{8}" 
+													oninput="value=value.replace(/[^\d]/g,'')" class="requiredValue"/>
 										</div>
 										<div id="datetimepicker" class="mb-4">
 											<label for="reserveTime"><span>預約看寵日期</span></label> 
@@ -178,7 +179,7 @@
 										</div>
 								</fieldset>
 								<div class="row justify-content-center modal-footer">
-									<button type="button" class="col-2 me-3 btn btn-danger" id="sendReserveBtn" data-bs-dismiss="modal">送出預約</button>
+									<button type="button" class="col-2 me-3 btn btn-danger" id="sendReserveBtn">送出預約</button>
 									<button type="button" class="col-2 btn btn-secondary" data-bs-dismiss="modal">取消</button>
 								</div>
 							</div>
@@ -206,7 +207,7 @@
 			</div>
 		</div>
 	</div>
-<!-- End Of deleteAlert Modal-->
+<!-- End Of 預約狀態提示框 Modal-->
             <div class="copy_right">
                 <div>
                     <div id="lowbar">

@@ -174,7 +174,7 @@
 			<div class="container-fluid">
 				<!-- 查詢欄位 -->
 				<div style="margin-top: 20px;">
-					<form action="/backstage/pet/searchdata.controller" method="POST" id="srhForm">
+					<form action="/Backstage/pet/searchdata.controller" method="POST" id="srhForm">
 						<div class="row justify-content-start">
 							<div class="col-1 text-center" >
 								<select name="category" id="srhCategory">
@@ -267,7 +267,7 @@
 							<h3 class="modal-title" id="petModalTitle">寵物資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-						<form class="add" action="/backstage/pet/insertPetInfo.controller" method="POST"
+						<form class="add" action="/Backstage/pet/insertPetInfo.controller" method="POST"
 							id="modalForm" enctype="multipart/form-data">
 							<div class="modal-body">
 								<div class="row">
@@ -407,7 +407,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- End Of deleteAlert Modal-->
+			<!-- End Of 確認刪除提示框 Modal-->
 
 		</div>
 	</div>
