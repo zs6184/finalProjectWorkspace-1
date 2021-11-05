@@ -113,8 +113,8 @@
 								<li><span><i class="fa fa-venus-mars" aria-hidden="true">&nbsp</i></span><span>性別:${thePet.sex}</span></li>
 								<li><span><i class="fa fa-paw" aria-hidden="true"></i>&nbsp</span><span>類別:${thePet.category}</span></li>
 								<li><span><i class="fa fa-tag" aria-hidden="true"></i>&nbsp</span><span>品種:${thePet.species}</span></li>
-								<li><span><i class="fa fa-tag" aria-hidden="true"></i>&nbsp</span><span>年紀:${thePet.age}</span></li>
-								<li><span><i class="fa fa-tag" aria-hidden="true"></i>&nbsp</span><span>結紮:${thePet.fixStatus}</span></li>
+								<li><span><i class="fa fa-clock" aria-hidden="true"></i>&nbsp</span><span>年紀:${thePet.age}</span></li>
+								<li><span><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp</span><span>結紮:${thePet.fixStatus}</span></li>
 							</ul>
 						</div>
 						<div class="row justify-content-center">
