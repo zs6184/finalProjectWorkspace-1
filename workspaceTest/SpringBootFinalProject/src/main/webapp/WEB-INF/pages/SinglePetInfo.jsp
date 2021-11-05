@@ -24,6 +24,14 @@
 <script src="/javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
 <script src="/javascript/SinglePetInfo.js"></script>
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
+<style>
+
+	th.ui-datepicker-week-end, 
+	td.ui-datepicker-week-end { 
+    display: none; 
+} 
+
+</style>
 </head>
 <body style="background-image: url(/image/背景4.jpg)">
 	<hr>

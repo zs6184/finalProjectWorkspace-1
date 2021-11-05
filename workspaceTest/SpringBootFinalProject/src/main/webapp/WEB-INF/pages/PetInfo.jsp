@@ -104,7 +104,7 @@
 
 	<!--橫幅圖片區域-->
 	<div class="banner-area bg-img"
-		style="background-image: url(/image/img/bg-img/cat1.jpeg);">
+		style="background-image: url(/image/img/bg-img/cat1.jpeg);background-position:0px -120px;background-size:100%;">
 		<div class="container h-100">
 			<div class="row h-100 align-items-center">
 				<div class="col-12">
