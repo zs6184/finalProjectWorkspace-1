@@ -47,8 +47,8 @@
 
 #mainbox textarea {
     border-radius: 10px;
-    height: 300px;
-    width: 500px;
+    height: 200px;
+    width: 400px;
     resize: none;
     overflow: auto;
 }
