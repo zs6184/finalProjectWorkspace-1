@@ -2,11 +2,12 @@
 $(function() {
 	unirowprice();
 	totalprice();
+	var userName= $('#sessionUsername').val();
 	//減數量
 	$('.fa-minus').click(function() {
 		//抓id
 		var id = $(this).closest('tr').attr('id');
-		carjsonpart('aaa123', id, '-',$(this));
+		carjsonpart(userName, id, '-',$(this));
 		var num = $(this).siblings('input').val();
 		if (num == 1) {
 			$(this).siblings('input').val(1);
@@ -21,7 +22,7 @@ $(function() {
 	$('.fa-plus').click(function() {
 		//抓id
 		var id = $(this).closest('tr').attr('id');
-		carjsonpart('aaa123', id, '+');
+		carjsonpart(userName, id, '+');
 		var num = parseInt($(this).siblings('input').val());
 		var price = parseInt($(this).parent().parent().children().filter('td.price').text());
 		var numm = parseInt($(this).parent().parent().children().filter('td.subtotal').text((num + 1) * price));
@@ -55,17 +56,14 @@ $(function() {
 	}
 	//刪除
 	$('td button[type="button"]').click(function () {
-		var pid = $(this).closest('tr').attr('id');
-		console.log(pid);
-		//假帳號
-		let  username = 'aaa123';
-		var cookie = $.cookie(`cart${username}`);
+		var pid = $(this).parent().parent('tr').attr('id');
+		var pnamd = $(this).parent('td').siblings().eq(0).text();
+		var cookie = $.cookie(`cart${userName}`);
 		var carJSONpart = JSON.parse(cookie)
-
 		for (var i in carJSONpart) {
 			if (carJSONpart[i].id == pid) {
 				swal({
-					title: "刪除購物項",
+					title: `確定刪除${pnamd}?`,
 					text: "不買可惜",
 					type: "warning",
 					showCancelButton: true,
@@ -79,7 +77,7 @@ $(function() {
 						$(`#${pid}`).remove();
 						totalprice();
 						swal("已移除！", "從購物車移除。", "success");
-						$.cookie(`cart${username}`, JSON.stringify(carJSONpart));
+						$.cookie(`cart${userName}`, JSON.stringify(carJSONpart));
 					});
 			}
 		}
@@ -119,7 +117,8 @@ function carjsonpart(username, pid, state,this1) {
 				case '+':
 					let pluseNum = carJSONpart[i].num++;
 					let pluseNum1 = parseInt(pluseNum) + 1;
-					swal('數量增加', '數量:' + pluseNum1, "success");
+					swal('數量增加!','數量:' + pluseNum1,'success')
+					//swal('數量增加', '數量:' + pluseNum1, "success");
 					$.cookie(`cart${username}`, JSON.stringify(carJSONpart));
 					break;
 				case '-':
@@ -128,7 +127,7 @@ function carjsonpart(username, pid, state,this1) {
 					if (reduceNum0 > 1) {
 						let reduceNum = carJSONpart[i].num--;
 						let reduceNum1 = parseInt(reduceNum) - 1;
-						swal('數量減少', '數量:' + reduceNum1, "success");
+						swal('數量減少!','數量:' + reduceNum1,'success')
 						$.cookie(`cart${username}`, JSON.stringify(carJSONpart));
 						break;
 					} else {

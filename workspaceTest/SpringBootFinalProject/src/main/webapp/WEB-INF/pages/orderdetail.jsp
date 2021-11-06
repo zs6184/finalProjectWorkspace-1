@@ -2,18 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>訂單明細</title>
+<title>會員訂單查詢</title>
 </head>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/stylesheet/checkoutdetail.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/stylesheet/index.css" />
@@ -21,6 +21,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
 <!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/material_green.css"> -->
 <!--CSS在這邊 要注意放在bootstrap樣式表CDN後面 不然權重相同的部分會被bootstrap蓋過去-->
+<link rel="stylesheet" href="/stylesheet/orderdetail.css" />
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -32,19 +33,16 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link href="/stylesheet/customerCenter.css" rel="stylesheet" />
 <!--javaScript掛到這邊-->
-<script src="/javascript/checkoutdetail.js"></script>
-<script src="/javascript/checkout.js"></script>
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
 	integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="/javascript/index.js"></script>
 <script src="/javascript/customerCenter.js"></script>
+<script src="/javascript/orderdetail.js"></script>
 <link rel="icon" type="image/png" href="/font/favicon1.png">
-<link rel="stylesheet"
-	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-	crossorigin="anonymous" />
+
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
@@ -68,8 +66,7 @@
 	</div>
 	<hr>
 
-	<input type="hidden" id="sessionUsername"
-		value="<%=session.getAttribute("username")%>">
+
 	<!-- nav欄部分 -->
 	<div>
 		<div id="topbar">
@@ -110,6 +107,9 @@
 		</div>
 
 	</div>
+	<!-- 使用者 -->
+	<input type="hidden" id="sessionUsername"
+		value="<%=session.getAttribute("username")%>">
 	<!--橫幅圖片區域-->
 	<div class="banner-area bg-img"
 		style="background-image: url(/image/img/bg-img/cat1.jpeg);">
@@ -123,74 +123,64 @@
 			</div>
 		</div>
 	</div>
-
+	<!--搜尋-->
+	<div class="searchform">
+		<form id="search" action="">
+			<i class="bi bi-search"></i> <input type="search"
+				class="form-control" placeholder="Search..." aria-label="Search">
+		</form>
+	</div>
 	<!--內容-->
 	<div class="container" id="container" style="height: 700px">
-		<div class="container ">
-			<div class="row step ">
-				<div class="col-sm-12 widget ">訂單狀態:新訂單</div>
-			</div>
-			<div class="row justify-content-around">
-				<!--左邊資訊-->
-				<div class="col-sm-6 widget  bg-light">
-					<table class="table-hover" style="width: 100%">
-						<thead>
-							<tr>
-								<th>商品名稱</th>
-								<th>數量</th>
-								<th>單價</th>
-								<th>小計</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="catitem" items="${catitem}">
-								<tr id="${catitem.id}">
-									<td>${catitem.name}</td>
-									<td>${catitem.num}</td>
-									<td class="price">${catitem.price}</td>
-									<td class="subtotal">0</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-						<tfoot>
-							<c:if test="${ not empty coupon}">
-								<tr>
-									<td>${coupon.couponName}</td>
-									<td>1</td>
-									<td>- ${coupon.couponDiscount}</td>
-									<td>- ${coupon.couponDiscount}</td>
-								</tr>
-							</c:if>
-						</tfoot>
-					</table>
+		<table class="table table-borderless">
+			<thead>
+				<tr>
+					<th scope="col">訂單編號</th>
+					<th scope="col">日期</th>
+					<th scope="col">總計</th>
+					<th scope="col">狀態</th>
+					<th scope="col" colspan="2">操作</th>
 
+				</tr>
+			</thead>
+			<tbody class="userorders">
+
+			</tbody>
+		</table>
+		<!--明細-->
+
+		<div class="orderdetail">
+			<div class="wrap border">
+				<button>
+					<i class="bi bi-x-circle"></i> exit!
+				</button>
+			</div>
+			<div class="products">
+				<div class="wrap">
+					<div class="item">
+						<img src="image/f6.jpg" />
+					</div>
+					<div class="item">
+						<p>產品名稱:</p>
+						<p>數量:</p>
+					</div>
 				</div>
-				<!--右邊資訊-->
-				<div class="col-sm-6 widget">
-					<p>訂單編號:${order.id}</p>
-					<p>會員編號:${order.customer.cusId}</p>
-					<p>
-						訂購時間:
-						<fmt:formatDate value="${order.ordertime}"
-							pattern="yyyy-MM-dd hh:mm" />
-					</p>
-					<p>
-						取餐時間:
-						<fmt:formatDate value="${order.pickuptime}"
-							pattern="yyyy-MM-dd hh:mm" />
-					</p>
-					<p>付款方式:${order.paymethod}</p>
-					<p>訂單金額:${order.total}</p>
-					<p>姓名:${order.customer.cusRealname}</p>
-					<p>行動電話:${order.customer.phoneNumber}</p>
+				<div class="wrap">
+					<div class="item">
+						<img src="image/c5.jpg" />
+					</div>
+					<div class="item">
+						<p>產品名稱:</p>
+						<p>數量:</p>
+					</div>
 				</div>
 			</div>
-			<!-- 回首頁&付款 -->
-			<div class="foot">
-				<a class="home" href="">回首頁</a>
-				<c:if test="${order.paymethod == '綠界付款'}">
-					<a class="ecpay" href="">綠界付款</a>
-				</c:if>
+			<div class="wrap">
+				<div class="item">
+					<ul id="progress">
+
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

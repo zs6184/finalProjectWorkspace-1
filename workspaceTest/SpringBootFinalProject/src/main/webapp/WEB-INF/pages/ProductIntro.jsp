@@ -12,7 +12,10 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/stylesheet/ProductIntro.css" />
+<link rel="stylesheet" href="/stylesheet/sweetalert.css" />
 <!--CSS here-->
+<script src="/javascript/sweetalert.min.js"></script>
+<script src="/javascript/sweetalert-dev.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -23,6 +26,8 @@
 	integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/javascript/ProductIntro.js"></script>
+<script src="/javascript/addtoshoppingcart.js"></script>
+<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <!--JS Here-->
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
@@ -144,7 +149,7 @@
 					<c:forEach var="arrRice" items="${arrRice}">
 						<div class="row mb-3 justify-content-start border rounded" 
 							style="height:300px;background-image: url(/image/img/bg-img/b10.jpg);">
-							<input type="hidden" value="${arrRice.productID}"/>
+							<input type="hidden" value="${arrRice.productID}" id="productid"/>
 							<div class="col-4 h-100 align-items-center">
 								<img src="data:image/png;base64,${baseStr[arrRice.productID]}" class="col w-100 h-100" />
 							</div>
@@ -237,7 +242,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				</div>
 				<div class="modal-body">
-					<form action="#" method="POST" id="productForm">
+					<form action="" method="GET" id="productForm">
 						<div class="row">
 							<div class="text-center" id="mainbox">
 								<fieldset>

@@ -1,0 +1,35 @@
+.shoppingcarticon{
+	position: fixed;
+	right:18px;
+	bottom: 100px;
+	z-index: 3;
+	padding-bottom:5px;
+	border-bottom: 4px solid black;
+}
+.shoppingcarticon svg:hover {
+	color: #265fb1;
+	border-color: #265fb1;
+}
+.shoppingcarticon:hover {
+	border-color: #265fb1;
+	cursor: pointer;
+}
+.shoppingcartnum{
+	position: absolute;
+	top: -10px;
+	right: -13px;
+	background: red;
+	width: 25px;
+	height: 25px;
+	text-align: center;
+	line-height: 100%;
+	font-size:18px;
+	z-index: -1;
+	border: 1px solid red;
+	border-radius:50%;
+	display: none;
+}
+.shoppingcartnum p {
+	position: relative;
+	bottom: -3px;
+}

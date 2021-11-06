@@ -1,7 +1,7 @@
 
 $(function () {
 	//進入頁面載入新訂單
-	$.ajax({
+	jQuery.ajax({
 		method: 'get',
 		url: '/order/getbackorders.controller',
 		data: { "status":'新訂單'},
