@@ -170,7 +170,7 @@
 								<img src="data:image/png;base64,${baseStr[arrNoodle.productID]}" class="col w-100 h-100" />
 							</div>
 							<div class="row col-6 justify-content-center align-items-center">
-								<div class="text-start fs-2">${arrNoodle.productName}</div>
+								<div class="text-start fs-2 prodName">${arrNoodle.productName}</div>
 								<div class="text-center fs-4" style="margin-bottom:75px;">${arrNoodle.note}</div>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
