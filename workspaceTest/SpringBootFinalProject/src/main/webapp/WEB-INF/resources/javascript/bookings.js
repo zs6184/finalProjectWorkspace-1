@@ -22,7 +22,7 @@ $("#insertBtn").click(function(){
 //抓客戶資料
 $.ajax({
 		type: "GET",
-		url: "/backstage/pet/getAllCustomerData.controller",
+		url: "/backstage/bookings/getAllCustomerData.controller",
 		datatype: "JSON",
 		contentType: "application/json",
 		success: function(data) {

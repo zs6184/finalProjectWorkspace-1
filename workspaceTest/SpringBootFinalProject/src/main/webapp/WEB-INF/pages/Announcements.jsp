@@ -263,7 +263,7 @@ function t(){
 							<thead>
 								<tr>
 									<th scope="col">文章編號</th>
-									<th scope="col">員工ID</th>
+<!-- 									<th scope="col">員工ID</th> -->
 									<th scope="col">標題</th>		
 									<th scope="col">發文時間</th>
 									
@@ -278,7 +278,7 @@ function t(){
 								<c:forEach var="arrAnnounc" items="${arrAnnounce}"  varStatus="status">
 									<tr>
 										<td class="ID">${arrAnnounce[startIndex-status.index].announceID}</td>
-										<td>${arrAnnounce[startIndex-status.index].empID}</td>
+<%-- 										<td>${arrAnnounce[startIndex-status.index].empID}</td> --%>
 										<td>${arrAnnounce[startIndex-status.index].headline}</td>
 										<td>${arrAnnounce[startIndex-status.index].releaseTime}</td>
 										
@@ -318,11 +318,11 @@ function t(){
 												<label for="announceID" class=""><span>文章編號</span></label> <input
 													type="text" id="announceID" name="announceID"  readonly />
 											</div>
-											<div>
-												<label for="empId" class=""><span>員工ID</span></label> <input
-													type="text" id="empId" name="empId"
-													oninput="value=value.replace(/[^\d]/g,'')" />
-											</div>
+<!-- 											<div> -->
+<!-- 												<label for="empId" class=""><span>員工ID</span></label> <input -->
+<!-- 													type="text" id="empId" name="empId" -->
+<!-- 													oninput="value=value.replace(/[^\d]/g,'')" /> -->
+<!-- 											</div> -->
 											<div>
 												<label for="headline" class=""><span>標題</span></label> <input
 													type="text" id="headline" name="headline" required/>

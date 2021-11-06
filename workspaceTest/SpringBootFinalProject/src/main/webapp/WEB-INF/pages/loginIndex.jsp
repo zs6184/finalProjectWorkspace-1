@@ -209,9 +209,11 @@ $(function(){
                             <div class="text-center" id="mainbox">
                                 <img src="../image/浪跡.png" style="width: 25%;">
                                 <hr>
-
-                                <BR>
-                                 <label for="name" class=""><span>顧客姓名&nbsp&nbsp&nbsp</span></label>
+ 								 <BR> 
+                                 <label for="cusid" class=""><span>會員編號&nbsp&nbsp&nbsp</span></label>
+                                <input type="text" id="cusid" name="cusid" required style="border:2px solid #ccc" />
+                                <BR> <BR>
+                                 <label for="name" class=""><span>會員姓名&nbsp&nbsp&nbsp</span></label>
                                 <input type="text" id="name" name="name" required style="border:2px solid #ccc" />
                                
                                 <BR><BR>

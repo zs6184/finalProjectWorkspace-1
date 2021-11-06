@@ -10,8 +10,23 @@ public class BookingsDTO {
     private String peopleNum;
     private String orderDate;
     private String time;
+    private Integer cusid;
+    
+    
 
-    public String getName() {
+	
+
+	
+
+	public Integer getCusid() {
+		return cusid;
+	}
+
+	public void setCusid(Integer cusid) {
+		this.cusid = cusid;
+	}
+
+	public String getName() {
         return name;
     }
 
