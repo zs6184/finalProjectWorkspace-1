@@ -1,7 +1,5 @@
 // JavaScript source code
 
-var indexPage = 1;
-
 $(function() {
 	
 	//製造頁籤
@@ -90,6 +88,10 @@ $(function() {
 	
 	//點擊我要點餐按鈕時清空表單
 	$(".detailBtn").click(function(){
+		let sessioncheck = $("#sessionUsername").val();
+		if(sessioncheck=="null"){
+			window.location.replace("http://localhost:8080/login.Controller");		
+		}
 		$("#num,#totalInstore,#subtotal").val("");
 		$("#num,#totalInstore,#subtotal").attr("placeholder","");		
 	});
@@ -101,16 +103,15 @@ $(function() {
 	
 	//檢測是否超過庫存量
 	$("#num").blur(function(){
-		var numValue=$(this).val();
-		var totalValue=$("#totalInstore").val();
-		var unitPrice=$("#unitprice").val();
+		var numValue=parseInt($(this).val());
+		var totalValue=parseInt($("#totalInstore").val());
+		var unitPrice=parseInt($("#unitprice").val());
 		var subTotal=numValue*unitPrice;
-		if(numValue>totalValue){
+		if(numValue>totalValue||numValue==0){
 			console.log("into error");
 			console.log("NUM= "+numValue+" total="+totalValue);
 			$(this).val("");
-			$(this).attr("placeholder","請勿超過剩餘庫存");	
-
+			$(this).attr("placeholder","數量勿超過庫存或為零");	
 		}else{
 			console.log("into OK");
 			console.log("NUM= "+numValue+" total="+totalValue);
@@ -123,10 +124,11 @@ $(function() {
 var ID;
 var record;
 
-//取得選擇的產品資料
+//取得選擇的產品資料&判斷登入與否
 function getTheProd(obj){
 	ID = $(obj).parent().siblings("input").val();
 	console.log("ID="+ID);
+	
 	$.ajax({
 		type: "GET",
 		url: "/product/selectbyid",
