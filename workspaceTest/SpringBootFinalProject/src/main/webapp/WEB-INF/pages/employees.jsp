@@ -148,7 +148,7 @@
 							<li><a href="/Backstage/reservation/getAll" class="itemDetails">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
-					<li class="m-0"><a href="/message.html" class="center"> <i
+					<li class="m-0"><a href="/Backstage/MessagePage.Controller" class="center"> <i
 							class="fas fa-comments-dollar mx-2"></i> <span class="items">客服管理</span>
 					</a></li>
 					<li class="m-0"><a
