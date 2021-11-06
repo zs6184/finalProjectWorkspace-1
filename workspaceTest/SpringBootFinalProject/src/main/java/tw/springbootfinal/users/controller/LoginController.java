@@ -1,6 +1,7 @@
 package tw.springbootfinal.users.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.Date;
@@ -15,15 +16,19 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.alibaba.fastjson.JSONObject;
 
 import freemarker.core.ParseException;
 import freemarker.template.MalformedTemplateNameException;
@@ -304,4 +309,21 @@ public class LoginController {
 		return reCAPTCHA;
 
 	}
+	
+	
+	
+	//AJAX取得全部會員資料後續檢測+填值用
+			@GetMapping("/getAllCustomerData.controller")
+			public void processGetAllCus(HttpServletResponse response)throws IOException {
+				response.setContentType("text/html;charset=utf-8");
+				List<CustomerBean> arrCus = cusService.findAll();
+				JSONObject cusData = new JSONObject();
+				cusData.put("cusData", arrCus);
+				PrintWriter out = response.getWriter();
+				out.println(cusData);
+				out.close();
+			}
+	
+	
+	
 }

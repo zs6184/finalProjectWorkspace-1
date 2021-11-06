@@ -1,5 +1,7 @@
-// JavaScript source code
 
+// JavaScript source code
+var customers;
+var cusID = new Array();
 $(function () {
     $('#owl-one').owlCarousel({
         items: 2,
@@ -51,6 +53,55 @@ $(function () {
         }
     }
 
+
+	//抓客戶資料
+$.ajax({
+		type: "GET",
+		url: "/getAllCustomerData.controller",
+		datatype: "JSON",
+		contentType: "application/json",
+		success: function(data) {
+			console.log("getCusData Success")
+			customers=jQuery.parseJSON(data).cusData; //客戶的資料JSON陣列
+			//console.log("cusId=1="+customers.find(i=>i.cusId=="1").cusRealname); //JOE
+			
+			for(let i=0;i<customers.length;i++){
+				cusID.push(customers[i].cusId);	
+			}
+			console.log("cusID members ="+cusID);
+		},
+		error:function(){
+			console.log("get cusData failed");
+		}
+	})
+	
+	
+
+//更新資料-輸入客戶ID後檢測客戶是否存在
+	$("#cusid").blur(function(){
+		var check = parseInt($(this).val()); //確定轉為整數值
+
+		if(cusID.includes(check)){
+			console.log("find cus success");
+			$("#name").val(customers.find(i=>i.cusId==`${check}`).cusRealname);
+			$("#phone").val(customers.find(i=>i.cusId==`${check}`).phoneNumber);
+		}else{
+			console.log("Who is it ?");
+			$("#cusID,#cusRealName").val("");
+			$("#cusID,#cusRealName").attr("placeholder","查無此會員");
+		}
+	});
+
+
+
+
+
+
+
+
+
+
+
 });
 $("#mypic").change(function(){
 		previewImg(this.files);
@@ -74,6 +125,7 @@ $(document).ready(function () {
         $('#loading').addClass('overlay-show').removeClass('overlay-hide')
         $('#submitBtn').prop('disabled', true)
         let json = JSON.stringify({
+			cusid: $('#cusid').val(),
             name: $('#name').val(),
             phone: $('#phone').val(),
             peopleNum: $('#peopleNum').val(),
@@ -113,7 +165,11 @@ $(document).ready(function () {
     }
     function closeSuccess(){
         bootstrap.Modal.getInstance($('#reservationMsg')).hide()
-    }
+    };
+
+
+
+	
 
 })
 
@@ -123,3 +179,6 @@ $(document).ready(function () {
 function booking() {
     console.log('booking ')
 }
+
+
+

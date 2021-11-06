@@ -103,15 +103,18 @@ $(function() {
 	$("#num").blur(function(){
 		var numValue=$(this).val();
 		var totalValue=$("#totalInstore").val();
-		var subTotal=numValue*totalValue;
+		var unitPrice=$("#unitprice").val();
+		var subTotal=numValue*unitPrice;
 		if(numValue>totalValue){
 			console.log("into error");
-			console.log("total="+totalValue);
+			console.log("NUM= "+numValue+" total="+totalValue);
 			$(this).val("");
-			$(this).attr("placeholder","請勿超過剩餘庫存");			
+			$(this).attr("placeholder","請勿超過剩餘庫存");	
+
 		}else{
 			console.log("into OK");
-			$("#subtotal").val(`${subTotal}`);
+			console.log("NUM= "+numValue+" total="+totalValue);
+			$("#subtotal").val(`${subTotal}`);		
 		}
 	});
 

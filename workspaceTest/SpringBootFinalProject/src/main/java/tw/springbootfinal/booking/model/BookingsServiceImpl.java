@@ -50,6 +50,7 @@ public class BookingsServiceImpl implements BookingService {
         if ((Integer.parseInt(bookingsDTO.getPeopleNum()) + sum ) > 20) throw new AjaxException("超過20人不可預約");
 
         BookingsBean bookingsBean = new BookingsBean();
+        bookingsBean.setCusID(bookingsDTO.getCusid());
         bookingsBean.setCusRealName(bookingsDTO.getName());
         bookingsBean.setPhone(bookingsDTO.getPhone());
         bookingsBean.setBookingsNum(bookingsDTO.getPeopleNum());

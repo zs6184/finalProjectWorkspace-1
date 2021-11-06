@@ -121,7 +121,7 @@
 							class="fas fa-pizza-slice mx-2"></i> <span class="items">餐點管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist01" class="list-unstyled collapse">
-							<li><a href="/backstage/product/findAll" class="itemDetails">餐點總覽</a></li>
+							<li><a href="/Backstage/product/findAll" class="itemDetails">餐點總覽</a></li>
 							<li><a href="#" class="itemDetails">新品上架</a></li>
 							<li><a href="#" class="itemDetails">餐點更新</a></li>
 						</ul></li>
@@ -150,8 +150,8 @@
 							<span class="items">寵物管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist04" class="list-unstyled collapse">
-							<li><a href="/backstage/pet/backpetinfo.controller" class="itemDetails">寵物資訊總覽</a></li>
-							<li><a href="#" class="/backstage/reservation/getAll">領養預約總覽</a></li>
+							<li><a href="/Backstage/pet/backpetinfo.controller" class="itemDetails">寵物資訊總覽</a></li>
+							<li><a href="#" class="/Backstage/reservation/getAll">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 					<li class="m-0"><a href="#" class="center"> <i
@@ -174,7 +174,7 @@
 <!-- 			<div class="container-fluid"> -->
 <!-- 				查詢欄位 -->
 <!-- 				<div style="margin-top: 20px;"> -->
-<!-- 					<form action="/backstage/pet/searchdata.controller" method="POST" id="srhForm"> -->
+<!-- 					<form action="/Backstage/pet/searchdata.controller" method="POST" id="srhForm"> -->
 <!-- 						<div class="row justify-content-start"> -->
 <!-- 							<div class="col-1 text-center"> -->
 <!-- 								<select name="category" id="srhCategory"> -->
@@ -258,7 +258,7 @@
 							<h3 class="modal-title" id="petModalTitle">預約看寵資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-					<form action="/backstage/reservation/addone" method="POST" id="modalForm">
+					<form action="/Backstage/reservation/addone" method="POST" id="modalForm">
 						<div class="row">
 							<div class="text-center" id="mainbox">
 								<fieldset>
@@ -286,7 +286,8 @@
 										</div>
 										<div>
 											<label for="phone"><span>聯絡電話</span></label> 
-											<input type="text" id="phone" name="phone" readonly/>
+											<input type="text" id="phone" name="phone" pattern="[0]{1}[9]{1}\d{8}"
+													oninput="value=value.replace(/[^\d]/g,'')" class="requiredValue"/>
 										</div>
 										<div id="datetimepicker" class="mb-4">
 											<label for="reserveTime"><span>預約看寵日期</span></label> 

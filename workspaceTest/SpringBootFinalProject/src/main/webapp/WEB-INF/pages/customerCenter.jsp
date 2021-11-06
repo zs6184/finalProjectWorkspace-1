@@ -114,12 +114,10 @@
 						</ul></li>
 					<li><a href="#sublist02" data-bs-toggle="collapse"
 						id="dropdown02" class="center"> <i
-							class="fas fa-utensils mx-2"></i> <span class="items">訂單查詢</span>
+							class="fas fa-utensils mx-2"></i> <span class="items">訂單訂位查詢</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist02" class="list-unstyled collapse">
-							<li><a href="/ordermanage.html" class="itemDetails">訂單管理</a>
-							</li>
-							<li><a href="/promo.html" class="itemDetails">優惠碼管理</a></li>
+							<li><a href="/order/memberorders" class="itemDetails">訂單查詢</a></li>
 							<li><a href="#" class="itemDetails">訂位查詢</a></li>
 							<li><a href="#" class="itemDetails">訂位更新</a></li>
 						</ul></li>
@@ -142,7 +140,7 @@
 							<li><a href="#" class="itemDetails">文章發佈</a></li>
 							<li><a href="#" class="itemDetails">文章更新</a></li>
 							<li><a href="#" class="itemDetails">寵物領養資訊</a></li>
-							<li><a href="#" class="itemDetails">領養預約總覽</a></li>
+							<li><a href="/users/petreserve/getthecusresult" class="itemDetails">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 				</ul>

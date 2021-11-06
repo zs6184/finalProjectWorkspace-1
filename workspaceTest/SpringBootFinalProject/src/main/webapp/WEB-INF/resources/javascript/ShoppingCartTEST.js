@@ -42,6 +42,7 @@ $(function () {
             }
             testCartNum(username);
         };
+		
         if ($(this).hasClass('pluscartitem')) {
             carjsonpart(username, pid, '+');
             testCartNum(username);

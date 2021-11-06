@@ -10,6 +10,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -24,12 +26,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONException;
 
 import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.TemplateException;
@@ -56,34 +61,36 @@ public class orderController {
 
 	@Autowired
 	CustomerService cService;
-	
+
 	@Autowired
 	CouponsService couponsService;
-	
+
 	@Autowired
 	MailService mService;
-	//訂單畫面
+
+	// 訂單畫面
 	@RequestMapping(path = "/chackout")
-	public String checkout(HttpSession session, Model m, orderBean order,HttpServletRequest request) throws UnsupportedEncodingException {
+	public String checkout(HttpSession session, Model m, orderBean order, HttpServletRequest request)
+			throws UnsupportedEncodingException {
 		CustomerBean user = cService.getLoginCustomerBean(session);
 		System.out.println(user.getCusRealname());
 		CustomerBean resultUser = cService.getLoginCustomerBean(session);
-		System.out.println("用戶名稱"+resultUser.getCusUsername());
+		System.out.println("用戶名稱" + resultUser.getCusUsername());
 		// 取得商品
-		//ProductsBean selecybyId = sService.selecyProductbyId(id);
+		// ProductsBean selecybyId = sService.selecyProductbyId(id);
 		// 取出cookies
 		Cookie[] cookies = request.getCookies();
 		String cookieStr = null;
-		for(Cookie c:cookies) {
+		for (Cookie c : cookies) {
 			System.out.println(c.getName());
-			if(c.getName().equals("cart"+resultUser.getCusUsername())) {
-			//if(c.getName().equals("cart123")) {
+			if (c.getName().equals("cart" + resultUser.getCusUsername())) {
+				// if(c.getName().equals("cart123")) {
 				System.out.println(c.getValue());
 				cookieStr = URLDecoder.decode(c.getValue(), "utf-8");
 			}
 		}
-		//JSON字串解析成商品物件
-		if(cookieStr != null) {
+		// JSON字串解析成商品物件
+		if (cookieStr != null) {
 			Set<ProductsBean> list = new HashSet<ProductsBean>();
 			System.out.println("我是cookie====" + cookieStr);
 			List<ProductsBean> cartitem = JSON.parseArray(cookieStr, ProductsBean.class);
@@ -93,45 +100,47 @@ public class orderController {
 				list.add(target);
 			}
 			for (ProductsBean p : list) {
-				System.out.println("我是商品ID:"+p.getId()+"我是商品名稱:"+p.getName()+"商品數量"+p.getnum());
+				System.out.println("我是商品ID:" + p.getId() + "我是商品名稱:" + p.getName() + "商品數量" + p.getnum());
 			}
-			m.addAttribute("catitem",list);
+			m.addAttribute("catitem", list);
 		}
 		m.addAttribute("user", user);
-		
+
 		return "checkout";
 	}
+
 	// 保存訂單
 	@RequestMapping(path = "/saveorder", method = RequestMethod.POST)
-	public String saveOrder(HttpServletRequest request,HttpServletResponse response,HttpSession session, Model m, orderBean order,
-																		@RequestParam("pickuptime1") String picktime, 
-																	   @RequestParam(value = "couponsId",defaultValue = "0") int couponId)throws ParseException, UnsupportedEncodingException {
-		//存入使用者
+	public String saveOrder(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model m,
+			orderBean order, @RequestParam("pickuptime1") String picktime,
+			@RequestParam(value = "couponsId", defaultValue = "0") int couponId)
+			throws ParseException, UnsupportedEncodingException {
+		// 存入使用者
 		CustomerBean user = cService.getLoginCustomerBean(session);
 		order.setCustomer(user);
-		//設定訂單狀態
+		// 設定訂單狀態
 		order.setOrderstatus("新訂單");
-		//設定付款狀態//0未付款1已付款
+		// 設定付款狀態//0未付款1已付款
 		order.setPaystatus(0);
-		//設定備註
-		if(order.getNote() == null ||order.getNote().equals("")) {
+		// 設定備註
+		if (order.getNote() == null || order.getNote().equals("")) {
 			order.setNote("備註空白");
 		}
 
-		//加入訂單明細
+		// 加入訂單明細
 		Set<orderDetailsBean> orderDetails = order.getOrderDetails();
 		Integer totalprice = 0;
 		Cookie[] cookies = request.getCookies();
 		String cookieStr = null;
-		for(Cookie c:cookies) {
-			if(c.getName().equals("cart"+user.getCusUsername())) {
-			//if(c.getName().equals("cart123")) {
+		for (Cookie c : cookies) {
+			if (c.getName().equals("cart" + user.getCusUsername())) {
+				// if(c.getName().equals("cart123")) {
 				cookieStr = URLDecoder.decode(c.getValue(), "utf-8");
 				break;
 			}
 		}
-		//JSON字串解析成商品物件
-		if(cookieStr != null) {
+		// JSON字串解析成商品物件
+		if (cookieStr != null) {
 			System.out.println("我是cookie====" + cookieStr);
 			List<ProductsBean> cartitem = JSON.parseArray(cookieStr, ProductsBean.class);
 			for (ProductsBean o : cartitem) {
@@ -142,59 +151,62 @@ public class orderController {
 				detail.setNum(o.getnum());
 				detail.setUnitprice(target.getPrice());
 				detail.setSubtotal(target.getPrice() * o.getnum());
-				totalprice += target.getPrice() * o.getnum();
+				totalprice += detail.getSubtotal();
 				orderDetails.add(detail);
 			}
 		}
-		//設定優惠碼 及 總金額
-		if(couponId !=0) {
+		// 設定優惠碼 及 總金額
+		if (couponId != 0) {
 			Coupons coupon = couponsService.findByid(couponId);
 			totalprice = totalprice - coupon.getCouponDiscount();
 			order.setTotal(totalprice);
 			order.setCoupons(coupon);
-		}else {
+		} else {
 			order.setTotal(totalprice);
 		}
-		//格式化取餐時間
+		// 格式化取餐時間
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		java.util.Date parse = formatter.parse(picktime.replace("T", " "));
-		//存入現在時間
+		// 存入現在時間
 		Date now = new Date(System.currentTimeMillis());
 		order.setOrdertime(new Timestamp(now.getTime()));
-		//System.out.println("下單時間:"+formatter.format(now));
-		//存入取餐時間
+		// System.out.println("下單時間:"+formatter.format(now));
+		// 存入取餐時間
 		order.setPickuptime(new Timestamp(parse.getTime()));
-		System.out.println("取餐訂單時間:"+formatter.format(order.getPickuptime()));
-		System.out.println("下單訂單時間:"+formatter.format(order.getOrdertime()));
+		System.out.println("取餐訂單時間:" + formatter.format(order.getPickuptime()));
+		System.out.println("下單訂單時間:" + formatter.format(order.getOrdertime()));
 		oService.saveOrder(order);
 		m.addAttribute("user", user);
 		return "redirect:/order/orderdetail";
 	}
-	//訂單明細
+
+	// 訂單明細
 	@RequestMapping("/orderdetail")
-	public String checkoutdetail(HttpSession session,Model m,HttpServletRequest request,HttpServletResponse response) throws TemplateNotFoundException, MalformedTemplateNameException, freemarker.core.ParseException, IOException, TemplateException {
+	public String checkoutdetail(HttpSession session, Model m, HttpServletRequest request, HttpServletResponse response)
+			throws TemplateNotFoundException, MalformedTemplateNameException, freemarker.core.ParseException,
+			IOException, TemplateException {
 		CustomerBean user = cService.getLoginCustomerBean(session);
-		//取得最近一筆訂單
+		// 取得最近一筆訂單
 		orderBean order = oService.latestOrder(user);
-		//商品明細
+		// 商品明細
 		// 取出cookies
 		Cookie[] cookies = request.getCookies();
 		String cookieStr = null;
-		for(Cookie c:cookies) {
+		for (Cookie c : cookies) {
 			System.out.println(c.getName());
-			if(c.getName().equals("cart"+user.getCusUsername())) {
-			//if(c.getName().equals("cart123")) {
+			if (c.getName().equals("cart" + user.getCusUsername())) {
+				// if(c.getName().equals("cart123")) {
 				System.out.println(c.getValue());
 				cookieStr = URLDecoder.decode(c.getValue(), "utf-8");
-				//清空購物車
+				// 清空購物車
 				c.setPath("/");
 				c.setMaxAge(0);
 				response.addCookie(c);
 				break;
 			}
 		}
-		//JSON字串解析成商品物件
-		if(cookieStr != null) {
+		// JSON字串解析成商品物件
+		if (cookieStr != null) {
 			Set<ProductsBean> list = new HashSet<ProductsBean>();
 			System.out.println("我是cookie====" + cookieStr);
 			List<ProductsBean> cartitem = JSON.parseArray(cookieStr, ProductsBean.class);
@@ -204,28 +216,189 @@ public class orderController {
 				list.add(target);
 			}
 			for (ProductsBean p : list) {
-				System.out.println("我是商品ID:"+p.getId()+"我是商品名稱:"+p.getName()+"商品數量"+p.getnum());
+				System.out.println("我是商品ID:" + p.getId() + "我是商品名稱:" + p.getName() + "商品數量" + p.getnum());
 			}
-			m.addAttribute("catitem",list);
+			m.addAttribute("catitem", list);
 		}
-		//判斷折扣碼
-		if(order.getCoupons() != null) {
-			m.addAttribute("coupon",order.getCoupons());
+		// 判斷折扣碼
+		if (order.getCoupons() != null) {
+			m.addAttribute("coupon", order.getCoupons());
 		}
-		//發送mail
+		// 發送mail
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("userName", user.getCusUsername());
 		model.put("orderId", order.getId());
 		model.put("price", order.getTotal());
-		String templateNmae="order.html";
-		String head ="訂單受理中";
-		mService.sendMail(request, user,model,templateNmae,head);
-		//存order
-		m.addAttribute("order",order);
-		
-		return"checkoutdetail";
+		String templateNmae = "order.html";
+		String head = "訂單受理中";
+		// mService.sendMail(request, user,model,templateNmae,head);
+		// 存order
+		m.addAttribute("order", order);
+
+		return "checkoutdetail";
 	}
-	
+
+	// 後臺訂單首頁
+	@RequestMapping("/back.ordermanage.controller")
+	public String BackOrdermanage(Model m) {
+		// 尋找新訂單
+		List<orderBean> resoultOrder = oService.findByOrderstatus("新訂單");
+		// 反轉排序
+		Collections.reverse(resoultOrder);
+		if (!resoultOrder.isEmpty()) {
+			for (orderBean o : resoultOrder) {
+				System.out.println("訂單id:" + o.getId());
+				System.out.println("總金額:" + o.getTotal());
+				System.out.println("備註:" + o.getNote());
+			}
+			m.addAttribute("newOrder", resoultOrder);
+		} else {
+			System.out.println("查無結果");
+		}
+
+		return "ordermanage";
+	}
+
+	// 取得後台訂單
+	@RequestMapping(value = "/getbackorders.controller")
+	@ResponseBody
+	public ArrayList<Object> getneworder(@RequestParam("status") String status) throws IOException, JSONException {
+		System.out.println("=============");
+		ArrayList<orderBean> resoultOrder = (ArrayList<orderBean>) oService.findByOrderstatus(status);
+		ArrayList<Object> List = new ArrayList<Object>();
+		System.out.println("toString:" + resoultOrder);
+//			PrintWriter out = response.getWriter();
+		if (!resoultOrder.isEmpty()) {
+			for (orderBean o : resoultOrder) {
+				o.getCustomer().setOrderBean(null);
+				Set<orderDetailsBean> orderDetails = o.getOrderDetails();
+				for (orderDetailsBean ob : orderDetails) {
+					ob.getProduct().setOrderDetails(null);
+				}
+				List.add(JSON.toJSONString(o));
+			}
+			return List;
+		} else {
+			System.out.println("查無結果");
+		}
+		return null;
+	}
+
+	// 變更訂單狀態
+	@RequestMapping(value = "/changestate", method = RequestMethod.POST)
+	@ResponseBody
+	public String changestate(@RequestParam("orderid") int id, @RequestParam("status") String status) {
+		// 取得訂單
+		orderBean order = oService.selectbyid(id);
+		if (status.equals("已取餐") || status.equals("取消")) {
+			order.setPaystatus(1);
+		}
+		order.setOrderstatus(status);
+		// 保存訂單
+		oService.saveOrder(order);
+		return "訂單狀態變更完成";
+	}
+
+	// 後台搜尋訂單
+	@RequestMapping("/back.searchorder")
+	@ResponseBody
+	public ArrayList<Object> searchorder(@RequestParam("str") String str) {
+		System.out.println(str);
+		ArrayList<orderBean> resoultOrder = (ArrayList<orderBean>) oService.backsearchOrder(str);
+		ArrayList<Object> List = new ArrayList<Object>();
+		System.out.println("toString:" + resoultOrder);
+		if (!resoultOrder.isEmpty()) {
+			for (orderBean o : resoultOrder) {
+				o.getCustomer().setOrderBean(null);
+				Set<orderDetailsBean> orderDetails = o.getOrderDetails();
+				for (orderDetailsBean ob : orderDetails) {
+					ob.getProduct().setOrderDetails(null);
+				}
+				List.add(JSON.toJSONString(o));
+				System.out.println(o.getNote());
+			}
+			return List;
+		} else {
+			System.out.println("查無結果");
+		}
+		return null;
+	}
+
+	// 會員訂單畫面
+	@RequestMapping("/memberorders")
+	public String memberorders() {
+		return "orderdetail";
+	}
+
+	// 使用使用者名稱搜尋訂單
+	@RequestMapping("/findorderbyusername")
+	@ResponseBody
+	public ArrayList<Object> findorderbyusername(HttpSession session) {
+		CustomerBean userBean = cService.getLoginCustomerBean(session);
+		ArrayList<Object> List = new ArrayList<Object>();
+		Set<orderBean> resoultOrder = userBean.getOrderBean();
+		if (!resoultOrder.isEmpty()) {
+			for (orderBean o : resoultOrder) {
+				o.getCustomer().setOrderBean(null);
+				Set<orderDetailsBean> orderDetails = o.getOrderDetails();
+				for (orderDetailsBean ob : orderDetails) {
+					ob.getProduct().setOrderDetails(null);
+				}
+				List.add(JSON.toJSONString(o));
+				System.out.println(o.getNote());
+			}
+			return List;
+		} else {
+			System.out.println("查無結果");
+		}
+		return null;
+	}
+
+	// 使用id尋找訂單明細
+	@RequestMapping(path = "/findorderbyid")
+	@ResponseBody
+	public ArrayList<Object> findorderbyid(@RequestParam("productid") int id) {
+		orderBean selectbyid = oService.selectbyid(id);
+		ArrayList<Object> List = new ArrayList<Object>();
+		selectbyid.getCustomer().setOrderBean(null);
+		Set<orderDetailsBean> orderDetails = selectbyid.getOrderDetails();
+		for (orderDetailsBean o : orderDetails) {
+			o.getProduct().setOrderDetails(null);
+		}
+		List.add(JSON.toJSONString(selectbyid));
+		return List;
+	}
+
+	// 單一會員訂單搜尋
+	@RequestMapping("/searchcusorder")
+	@ResponseBody
+	public ArrayList<Object> searchcusorder(HttpSession session, @RequestParam("str") String str) {
+		CustomerBean userBean = cService.getLoginCustomerBean(session);
+		System.out.println(userBean.getCusId() + "::" + str);
+		ArrayList<orderBean> resoultOrder = (ArrayList<orderBean>) oService.backsearchOrder(str);
+		ArrayList<Object> List = new ArrayList<Object>();
+		System.out.println("toString:" + resoultOrder);
+		if (!resoultOrder.isEmpty()) {
+			for (orderBean o : resoultOrder) {
+				if (o.getCustomer().getCusId() == userBean.getCusId()) {
+					o.getCustomer().setOrderBean(null);
+					Set<orderDetailsBean> orderDetails = o.getOrderDetails();
+					for (orderDetailsBean ob : orderDetails) {
+						ob.getProduct().setOrderDetails(null);
+					}
+					List.add(JSON.toJSONString(o));
+					System.out.println(o.getNote());
+				}
+			}
+			return List;
+		} else {
+			System.out.println("查無結果");
+		}
+		return null;
+	}
+
+	// 以下測試用
+	// 結帳
 	@RequestMapping("/checkout")
 	@ResponseBody
 	public String saveOrder2(HttpSession session) {

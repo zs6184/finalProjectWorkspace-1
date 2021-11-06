@@ -12,7 +12,10 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/stylesheet/ProductIntro.css" />
+<link rel="stylesheet" href="/stylesheet/sweetalert.css" />
 <!--CSS here-->
+<script src="/javascript/sweetalert.min.js"></script>
+<script src="/javascript/sweetalert-dev.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -23,6 +26,8 @@
 	integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/javascript/ProductIntro.js"></script>
+<script src="/javascript/addtoshoppingcart.js"></script>
+<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <!--JS Here-->
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
@@ -131,10 +136,10 @@
 			<div>
 				<div class="align-items-center mt-5">
 					<ul id="menuNav" class="row justify-content-center">
-						<li class="row col-2 border justify-content-center"><a href="#rice" class="text-white text-center">飯</a></li>
-						<li class="row col-2 border justify-content-center"><a href="#noodle" class="text-white text-center">麵</a></li>
-						<li class="row col-2 border justify-content-center"><a href="#beverage" class="text-white text-center">飲料</a></li>
-						<li class="row col-2 border justify-content-center"><a href="#dessert" class="text-white text-center">點心</a></li>
+						<li class="row col-2 border justify-content-center"><a href="#rice" class="text-white text-center menuNav">飯</a></li>
+						<li class="row col-2 border justify-content-center"><a href="#noodle" class="text-white text-center menuNav">麵</a></li>
+						<li class="row col-2 border justify-content-center"><a href="#beverage" class="text-white text-center menuNav">飲料</a></li>
+						<li class="row col-2 border justify-content-center"><a href="#dessert" class="text-white text-center menuNav">點心</a></li>
 					</ul>
 				</div>
 			</div>
@@ -144,13 +149,15 @@
 					<c:forEach var="arrRice" items="${arrRice}">
 						<div class="row mb-3 justify-content-start border rounded" 
 							style="height:300px;background-image: url(/image/img/bg-img/b10.jpg);">
-							<input type="hidden" value="${arrRice.productID}"/>
+							<input type="hidden" value="${arrRice.productID}" id="productid"/>
 							<div class="col-4 h-100 align-items-center">
 								<img src="data:image/png;base64,${baseStr[arrRice.productID]}" class="col w-100 h-100" />
 							</div>
-							<div class="row col-6 justify-content-center align-items-center">
-								<div class="text-start fs-2">${arrRice.productName}</div>
-								<div class="text-center fs-4" style="margin-bottom:75px;">${arrRice.note}</div>
+							<div class="row col-6 justify-content-center align-items-top">
+								<ul>
+								<li class="text-start fs-2 fw-bold">${arrRice.productName}</li>
+								<li class="text-center fs-4 fw-normal">${arrRice.note}</li>
+								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
 								<button type="button" class="btn btn-dark detailBtn fs-4" style="height:50%;"
@@ -169,9 +176,11 @@
 							<div class="col-4 h-100 align-items-center">
 								<img src="data:image/png;base64,${baseStr[arrNoodle.productID]}" class="col w-100 h-100" />
 							</div>
-							<div class="row col-6 justify-content-center align-items-center">
-								<div class="text-start fs-2">${arrNoodle.productName}</div>
-								<div class="text-center fs-4" style="margin-bottom:75px;">${arrNoodle.note}</div>
+							<div class="row col-6 justify-content-center align-items-top">
+								<ul>
+								<li class="text-start fs-2 fw-bold prodName">${arrNoodle.productName}</li>
+								<li class="text-center fs-4">${arrNoodle.note}</li>
+								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
 								<button type="button" class="btn btn-dark detailBtn" style="height:50%;"
@@ -190,9 +199,11 @@
 							<div class="col-4 h-100 align-items-center">
 								<img src="data:image/png;base64,${baseStr[arrBeverage.productID]}" class="col w-100 h-100" />
 							</div>
-							<div class="row col-6 justify-content-center align-items-center">
-								<div class="text-start fs-2">${arrBeverage.productName}</div>
-								<div class="text-center fs-4" style="margin-bottom:75px;">${arrBeverage.note}</div>
+							<div class="row col-6 justify-content-center align-items-top">
+								<ul>
+								<li class="text-start fs-2 fw-bold">${arrBeverage.productName}</li>
+								<li class="text-center fs-4">${arrBeverage.note}</li>
+								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
 								<button type="button" class="btn btn-dark detailBtn" style="height:50%;"
@@ -211,9 +222,9 @@
 							<div class="col-4 h-100 align-items-center">
 								<img src="data:image/png;base64,${baseStr[arrDessert.productID]}" class="col w-100 h-100" />
 							</div>
-							<div class="row col-6 justify-content-center align-items-center">
+							<div class="row col-6 justify-content-center align-items-top">
 								<ul>
-								<li class="text-start fs-2">${arrDessert.productName}</li>
+								<li class="text-start fs-2 fw-bold">${arrDessert.productName}</li>
 								<li class="text-center fs-4">${arrDessert.note}</li>
 								</ul>
 							</div>
@@ -237,7 +248,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				</div>
 				<div class="modal-body">
-					<form action="#" method="POST" id="productForm">
+					<form action="" method="GET" id="productForm">
 						<div class="row">
 							<div class="text-center" id="mainbox">
 								<fieldset>

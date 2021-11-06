@@ -16,11 +16,15 @@ $(function() {
 
 	//不同按鈕對應同一表單的action
 	$("#insertBtn").click(function() {
-		$("#modalForm").attr("action", "/backstage/reservation/addone");
+		$("#modalForm").attr("action", "/Backstage/reservation/addone");
 		$("#modalForm #petId").removeAttr("readonly");
 		$("#petInfoAdd input").attr("placeholder","");
 		$("#modalForm input,textarea").val("");
 		$("#imgPreview img").attr("src","");
+		$("#modalForm #keepStatus").attr("disabled",false).val("未赴約");
+		$("#missingBtn").addClass("btn-warning");
+		$("#missingBtn").removeClass("btn-secondary").attr("disabled",false);
+		$("#sendReserveBtn").attr("disabled",false).removeClass("btn-secondary").addClass("btn-danger");
 	});
 
 	//表單事件-生成錯誤提示訊息
@@ -50,6 +54,19 @@ $(function() {
 		}
 	});
 	
+	//針對電話號碼的檢查
+	$("#modalForm #phone").blur(function(){
+		console.log("電話檢查");
+		let pattern=/[0]{1}[9]{1}\d{8}$/
+		let nowPhone = $("#modalForm #phone").val();
+		if(!pattern.test(nowPhone)&&nowPhone.length>0){
+			console.log("手機號碼格式不符");
+			$("#modalForm #phone").val("");
+			$("#modalForm #phone").attr("placeholder","手機號碼格式不符");
+		}
+	});
+
+	
 	//生成表格分頁,呼叫DataTable套件
 	dttable=
 	$("#infoTable").DataTable({
@@ -72,7 +89,7 @@ $(function() {
 	//抓取cusData後續檢測使用
 	$.ajax({
 		type: "GET",
-		url: "/backstage/pet/getAllCustomerData.controller",
+		url: "/Backstage/pet/getAllCustomerData.controller",
 		datatype: "JSON",
 		contentType: "application/json",
 		success: function(data) {
@@ -108,7 +125,7 @@ $(function() {
 	//抓取petData後續檢測使用
 	$.ajax({
 		type: "GET",
-		url: "/backstage/pet/getAllPetAjax",
+		url: "/Backstage/pet/getAllPetAjax",
 		datatype: "JSON",
 		contentType: "application/json",
 		success:function(data){
@@ -144,12 +161,12 @@ $(function() {
 });
 
 
-//跳出確認刪除對話框
+
 var ID;
 var DATE;
 var NAME
 var record;
-
+//跳出確認刪除對話框
 function delAlert(obj) {
 	record = $(obj);
 	ID = $(obj).parent("td").siblings(".ID").text();
@@ -171,7 +188,7 @@ function del() {
 	console.log(ID);
 	$.ajax({
 		type: "GET",
-		url: "/backstage/reservation/deleteOne",
+		url: "/Backstage/reservation/deleteOne",
 		datatype: "JSON",
 		contentType: "application/json",
 		data: { "cusId": `${ID}`,"reserveTime":`${DATE}` }
@@ -182,13 +199,13 @@ function del() {
 
 //使用更新按鈕選取此筆資料
 function select(obj) {
-	$("#modalForm").attr("action", "/backstage/reservation/updateone");
+	$("#modalForm").attr("action", "/Backstage/reservation/updateone");
 	ID = $(obj).parent("td").siblings(".ID").text();
 	DATE=$(obj).parent("td").siblings(".DATE").text();
 	console.log(ID+"--"+DATE);
 	$.ajax({
 		type: "GET",
-		url: "/backstage/reservation/selectone",
+		url: "/Backstage/reservation/selectone",
 		datatype: "JSON",
 		contentType: "application/json",
 		data: { "cusId": `${ID}`,"reserveTime":`${DATE}` },
@@ -229,7 +246,7 @@ function select(obj) {
 function confirmMiss(){
 	$.ajax({
 		type: "GET",
-		url: "/backstage/reservation/dealmissing",
+		url: "/Backstage/reservation/dealmissing",
 		datatype: "JSON",
 		contentType: "application/json",
 		data: { "cusId": `${ID}`,"reserveTime":`${DATE}`}

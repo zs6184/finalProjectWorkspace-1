@@ -10,9 +10,7 @@
     font-family: BB;
     src: url(../font/毛筆字體.ttf);
 }
-li, .container {
-    font-family: AA;
-}
+
 
 a {
     text-decoration: none;
@@ -23,9 +21,13 @@ li {
     list-style: none;
     margin-top:10px;
 }
-    li a {
+    li a:not(.menuNav) {
         font-family: AA;
         font-size: 20px;
+    }
+    
+    .menuNav{
+    	font-size:1.25em;
     }
 
 #topbar {
@@ -156,6 +158,7 @@ a:hover {
 
 
 .banner-area {
+	font-family: AA;
     position: relative;
     z-index: 1;
     height: 300px;
@@ -240,6 +243,7 @@ background: green;
     resize: none;
     overflow: auto;
 }
+
 
 
 

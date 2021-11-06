@@ -13,7 +13,7 @@ $(function() {
 
 	//不同按鈕對應同一表單的action
 	$("#insertBtn").click(function() {
-		$("#modalForm").attr("action", "/backstage/pet/insertPetInfo.controller");
+		$("#modalForm").attr("action", "/Backstage/pet/insertPetInfo.controller");
 		$("#modalForm #idSection").prop("hidden", "hidden");
 		$("#petInfoAdd input").attr("placeholder","");
 		$("#modalForm input,textarea,select").val("");
@@ -70,7 +70,7 @@ $(function() {
 	//抓取cusData後續檢測使用
 	$.ajax({
 		type: "GET",
-		url: "/backstage/pet/getAllCustomerData.controller",
+		url: "/Backstage/pet/getAllCustomerData.controller",
 		datatype: "JSON",
 		contentType: "application/json",
 		success: function(data) {
@@ -129,7 +129,7 @@ function del() {
 	console.log(ID);
 	$.ajax({
 		type: "GET",
-		url: "/backstage/pet/deletebyid.controller",
+		url: "/Backstage/pet/deletebyid.controller",
 		datatype: "JSON",
 		contentType: "application/json",
 		data: { "id": `${ID}`}
@@ -140,13 +140,13 @@ function del() {
 
 //使用更新按鈕選取此筆資料
 function select(obj) {
-	$("#modalForm").attr("action", "/backstage/pet/updateone.controller");
+	$("#modalForm").attr("action", "/Backstage/pet/updateone.controller");
 	$("#modalForm #idSection").removeAttr("hidden");
 	ID = $(obj).parent("td").siblings(".ID").text();
 	console.log(ID);
 	$.ajax({
 		type: "GET",
-		url: "/backstage/pet/selectbyid.controller",
+		url: "/Backstage/pet/selectbyid.controller",
 		datatype: "JSON",
 		contentType: "application/json",
 		data: { "id": `${ID}` },

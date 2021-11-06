@@ -17,6 +17,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/stylesheet/index.css" />
+<link rel="stylesheet" href="/stylesheet/shoppingCarticon.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
 <!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/material_green.css"> -->
 <!--CSS在這邊 要注意放在bootstrap樣式表CDN後面 不然權重相同的部分會被bootstrap蓋過去-->
@@ -30,6 +31,7 @@
 	integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link href="/stylesheet/customerCenter.css" rel="stylesheet" />
+
 <!--javaScript掛到這邊-->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
@@ -37,6 +39,8 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="/javascript/index.js"></script>
 <script src="/javascript/customerCenter.js"></script>
+<script src="/javascript/shoppingCarticon.js"></script>
+<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
 
 
@@ -78,8 +82,8 @@ $(function(){
 		</div>
 	</div>
 	<hr>
-
-
+	<!-- 使用者 -->
+	<input type="hidden" id="sessionUsername" value="<%=session.getAttribute("username") %>">
 	<!-- nav欄部分 -->
 	<div>
 		<div id="topbar">
@@ -209,9 +213,11 @@ $(function(){
                             <div class="text-center" id="mainbox">
                                 <img src="../image/浪跡.png" style="width: 25%;">
                                 <hr>
-
-                                <BR>
-                                 <label for="name" class=""><span>顧客姓名&nbsp&nbsp&nbsp</span></label>
+ 								 <BR> 
+                                 <label for="cusid" class=""><span>會員編號&nbsp&nbsp&nbsp</span></label>
+                                <input type="text" id="cusid" name="cusid" required style="border:2px solid #ccc" />
+                                <BR> <BR>
+                                 <label for="name" class=""><span>會員姓名&nbsp&nbsp&nbsp</span></label>
                                 <input type="text" id="name" name="name" required style="border:2px solid #ccc" />
                                
                                 <BR><BR>
@@ -456,7 +462,12 @@ $(function(){
 			<div class="fix">
 				<a href="#top" style="font-size: 40px;">TOP</a>
 			</div>
-		</div>
+	<!-- 購物車圖示 -->
+	<div class="shoppingcarticon">
+		<a href="/addshoppingcart.controller"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+	  		<path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+		</svg></a>
+		<div class="shoppingcartnum"><p>1</p></div>
 	</div>
 
 </body>

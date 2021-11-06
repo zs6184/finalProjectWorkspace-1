@@ -26,7 +26,7 @@ import tw.springbootfinal.products.model.Products;
 import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
-@RequestMapping("/backstage/product")
+@RequestMapping("/Backstage/product")
 public class BackProductsController {
 
 	@Autowired
@@ -72,7 +72,7 @@ public class BackProductsController {
 		
 		prodService.insertOne(transfer, pic);
 		
-		return "redirect:/backstage/product/findAll";
+		return "redirect:/Backstage/product/findAll";
 	}
 	
 	//用ID刪除單筆資料
@@ -80,7 +80,7 @@ public class BackProductsController {
 	public String deleteById(@RequestParam int id) {
 		prodService.deleteById(id);
 		
-		return "redirect:/backstage/product/findAll";
+		return "redirect:/Backstage/product/findAll";
 	}
 	
 	
@@ -92,7 +92,7 @@ public class BackProductsController {
 		
 		prodService.updateOne(transfer, pic);
 		System.out.println("修改完成");
-		return "redirect:/backstage/product/findAll";
+		return "redirect:/Backstage/product/findAll";
 	}
 		
 }

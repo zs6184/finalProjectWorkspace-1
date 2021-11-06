@@ -85,15 +85,15 @@
             overflow-y: hidden;
         }
         .neworderright {
-            /*border-right: solid 1px #ccc;*/
+          /*border-right: solid 1px #ccc; */
             float: left;
             width: 50%;
-            height: 70%;
+            height: 600px;
             margin-top: 1em;
             overflow-y: hidden;
         }
         .neworderdetailleft {
-            border-right: solid 1px #ccc;
+/*             border-right: solid 1px #ccc; */
             float: left;
             height: 50%;
             width: 60%;
@@ -191,7 +191,7 @@
         }
 
         /* Track */
-            :: -webkit-scrollbar-track {
+            ::-webkit-scrollbar-track {
             background: #f1f1f1;
         }
 
@@ -207,7 +207,7 @@
 
         /*tr選擇設定點選後背景顏色*/
         tr.active {
-            background-color:#e6e6e7;
+            background:#e6e6e7;
         }
 
         /*搜尋框*/

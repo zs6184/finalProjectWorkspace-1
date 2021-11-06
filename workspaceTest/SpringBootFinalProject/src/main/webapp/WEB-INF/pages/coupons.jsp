@@ -163,23 +163,7 @@
 		</div>
 		<!-- container right -->
 		<div class="containerRight">
-			<!-- 分頁按鈕 -->
-			<div class="page container">
-				<div class="row">
-					<div class="offset-2 col-8 ">
-						<nav aria-label="Page navigation">
-							<ul class="pagination justify-content-center">
-								<li class="page-item "><a class="page-link"
-									href="history.back()">上一頁</a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">下一頁</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
+			
 			<!-- 主頁內容 -->
 			<div class="container-fluid ">
 				<div class="row">
@@ -201,16 +185,6 @@
 								</tr>
 							</thead>
 							<tbody class="align-middle">
-								<tr>
-									<td>歡慶朱立倫當選國冥黨黨魁</td>
-									<td>KMT85164</td>
-									<td>92</td>
-									<td class="category">2021/11/25</td>
-									<td>
-										<button type="button" class="btn btn-danger delete"
-											onclick="del(this)">刪除</button>
-									</td>
-								</tr>
 								<c:forEach var="Coupons" items="${allCoupons}">
 									<tr>
 										<td>${Coupons.couponName}</td>
