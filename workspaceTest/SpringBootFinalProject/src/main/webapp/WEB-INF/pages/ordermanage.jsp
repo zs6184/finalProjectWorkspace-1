@@ -48,6 +48,7 @@
 <link rel="stylesheet" href="/stylesheet/sweetalert.css" />
 <script src="/javascript/sweetalert.min.js"></script>
 <script src="/javascript/sweetalert-dev.js"></script>
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 <body>
 	<!-- 導覽列 -->
