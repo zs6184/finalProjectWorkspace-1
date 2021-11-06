@@ -155,9 +155,12 @@ input.form-control {
         outline: 0 none;
     }
 
-.btn {
+.container.btn {
     background-color: #ffd800;
     margin-left: 0px;
+}
+button[type=submit]{
+	background-color: #ffd800;
 }
 
     .btn:focus {
@@ -166,9 +169,17 @@ input.form-control {
         outline: 0 none;
     }
 
+.productname{
+	font-size:25px;
+}
 .row {
+	font-size:20px;
     padding-bottom: 1em;
 }
+.orderinfo input{
+	font-size:20px;
+}
+
 
 /*.form-control:invalid {
             border: 1px solid red;

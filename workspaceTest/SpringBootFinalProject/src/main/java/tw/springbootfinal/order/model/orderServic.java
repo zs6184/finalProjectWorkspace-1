@@ -18,7 +18,7 @@ public class orderServic {
 	public orderBean selectbyid(int id) {
 		return oRepository.findById(id).get();
 	}
-
+	
 	// 儲存一筆訂單
 	public orderBean saveOrder(orderBean orderbean) {
 		return oRepository.save(orderbean);
@@ -37,6 +37,11 @@ public class orderServic {
 	//後台搜尋訂單
 	public List<orderBean> backsearchOrder(String str) {
 		return oRepository.searchorder(str);
+	}
+	
+	//單一會員訂單搜尋
+	public List<orderBean> searchcusorder(Integer  id,String str) {
+		return oRepository.searchcusorder(id,str);
 	}
 	
 

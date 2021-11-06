@@ -33,7 +33,7 @@ public class ProductsBean {
 	@Column(name = "unitprice")
 	private int price;
 	@Column(name = "category")
-	private int category;
+	private String category;
 	@Column(name = "total_instore")
 	private int instore;
 	@Column(name = "total_inorder")
@@ -93,11 +93,11 @@ public class ProductsBean {
 		this.price = price;
 	}
 
-	public int getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(int category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
