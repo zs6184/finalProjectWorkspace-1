@@ -118,8 +118,8 @@
 					</a> <!-- 子連結 -->
 						<ul id="sublist02" class="list-unstyled collapse">
 							<li><a href="/order/memberorders" class="itemDetails">訂單查詢</a></li>
-							<li><a href="#" class="itemDetails">訂位查詢</a></li>
-							<li><a href="#" class="itemDetails">訂位更新</a></li>
+							<li><a href="/users/bookingsRecord/getthecusresult" class="itemDetails">訂位查詢</a></li>
+							<li><a href="/users/bookingsRecord/getthecusresult" class="itemDetails">訂位更新</a></li>
 						</ul></li>
 					<li><a href="#sublist03" data-bs-toggle="collapse"
 						id="dropdown03" class="center"> <i
@@ -127,7 +127,7 @@
 					</a> <!-- 子連結 -->
 						<ul id="sublist03" class="list-unstyled collapse">
 							<li><a href="#" class="itemDetails">公告總覽</a></li>
-							<li><a href="/postCreate.html" class="itemDetails">新增公告</a></li>
+							<li><a href="#" class="itemDetails">新增公告</a></li>
 							<li><a href="#" class="itemDetails">公告更新</a></li>
 						</ul></li>
 					<li><a href="#sublist04" data-bs-toggle="collapse"

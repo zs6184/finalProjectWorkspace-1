@@ -48,6 +48,7 @@
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+	<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 
 <body id="top" style="background-image: url(/image/背景4.jpg)";>
