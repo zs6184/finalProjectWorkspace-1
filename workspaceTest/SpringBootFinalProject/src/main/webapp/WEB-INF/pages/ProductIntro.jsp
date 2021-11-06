@@ -136,10 +136,10 @@
 			<div>
 				<div class="align-items-center mt-5">
 					<ul id="menuNav" class="row justify-content-center">
-						<li class="row col-2 border justify-content-center"><a href="#rice" class="text-white text-center">飯</a></li>
-						<li class="row col-2 border justify-content-center"><a href="#noodle" class="text-white text-center">麵</a></li>
-						<li class="row col-2 border justify-content-center"><a href="#beverage" class="text-white text-center">飲料</a></li>
-						<li class="row col-2 border justify-content-center"><a href="#dessert" class="text-white text-center">點心</a></li>
+						<li class="row col-2 border justify-content-center"><a href="#rice" class="text-white text-center menuNav">飯</a></li>
+						<li class="row col-2 border justify-content-center"><a href="#noodle" class="text-white text-center menuNav">麵</a></li>
+						<li class="row col-2 border justify-content-center"><a href="#beverage" class="text-white text-center menuNav">飲料</a></li>
+						<li class="row col-2 border justify-content-center"><a href="#dessert" class="text-white text-center menuNav">點心</a></li>
 					</ul>
 				</div>
 			</div>
@@ -153,9 +153,11 @@
 							<div class="col-4 h-100 align-items-center">
 								<img src="data:image/png;base64,${baseStr[arrRice.productID]}" class="col w-100 h-100" />
 							</div>
-							<div class="row col-6 justify-content-center align-items-center">
-								<div class="text-start fs-2">${arrRice.productName}</div>
-								<div class="text-center fs-4" style="margin-bottom:75px;">${arrRice.note}</div>
+							<div class="row col-6 justify-content-center align-items-top">
+								<ul>
+								<li class="text-start fs-2 fw-bold">${arrRice.productName}</li>
+								<li class="text-center fs-4 fw-normal">${arrRice.note}</li>
+								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
 								<button type="button" class="btn btn-dark detailBtn fs-4" style="height:50%;"
@@ -174,9 +176,11 @@
 							<div class="col-4 h-100 align-items-center">
 								<img src="data:image/png;base64,${baseStr[arrNoodle.productID]}" class="col w-100 h-100" />
 							</div>
-							<div class="row col-6 justify-content-center align-items-center">
-								<div class="text-start fs-2 prodName">${arrNoodle.productName}</div>
-								<div class="text-center fs-4" style="margin-bottom:75px;">${arrNoodle.note}</div>
+							<div class="row col-6 justify-content-center align-items-top">
+								<ul>
+								<li class="text-start fs-2 fw-bold prodName">${arrNoodle.productName}</li>
+								<li class="text-center fs-4">${arrNoodle.note}</li>
+								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
 								<button type="button" class="btn btn-dark detailBtn" style="height:50%;"
@@ -195,9 +199,11 @@
 							<div class="col-4 h-100 align-items-center">
 								<img src="data:image/png;base64,${baseStr[arrBeverage.productID]}" class="col w-100 h-100" />
 							</div>
-							<div class="row col-6 justify-content-center align-items-center">
-								<div class="text-start fs-2">${arrBeverage.productName}</div>
-								<div class="text-center fs-4" style="margin-bottom:75px;">${arrBeverage.note}</div>
+							<div class="row col-6 justify-content-center align-items-top">
+								<ul>
+								<li class="text-start fs-2 fw-bold">${arrBeverage.productName}</li>
+								<li class="text-center fs-4">${arrBeverage.note}</li>
+								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
 								<button type="button" class="btn btn-dark detailBtn" style="height:50%;"
@@ -216,9 +222,9 @@
 							<div class="col-4 h-100 align-items-center">
 								<img src="data:image/png;base64,${baseStr[arrDessert.productID]}" class="col w-100 h-100" />
 							</div>
-							<div class="row col-6 justify-content-center align-items-center">
+							<div class="row col-6 justify-content-center align-items-top">
 								<ul>
-								<li class="text-start fs-2">${arrDessert.productName}</li>
+								<li class="text-start fs-2 fw-bold">${arrDessert.productName}</li>
 								<li class="text-center fs-4">${arrDessert.note}</li>
 								</ul>
 							</div>
