@@ -22,7 +22,9 @@ $(function() {
 					console.log("cusId="+theCus.cusId)
 					$("#cusId").val(`${theCus.cusId}`);
 					$("#cusRealname").val(`${theCus.cusRealname}`);
+					if(theCus.phoneNumber!=null){
 					$("#phone").val(`${theCus.phoneNumber}`);
+					}
 					$("#reservePet").modal("show");					
 				},
 				error:function(){
@@ -81,8 +83,20 @@ $(function() {
 		}
 	});
 
-	//表單事件-提交控制
-	$("#reserveForm").submit(function() {
+	//針對電話號碼的檢查
+	$("#reserveForm #phone").blur(function(){
+		console.log("電話檢查");
+		let pattern=/[0]{1}[9]{1}\d{8}$/
+		let nowPhone = $("#reserveForm #phone").val();
+		if(!pattern.test(nowPhone)&&nowPhone.length>0){
+			console.log("手機號碼格式不符");
+			$("#reserveForm #phone").val("");
+			$("#reserveForm #phone").attr("placeholder","手機號碼格式不符");
+		}
+	});
+	
+	//送出表單並檢測是否已預約,同時控制檢查項目
+	$("#sendReserveBtn").click(function(){
 		var errs = [];
 		$("#reserveForm .requiredValue").each(function() {
 			if ($(this).val() == "") {
@@ -90,50 +104,14 @@ $(function() {
 				errs.push(this);
 			}
 		});
+		console.log("檢查完畢");
 		if (errs.length > 0) {
 			$(errs[0]).focus();
-			return false; //阻止表單提交	
-		}
-	});
-	
-//	//抓取cusData後續檢測使用
-//	$.ajax({
-//		type: "GET",
-//		url: "/backstage/pet/getAllCustomerData.controller",
-//		datatype: "JSON",
-//		contentType: "application/json",
-//		success: function(data) {
-//			console.log("getCusData Success")
-//			customers=jQuery.parseJSON(data).cusData; //客戶的資料JSON陣列
-//			//console.log("cusId=1="+customers.find(i=>i.cusId=="1").cusRealname); //JOE
-//			
-//			for(let i=0;i<customers.length;i++){
-//				cusID.push(customers[i].cusId);	
-//			}
-//			console.log("cusID members ="+cusID);
-//		},
-//		error:function(){
-//			console.log("get cusData failed");
-//		}
-//	})
-//	
-//	//更新寵物資料-輸入客戶ID後檢測客戶是否存在
-//	$("#cusId").blur(function(){
-//		var check = parseInt($(this).val()); //確定轉為整數值
-//
-//		if(cusID.includes(check)){
-//			console.log("find cus success");
-//			$("#cusRealname").val(customers.find(i=>i.cusId==`${check}`).cusRealname);
-//			$("#phone").val(customers.find(i=>i.cusId==`${check}`).phoneNumber);
-//		}else{
-//			console.log("Who is it ?");
-//			$("#cusId,#cusRealname,#phone").val("");
-//			$("#cusId,#cusRealname,#phone").attr("placeholder","查無此會員");
-//		}
-//	});
-	
-	//送出表單並檢測是否已預約
-	$("#sendReserveBtn").click(function(){
+			console.log("嘗試阻止");
+			return false; //阻止表單提交
+			}	
+		console.log("進入送出GET請求環節");
+		$("#reservePet").modal("hide");
 		var reserveData = $("#reserveForm").serialize();
 		$.ajax({
 			type:"POST",

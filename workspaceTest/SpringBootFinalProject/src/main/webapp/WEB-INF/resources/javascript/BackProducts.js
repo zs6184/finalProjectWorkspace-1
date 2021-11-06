@@ -8,7 +8,7 @@ $(function() {
 
 	//不同按鈕對應同一表單的action
 	$("#insertBtn").click(function() {
-		$("#modalForm").attr("action", "/backstage/product/insertone");
+		$("#modalForm").attr("action", "/Backstage/product/insertone");
 		$("#modalForm #pIdSection").prop("hidden", "hidden");
 		$("#modalForm input").attr("placeholder","");
 		$("#modalForm input,textarea,select").val("");
@@ -89,7 +89,7 @@ function del() {
 	console.log("ID="+ID);
 	$.ajax({
 		type: "GET",
-		url: "/backstage/product/deletebyid",
+		url: "/Backstage/product/deletebyid",
 		datatype: "JSON",
 		contentType: "application/json",
 		data: { "id": `${ID}`}
@@ -100,13 +100,13 @@ function del() {
 
 //使用更新按鈕選取此筆產品資料
 function select(obj) {
-	$("#modalForm").attr("action", "/backstage/product/updateone");
+	$("#modalForm").attr("action", "/Backstage/product/updateone");
 	$("#modalForm #pIdSection").prop("hidden", "");
 	ID = $(obj).parent("td").siblings(".ID").text();
 	console.log("ID="+ID);
 	$.ajax({
 		type: "GET",
-		url: "/backstage/product/selectbyid",
+		url: "/Backstage/product/selectbyid",
 		datatype: "JSON",
 		contentType: "application/json",
 		data: { "id": `${ID}`},
@@ -147,7 +147,7 @@ function previewImg(files){
 //	
 //		$.ajax({
 //		type: "GET",
-//		url: "/backstage/reservation/dealmissing",
+//		url: "/Backstage/reservation/dealmissing",
 //		datatype: "JSON",
 //		contentType: "application/json",
 //		data: { "cusId": `${ID}`,"reserveTime":`${DATE}`}

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,7 @@ import tw.springbootfinal.booking.model.BookingService;
 import tw.springbootfinal.booking.model.BookingsBean;
 import tw.springbootfinal.booking.model.BookingsDTO;
 import tw.springbootfinal.booking.model.Constant;
+import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
@@ -37,7 +39,7 @@ public class BookingsController {
 	private BookingService bookingService;
 	
 	@Autowired
-	private CustomerService cusService;
+	private CustomerService cService;
 	int ID;
 
 //	查詢全部資料
@@ -47,7 +49,7 @@ public class BookingsController {
 		List<BookingsBean> arrBook = bookingService.getAll();
 		m.addAttribute("arrBook", arrBook);
 		
-		String imageName = cusService.selectImage(username, request);
+		String imageName = cService.selectImage(username, request);
 		m.addAttribute("imageName",imageName);
 		
 		return "Bookings";
@@ -123,4 +125,20 @@ public class BookingsController {
 		return "redirect:/backstage/bookings";
 	}
 
+	
+	
+	
+	
+	//AJAX取得全部會員資料後續檢測+填值用
+		@GetMapping("/getAllCustomerData.controller")
+		public void processGetAllCus(HttpServletResponse response)throws IOException {
+			response.setContentType("text/html;charset=utf-8");
+			List<CustomerBean> arrCus = cService.findAll();
+			JSONObject cusData = new JSONObject();
+			cusData.put("cusData", arrCus);
+			PrintWriter out = response.getWriter();
+			out.println(cusData);
+			out.close();
+		}
+		
 }

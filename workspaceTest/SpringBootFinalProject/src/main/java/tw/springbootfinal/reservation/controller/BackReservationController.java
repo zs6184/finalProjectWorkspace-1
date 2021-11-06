@@ -24,7 +24,7 @@ import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
-@RequestMapping("/backstage/reservation")
+@RequestMapping("/Backstage/reservation")
 public class BackReservationController {
 	
 	@Autowired
@@ -81,7 +81,7 @@ public class BackReservationController {
 			status=1;
 		}
 		
-		return "redirect:/backstage/reservation/getAll";
+		return "redirect:/Backstage/reservation/getAll";
 	}
 	
 	//修改一筆
@@ -102,7 +102,7 @@ public class BackReservationController {
 				status=1;
 			}
 		}
-		return "redirect:/backstage/reservation/getAll";
+		return "redirect:/Backstage/reservation/getAll";
 	}
 	
 	
@@ -111,7 +111,7 @@ public class BackReservationController {
 	public String deleteOne(AdoptReservation temp) {
 		rsService.deleteOne(temp);
 		
-		return "redirect:/backstage/reservation/getAll";
+		return "redirect:/Backstage/reservation/getAll";
 	}
 	
 	//處理失約的情形並做紀錄

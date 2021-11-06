@@ -24,6 +24,14 @@
 <script src="/javascript/jquery.ui.datepicker-zh-TW.min.js"></script>
 <script src="/javascript/SinglePetInfo.js"></script>
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
+<style>
+
+	th.ui-datepicker-week-end, 
+	td.ui-datepicker-week-end { 
+    display: none; 
+} 
+
+</style>
 </head>
 <body style="background-image: url(/image/背景4.jpg)">
 	<hr>
@@ -84,7 +92,7 @@
 
 	<!--橫幅圖片區域-->
 	<div class="banner-area bg-img"
-		style="background-image: url(/image/img/bg-img/cat1.jpeg);">
+			style="background-image: url(/image/img/bg-img/cat5.jpg);background-position:0px -246px;background-size:100%;"">
 		<div class="container h-100">
 			<div class="row h-100 align-items-center">
 				<div class="col-12">
@@ -113,8 +121,8 @@
 								<li><span><i class="fa fa-venus-mars" aria-hidden="true">&nbsp</i></span><span>性別:${thePet.sex}</span></li>
 								<li><span><i class="fa fa-paw" aria-hidden="true"></i>&nbsp</span><span>類別:${thePet.category}</span></li>
 								<li><span><i class="fa fa-tag" aria-hidden="true"></i>&nbsp</span><span>品種:${thePet.species}</span></li>
-								<li><span><i class="fa fa-tag" aria-hidden="true"></i>&nbsp</span><span>年紀:${thePet.age}</span></li>
-								<li><span><i class="fa fa-tag" aria-hidden="true"></i>&nbsp</span><span>結紮:${thePet.fixStatus}</span></li>
+								<li><span><i class="fa fa-clock" aria-hidden="true"></i>&nbsp</span><span>年紀:${thePet.age}</span></li>
+								<li><span><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp</span><span>結紮:${thePet.fixStatus}</span></li>
 							</ul>
 						</div>
 						<div class="row justify-content-center">
@@ -166,8 +174,9 @@
 											<input type="text" id="cusRealname" name="cusRealname" readonly/>
 										</div>
 										<div>
-											<label for="phone"><span>聯絡電話</span></label> 
-											<input type="text" id="phone" name="phone" readonly/>
+											<label for="phone"><span>聯絡手機號</span></label> 
+											<input type="text" id="phone" name="phone" pattern="[0]{1}[9]{1}\d{8}" 
+													oninput="value=value.replace(/[^\d]/g,'')" class="requiredValue"/>
 										</div>
 										<div id="datetimepicker" class="mb-4">
 											<label for="reserveTime"><span>預約看寵日期</span></label> 
@@ -178,7 +187,7 @@
 										</div>
 								</fieldset>
 								<div class="row justify-content-center modal-footer">
-									<button type="button" class="col-2 me-3 btn btn-danger" id="sendReserveBtn" data-bs-dismiss="modal">送出預約</button>
+									<button type="button" class="col-2 me-3 btn btn-danger" id="sendReserveBtn">送出預約</button>
 									<button type="button" class="col-2 btn btn-secondary" data-bs-dismiss="modal">取消</button>
 								</div>
 							</div>
@@ -206,7 +215,7 @@
 			</div>
 		</div>
 	</div>
-<!-- End Of deleteAlert Modal-->
+<!-- End Of 預約狀態提示框 Modal-->
             <div class="copy_right">
                 <div>
                     <div id="lowbar">

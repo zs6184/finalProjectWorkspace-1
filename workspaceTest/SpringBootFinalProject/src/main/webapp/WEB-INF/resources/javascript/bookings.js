@@ -1,4 +1,7 @@
 // JavaScript source code
+var customers;
+var cusID = new Array();
+
 $(function() {
 //datepicker jQuery
 	$("input[name='bookingsDate']").datepicker({
@@ -7,7 +10,7 @@ $(function() {
 		changeMonth: true
 	});
 
-
+	
 
 //變更按鈕對應表單的action
 
@@ -16,6 +19,47 @@ $("#insertBtn").click(function(){
 	$("#modalForm #idSection").prop("hidden","hidden");
 	$("#modalForm input,textarea,select").val("");
 });
+//抓客戶資料
+$.ajax({
+		type: "GET",
+		url: "/backstage/bookings/getAllCustomerData.controller",
+		datatype: "JSON",
+		contentType: "application/json",
+		success: function(data) {
+			console.log("getCusData Success")
+			customers=jQuery.parseJSON(data).cusData; //客戶的資料JSON陣列
+			//console.log("cusId=1="+customers.find(i=>i.cusId=="1").cusRealname); //JOE
+			
+			for(let i=0;i<customers.length;i++){
+				cusID.push(customers[i].cusId);	
+			}
+			console.log("cusID members ="+cusID);
+		},
+		error:function(){
+			console.log("get cusData failed");
+		}
+	})
+	
+	
+
+//更新資料-輸入客戶ID後檢測客戶是否存在
+	$("#cusID").blur(function(){
+		var check = parseInt($(this).val()); //確定轉為整數值
+
+		if(cusID.includes(check)){
+			console.log("find cus success");
+			$("#cusRealName").val(customers.find(i=>i.cusId==`${check}`).cusRealname);
+			$("#phone").val(customers.find(i=>i.cusId==`${check}`).phoneNumber);
+		}else{
+			console.log("Who is it ?");
+			$("#cusID,#cusRealName").val("");
+			$("#cusID,#cusRealName").attr("placeholder","查無此會員");
+		}
+	});
+
+
+
+
 	
 });
 
@@ -48,7 +92,7 @@ function select(obj){
 	let id =$(obj).parent("td").siblings(".ID").text();
 
 	$("#modalForm #bookingsID").val($("#bookingsID_"+id).text());
-	$("#modalForm #cusId").val($("#cusId_"+id).text());
+	$("#modalForm #cusID").val($("#cusID_"+id).text());
 	$("#modalForm #cusRealName").val($("#cusRealName_"+id).text());
 	$("#modalForm #phone").val($("#phone_"+id).text());
 	$("#modalForm #bookingsNum").val($("#bookingsNum_"+id).text());
@@ -62,6 +106,5 @@ function select(obj){
 	
 	
 
-	
-	
 
+	

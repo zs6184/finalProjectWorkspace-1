@@ -30,7 +30,7 @@ import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
-@RequestMapping("/backstage/pet")
+@RequestMapping("/Backstage/pet")
 @SessionAttributes(names = {"sexSet","cateSet"})
 public class BackPetsController {
 		
@@ -92,7 +92,7 @@ public class BackPetsController {
 		List<Pets> arrPet = pService.findBySexAndCategory(sex, category);
 		
 		if(arrPet==null||arrPet.isEmpty()) {
-			return "redirect:/backstage/pet/backpetinfo.controller";
+			return "redirect:/Backstage/pet/backpetinfo.controller";
 		}
 		
 		m.addAttribute("arrPet",arrPet);
@@ -108,7 +108,7 @@ public class BackPetsController {
 		
 		pService.insertOne(transfer, pic);
 		
-		return "redirect:/backstage/pet/backpetinfo.controller";
+		return "redirect:/Backstage/pet/backpetinfo.controller";
 	}
 	
 	//選擇並查看寵物個別資料
@@ -134,7 +134,7 @@ public class BackPetsController {
 		Pets transfer = JSON.parseObject(jsonStr, Pets.class);
 		pService.updateOne(transfer, pic);
 		System.out.println("修改完成");
-		return "redirect:/backstage/pet/backpetinfo.controller";
+		return "redirect:/Backstage/pet/backpetinfo.controller";
 	}
 	
 	//刪除寵物資料

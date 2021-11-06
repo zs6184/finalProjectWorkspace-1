@@ -42,4 +42,9 @@ public class ReservationService {
 	public void deleteOne(AdoptReservation ar) {
 		rsRepo.deleteBycusIdAndReserveTime(ar.getCusId(), ar.getReserveTime());
 	}
+	
+	//使用使用者ID查詢個人紀錄給會員中心
+	public List<AdoptReservation> selectTheCusRec(Integer id) {
+		return rsRepo.findByCusId(id);
+	}
 }

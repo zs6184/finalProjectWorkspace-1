@@ -33,6 +33,17 @@
 <script src="/javascript/backPetInfo.js"></script>
 <script src="/javascript/backstage.js"></script>
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
+
+<style>
+    img[src=""],img:not([src]){
+	display:none;
+	}
+	
+	th.ui-datepicker-week-end, 
+	td.ui-datepicker-week-end { 
+    display: none; 
+} 
+</style>
 </head>
 <body>
 	<!-- 導覽列 -->
@@ -121,7 +132,7 @@
 							class="fas fa-pizza-slice mx-2"></i> <span class="items">餐點管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist01" class="list-unstyled collapse">
-							<li><a href="/backstage/product/findAll" class="itemDetails">餐點總覽</a></li>
+							<li><a href="/Backstage/product/findAll" class="itemDetails">餐點總覽</a></li>
 							<li><a href="#" class="itemDetails">新品上架</a></li>
 							<li><a href="#" class="itemDetails">餐點更新</a></li>
 						</ul></li>
@@ -150,8 +161,8 @@
 							<span class="items">寵物管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist04" class="list-unstyled collapse">
-							<li><a href="/backstage/pet/backpetinfo.controller" class="itemDetails">寵物資訊總覽</a></li>
-							<li><a href="/backstage/reservation/getAll" class="itemDetails">領養預約總覽</a></li>
+							<li><a href="/Backstage/pet/backpetinfo.controller" class="itemDetails">寵物資訊總覽</a></li>
+							<li><a href="/Backstage/reservation/getAll" class="itemDetails">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 					<li class="m-0"><a href="#" class="center"> <i
@@ -174,7 +185,7 @@
 			<div class="container-fluid">
 				<!-- 查詢欄位 -->
 				<div style="margin-top: 20px;">
-					<form action="/backstage/pet/searchdata.controller" method="POST" id="srhForm">
+					<form action="/Backstage/pet/searchdata.controller" method="POST" id="srhForm">
 						<div class="row justify-content-start">
 							<div class="col-1 text-center" >
 								<select name="category" id="srhCategory">
@@ -267,7 +278,7 @@
 							<h3 class="modal-title" id="petModalTitle">寵物資料</h3>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
-						<form class="add" action="/backstage/pet/insertPetInfo.controller" method="POST"
+						<form class="add" action="/Backstage/pet/insertPetInfo.controller" method="POST"
 							id="modalForm" enctype="multipart/form-data">
 							<div class="modal-body">
 								<div class="row">
@@ -407,7 +418,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- End Of deleteAlert Modal-->
+			<!-- End Of 確認刪除提示框 Modal-->
 
 		</div>
 	</div>

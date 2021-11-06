@@ -69,4 +69,9 @@ public class PetsService {
 		pRepo.deleteById(id);
 	}
 	
+	//根據ID與領養狀態搜尋
+	public Pets findByIdAndAdoptStatus(Integer petId,String status) {
+		return pRepo.findByPetIdAndAdoptStatus(petId, status);
+	}
+	
 }

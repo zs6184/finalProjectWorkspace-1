@@ -215,7 +215,7 @@ $(document).ready( function () {
 									<th scope="col">預約日期</th>
 									<th scope="col">預約時間</th>
 									<th scope="col">赴約狀態</th>
-									<th scope="col">負責員工ID</th>
+<!-- 									<th scope="col">負責員工ID</th> -->
 									<th scope="col">備註</th>
 									<th scope="col">
 										<button type="button" class="btn btn-primary btn"
@@ -235,7 +235,7 @@ $(document).ready( function () {
 										<input type="hidden" id="bookingsTime_${arrBook.bookingsID}" value="${arrBook.bookingsTime}"/>
 										<td >${arrBook.bookingsTimeText}</td>
 										<td id="keepStatus_${arrBook.bookingsID}" >${arrBook.keepStatus}</td>
-										<td id="empID_${arrBook.bookingsID}" >${arrBook.empID}</td>
+<%-- 										<td id="empID_${arrBook.bookingsID}" >${arrBook.empID}</td> --%>
 										<td id="note_${arrBook.bookingsID}" >${arrBook.note}</td>
 										<td>
 											<button type="button" class="btn btn-danger updateBtn"
@@ -251,7 +251,7 @@ $(document).ready( function () {
 					</div>
 				</div>
 			</div>
-
+	</div>
 			<div id="loading"  class="overlay-hide">
 				<div class="d-flex justify-content-center">
 					<div class="spinner-border" role="status">
@@ -275,12 +275,12 @@ $(document).ready( function () {
 										<fieldset>
 											<legend>訂位資料</legend>
 											<div id="idSection">
-												<label for="bookingsID" class=""><span>訂位編號</span></label>
-												<input type="text" id="bookingsID" name="bookingsID" readonly required/>
+												<label for="bookingsID"><span>訂位編號</span></label>
+												<input type="text" id="bookingsID" name="bookingsID" readonly/>
 											</div>
 											<div>
-												<label for="cusId" class=""><span>會員ID</span></label>
-												<input type="text" id="cusId" name="cusId" oninput="value=value.replace(/[^\d]/g,'')" min="4" max="13" autocomplete="off"/>
+												<label for="cusID"><span>會員ID</span></label>
+												<input type="text" id="cusID" name="cusID" autocomplete="off" oninput="value=value.replace(/[^\d]/g,'')" />
 											</div>
 											<div>
 												<label for="cusRealName" class=""><span>姓名</span></label> <input
@@ -335,16 +335,16 @@ $(document).ready( function () {
 											</div>
 							
 										</fieldset>
-										<hr />
-										<fieldset>
-											<legend>負責員工</legend>
-											<div>
-												<label for="empID" class=""><span>員工ID</span></label> <input
-													type="text" id="empID" name="empID"
-													oninput="value=value.replace(/[^\d]/g,'')" />
-											</div>
+<!-- 										<hr /> -->
+<!-- 										<fieldset> -->
+<!-- 											<legend>負責員工</legend> -->
+<!-- 											<div> -->
+<!-- 												<label for="empID" class=""><span>員工ID</span></label> <input -->
+<!-- 													type="text" id="empID" name="empID" -->
+<!-- 													oninput="value=value.replace(/[^\d]/g,'')" /> -->
+<!-- 											</div> -->
 											
-										</fieldset>
+<!-- 										</fieldset> -->
 										<hr />
 										<fieldset>
 											<legend>備註</legend>
