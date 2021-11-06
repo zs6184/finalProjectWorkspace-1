@@ -150,7 +150,7 @@
 							<li><a href="/Backstage/reservation/getAll" class="itemDetails">領養預約總覽</a></li>
 							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
-					<li class="m-0"><a href="/message.html" class="center"> <i
+					<li class="m-0"><a href="/Backstage/MessagePage.Controller" class="center"> <i
 							class="fas fa-comments-dollar mx-2"></i> <span class="items">客服管理</span>
 					</a></li>
 					<li class="m-0"><a href="/Backstage/SelectCustomerAll.Controller"
@@ -227,44 +227,48 @@
 								<div class="row">
 									<!-- left -->
 									<div class="offset-1 col-4">
-										<div class="ratio ratio-1x1 mt-1 mb-3">
+										<div class="ratio ratio-1x1 mt-1 mb-3"><!--  mb-3 -->
 											<img id="image" src="/downloadTempDir/${imageName}" class="rounded-3 shadow" />
 										</div>
-										<div class="row">
-											<div class="col text-center">
-												<h5>
-													<span class="badge bg-warning text-dark">VIP</span>
-												</h5>
-											</div>
-											<div class="col text-center">
-												<h5>
-													<span class="badge bg-warning text-dark">超級有錢人</span>
-												</h5>
-											</div>
-											<div class="col text-center">
-												<h5>
-													<span class="badge bg-warning text-dark">富二代</span>
-												</h5>
-											</div>
-											<div class="col text-center">
-												<h5>
-													<span class="badge bg-warning text-dark">花花公子</span>
-												</h5>
-											</div>
-											<div class="col text-center">
-												<h5>
-													<span class="badge bg-warning text-dark">帥</span>
-												</h5>
-											</div>
-										</div>
+<!-- 										<div class="row"> -->
+<!-- 											<div class="col text-center"> -->
+<!-- 												<h5> -->
+<!-- 													<span class="badge bg-warning text-dark">VIP</span> -->
+<!-- 												</h5> -->
+<!-- 											</div> -->
+<!-- 											<div class="col text-center"> -->
+<!-- 												<h5> -->
+<!-- 													<span class="badge bg-warning text-dark">超級有錢人</span> -->
+<!-- 												</h5> -->
+<!-- 											</div> -->
+<!-- 											<div class="col text-center"> -->
+<!-- 												<h5> -->
+<!-- 													<span class="badge bg-warning text-dark">富二代</span> -->
+<!-- 												</h5> -->
+<!-- 											</div> -->
+<!-- 											<div class="col text-center"> -->
+<!-- 												<h5> -->
+<!-- 													<span class="badge bg-warning text-dark">花花公子</span> -->
+<!-- 												</h5> -->
+<!-- 											</div> -->
+<!-- 											<div class="col text-center"> -->
+<!-- 												<h5> -->
+<!-- 													<span class="badge bg-warning text-dark">帥</span> -->
+<!-- 												</h5> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
 										<input type="hidden" name="cusUpdateId" id="cusUpdateId"
 											value=""> <label for="cusNameUpdate"
-											class="form-label mt-5">姓名:</label> <input id="cusNameUpdate"
+											class="form-label">姓名:</label> <input id="cusNameUpdate"
 											name="cusNameUpdate" type="text" class="form-control mb-3"
 											value="" disabled /> <label for="phoneNumberUpdate"
 											class="form-label">連絡電話:</label> <input
 											id="phoneNumberUpdate" name="phoneNumberUpdate" type="tel"
 											class="form-control mb-3" value="" disabled />
+											<label
+											for="emailUpdate" class="form-label">E-mail:</label> <input
+											id="emailUpdate" name="emailUpdate" type="email"
+											class="form-control mb-3" value="" disabled /> 
 									</div>
 									<!-- right -->
 									<div class="offset-1 col-5">
@@ -278,9 +282,6 @@
 											for="birthdateUpdate" class="form-label">生日:</label> <input
 											id="birthdateUpdate" name="birthdateUpdate" type="date"
 											class="form-control mb-3" value="" disabled /> <label
-											for="emailUpdate" class="form-label">E-mail:</label> <input
-											id="emailUpdate" name="emailUpdate" type="email"
-											class="form-control mb-3" value="" disabled /> <label
 											for="addressUpdate" class="form-label">地址:</label> <input
 											id="addressUpdate" name="addressUpdate" type="text"
 											class="form-control mb-3" value="" disabled /> <label
@@ -293,16 +294,16 @@
 							<div class="modal-footer">
 								<div class="container-fluid">
 									<div class="row">
-										<div class="col-2">
-											<button type="button" class="btn btn-primary">新增標籤</button>
-										</div>
-										<div class="offset-3 col">
+<!-- 										<div class="col-2"> -->
+<!-- 											<button type="button" class="btn btn-primary">新增標籤</button> -->
+<!-- 										</div> -->
+										<div class="offset-5 col">
 											<button type="button" class="btn btn-secondary"
 												data-bs-dismiss="modal">取消</button>
 											<button type="submit" class="btn btn-primary">完成</button>
 										</div>
 										<div class="offset-2 col-2">
-											<button type="button" class="btn btn-danger"
+											<button type="button" class="btn btn-danger d-none" id="deleteAccount"
 												data-bs-toggle="modal" data-bs-target="#deleteButton">刪除帳號</button>
 										</div>
 									</div>

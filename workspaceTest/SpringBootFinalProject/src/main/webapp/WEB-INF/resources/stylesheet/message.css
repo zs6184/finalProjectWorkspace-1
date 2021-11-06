@@ -14,3 +14,10 @@
     margin: 0;
     border: 3px solid white;
 }
+.box2 {
+   height:650px;
+}
+#messageBody{
+	 height:420px;
+	 overflow:auto;
+}

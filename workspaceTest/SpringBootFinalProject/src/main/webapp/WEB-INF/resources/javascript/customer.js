@@ -67,6 +67,7 @@ $(function() {
 	if(role){
 		console.log("成功");
 		$("#employeeManagement").removeClass("d-none");
+		$("#deleteAccount").removeClass("d-none");
 	}
 	
 	//更新指定會員資料
