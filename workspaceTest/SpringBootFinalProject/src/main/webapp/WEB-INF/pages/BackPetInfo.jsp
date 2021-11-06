@@ -34,16 +34,6 @@
 <script src="/javascript/backstage.js"></script>
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
 
-<style>
-    img[src=""],img:not([src]){
-	display:none;
-	}
-	
-	th.ui-datepicker-week-end, 
-	td.ui-datepicker-week-end { 
-    display: none; 
-} 
-</style>
 </head>
 <body>
 	<!-- 導覽列 -->

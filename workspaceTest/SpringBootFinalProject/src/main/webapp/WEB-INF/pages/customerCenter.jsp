@@ -135,7 +135,7 @@
 							<span class="items">領養紀錄查詢</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist04" class="list-unstyled collapse">
-							<li><a href="/backpetinfo.controller" class="itemDetails">寵物資訊總覽</a>
+							<li><a href="/pet/petinfo.controller" class="itemDetails">寵物資訊總覽</a>
 							</li>
 							<li><a href="#" class="itemDetails">文章發佈</a></li>
 							<li><a href="#" class="itemDetails">文章更新</a></li>

@@ -149,8 +149,8 @@
 							<li><a href="#" class="itemDetails">文章更新</a></li>
 							<li><a href="#" class="itemDetails">寵物領養資訊</a></li>
 							<li><a href="/users/petreserve/getthecusresult"
-								class="itemDetails">領養預約總覽</a></li>
-							<li><a href="#" class="itemDetails  sidebarLight02">領養記錄查詢</a></li>
+								class="itemDetails  sidebarLight02">領養預約總覽</a></li>
+							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 				</ul>
 			</nav>
