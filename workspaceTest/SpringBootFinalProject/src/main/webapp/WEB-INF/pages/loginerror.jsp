@@ -24,12 +24,104 @@
 <!--自訂js-->
 <script src="/javascript/login.js"></script>
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
+<style>
+	li{
+		list-style:none;
+	}
+/* 	字體 */
+@font-face {
+    font-family: DD;
+    src: url(../font/setofont.ttf);
+}
+	
+	body{
+		height:700px;
+		background-image:url("../image/A3.jfif");
+		font-family:DD;
+		background-position:5% 0%;
+	}
+/* 	這是用來設定主畫面框框 */
+/* 	.box1{ */
+/* 		float:left; */
+/* 		background-color:pink; */
+/* 		height:550px; */
+/* 		width:0px; */
+/* 		margin:60px 0 0 15%; */
+/* 		padding:10px; */
+/* 		background-image:url("../image/h1.jpg"); */
+/* 		background:#fff url("../image/h11.jpg") 50% 50% no-repeat;　 */
+
+/* 	} */
+	/* 	這是用來設定主畫面框框 */
+	.box2{
+		float:left;
+		height:570px;
+		width:600px;
+		margin:60px 0 0 0;
+		padding:20px;
+		background-color:rgba(255,255,255,.7);
+		background-position: 5% 5%;
+	}
+
+/* 	下面是按鈕的css */
+	.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "客戶";
+    padding-left: 5px;
+    background-color: #34A7C1; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "員工";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+</style>
+
 </head>
+
+
 <body>
 	<div class="container-fluid">
 		<div class="row">
-
-			<div class="offset-6 col-5 border rounded-3 shadow mt-5 bg-white">
+		<ul style="padding-left:40%;">
+			<li class="box1"></li>
+			<li class="box2">
 				<!-- 標題logo 部分 -->
 				<div class="text-center">
 					<div class="container">
@@ -44,13 +136,29 @@
 				<!-- 第三方登入 -->
 				<div class="container">
 					<div class="row justify-content-center">
-						<button class="btn btn-info btn-lg me-5 col-2">F</button>
-						<a href="/oauth2/authorization/google" class="btn btn-danger btn-lg ms-5 col-2">G</a>
+						<ul>
+							<li class="btn btn-lg me-5 col-2" style="float:left;margin-left:80px" >
+								
+<!-- 								框框出現處 on/off -->
+								<div class="onoffswitch">
+   									 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
+   									 <label class="onoffswitch-label" for="myonoffswitch">
+     								   <span class="onoffswitch-inner"></span>
+       								 <span class="onoffswitch-switch"></span>
+    									</label>
+								</div>
+							
+							</li>
+							<li><a href="/oauth2/authorization/google" class="btn btn-danger btn-lg ms-5 col-2" style="float:left;width:150px">GOOGLE登入</a></li>
+						</ul>
 					</div>
 				</div>
 				<hr class="mx-5">
 				<form class="mt-5" id="loginForm" action="/login.Controller" method="post">
 					<div class="row" id="account">
+						
+						
+					
 						<!-- 帳號 -->
 						<div class="offset-2 col-8">
 							<div class="input-group mb-3">
@@ -90,13 +198,14 @@
 						</div>
 
 						<div class="text-center mb-4">
-							<a href="/createCusAccount.html">註冊</a> <a href="/forget.Controller" class="ms-5">忘記您的密碼?</a>
+							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/createCusAccount.html">註冊</a>&nbsp&nbsp&nbsp <a href="/forget.Controller" class="ms-5">忘記您的密碼?</a>
 						</div>
 					</div>
+					
 				</form>
 
-			</div>
-
+			</ul>
+					
 		</div>
 	</div>
 </body>
