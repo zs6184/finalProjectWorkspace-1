@@ -11,6 +11,12 @@ body {
     font-family: BB;
     src: url(../font/毛筆字體.ttf);
 }
+
+@font-face {
+    font-family: DD;
+    src: url(../font/setofont.ttf);
+}
+
 li, .container {
     font-family: AA;
 }
@@ -20,9 +26,9 @@ li, .container {
 		float:left;
 		display:inline;
 		border:none;
-		height:240px;
-		width:400px;
-		
+		height:200px;
+		width:600px;
+		padding:0 80px;
 	}
 
 

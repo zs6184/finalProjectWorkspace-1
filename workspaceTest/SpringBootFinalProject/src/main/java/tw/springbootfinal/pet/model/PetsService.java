@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import tw.springbootfinal.reservation.model.ReservationRepo;
+
 @Service
 @Transactional
 public class PetsService {
@@ -56,7 +58,7 @@ public class PetsService {
 	public void updateOne(Pets temp,MultipartFile pic) throws IOException{
 		int id = temp.getPetId();
 		Pets check =pRepo.findById(id).get();
-		check.setBean(temp);	
+		check.setBean(temp);
 		if(pic!=null && pic.isEmpty()==false) {
 			byte[] picBytes = pic.getBytes();
 			check.setPic(picBytes);

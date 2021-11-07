@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import tw.springbootfinal.reservation.model.AdoptReservation;
 /**
  * @author
  **/
@@ -11,4 +13,8 @@ import org.springframework.stereotype.Repository;
 public interface BookingsRepo extends JpaRepository<BookingsBean, Integer> {
 
     List<BookingsBean> findByBookingsDateAndBookingsTime(String date, String time);
+
+ 
+    public List<BookingsBean> findByCusID(Integer cusID);
+
 }

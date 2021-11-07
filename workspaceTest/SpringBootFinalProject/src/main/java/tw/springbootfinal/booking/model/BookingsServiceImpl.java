@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
@@ -77,6 +78,12 @@ public class BookingsServiceImpl implements BookingService {
         // 可以增加是否可以更動
         bookingsRepo.save(bookingsBean);
     }
+
+	@Override
+	public List<BookingsBean> selectTheCusRec(Integer id) {
+		
+		return bookingsRepo.findByCusID(id);
+	}
 
 
 

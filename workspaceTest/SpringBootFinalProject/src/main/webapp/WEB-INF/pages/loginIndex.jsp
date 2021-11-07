@@ -155,7 +155,7 @@ $(function(){
 					<div style="height: 460px; width: 332px;"
 						class="row justify-content-center align-items-center">
 						<div class="btn">
-							<button type="button" class="btn btn-dark" id="b1">我要訂餐</button>
+							<button type="button" class="btn btn-dark" id="b1"><a href="/product/findallproduct" style="color:white">我要訂餐</a></button>
 							<!--訂餐訂位按鈕我加了一個hover效果在CSS XDD-->
 						</div>
 					</div>
@@ -200,7 +200,7 @@ $(function(){
 
     </div>
 	
-	<div class="modal fade" id="Reservation" tabindex="-1">
+	<div class="modal fade " id="Reservation" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content"
                  style="background-image: url(../image/背景1.jpg);background-size: cover;background-position:100px 60px;">

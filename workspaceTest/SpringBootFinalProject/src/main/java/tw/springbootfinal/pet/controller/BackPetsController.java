@@ -2,8 +2,10 @@ package tw.springbootfinal.pet.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +26,15 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
+import freemarker.core.ParseException;
+import freemarker.template.MalformedTemplateNameException;
+import freemarker.template.TemplateException;
+import freemarker.template.TemplateNotFoundException;
+import tw.springbootfinal.mail.MailService;
 import tw.springbootfinal.pet.model.Pets;
 import tw.springbootfinal.pet.model.PetsService;
+import tw.springbootfinal.reservation.model.AdoptReservation;
+import tw.springbootfinal.reservation.model.ReservationService;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
 
@@ -38,6 +47,10 @@ public class BackPetsController {
 	private PetsService pService;
 	@Autowired
 	private CustomerService cService;
+	@Autowired
+	private ReservationService rService;
+	@Autowired
+	private MailService mService;
 //--------------------------------------------------------------
 	
 	//取得所有寵物資料
@@ -129,11 +142,22 @@ public class BackPetsController {
 	
 	//更新寵物資料
 	@PostMapping("/updateone.controller")
-	public String processUpdateOne(Pets temp,@RequestParam("mypic") MultipartFile pic) throws IOException {
-		String jsonStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue)).replaceAll("\"\"","null"); // 將所有空白轉為null
-		Pets transfer = JSON.parseObject(jsonStr, Pets.class);
-		pService.updateOne(transfer, pic);
-		System.out.println("修改完成");
+	public String processUpdateOne(Pets temp,@RequestParam("mypic") MultipartFile pic,
+			HttpServletRequest request) throws IOException, TemplateException {
+		if(temp.getAdoptStatus().equals("已領養")) {
+			System.out.println("跑寄送流程環節");
+			Integer thePet = temp.getPetId();
+			List<AdoptReservation> theReserves = rService.findByPetIdAndKeepStatus(thePet,"未赴約");
+			processAlreadyAdoptedForgotPasswordSendMail(theReserves,request);
+			
+			rService.deleteByPetId(thePet);
+		}
+			
+			String jsonStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue)).replaceAll("\"\"","null"); // 將所有空白轉為null
+			Pets transfer = JSON.parseObject(jsonStr, Pets.class);
+			pService.updateOne(transfer, pic);
+			System.out.println("修改完成");
+
 		return "redirect:/Backstage/pet/backpetinfo.controller";
 	}
 	
@@ -144,4 +168,29 @@ public class BackPetsController {
 		
 		return "BackPetInfo";
 	}
+	
+//---------------------------------------------------------------------------------
+	
+	//寄送通知EMAIL的方法
+	public void processAlreadyAdoptedForgotPasswordSendMail(List<AdoptReservation> theReserves,HttpServletRequest request) 
+		throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException{
+		
+		for(AdoptReservation aReserve:theReserves) {
+			Map<String, Object> model = new HashMap<String, Object>();
+			String realName = aReserve.getCusRealname();
+			String thePet = aReserve.getPetName();
+			String theDate = aReserve.getReserveTime();
+			model.put("theDate", theDate);
+			model.put("thePet", thePet);
+			model.put("realName", realName);
+			
+			String templateNmae = "reservationMarker.html";
+			String head = "通知:您預約領養的寵物已提前尋獲愛主。"; 
+			CustomerBean theCus = cService.findById(aReserve.getCusId());
+			boolean sendMail = mService.sendMail(request, theCus, model, templateNmae, head);
+			System.out.println(sendMail);
+		
+		}
+	}
+	
 }

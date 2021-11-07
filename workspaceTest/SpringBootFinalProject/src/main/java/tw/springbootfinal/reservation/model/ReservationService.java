@@ -47,4 +47,14 @@ public class ReservationService {
 	public List<AdoptReservation> selectTheCusRec(Integer id) {
 		return rsRepo.findByCusId(id);
 	}
+	
+	//使用寵物ID找到所有對應的預約紀錄
+	public List<AdoptReservation> findByPetIdAndKeepStatus(Integer petId,String status){
+		return rsRepo.findByPetIdAndKeepStatus(petId,status);
+	}
+	
+	//刪除特定寵物ID下的預約紀錄
+	public void deleteByPetId(Integer petId) {
+		rsRepo.deleteByPetId(petId);
+	}
 }

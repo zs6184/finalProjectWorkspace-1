@@ -21,7 +21,7 @@ li {
     list-style: none;
     margin-top:10px;
 }
-    li a:not(.menuNav) {
+    li a:not(.menuNav),button {
         font-family: AA;
         font-size: 20px;
     }
@@ -161,7 +161,7 @@ a:hover {
 	font-family: AA;
     position: relative;
     z-index: 1;
-    height: 300px;
+    height: 400px;
 }
     .banner-area .banner-content h2{
         font-size:48px;

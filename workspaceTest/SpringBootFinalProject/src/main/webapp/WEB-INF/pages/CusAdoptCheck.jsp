@@ -33,7 +33,7 @@
 <link href="/stylesheet/CusAdoptCheck.css" rel="stylesheet" />
 <!--自訂js-->
 <script src="/javascript/CusAdoptCheck.js"></script>
-
+<link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 
 <body id="top" style="background-image: url(/image/背景4.jpg)";>
@@ -149,8 +149,8 @@
 							<li><a href="#" class="itemDetails">文章更新</a></li>
 							<li><a href="#" class="itemDetails">寵物領養資訊</a></li>
 							<li><a href="/users/petreserve/getthecusresult"
-								class="itemDetails">領養預約總覽</a></li>
-							<li><a href="#" class="itemDetails  sidebarLight02">領養記錄查詢</a></li>
+								class="itemDetails  sidebarLight02">領養預約總覽</a></li>
+							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 				</ul>
 			</nav>
@@ -164,10 +164,10 @@
 						<p class="font1 border-bottom pb-4">領養預約紀錄</p>
 						<div class="row align-item-center justify-content-center h-75">
 							<div class="col-10 rounded-3 shadow p-5 overflow">
-								<div class="row justify-content-center text-center">
-									<div class="col-4">到訪次數：${arrive}次</div>
-									<div class="col-4">尚未赴約：${notyet}筆</div>
-									<div class="col-4">失約次數：${miss}次</div>
+								<div class="row justify-content-center text-center bg-secondary">
+									<div class="col-4 text-white">預約紀錄概覽</div>
+									<div class="col-4 text-white">目前尚未赴約：${notyet}筆</div>
+									<div class="col-4 text-white">累計失約次數：${miss}次</div>
 								</div>
 								<hr/>
 								<table class="table table-striped table-hover mt-4 text-center"

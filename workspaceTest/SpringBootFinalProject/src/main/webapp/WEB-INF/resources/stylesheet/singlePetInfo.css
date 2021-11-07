@@ -157,7 +157,7 @@ a:hover {
 .banner-area {
     position: relative;
     z-index: 1;
-    height: 300px;
+    height: 400px;
 }
     .banner-area .banner-content h2{
         font-size:48px;
@@ -222,6 +222,14 @@ a:hover {
     overflow: auto;
 }
 
+    img[src=""],img:not([src]){
+	display:none;
+	}
+	
+	th.ui-datepicker-week-end, 
+	td.ui-datepicker-week-end { 
+    display: none; 
+} 
 
 
 

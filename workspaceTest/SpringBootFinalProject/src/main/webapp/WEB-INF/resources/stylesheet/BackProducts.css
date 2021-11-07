@@ -70,4 +70,12 @@ th,td{
     overflow: auto;
 }
 
+    img[src=""],img:not([src]){
+	display:none;
+	}
+	
+	th.ui-datepicker-week-end, 
+	td.ui-datepicker-week-end { 
+    display: none; 
+} 
 

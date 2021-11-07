@@ -212,7 +212,7 @@ function delAlert() {
 	DATE=record.parent("td").siblings(".DATE").text();
 	NAME = record.parent("td").siblings(".NAME").text();
 	console.log("ID="+ID+"DATE="+DATE+"NAME="+NAME);
-	$("#alertDialog").html(`確定刪除客戶${ID} : ${NAME} 於 ${DATE}的預約 ?`);
+	$("#alertDialog").html(`確定刪除您於 ${DATE}的預約 ?`);
 }
 
 //刪除資料欄(連到資料庫)
