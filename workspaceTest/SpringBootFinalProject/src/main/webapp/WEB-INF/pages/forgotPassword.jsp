@@ -25,10 +25,10 @@
 <script src="/javascript/login.js"></script>
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
-<body>
+<body class="body1">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="offset-6 col-5 border rounded-3 shadow mt-5 bg-white">
+			<div class="offset-6 col-5 border rounded-3 shadow mt-5 box3">
 				<!-- 標題logo 部分 -->
 				<div class="text-start">
 					<div class="container">

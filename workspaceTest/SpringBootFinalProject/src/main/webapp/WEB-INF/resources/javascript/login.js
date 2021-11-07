@@ -9,6 +9,31 @@ function createErrDiv(input) {
 }
 $(function() {
 
+	//滑動開關切換action
+	$("#myonoffswitch").click(function() {
+		var button = $(this);
+		var memberClass = button.hasClass("member");
+		if (memberClass) {//正在會員登入頁，切換到員工中
+			$("body").removeClass("body1");//移除會員背景
+			$("body").addClass("body2"); //新增員工背景
+			$("#loginForm").prop("action", "/BK/backstageLogin.Controller"); //更改為員工登入action
+			$("#googleButton").addClass("buttonHidden"); //隱藏google登入
+			button.removeClass("member"); //用來判斷在會員頁還是員工頁的class
+			console.log("員工");
+		} else {//正在員工登入頁，切換到會員中
+			$("body").removeClass("body2");//移除員工背景
+			$("body").addClass("body1"); //新增員工背景
+			$("#loginForm").prop("action", "/login.Controller");//更改為會員登入action
+			$("#googleButton").removeClass("buttonHidden"); //顯示google登入
+			button.addClass("member");//用來判斷在會員頁還是員工頁的class
+			console.log("會員");
+		}
+
+	});
+
+
+
+
 	/*$("#submit").click(function(e){
 		e.preventDefault();
 		console.log("ccc");
