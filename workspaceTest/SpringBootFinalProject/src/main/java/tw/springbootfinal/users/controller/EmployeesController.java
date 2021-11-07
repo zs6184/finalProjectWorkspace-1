@@ -40,23 +40,25 @@ public class EmployeesController {
 
 	// 抓取所有資料更新頁面 @SessionAttribute("username") String username
 	@RequestMapping("/EmployeesAll.Controller")
-	public String processSelectEmployeesAll(Principal p,Model m, HttpServletRequest request) {
+	public String processSelectEmployeesAll(Principal p, Model m, HttpServletRequest request) {
 		List<EmployeeBean> selectAll = empService.findAll();
+		
 		String username = p.getName();
 		m.addAttribute("username",username);
 		// 此處無法使用@RequestParam("id")來抓取id，網頁會陷入過多重新導向問題，因此改採session方式抓會員資料
-		CustomerBean cusBean = cusService.getByCusUsername(username);
-		String realName = cusBean.getCusRealname();
-		String role = cusBean.getRole();
+		
+		EmployeeBean empBean = empService.getByEmpUsername(username);
+		String realName = empBean.getEmpRealname();
+		String role = empBean.getRole();
 		
 		m.addAttribute("username",username);//設為session層級的變數給jsp使用
 		m.addAttribute("realName",realName);//設為session層級的變數給jsp使用
 		m.addAttribute("role",role); //設為session層級的變數給jsp使用
 		
 		// 取得資料庫資料
-		int cusId = cusBean.getCusId();
-		String imageName = cusBean.getImageName();
-		byte[] image = cusBean.getImage();
+		int empId = empBean.getEmpId();
+		String imageName = empBean.getImageName();
+		byte[] image = empBean.getImage();
 		System.out.println("imageName: " + imageName);
 		// 如果會員沒有上傳過圖片就使用預設圖片
 		if (image == null) {
@@ -66,7 +68,7 @@ public class EmployeesController {
 			// 抓到專案路徑加上暫存資料夾名稱
 			String path = request.getSession().getServletContext().getRealPath("/") + "downloadTempDir\\";
 			System.out.println(path);
-			cusService.imageDownload(image, cusId, imageName, path);
+			empService.imageDownload(image, empId, imageName, path);
 
 			m.addAttribute("imageName", imageName);
 		}
@@ -112,9 +114,12 @@ public class EmployeesController {
 	// 搜尋指定員工資料
 	@RequestMapping(path = "/SelectEmployeeById.Controller")
 	@ResponseBody
-	public EmployeeBean processSelectEmployeeById(@RequestParam("id") int id) {
-		EmployeeBean selectOne = empService.findById(id);
-		return selectOne;
+	public EmployeeBean processSelectEmployeeById(@RequestParam("id") int id , HttpServletRequest request, Model m) {
+		EmployeeBean empBean = empService.findById(id);
+		String username = empBean.getEmpUsername();
+		String imageName = empService.selectImage(username, request);
+		empBean.setImageName(imageName);
+		return empBean;
 	}
 
 	// 刪除指定員工資料

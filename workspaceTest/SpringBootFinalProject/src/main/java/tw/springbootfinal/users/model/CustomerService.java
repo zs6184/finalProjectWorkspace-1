@@ -48,6 +48,12 @@ public class CustomerService {
 		List<CustomerBean> theCus = cusReps.findByCusUsername(cusUsername);
 		return theCus;
 	}
+	
+	// 會員中心用username查詢
+	public List<CustomerBean> findByCusUsername(String username) {
+		List<CustomerBean> theCus = cusReps.findByCusUsername(username);
+		return theCus;
+	}
 
 	// 根據帳號查詢
 	public CustomerBean getByCusUsername(String name) {
@@ -295,8 +301,13 @@ public class CustomerService {
 		return op1.get();
 	}
 	
+	//會員忘記密碼或更換信箱時查詢身分用
+	public List<CustomerBean> findBySecretkey(String secretkey) {
+		List<CustomerBean> findBySecretkey = cusReps.findBySecretkey(secretkey);
+		return findBySecretkey;
+	}
+	
 	//抓取照片
-	// 查詢全部會員
 	public String selectImage(String username,HttpServletRequest request) {
 		//此處無法使用@RequestParam("id")來抓取id，網頁會陷入過多重新導向問題，因此改採session方式抓會員資料
 		CustomerBean cusBean = getByCusUsername(username);

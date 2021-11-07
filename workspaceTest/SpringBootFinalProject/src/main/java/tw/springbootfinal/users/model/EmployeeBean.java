@@ -30,6 +30,9 @@ public class EmployeeBean implements Serializable {
 	@Column(name = "emp_pwd")
 	private String empPassword;
 
+	@Column(name = "aka")
+	private String aka;
+
 	@Column(name = "emp_realname")
 	private String empRealname;
 
@@ -38,6 +41,9 @@ public class EmployeeBean implements Serializable {
 
 	@Column(name = "gender")
 	private String gender;
+
+	@Column(name = "email")
+	private String email;
 
 	@Column(name = "phone")
 	private String phoneNumber;
@@ -54,11 +60,20 @@ public class EmployeeBean implements Serializable {
 	@Column(name = "photo")
 	private byte[] image;
 
+	@Column(name = "photo_name")
+	private String imageName;
+
 	@Column(name = "note")
 	private String note;
 
 	@Column(name = "role")
 	private String role;
+
+	@Column(name = "secretkey")
+	private String secretkey;
+
+	@Column(name = "temp_email")
+	private String tempEmail;
 
 	@Override
 	public String toString() {
@@ -92,6 +107,14 @@ public class EmployeeBean implements Serializable {
 		this.empPassword = empPassword;
 	}
 
+	public String getAka() {
+		return aka;
+	}
+
+	public void setAka(String aka) {
+		this.aka = aka;
+	}
+
 	public String getEmpRealname() {
 		return empRealname;
 	}
@@ -114,6 +137,14 @@ public class EmployeeBean implements Serializable {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPhoneNumber() {
@@ -156,6 +187,14 @@ public class EmployeeBean implements Serializable {
 		this.image = image;
 	}
 
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
 	public String getNote() {
 		return note;
 	}
@@ -164,16 +203,28 @@ public class EmployeeBean implements Serializable {
 		this.note = note;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public String getRole() {
 		return role;
 	}
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getSecretkey() {
+		return secretkey;
+	}
+
+	public void setSecretkey(String secretkey) {
+		this.secretkey = secretkey;
+	}
+
+	public String getTempEmail() {
+		return tempEmail;
+	}
+
+	public void setTempEmail(String tempEmail) {
+		this.tempEmail = tempEmail;
 	}
 
 }
