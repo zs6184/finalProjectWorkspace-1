@@ -3,18 +3,30 @@ package tw.springbootfinal.pet.model;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import tw.springbootfinal.reservation.model.ReservationRepo;
+import freemarker.core.ParseException;
+import freemarker.template.MalformedTemplateNameException;
+import freemarker.template.TemplateException;
+import freemarker.template.TemplateNotFoundException;
+import tw.springbootfinal.mail.MailService;
+import tw.springbootfinal.reservation.model.AdoptReservation;
 
 @Service
 @Transactional
 public class PetsService {
 	@Autowired
 	private PetsRepository pRepo;
+
+	@Autowired
+	private MailService mService;
+
 	
 	//取得全部寵物資料
 	public List<Pets> getAll(){
@@ -74,6 +86,43 @@ public class PetsService {
 	//根據ID與領養狀態搜尋
 	public Pets findByIdAndAdoptStatus(Integer petId,String status) {
 		return pRepo.findByPetIdAndAdoptStatus(petId, status);
+	}
+	
+	
+//	//寄送通知EMAIL的方法
+//	@Async
+//	public void processAlreadyAdoptedForgotPasswordSendMail(List<AdoptReservation> theReserves,HttpServletRequest request) 
+//		throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException{
+//		
+//		for(AdoptReservation aReserve:theReserves) {
+//			Map<String, Object> model = new HashMap<String, Object>();
+//			String realName = aReserve.getCusRealname();
+//			String thePet = aReserve.getPetName();
+//			String theDate = aReserve.getReserveTime();
+//			model.put("theDate", theDate);
+//			model.put("thePet", thePet);
+//			model.put("realName", realName);
+//			
+//			String templateNmae = "reservationMarker.html";
+//			String head = "通知:您預約領養的寵物已提前尋獲愛主。"; 
+//			CustomerBean theCus = cService.findById(aReserve.getCusId());
+//			boolean sendMail = mService.sendMail(request, theCus, model, templateNmae, head);
+//			System.out.println(sendMail);
+//			System.out.println("寄出一封");
+//		}
+//	}
+	
+	
+	
+	//寄送通知EMAIL的方法(使用非同步執行)
+	@Async
+	public void processAlreadyAdoptedForgotPasswordSendMail(List<AdoptReservation> theReserves,HttpServletRequest request) 
+		throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException{
+			//設置所需參數傳給EMAILService
+			String templateNmae = "reservationMarker.html";
+			String head = "通知:您預約領養的寵物已提前尋獲愛主。"; 
+			boolean sendMail = mService.sendMailForList(request, theReserves, templateNmae, head) ;
+			System.out.println("已送給MailService: "+sendMail);	
 	}
 	
 }
