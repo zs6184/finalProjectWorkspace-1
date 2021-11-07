@@ -122,10 +122,14 @@ $(function() {
 				console.log("send success")
 				console.log("result="+result)
 				if(result==1){
-					$("#alertDialog").text("預約成功")
+					$("#alertDialog").text("預約成功！")
 					$("#statusAlert").modal("show");
-				}else{
-					$("#alertDialog").text("當日已有其他預約，請勿重複預約")
+				}else if(result==3){
+					$("#alertDialog").text("由於您的失約次數過多無法進行線上預約，如需預約請致電浪跡由工作人員為您服務")
+					$("#statusAlert").modal("show");
+				}
+				else{
+					$("#alertDialog").text("預約失敗，您於當日已有其他預約，無須重複預約")
 					$("#statusAlert").modal("show");
 				}
 			},

@@ -55,12 +55,18 @@ public class FrontReservationController {
 	//檢查是否重複(SinglePetInfo進行預約時候判斷用)
 	@PostMapping("/checkthenupdate") @ResponseBody
 	public Integer checkIfRepeat(AdoptReservation temp, Model m) throws UnsupportedEncodingException {
-		AdoptReservation check = rsService.selectOne(temp);
-		if(check==null) {
-			rsService.insertOne(temp);
-			return 1;
-		}else {
-			return 2;
+		CustomerBean theCus = cService.findById(temp.getCusId());
+		int count = theCus.getNoShow();
+		if(count<5) {
+			AdoptReservation check = rsService.selectOne(temp);
+			if(check==null) {
+				rsService.insertOne(temp);
+				return 1;
+			}else {
+				return 2;
+			}
+		}else{
+			return 3;
 		}
 	}
 	
@@ -69,15 +75,11 @@ public class FrontReservationController {
 	public String slelectTheCusResult(@SessionAttribute("username")String username,Model m,HttpServletRequest request) {
 		CustomerBean temp = cService.getByCusUsername(username);
 		Integer theId = temp.getCusId();
-		int arrive=0;
 		int notyet=0;
 		int miss=0;
 		List<AdoptReservation> arrRes = rsService.selectTheCusRec(theId);
 		for(AdoptReservation aRes:arrRes) {
 			switch(aRes.getKeepStatus()) {
-			case "已赴約":
-				arrive++;
-				break;
 			case "未赴約":
 				notyet++;
 				break;
@@ -86,7 +88,6 @@ public class FrontReservationController {
 				break;
 			}
 		}
-		m.addAttribute("arrive",arrive);
 		m.addAttribute("notyet",notyet);
 		m.addAttribute("miss",miss);
 		m.addAttribute("arrRes",arrRes);

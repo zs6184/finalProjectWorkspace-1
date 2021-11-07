@@ -164,10 +164,10 @@
 						<p class="font1 border-bottom pb-4">領養預約紀錄</p>
 						<div class="row align-item-center justify-content-center h-75">
 							<div class="col-10 rounded-3 shadow p-5 overflow">
-								<div class="row justify-content-center text-center">
-									<div class="col-4">到訪次數：${arrive}次</div>
-									<div class="col-4">尚未赴約：${notyet}筆</div>
-									<div class="col-4">失約次數：${miss}次</div>
+								<div class="row justify-content-center text-center bg-secondary">
+									<div class="col-4 text-white">預約紀錄概覽</div>
+									<div class="col-4 text-white">目前尚未赴約：${notyet}筆</div>
+									<div class="col-4 text-white">累計失約次數：${miss}次</div>
 								</div>
 								<hr/>
 								<table class="table table-striped table-hover mt-4 text-center"
