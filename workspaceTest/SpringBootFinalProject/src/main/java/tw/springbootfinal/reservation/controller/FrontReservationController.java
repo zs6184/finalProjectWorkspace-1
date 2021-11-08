@@ -77,9 +77,12 @@ public class FrontReservationController {
 		Integer theId = temp.getCusId();
 		int notyet=0;
 		int miss=0;
+		int arrive=0;
 		List<AdoptReservation> arrRes = rsService.selectTheCusRec(theId);
 		for(AdoptReservation aRes:arrRes) {
 			switch(aRes.getKeepStatus()) {
+			case"已赴約":
+				arrive++;
 			case "未赴約":
 				notyet++;
 				break;
@@ -88,6 +91,7 @@ public class FrontReservationController {
 				break;
 			}
 		}
+		m.addAttribute("arrive",arrive);
 		m.addAttribute("notyet",notyet);
 		m.addAttribute("miss",miss);
 		m.addAttribute("arrRes",arrRes);

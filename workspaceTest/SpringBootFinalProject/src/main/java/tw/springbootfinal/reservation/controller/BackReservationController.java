@@ -31,6 +31,8 @@ public class BackReservationController {
 	private ReservationService rsService;
 	@Autowired
 	private CustomerService cService;
+//	@Autowired
+//	private EmployeeService empService;
 	
 	Integer preID;
 	String preTime;
@@ -47,13 +49,12 @@ public class BackReservationController {
 			m.addAttribute("status","已預約");
 			status=0;
 		}
-		//會員圖片
+		//是會員才抓會員圖片
 		String imageName = cService.selectImage(username, request);
 		m.addAttribute("imageName",imageName);
 		
 		return "BackReservation";
 	}
-	
 	//根據複合主鍵取得單筆
 	@GetMapping("/selectone")
 	public void selectOne(AdoptReservation temp,HttpServletResponse response) throws IOException {

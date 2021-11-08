@@ -141,7 +141,7 @@ public class BackPetsController {
 			Integer thePet = temp.getPetId();
 			List<AdoptReservation> theReserves = rService.findByPetIdAndKeepStatus(thePet,"未赴約");
 			pService.processAlreadyAdoptedForgotPasswordSendMail(theReserves,request);
-			rService.deleteByPetId(thePet);
+			rService.deleteByPetIdAndKeepStatus(thePet,"未赴約");
 		}
 			//執行寵物資料更新
 			String jsonStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue)).replaceAll("\"\"","null"); // 將所有空白轉為null
