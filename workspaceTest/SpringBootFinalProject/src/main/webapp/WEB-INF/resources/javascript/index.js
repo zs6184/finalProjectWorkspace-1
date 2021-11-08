@@ -2,6 +2,8 @@
 // JavaScript source code
 var customers;
 var cusID = new Array();
+var sessioncheck = $("#sessionUsername").val();
+
 $(function () {
     $('#owl-one').owlCarousel({
         items: 2,
@@ -96,7 +98,33 @@ $.ajax({
 
 
 
-
+//按下領養預約按鈕時清空表單欄位並檢測是否有登入，未登入則跳轉登入頁面
+	$("#b2").click(function(){
+		$("#cusid,#name,#phone").val("");
+		$("#cusid,#name,#phone").attr("placeholder","");
+		console.log("session username="+sessioncheck);
+			$.ajax({
+				type: "GET",
+				url: "/users/petreserve/checktheCus",
+				datatype: "JSON",
+				contentType: "application/json",
+				success:function(data){
+					console.log('get theCus successfully');
+					var theCus = jQuery.parseJSON(data).theCus;
+					console.log("cusId="+theCus.cusId)
+					$("#cusid").val(`${theCus.cusId}`);
+					$("#name").val(`${theCus.cusRealname}`);
+					if(theCus.phoneNumber!=null){
+					$("#phone").val(`${theCus.phoneNumber}`);
+					}
+					$("#reservePet").modal("show");					
+				},
+				error:function(){
+					console.log('get the cus fail');
+					window.location.replace("http://localhost:8080/login.Controller");
+				}
+			});
+	});
 
 
 
