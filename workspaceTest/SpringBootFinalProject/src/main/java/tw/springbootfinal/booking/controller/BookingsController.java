@@ -33,7 +33,7 @@ import tw.springbootfinal.users.model.CustomerService;
 import tw.springbootfinal.users.model.EmployeeService;
 
 @Controller
-@RequestMapping("/backstage/bookings")
+@RequestMapping("/Backstage/bookings")
 public class BookingsController {
 
 	@Autowired

@@ -84,7 +84,10 @@ $(function(){
 	<hr>
 	<!-- 使用者 -->
 	<input type="hidden" id="sessionUsername" value="<%=session.getAttribute("username") %>">
+	<input type="hidden" id="sessionRole" value="<%=session.getAttribute("role") %>">
 	<!-- nav欄部分 -->
+	
+	
 	<div>
 		<div id="topbar">
 			<div class="container h-100">

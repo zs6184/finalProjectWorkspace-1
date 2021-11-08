@@ -185,7 +185,7 @@ function del(obj) {
 			$.ajax({
 			method:"DELETE",
 			datatype: "text", // 回傳型態
-			url:`/backstage/bookings/${id}`,
+			url:`/Backstage/bookings/${id}`,
 			success: function (){
 				$(obj).parents("tr").remove();
 			},

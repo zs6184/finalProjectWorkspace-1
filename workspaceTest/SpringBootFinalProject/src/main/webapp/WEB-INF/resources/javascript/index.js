@@ -3,7 +3,7 @@
 var customers;
 var cusID = new Array();
 var sessioncheck = $("#sessionUsername").val();
-
+var sessionRole = $("#sessionRole").val();
 $(function () {
     $('#owl-one').owlCarousel({
         items: 2,
@@ -102,8 +102,10 @@ $.ajax({
 	$("#b2").click(function(){
 		$("#cusid,#name,#phone").val("");
 		$("#cusid,#name,#phone").attr("placeholder","");
-		console.log("session username="+sessioncheck);
-			$.ajax({
+		    console.log("session username="+$("#sessionUsername").val());
+            console.log("session role="+$("#sessionRole").val());
+		 if($("#sessionRole").val()=="MEMBER"){
+				$.ajax({
 				type: "GET",
 				url: "/users/petreserve/checktheCus",
 				datatype: "JSON",
@@ -124,6 +126,31 @@ $.ajax({
 					window.location.replace("http://localhost:8080/login.Controller");
 				}
 			});
+			}else{
+				$.ajax({
+				type: "GET",
+				url: "/users/petreserve/checktheEmp",
+				datatype: "JSON",
+				contentType: "application/json",
+				success:function(data){
+					console.log('get theCus successfully');
+					var theCus = jQuery.parseJSON(data).theCus;
+					console.log("cusId="+theCus.cusId)
+					$("#cusid").val(`${theCus.cusId}`);
+					$("#name").val(`${theCus.cusRealname}`);
+					if(theCus.phoneNumber!=null){
+					$("#phone").val(`${theCus.phoneNumber}`);
+					}
+					$("#reservePet").modal("show");					
+				},
+				error:function(){
+					console.log('get the emp fail');
+					window.location.replace("http://localhost:8080/login.Controller");
+				}
+			});
+				
+			}
+			
 	});
 
 
@@ -160,7 +187,7 @@ $(document).ready(function () {
             orderDate: $('#orderDate').val(),
             time: $('#time').val()
         })
-console.log("我進來了");
+		console.log("我進來了");
         $.ajax({
             url: '/users/bookingsRecord',
             method: 'POST',
