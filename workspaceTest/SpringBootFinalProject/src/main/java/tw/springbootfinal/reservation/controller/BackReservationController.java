@@ -93,8 +93,7 @@ public class BackReservationController {
 		if(check==null) {
 			rsService.insertOne(temp);
 			rsService.deleteOne(preRec);
-		}
-		else {//若此主鍵已經有人使用(相同會員同一日已有預約)
+		}else {//若此主鍵已經有人使用(相同會員同一日已有預約)
 			if(temp.getCusId()==preID && temp.getReserveTime().equals(preTime)) {//確認主鍵相同時只更新赴約狀態
 				check.setKeepStatus(temp.getKeepStatus());
 				rsService.updateOne(check);
