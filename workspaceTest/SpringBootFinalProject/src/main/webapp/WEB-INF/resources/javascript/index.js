@@ -160,8 +160,9 @@ $(document).ready(function () {
             orderDate: $('#orderDate').val(),
             time: $('#time').val()
         })
+console.log("我進來了");
         $.ajax({
-            url: '/backstage/bookings',
+            url: '/users/bookingsRecord',
             method: 'POST',
             dataType: 'text', // 預期回傳的型態 [html, text, json]
             contentType: 'application/json;charset="utf-8"',

@@ -207,7 +207,7 @@ $(function(){
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                  <form id="bookingForm" action="/backstage/bookings" method="post" >
+                  <form id="bookingForm" action="/Backstage/bookings" method="post" >
                     <div class="modal-body" style="font-family:BB;font-size: 25px;" ;>
                         <div class="row">
                             <div class="text-center" id="mainbox">
