@@ -54,7 +54,7 @@ public class ReservationService {
 	}
 	
 	//刪除特定寵物ID下的預約紀錄
-	public void deleteByPetId(Integer petId) {
-		rsRepo.deleteByPetId(petId);
+	public void deleteByPetIdAndKeepStatus(Integer petId,String status) {
+		rsRepo.deleteByPetIdAndKeepStatus(petId,status);
 	}
 }

@@ -3,14 +3,16 @@ var customers;
 var cusID = new Array();
 //檢測是否有SessionAttribute 根據結果變更顯示的選項
 var sessioncheck = $("#sessionUsername").val();
-
+var sessionRole = $("#sessionRole").val();
 $(function() {
+	console.log("session username="+$("#sessionUsername").val());
+	console.log("session role="+$("#sessionRole").val());
 	
 	//按下領養預約按鈕時清空表單欄位並檢測是否有登入，未登入則跳轉登入頁面
 	$("#reserveBtn").click(function(){
 		$("#reserveTime,#cusId,#cusRealname,#phone").val("");
 		$("#reserveTime,#cusId,#cusRealname,#phone").attr("placeholder","");
-		console.log("session username="+sessioncheck);
+		if($("#sessionRole").val()=="MEMBER"){
 			$.ajax({
 				type: "GET",
 				url: "/users/petreserve/checktheCus",
@@ -32,6 +34,27 @@ $(function() {
 					window.location.replace("http://localhost:8080/login.Controller");
 				}
 			});
+		}else{
+			$.ajax({
+				type: "GET",
+				url: "/users/petreserve/checktheEmp",
+				datatype: "JSON",
+				contentType: "application/json",
+				success:function(data){
+					console.log('get theCus successfully');
+					var theEmp = jQuery.parseJSON(data).theEmp;
+					console.log("empId="+theEmp.empId)
+					$("#cusId").val(`${theEmp.empId}`);
+					$("#cusRealname").val(`${theEmp.empRealname}`);
+					$("#phone").val(`${theEmp.phoneNumber}`);
+					$("#reservePet").modal("show");					
+				},
+				error:function(){
+					console.log('get the EMP fail');
+					window.location.replace("http://localhost:8080/login.Controller");
+				}
+			});
+		}	
 	});
 	
 	//DatePicker

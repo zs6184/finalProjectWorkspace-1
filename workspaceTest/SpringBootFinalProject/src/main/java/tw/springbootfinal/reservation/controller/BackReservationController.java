@@ -22,6 +22,7 @@ import tw.springbootfinal.reservation.model.AdoptReservation;
 import tw.springbootfinal.reservation.model.ReservationService;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
+import tw.springbootfinal.users.model.EmployeeService;
 
 @Controller
 @RequestMapping("/Backstage/reservation")
@@ -31,6 +32,8 @@ public class BackReservationController {
 	private ReservationService rsService;
 	@Autowired
 	private CustomerService cService;
+	@Autowired
+	private EmployeeService empService;
 	
 	Integer preID;
 	String preTime;
@@ -47,13 +50,12 @@ public class BackReservationController {
 			m.addAttribute("status","已預約");
 			status=0;
 		}
-		//會員圖片
-		String imageName = cService.selectImage(username, request);
+		//是抓後台圖片
+		String imageName = empService.selectImage(username, request);
 		m.addAttribute("imageName",imageName);
 		
 		return "BackReservation";
 	}
-	
 	//根據複合主鍵取得單筆
 	@GetMapping("/selectone")
 	public void selectOne(AdoptReservation temp,HttpServletResponse response) throws IOException {

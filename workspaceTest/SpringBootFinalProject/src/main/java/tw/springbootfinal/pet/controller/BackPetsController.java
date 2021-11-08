@@ -31,6 +31,7 @@ import tw.springbootfinal.reservation.model.AdoptReservation;
 import tw.springbootfinal.reservation.model.ReservationService;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
+import tw.springbootfinal.users.model.EmployeeService;
 
 @Controller
 @RequestMapping("/Backstage/pet")
@@ -43,6 +44,9 @@ public class BackPetsController {
 	private CustomerService cService;
 	@Autowired
 	private ReservationService rService;
+	@Autowired
+	private EmployeeService empService;
+
 //--------------------------------------------------------------
 	
 	//取得所有寵物資料
@@ -59,7 +63,7 @@ public class BackPetsController {
 		m.addAttribute("cateSet",cateSet);
 		m.addAttribute("sexSet",sexSet);
 		//會員圖片
-		String imageName = cService.selectImage(username, request);
+		String imageName = empService.selectImage(username, request);
 		m.addAttribute("imageName",imageName);
 
 		return  "BackPetInfo";
@@ -141,7 +145,7 @@ public class BackPetsController {
 			Integer thePet = temp.getPetId();
 			List<AdoptReservation> theReserves = rService.findByPetIdAndKeepStatus(thePet,"未赴約");
 			pService.processAlreadyAdoptedForgotPasswordSendMail(theReserves,request);
-			rService.deleteByPetId(thePet);
+			rService.deleteByPetIdAndKeepStatus(thePet,"未赴約");
 		}
 			//執行寵物資料更新
 			String jsonStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue)).replaceAll("\"\"","null"); // 將所有空白轉為null
