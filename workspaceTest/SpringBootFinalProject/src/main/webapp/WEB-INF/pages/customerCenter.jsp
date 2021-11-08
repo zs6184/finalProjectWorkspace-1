@@ -35,7 +35,7 @@
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 
-<body id="top" style="background-image: url(/image/背景4.jpg)";>
+<body id="top" style="background-image: url(/image/背景4.jpg);">
 	<div style="background-color: rgb(6, 121, 121, .1);">
 		<br>
 	</div>
@@ -162,10 +162,10 @@
 									<div class=" row" id="account">
 										<div class="row my-2 offset-1 col-10">
 											<input hidden="true" name="cusId" id="cusId"
-												value="${cus[0].cusId}" /> <label for="username"
+												value="${id}" /> <label for="username"
 												class="col-3 col-form-label">帳號:</label>
 											<div class="col-9 d-flex align-items-center">
-												<span id="username">${cus[0].cusUsername}</span>
+												<span id="username">${username}</span>
 												<!--<input id="username" type="text" name="cusUsername" class="form-control" maxlength="20" placeholder="Username" autocomplete="off" autofocus>-->
 											</div>
 										</div>
@@ -173,7 +173,7 @@
 											<label for="cusRealname" class="col-3 col-form-label">姓名:</label>
 											<div class="col-9">
 												<input id="cusRealname" type="text"
-													value="${cus[0].cusRealname}" name="cusRealname"
+													value="${realName}" name="cusRealname"
 													class="form-control" maxlength="10" placeholder="Name"
 													autocomplete="off">
 											</div>
@@ -181,13 +181,13 @@
 										<div class="row my-3 offset-1 col-10">
 											<label for="aka" class="col-3 col-form-label">暱稱:</label>
 											<div class="col-9">
-												<input id="aka" type="text" name="aka" value="${cus[0].aka}"
+												<input id="aka" type="text" name="aka" value="${aka}"
 													class="form-control" maxlength="10" placeholder="Nickname"
 													autocomplete="off">
 											</div>
 										</div>
 										<div class="row my-2 offset-1 col-10">
-											<label for="male" class="col-3 ${cus[0].gender}" id="gender">性別:</label>
+											<label for="male" class="col-3 ${gender}" id="gender">性別:</label>
 											<div class="col-9">
 												<label for="male" class="form-check-label">男</label> <input
 													id="male" type="radio" value="male" name="gender"
@@ -201,7 +201,7 @@
 											<label for="birthdate" class="col-3 col-form-label">生日:</label>
 											<div class="col-9">
 												<input id="birthdate" type="date"
-													value="${cus[0].birthdate}" name="birthdate"
+													value="${birthdate}" name="birthdate"
 													class="form-control" autocomplete="off">
 											</div>
 										</div>
@@ -209,7 +209,7 @@
 											<label for="phoneNumber" class="col-3 col-form-label">聯絡電話:</label>
 											<div class="col-9 relative">
 												<input id="phoneNumber" type="tel"
-													value="${cus[0].phoneNumber}" name="phoneNumber"
+													value="${phoneNumber}" name="phoneNumber"
 													maxlength="10" class="form-control"
 													placeholder="Phone Number" autocomplete="off">
 												<div class="invalid-tooltip" id="phoneInvalid">電話號碼已被使用</div>
@@ -218,14 +218,14 @@
 										<div class="row my-3 offset-1 col-10">
 											<label for="email" class="col-3 col-form-label">E-mail:</label>
 											<div class="col-9 align-items-center my-2">
-												<input id="email" hidden="true" name="email" value="${cus[0].email}">
-												<span>${cus[0].email}</span>
+												<input id="email" hidden="true" name="email" value="${email}">
+												<span>${email}</span>
 											</div>
 										</div>
 										<div class="row my-3 offset-1 col-10">
 											<label for="address" class="col-3 col-form-label">地址:</label>
 											<div class="col-9">
-												<input id="address" type="text" value="${cus[0].address}"
+												<input id="address" type="text" value="${address}"
 													name="address" class="form-control" maxlength="50"
 													placeholder="Address" autocomplete="off">
 											</div>

@@ -40,6 +40,8 @@ import tw.springbootfinal.mail.MailService;
 import tw.springbootfinal.users.model.AuthenticationProvider;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
+import tw.springbootfinal.users.model.EmployeeBean;
+import tw.springbootfinal.users.model.EmployeeService;
 import tw.springbootfinal.users.model.Recaptcha;
 import tw.springbootfinal.users.model.RecaptchaService;
 
@@ -51,6 +53,9 @@ public class LoginController {
 	private CustomerService cusService;
 
 	@Autowired
+	private EmployeeService empService;
+
+	@Autowired
 	private RecaptchaService recaptchaService;
 
 	@Autowired
@@ -58,65 +63,101 @@ public class LoginController {
 
 	@Autowired
 	private AnnouncementsService aService;
-	
+
 	@GetMapping("/")
-	public String processGoogleLoginIndexPage(@SessionAttribute("username") String username,Model m) throws UnsupportedEncodingException {
+	public String processGoogleLoginIndexPage(@SessionAttribute("username") String username, Model m)
+			throws UnsupportedEncodingException {
 		CustomerBean cusBean = cusService.getByCusUsername(username);
 		String realName = cusBean.getCusRealname();
 		String role = cusBean.getRole();
 		m.addAttribute("realName", realName);// 設為session層級的變數給jsp使用
 		m.addAttribute("role", role);
-		
-		// 導入公告內容
-				List<Announcements> arrAnnounce = aService.getAll();
-				Map<Integer, String> baseStr = new HashMap<>();
-				for (Announcements aAnn : arrAnnounce) {
-					byte[] base64 = Base64.encodeBase64(aAnn.getPic());
-					String base64Str = new String(base64, "UTF-8");
-					baseStr.put(aAnn.getAnnounceID(), base64Str);
 
-				}
-				m.addAttribute("arrAnnounce", arrAnnounce);
-				m.addAttribute("baseStr", baseStr);
-		
-		
+		// 導入公告內容
+		List<Announcements> arrAnnounce = aService.getAll();
+		Map<Integer, String> baseStr = new HashMap<>();
+		for (Announcements aAnn : arrAnnounce) {
+			byte[] base64 = Base64.encodeBase64(aAnn.getPic());
+			String base64Str = new String(base64, "UTF-8");
+			baseStr.put(aAnn.getAnnounceID(), base64Str);
+
+		}
+		m.addAttribute("arrAnnounce", arrAnnounce);
+		m.addAttribute("baseStr", baseStr);
+
 		return "loginIndex";
 	}
-	
-	// 登入後判斷是一般登入還是第三方登入並取得realName、role、公告內容
-	@GetMapping("/Users/loginIndex.Controller") //Principal抓取資料時，一般登入抓到帳號，第三方登入抓到姓名，因此須判斷是哪種登入方式
-	public String processloginIndexMainPage(Principal p, Model m, HttpServletRequest request) throws UnsupportedEncodingException {
-		
-		//取得session資料
-		HttpSession session = request.getSession();
-		String googleUsername = (String)session.getAttribute("username");
-		
-		if(googleUsername==null) { //如果沒有取得session資料，代表是用一般帳密登入
-			String username = p.getName();// Principal可以用來取得使用者名稱
-			System.out.println("username: " + username);
-			
-			CustomerBean cusBean = cusService.getByCusUsername(username);// 透過使用者名稱搜尋資料
-			String realName = cusBean.getCusRealname();// 取得真實姓名
-			String role = cusBean.getRole(); //取得權限
-			
-			// 設為session層級的變數給jsp使用
-			m.addAttribute("username", username);
-			m.addAttribute("realName", realName);
-			m.addAttribute("role", role);
 
-		}else {//如果有取得session代表為google登入
-			CustomerBean theCus = cusService.googleSelectUser(googleUsername);
-			System.out.println("googleUsername: "+googleUsername);
-			
-			String realName = theCus.getCusRealname();// 取得真實姓名
-			String role = theCus.getRole(); //取得權限
-			
+	// 登入後判斷是一般登入還是第三方登入並取得realName、role、公告內容
+	@GetMapping("/Users/loginIndex.Controller") // Principal抓取資料時，一般登入抓到帳號，第三方登入抓到姓名，因此須判斷是哪種登入方式
+	public String processloginIndexMainPage(Principal p, Model m, HttpServletRequest request)
+			throws UnsupportedEncodingException {
+
+		// 取得session資料
+		HttpSession session = request.getSession();
+		String sessionUsername = (String) session.getAttribute("username");
+		System.out.println("測試googleUsername: " + sessionUsername);
+		if (sessionUsername == null) { // 如果沒有取得session資料，代表是用一般帳密登入
+			String username = p.getName();// Principal可以用來取得使用者名稱
+			System.out.println("會員username: " + username);
+
+			List<CustomerBean> findByCusUsername = cusService.findByCusUsername(username);
+			// 如果找的到會員資料就設定sesison
+			if (!findByCusUsername.isEmpty()) {
+				for (CustomerBean customerBean : findByCusUsername) {
+					String cusRealName = customerBean.getCusRealname();
+					String role = customerBean.getRole();
+					System.out.println("realName: " + cusRealName);
+					System.out.println("role: " + role);
+					m.addAttribute("username", username);
+					m.addAttribute("realName", cusRealName);
+					m.addAttribute("role", role);
+				}
+				System.out.println("會員成功");
+			} else {
+				// 沒有找到會員資料就找員工資料
+				List<EmployeeBean> findByEmpUsername = empService.findByEmpUsername(username);
+				for (EmployeeBean employeeBean : findByEmpUsername) {
+					String empRealname = employeeBean.getEmpRealname();
+					String role = employeeBean.getRole();
+					System.out.println("empRealname: " + empRealname);
+					System.out.println("role: " + role);
+					m.addAttribute("username", username);
+					m.addAttribute("realName", empRealname);
+					m.addAttribute("role", role);
+				}
+				System.out.println("員工成功");
+			}
+
+//			CustomerBean cusBean = cusService.getByCusUsername(username);// 透過使用者名稱搜尋資料
+//			String realName = cusBean.getCusRealname();// 取得真實姓名
+//			String role = cusBean.getRole(); //取得權限
+//			
+//			// 設為session層級的變數給jsp使用
+//			m.addAttribute("username", username);
+//			m.addAttribute("realName", realName);
+//			m.addAttribute("role", role);
+
+		} else {// 如果有取得session代表為google登入、或是員工"再次"進到首頁(因為第一次登入後員工已經有紀錄session)
+			System.out.println("sessionUsername: " + sessionUsername);
+			String role = (String) session.getAttribute("role");
+			String realName = null;
+			if ("MEMBER".equals(role)) {
+				CustomerBean theCus = cusService.googleSelectUser(sessionUsername);
+
+				realName = theCus.getCusRealname();// 取得真實姓名
+				// role = theCus.getRole(); //取得權限
+
+			} else {
+				EmployeeBean theEmp = empService.getByEmpUsername(sessionUsername);
+				realName = theEmp.getEmpRealname();
+			}
+
 			// 設為session層級的變數給jsp使用
-			m.addAttribute("username", googleUsername);
+			m.addAttribute("username", sessionUsername);
 			m.addAttribute("realName", realName);
 			m.addAttribute("role", role);
 		}
-		
 
 		// 導入公告內容
 		List<Announcements> arrAnnounce = aService.getAll();
@@ -141,7 +182,7 @@ public class LoginController {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 
 		CustomerBean cBean = new CustomerBean();
-
+		System.out.println(email);
 		// 設定到Bean
 		cBean.setEmail(email);
 
@@ -160,19 +201,13 @@ public class LoginController {
 	public String processForgotPasswordSendMail(@RequestParam("email") String email, Model m,
 			HttpServletRequest request) throws TemplateNotFoundException, MalformedTemplateNameException,
 			ParseException, IOException, TemplateException {
-		// CustomerBean cusBean = cusService.getByEmail(email);
+
 		List<CustomerBean> cus = cusService.findByEmail(email);
-		if (cus.isEmpty()) {
-			// return "test";
-			return "pass";
-		}
+		List<EmployeeBean> emp = empService.findByEmail(email);
+
 		String realname = null;
 		String username = null;
-		for (CustomerBean customerBean : cus) {
-			realname = customerBean.getCusRealname();
-			username = customerBean.getCusUsername();
-		}
-		CustomerBean cusBean = cusService.getByCusUsername(username);
+		String secretkey = null;
 
 		// 抓取當下時間參數
 		Date date = new Date();
@@ -180,19 +215,52 @@ public class LoginController {
 		String nowDate = String.format("%tY-%<tm-%<td %<tH:%<tM:%<tS", time);
 		System.out.println("nowDate: " + nowDate);
 
-		// 將使用者名稱跟時間做字串串接
-		String secret = username + nowDate;
-		System.out.println("secretkey: " + secret);
-		System.out.println("=========================加密==========================");
+		if (!cus.isEmpty()) { // 有找到會員就執行
+			System.out.println("會員");
+			for (CustomerBean customerBean : cus) {
+				realname = customerBean.getCusRealname();
+				username = customerBean.getCusUsername();
+			}
+			CustomerBean cusBean = cusService.getByCusUsername(username);
 
-		// 加密
-		String secretkey = new BCryptPasswordEncoder().encode(secret);
-		System.out.println("加密後密鑰" + secretkey);
+			// 將使用者名稱跟時間做字串串接
+			String secret = username + nowDate;
+			System.out.println("secretkey: " + secret);
+			System.out.println("=========================加密==========================");
 
-		// 將密鑰存到資料庫
-		cusBean.setSecretkey(secretkey);
-		cusService.save(cusBean);
+			// 加密
+			secretkey = new BCryptPasswordEncoder().encode(secret);
+			System.out.println("加密後密鑰" + secretkey);
 
+			// 將密鑰存到資料庫
+			cusBean.setSecretkey(secretkey);
+			cusService.save(cusBean);
+
+		} else if (!emp.isEmpty()) {// 有找到員工就執行
+			System.out.println("員工");
+			for (EmployeeBean employeeBean : emp) {
+				realname = employeeBean.getEmpRealname();
+				username = employeeBean.getEmpUsername();
+			}
+			EmployeeBean empBean = empService.getByEmpUsername(username);
+
+			// 將使用者名稱跟時間做字串串接
+			String secret = username + nowDate;
+			System.out.println("secretkey: " + secret);
+			System.out.println("=========================加密==========================");
+
+			// 加密
+			secretkey = new BCryptPasswordEncoder().encode(secret);
+			System.out.println("加密後密鑰" + secretkey);
+
+			// 將密鑰存到資料庫
+			empBean.setSecretkey(secretkey);
+			empService.save(empBean);
+		} else { // 都是空的
+			return "pass";
+		}
+
+		// 發送信件
 		String url = "http://localhost:8080/CheckEmailUsername.Controller?secretkey=" + secretkey;
 		m.addAttribute("url", url);
 		Map<String, Object> model = new HashMap<String, Object>();// 放置信件所需的參數
@@ -201,19 +269,34 @@ public class LoginController {
 
 		String templateNmae = "mailMarker.html"; // 使用的信件樣式模板
 		String head = "通知:浪跡變更密碼驗證通知。"; // 信件主旨
-		boolean sendMail = mService.sendMail(request, cusBean, model, templateNmae, head);
+		boolean sendMail = mService.sendMail(request, email, model, templateNmae, head);
 		System.out.println(sendMail);
 //			return "forgotPasswordWait";
+
 		return "fail";
 	}
 
 	@GetMapping(path = "/CheckEmailUsername.Controller")
 	public String processCheckUsername(@RequestParam("secretkey") String secretkey, Model m) {
-		CustomerBean cusBean = cusService.getBySecretkey(secretkey);
-		String username = cusBean.getCusUsername();
+		String username = null;
+		String role = null;
+		List<CustomerBean> theCus = cusService.findBySecretkey(secretkey);
+		List<EmployeeBean> theEmp = empService.findBySecretkey(secretkey);
+		if (!theCus.isEmpty()) {
+			for (CustomerBean customerBean : theCus) {
+				username = customerBean.getCusUsername();
+				role = customerBean.getRole();
+			}
+		} else if (!theEmp.isEmpty()) {
+			for (EmployeeBean employeeBean : theEmp) {
+				username = employeeBean.getEmpUsername();
+				role = employeeBean.getRole();
+			}
+		}
 		System.out.println("secretkey:" + secretkey);
 		System.out.println("username:" + username);
 		m.addAttribute("username", username);
+		m.addAttribute("role", role);
 		return "emailChangePassword";
 	}
 
@@ -221,21 +304,34 @@ public class LoginController {
 	@PostMapping(path = "/UpdateEmailPassword.Controller")
 	@ResponseBody
 	public String processUpdatePassword(@SessionAttribute("username") String username,
-			@RequestParam("newPassword") String password, HttpSession session) {
+			@SessionAttribute("role") String role, @RequestParam("newPassword") String password, HttpSession session) {
 
 		System.out.println("------------------------姓名-----------------------" + username);
 		System.out.println("username:" + username);
 		System.out.println("password: " + password);
-		// 取得會員資料
-		CustomerBean cusBean = cusService.getByCusUsername(username);
+		if ("MEMBER".equals(role)) {
+			// 取得會員資料
+			CustomerBean cusBean = cusService.getByCusUsername(username);
 
-		cusBean.setCusPassword(password);
-		cusBean.setSecretkey("");
-//			//進行加密
-		String encodePwd = new BCryptPasswordEncoder().encode(cusBean.getCusPassword());
-		System.out.println("encodePwd: " + encodePwd);
-		cusBean.setCusPassword(encodePwd);// 存回bean
-		cusService.save(cusBean);// 更新密碼
+			cusBean.setCusPassword(password);
+			cusBean.setSecretkey("");
+			// 進行加密
+			String encodePwd = new BCryptPasswordEncoder().encode(cusBean.getCusPassword());
+			System.out.println("encodePwd: " + encodePwd);
+			cusBean.setCusPassword(encodePwd);// 存回bean
+			cusService.save(cusBean);// 更新密碼
+		} else {
+			// 取得會員資料
+			EmployeeBean empBean = empService.getByEmpUsername(username);
+
+			empBean.setEmpPassword(password);
+			empBean.setSecretkey("");
+			// 進行加密
+			String encodePwd = new BCryptPasswordEncoder().encode(empBean.getEmpPassword());
+			System.out.println("encodePwd: " + encodePwd);
+			empBean.setEmpPassword(encodePwd);// 存回bean
+			empService.save(empBean);// 更新密碼
+		}
 		return "success";
 	}
 
@@ -309,21 +405,17 @@ public class LoginController {
 		return reCAPTCHA;
 
 	}
-	
-	
-	
-	//AJAX取得全部會員資料後續檢測+填值用
-			@GetMapping("/getAllCustomerData.controller")
-			public void processGetAllCus(HttpServletResponse response)throws IOException {
-				response.setContentType("text/html;charset=utf-8");
-				List<CustomerBean> arrCus = cusService.findAll();
-				JSONObject cusData = new JSONObject();
-				cusData.put("cusData", arrCus);
-				PrintWriter out = response.getWriter();
-				out.println(cusData);
-				out.close();
-			}
-	
-	
-	
+
+	// AJAX取得全部會員資料後續檢測+填值用
+	@GetMapping("/getAllCustomerData.controller")
+	public void processGetAllCus(HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=utf-8");
+		List<CustomerBean> arrCus = cusService.findAll();
+		JSONObject cusData = new JSONObject();
+		cusData.put("cusData", arrCus);
+		PrintWriter out = response.getWriter();
+		out.println(cusData);
+		out.close();
+	}
+
 }

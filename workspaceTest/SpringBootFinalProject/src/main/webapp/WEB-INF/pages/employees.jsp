@@ -331,7 +331,7 @@
 									<!-- left -->
 									<div class="offset-1 col-4">
 										<div class="ratio ratio-1x1 mt-1 mb-3">
-											<img src="/image/m2.jpg" class="rounded-3 shadow" />
+											<img id="image" src="/downloadTempDir/${imageName}" class="rounded-3 shadow" />
 										</div>
 										<input type="hidden" id="empUpdateId" name="empUpdateId"
 											value="" /> <label for="empNameUpdate" class="form-label">姓名:</label>

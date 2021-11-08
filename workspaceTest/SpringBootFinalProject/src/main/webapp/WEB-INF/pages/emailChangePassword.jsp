@@ -34,8 +34,8 @@
 <script src="/javascript/login.js"></script>
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
-<body>
-	<div class="offset-3 col-6 bg-white my-5 box2 rounded-3 shadow p-5"
+<body class="body1">
+	<div class="offset-3 col-6 box3 my-5 box2 rounded-3 shadow p-5"
 		id="datasource">
 		<p class="font1 border-bottom pb-5" id="position">變更密碼</p>
 		<!-- left -->

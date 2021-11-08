@@ -1,6 +1,148 @@
-﻿body {
+﻿.body3 {
     background-color: rgb(240, 245, 240);
 }
+
+#logo{
+	 margin-left: -40px;
+}
+.buttonHidden{
+	visibility:hidden
+}
+
 #loginStatus, .errMsg {
     color: red;
+}
+li {
+	list-style: none;
+}
+/* 	字體 */
+@font-face {
+	font-family: DD;
+	src: url(../font/setofont.ttf);
+}
+
+.body1 {
+	height: 700px;
+	background-image: url("../image/A2.jfif");
+	font-family: DD;
+	background-position: 90% 30%;
+}
+.body2 {
+	height: 700px;
+	background-image: url("../image/A3.jfif");
+	font-family: DD;
+	background-position: 90% 30%;
+}
+/* 	這是用來設定主畫面框框 */
+/* 	.box1{ */
+/* 		float:left; */
+/* 		background-color:pink; */
+/* 		height:550px; */
+/* 		width:0px; */
+/* 		margin:60px 0 0 15%; */
+/* 		padding:10px; */
+/* 		background-image:url("../image/h1.jpg"); */
+/* 		background:#fff url("../image/h11.jpg") 50% 50% no-repeat;　 */
+
+/* 	} */
+/* 	這是用來設定主畫面框框 */
+.box2 {
+	float: left;
+	height: 570px;
+	width: 600px;
+	margin: 60px 0 0 0;
+	padding: 20px;
+	background-color: rgba(255, 255, 255, .7);
+	background-position: 5% 5%;
+}
+.box3{
+	background-color: rgba(255, 255, 255, .7)
+}
+
+/* 	下面是按鈕的css */
+.onoffswitch {
+	position: relative;
+	width: 90px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+.onoffswitch-checkbox {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.onoffswitch-label {
+	display: block;
+	overflow: hidden;
+	cursor: pointer;
+	border: 2px solid #999999;
+	border-radius: 20px;
+}
+
+.onoffswitch-inner {
+	display: block;
+	width: 200%;
+	margin-left: -100%;
+	transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+	display: block;
+	float: left;
+	width: 50%;
+	height: 30px;
+	padding: 0;
+	line-height: 30px;
+	font-size: 14px;
+	color: white;
+	font-family: Trebuchet, Arial, sans-serif;
+	font-weight: bold;
+	box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+	content: "會員";
+	padding-left: 5px;
+	background-color: #34A7C1;
+	color: #FFFFFF;
+}
+
+/* .onoffswitch-inner:after { */
+/* 	content: "員工"; */
+/* 	padding-right: 10px; */
+/* 	background-color: #EEEEEE; */
+/* 	color: #999999; */
+/* 	text-align: right; */
+/* } */
+.onoffswitch-inner:after {
+	content: "員工";
+	padding-right: 10px;
+	background-color:#9FA1E0;
+	color: #FFFFFF;
+	text-align: right;
+}
+
+.onoffswitch-switch {
+	display: block;
+	width: 18px;
+	margin: 6px;
+	background: #FFFFFF;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 56px;
+	border: 2px solid #999999;
+	border-radius: 20px;
+	transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
+	margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
+	right: 0px;
 }

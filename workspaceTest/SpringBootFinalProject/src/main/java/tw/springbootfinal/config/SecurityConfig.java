@@ -23,7 +23,7 @@ public class SecurityConfig {
 
 	
 	@Configuration
-	@Order(2) //用來設定順序
+	@Order(1) //用來設定順序
 	public static class EmployeeConfigurationAdapter extends WebSecurityConfigurerAdapter{
 		public EmployeeConfigurationAdapter() {
 			super();
@@ -46,7 +46,7 @@ public class SecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			System.out.println("employee httpSecurity");
 			http
-			//.antMatcher("/Backstage/**")
+			.antMatcher("/BK/**")
 			.authorizeRequests()
 			.antMatchers("/oauth2/**").permitAll() //google登入的權限
 			//.anyRequest()
@@ -69,9 +69,9 @@ public class SecurityConfig {
 			.and()
 			.csrf().disable()
 			.formLogin()
-			.loginPage("/backstageLogin.Controller")
-			.defaultSuccessUrl("/Backstage/SelectCustomerAll.Controller")
-			.failureUrl("/backstageLoginerror.Controller")
+			.loginPage("/BK/backstageLogin.Controller")
+			.defaultSuccessUrl("/Users/loginIndex.Controller")
+			.failureUrl("/BK/backstageLoginerror.Controller")
 			
 			.and()
 			.logout().logoutUrl("/Users/logout.Controller")
@@ -81,7 +81,7 @@ public class SecurityConfig {
 	
 	
 	@Configuration
-	@Order(1) //用來設定順序
+	@Order(2) //用來設定順序
 	public static class CustomerConfigurationAdapter extends WebSecurityConfigurerAdapter{
 		public CustomerConfigurationAdapter() {
 			super();
