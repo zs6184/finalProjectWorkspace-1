@@ -122,8 +122,6 @@
 					</a> <!-- 子連結 -->
 						<ul id="sublist01" class="list-unstyled collapse">
 							<li><a href="/Backstage/product/findAll" class="itemDetails">餐點總覽</a></li>
-							<li><a href="#" class="itemDetails">新品上架</a></li>
-							<li><a href="#" class="itemDetails">餐點更新</a></li>
 						</ul></li>
 					<li><a href="#sublist02" data-bs-toggle="collapse"
 						id="dropdown02" class="center"> <i
@@ -152,7 +150,6 @@
 						<ul id="sublist04" class="list-unstyled collapse">
 							<li><a href="/Backstage/pet/backpetinfo.controller" class="itemDetails">寵物資訊總覽</a></li>
 							<li><a href="#" class="/Backstage/reservation/getAll">領養預約總覽</a></li>
-							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 					<li class="m-0"><a href="#" class="center"> <i
 							class="fas fa-comments-dollar mx-2"></i> <span class="items">客服管理</span>

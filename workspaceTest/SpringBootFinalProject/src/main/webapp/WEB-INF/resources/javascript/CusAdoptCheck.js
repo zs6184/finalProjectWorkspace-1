@@ -141,7 +141,7 @@ $(function() {
 		var nowTime = $("#modalForm #reserveTime").val();
 		$.ajax({
 			type: "POST",
-			url: "/users/petreserve/updateone",
+			url: "/Users/petreserve/updateone",
 			datatype: "JSON",
 			data:{'preTime':`${DATE}`,'nowTime':`${nowTime}`,'id':`${ID}`},
 			success:function(result){
@@ -173,7 +173,7 @@ function select(obj) {
 	console.log(ID+"--"+DATE);
 	$.ajax({
 		type: "GET",
-		url: "/users/petreserve/selectone",
+		url: "/Users/petreserve/selectone",
 		datatype: "JSON",
 		contentType: "application/json",
 		data: { "cusId": `${ID}`,"reserveTime":`${DATE}` },
@@ -220,7 +220,7 @@ function del() {
 	console.log(ID);
 	$.ajax({
 		type: "GET",
-		url: "/users/petreserve/deleteOne",
+		url: "/Users/petreserve/deleteOne",
 		datatype: "JSON",
 		contentType: "application/json",
 		data: { "cusId": `${ID}`,"reserveTime":`${DATE}` }

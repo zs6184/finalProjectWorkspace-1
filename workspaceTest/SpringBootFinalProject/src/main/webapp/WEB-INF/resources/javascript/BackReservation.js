@@ -22,7 +22,7 @@ $(function() {
 		$("#modalForm input,textarea").val("");
 		$("#imgPreview img").attr("src","");
 		$("#modalForm #keepStatus").attr("disabled",false).val("未赴約");
-		$("#missingBtn").addClass("btn-warning");
+		$("#missingBtn").addClass("btn-warning").addClass("d-none");
 		$("#missingBtn").removeClass("btn-secondary").attr("disabled",false);
 		$("#sendReserveBtn").attr("disabled",false).removeClass("btn-secondary").addClass("btn-danger");
 	});
@@ -194,7 +194,7 @@ function del() {
 		data: { "cusId": `${ID}`,"reserveTime":`${DATE}` }
 	})
 	record.parents("tr").remove();
-	window.location.reload()
+	
 }
 
 //使用更新按鈕選取此筆資料
@@ -223,14 +223,14 @@ function select(obj) {
 			if(parsed.keepStatus=="失約"){
 				$("#modalForm #keepStatus").attr("disabled","disabled");
 				$("#modalForm #keepStatus").attr("disabled","disabled");
-				$("#missingBtn").removeClass("btn-warning");
+				$("#missingBtn").removeClass("btn-warning").removeClass("d-none");
 				$("#missingBtn").addClass("btn-secondary");
 				$("#missingBtn").attr("disabled","disabled");
 				$("#sendReserveBtn").attr("disabled","disabled").removeClass("btn-danger").addClass("btn-secondary");
 			}else{
 				$("#modalForm #keepStatus").attr("disabled",false);
 				$("#missingBtn").addClass("btn-warning");
-				$("#missingBtn").removeClass("btn-secondary");
+				$("#missingBtn").removeClass("btn-secondary").removeClass("d-none");
 				$("#missingBtn").attr("disabled",false);
 				$("#sendReserveBtn").attr("disabled",false).removeClass("btn-secondary").addClass("btn-danger");
 			}			

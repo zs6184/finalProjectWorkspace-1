@@ -12,48 +12,52 @@ $(function() {
 	$("#reserveBtn").click(function(){
 		$("#reserveTime,#cusId,#cusRealname,#phone").val("");
 		$("#reserveTime,#cusId,#cusRealname,#phone").attr("placeholder","");
-		if($("#sessionRole").val()=="MEMBER"){
-			$.ajax({
-				type: "GET",
-				url: "/users/petreserve/checktheCus",
-				datatype: "JSON",
-				contentType: "application/json",
-				success:function(data){
-					console.log('get theCus successfully');
-					var theCus = jQuery.parseJSON(data).theCus;
-					console.log("cusId="+theCus.cusId)
-					$("#cusId").val(`${theCus.cusId}`);
-					$("#cusRealname").val(`${theCus.cusRealname}`);
-					if(theCus.phoneNumber!=null){
-					$("#phone").val(`${theCus.phoneNumber}`);
+		if($("#sessionUsername").val()!="null"){
+			if($("#sessionRole").val()=="MEMBER"){
+				$.ajax({
+					type: "GET",
+					url: "/Users/petreserve/checktheCus",
+					datatype: "JSON",
+					contentType: "application/json",
+					success:function(data){
+						console.log('get theCus successfully');
+						var theCus = jQuery.parseJSON(data).theCus;
+						console.log("cusId="+theCus.cusId)
+						$("#cusId").val(`${theCus.cusId}`);
+						$("#cusRealname").val(`${theCus.cusRealname}`);
+						if(theCus.phoneNumber!=null){
+						$("#phone").val(`${theCus.phoneNumber}`);
+						}
+						$("#reservePet").modal("show");					
+					},
+					error:function(){
+						console.log('get the cus fail');
+						window.location.replace("http://localhost:8080/login.Controller");
 					}
-					$("#reservePet").modal("show");					
-				},
-				error:function(){
-					console.log('get the cus fail');
-					window.location.replace("http://localhost:8080/login.Controller");
-				}
-			});
+				});
+			}else{
+				$.ajax({
+					type: "GET",
+					url: "/Users/petreserve/checktheEmp",
+					datatype: "JSON",
+					contentType: "application/json",
+					success:function(data){
+						console.log('get theEmp successfully');
+						var theEmp = jQuery.parseJSON(data).theEmp;
+						console.log("empId="+theEmp.empId)
+						$("#cusId").val(`${theEmp.empId}`);
+						$("#cusRealname").val(`${theEmp.empRealname}`);
+						$("#phone").val(`${theEmp.phoneNumber}`);
+						$("#reservePet").modal("show");					
+					},
+					error:function(){
+						console.log('get the EMP fail');
+						window.location.replace("http://localhost:8080/login.Controller");
+					}
+				});
+			}
 		}else{
-			$.ajax({
-				type: "GET",
-				url: "/users/petreserve/checktheEmp",
-				datatype: "JSON",
-				contentType: "application/json",
-				success:function(data){
-					console.log('get theCus successfully');
-					var theEmp = jQuery.parseJSON(data).theEmp;
-					console.log("empId="+theEmp.empId)
-					$("#cusId").val(`${theEmp.empId}`);
-					$("#cusRealname").val(`${theEmp.empRealname}`);
-					$("#phone").val(`${theEmp.phoneNumber}`);
-					$("#reservePet").modal("show");					
-				},
-				error:function(){
-					console.log('get the EMP fail');
-					window.location.replace("http://localhost:8080/login.Controller");
-				}
-			});
+			window.location.replace("http://localhost:8080/login.Controller");
 		}	
 	});
 	
@@ -138,7 +142,7 @@ $(function() {
 		var reserveData = $("#reserveForm").serialize();
 		$.ajax({
 			type:"POST",
-			url:"/users/petreserve/checkthenupdate",
+			url:"/Users/petreserve/checkthenupdate",
 			data:`${reserveData}`,
 			dataType:"JSON",
 			success:function(result){
@@ -180,7 +184,7 @@ function checkIfLogin(){
 											target="_self">後台管理</a></li>`);
 		});
 	}
-	if(sessioncheck=="null"){//沒抓到就換回來
+	if($("#sessionUsername").val()=="null"){//沒抓到就換回來
 		console.log("隱藏");
 		$(".memberOption").addClass("d-none");
 		$(".loginOption").removeClass("d-none");
