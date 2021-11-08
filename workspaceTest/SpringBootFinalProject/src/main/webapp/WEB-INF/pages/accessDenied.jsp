@@ -27,7 +27,7 @@
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
 
 </head>
-<body>
+<body class="body3">
 	<div class="container-fluid mt-5">
 		<div class="row">
 			<div class="offset-4 col-4 border rounded-3 shadow mt-5 bg-white">

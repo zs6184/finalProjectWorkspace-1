@@ -32,6 +32,7 @@ function selectOneEmp(id) {
 			$("#birthdateUpdate").val(data.birthdate);
 			$("#addressUpdate").val(data.address);
 			$("#notesUpdate").val(data.note);
+			$("#image").prop("src","/downloadTempDir/"+data.imageName);
 		},
 		error: function(jqXHR, textStatus, errThrown) {
 			alert(`${textStatus}---${errThrown}`)

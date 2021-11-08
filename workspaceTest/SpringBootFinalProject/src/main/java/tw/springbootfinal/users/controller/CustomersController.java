@@ -3,7 +3,6 @@ package tw.springbootfinal.users.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
+import tw.springbootfinal.users.model.EmployeeBean;
+import tw.springbootfinal.users.model.EmployeeService;
 
 @Controller
 @RequestMapping(path = "/Backstage")
@@ -25,6 +26,9 @@ public class CustomersController {
 	@Autowired
 	private CustomerService cusService;
 
+	@Autowired
+	private EmployeeService empService;
+
 	@GetMapping("/Customer.Controller")
 	public String processCustomer() {
 		return "Customer";
@@ -32,14 +36,16 @@ public class CustomersController {
 
 	// 查詢全部會員
 	@GetMapping("/SelectCustomerAll.Controller")
-	public String processSelectCustomerAll(@SessionAttribute("username") String username,Model m, HttpServletRequest request) {
+	public String processSelectCustomerAll(@SessionAttribute("username") String username, Model m,
+			HttpServletRequest request) {
 		List<CustomerBean> selectAll = cusService.findAll();// 搜尋所有會員資料
-		//此處無法使用@RequestParam("id")來抓取id，網頁會陷入過多重新導向問題，因此改採session方式抓會員資料
-		CustomerBean cusBean = cusService.getByCusUsername(username);
-		// 取得資料庫資料
-		int cusId = cusBean.getCusId();
-		String imageName = cusBean.getImageName();
-		byte[] image = cusBean.getImage();
+		// 此處無法使用@RequestParam("id")來抓取id，網頁會陷入過多重新導向問題，因此改採session方式抓會員資料
+
+		EmployeeBean empBean = empService.getByEmpUsername(username);
+		// 取得使用者資料
+		int empId = empBean.getEmpId();
+		String imageName = empBean.getImageName();
+		byte[] image = empBean.getImage();
 		System.out.println("imageName: " + imageName);
 		// 如果會員沒有上傳過圖片就使用預設圖片
 		if (image == null) {
@@ -49,11 +55,12 @@ public class CustomersController {
 			// 抓到專案路徑加上暫存資料夾名稱
 			String path = request.getSession().getServletContext().getRealPath("/") + "downloadTempDir\\";
 			System.out.println(path);
-			cusService.imageDownload(image, cusId, imageName, path);
+			empService.imageDownload(image, empId, imageName, path);
 
 			m.addAttribute("imageName", imageName);
 		}
-		
+//		
+
 		// 將整個陣列傳到jsp的forEach
 		m.addAttribute("cus", selectAll);
 		return "Customer";
