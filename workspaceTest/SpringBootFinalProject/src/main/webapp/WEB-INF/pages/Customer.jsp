@@ -129,16 +129,16 @@
 							</li>
 							<li><a href="/back.coupons" class="itemDetails">優惠碼管理</a></li>
 							<li><a href="/Backstage/bookings" class="itemDetails">訂位查詢</a></li>
-							<li><a href="#" class="itemDetails">訂位更新</a></li>
+							<li><a href="/Backstage/bookings" class="itemDetails">訂位更新</a></li>
 						</ul></li>
 					<li><a href="#sublist03" data-bs-toggle="collapse"
 						id="dropdown03" class="center"> <i
 							class="fas fa-bullhorn mx-2"></i> <span class="items">公告管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist03" class="list-unstyled collapse">
-							<li><a href="#" class="itemDetails">公告總覽</a></li>
+							<li><a href="/Backstage/announcements/backannouncements.controller" class="itemDetails">公告總覽</a></li>
 							<li><a href="/Backstage/announcements/backannouncements.controller" class="itemDetails">新增公告</a></li>
-							<li><a href="#" class="itemDetails">公告更新</a></li>
+							<li><a href="/Backstage/announcements/backannouncements.controller" class="itemDetails">公告更新</a></li>
 						</ul></li>
 					<li><a href="#sublist04" data-bs-toggle="collapse"
 						id="dropdown04" class="center"> <i class="fas fa-cat mx-2"></i>

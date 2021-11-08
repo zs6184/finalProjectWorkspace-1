@@ -30,9 +30,10 @@ import tw.springbootfinal.booking.model.BookingsDTO;
 import tw.springbootfinal.booking.model.Constant;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
+import tw.springbootfinal.users.model.EmployeeService;
 
 @Controller
-@RequestMapping("/backstage/bookings")
+@RequestMapping("/Backstage/bookings")
 public class BookingsController {
 
 	@Autowired
@@ -41,39 +42,36 @@ public class BookingsController {
 	@Autowired
 	private CustomerService cService;
 	int ID;
+	
+	@Autowired
+	private EmployeeService empService;
 
 //	查詢全部資料
 //	@GetMapping()
 	@RequestMapping(method = { RequestMethod.GET })
-	public String processLoadingPage(@SessionAttribute("username") String username, Model m, HttpServletRequest request) {
+	public String processLoadingPage(@SessionAttribute("role") String role,@SessionAttribute("username") String username, Model m, HttpServletRequest request) {
 		List<BookingsBean> arrBook = bookingService.getAll();
 		m.addAttribute("arrBook", arrBook);
-		
-		String imageName = cService.selectImage(username, request);
-		m.addAttribute("imageName",imageName);
+		if("MEMBER".equals(role)) {
+			String imageName = cService.selectImage(username, request);
+			m.addAttribute("imageName",imageName);
+		}else {
+			String imageName = empService.selectImage(username, request);
+			m.addAttribute("imageName",imageName);
+		}
+	
 		
 		return "Bookings";
 	}
 
-	/**
-	 * 訂位
-	 * 
-	 * @param bookingsDTO
-	 * @return
-	 */
-	@ResponseBody()
-	@PostMapping(produces = "application/json; charset=utf-8")
-	public String create(@RequestBody BookingsDTO bookingsDTO) {
-		bookingService.save(bookingsDTO);
-		return "　　訂位成功";
-	}
+	
 
 	// 新增單一資料
 //	@RequestMapping(value = "insert", method = RequestMethod.POST, produces = "application/json; charset=utf-8") // 設定字串type與編碼
 	@PostMapping("insert")
 	public String processAddBookings(BookingsBean temp) {
 		bookingService.save(temp);
-		return "redirect:/backstage/bookings";
+		return "redirect:/Backstage/bookings";
 	}
 
 	// 選取單一資料
@@ -122,7 +120,7 @@ public class BookingsController {
 	public String processUpdateOne(BookingsBean temp) {
 
 		bookingService.update(temp);
-		return "redirect:/backstage/bookings";
+		return "redirect:/Backstage/bookings";
 	}
 
 	

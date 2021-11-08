@@ -24,9 +24,11 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import tw.springbootfinal.announcements.model.Announcements;
 import tw.springbootfinal.announcements.model.AnnouncementsService;
 import tw.springbootfinal.users.model.CustomerService;
+import tw.springbootfinal.users.model.EmployeeBean;
+import tw.springbootfinal.users.model.EmployeeService;
 
 @Controller
-@RequestMapping("/backstage/announcements")
+@RequestMapping("/Backstage/announcements")
 public class AnnouncementsController {
 
 	
@@ -36,16 +38,25 @@ public class AnnouncementsController {
 	@Autowired
 	private CustomerService cusService;
 	
+	@Autowired
+	private EmployeeService empService;
+	
 	/*
 	 * 取得所有文章資料
 	 */
 	@GetMapping("/backannouncements.controller")
-	public String processGetAll(@SessionAttribute("username") String username, Model m, HttpServletRequest request) {
+	public String processGetAll(@SessionAttribute("role") String role,@SessionAttribute("username") String username, Model m, HttpServletRequest request) {
 		List<Announcements> arrAnnounce = aService.getAll();
 		m.addAttribute("arrAnnounce",arrAnnounce);
 		//會員圖片
-		String imageName = cusService.selectImage(username, request);
-		m.addAttribute("imageName",imageName);
+		if("MEMBER".equals(role)) {
+			String imageName = cusService.selectImage(username, request);
+			m.addAttribute("imageName",imageName);
+		}else {
+			String imageName = empService.selectImage(username, request);
+			m.addAttribute("imageName",imageName);
+		}
+		
 		return "Announcements";
 	}
 	
@@ -59,7 +70,7 @@ public class AnnouncementsController {
 		
 		aService.insertOne(transfer, pic);
 		
-		return "redirect:/backstage/announcements/backannouncements.controller";
+		return "redirect:/Backstage/announcements/backannouncements.controller";
 	}
 	
 	
@@ -91,7 +102,7 @@ public class AnnouncementsController {
 		Announcements transfer = JSON.parseObject(jsonStr, Announcements.class);
 		aService.updateOne(transfer, pic);
 		System.out.println("修改完成");
-		return "redirect:/backstage/announcements/backannouncements.controller";
+		return "redirect:/Backstage/announcements/backannouncements.controller";
 		
 		
 	}

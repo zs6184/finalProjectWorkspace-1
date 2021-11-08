@@ -7,7 +7,7 @@ $(function() {
 //變更按鈕對應表單的action
 
 $("#insertBtn").click(function(){
-	$("#modalForm").attr("action","/backstage/announcements/insertAnnouncements.controller");
+	$("#modalForm").attr("action","/Backstage/announcements/insertAnnouncements.controller");
 	$("#modalForm #idSection").prop("hidden","hidden");
 	$("#announcementsAdd input").attr("placeholder","");
 	$("#imgPreview img").attr("src","");
@@ -54,7 +54,7 @@ function del(obj) {
 	console.log(ID);
 			$.ajax({
 			type:"GET",
-			url:"/backstage/announcements/deletebyid.controller",
+			url:"/Backstage/announcements/deletebyid.controller",
 			datatype:"JSON",
 			contentType: "application/json",
 			data:{"id":`${ID}`}
@@ -64,13 +64,13 @@ function del(obj) {
 }
 //選取此筆資料
 function select(obj){
-	$("#modalForm").attr("action","/backstage/announcements/updateone.controller");
+	$("#modalForm").attr("action","/Backstage/announcements/updateone.controller");
 	$("#modalForm #idSection").removeAttr("hidden");
 	var ID =$(obj).parent("td").siblings(".ID").text();
 	console.log(ID);
 		$.ajax({
 			type:"GET",
-			url:"/backstage/announcements/selectbyid.controller",
+			url:"/Backstage/announcements/selectbyid.controller",
 			datatype:"JSON",
 			contentType: "application/json",
 			data:{"id":`${ID}`},

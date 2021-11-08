@@ -16,7 +16,7 @@ public interface ReservationRepo extends JpaRepository<AdoptReservation, Reserva
 	public List<AdoptReservation> findByCusId(Integer cusId);
 	
 	//使用寵物Id刪除
-	public void deleteByPetId(Integer petId);
+	public void deleteByPetIdAndKeepStatus(Integer petId,String status);
 	
 	//使用寵物ID尋找預約紀錄
 	public List<AdoptReservation> findByPetIdAndKeepStatus(Integer petId, String status);

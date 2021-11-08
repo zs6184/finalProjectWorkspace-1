@@ -48,7 +48,7 @@ public class BookingsServiceImpl implements BookingService {
 //        }
 
         int sum = bookingsRepo.findByBookingsDateAndBookingsTime(bookingsDTO.getOrderDate(), bookingsDTO.getTime()).stream().mapToInt(item -> Integer.parseInt(item.getBookingsNum())).sum();
-        if ((Integer.parseInt(bookingsDTO.getPeopleNum()) + sum ) > 20) throw new AjaxException("超過20人不可預約");
+        if ((Integer.parseInt(bookingsDTO.getPeopleNum()) + sum ) > 20) throw new AjaxException("預約已滿,不可預約");
 
         BookingsBean bookingsBean = new BookingsBean();
         bookingsBean.setCusID(bookingsDTO.getCusid());

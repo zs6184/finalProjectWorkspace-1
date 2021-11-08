@@ -24,6 +24,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import tw.springbootfinal.products.model.ProductService;
 import tw.springbootfinal.products.model.Products;
 import tw.springbootfinal.users.model.CustomerService;
+import tw.springbootfinal.users.model.EmployeeService;
 
 @Controller
 @RequestMapping("/Backstage/product")
@@ -33,6 +34,9 @@ public class BackProductsController {
 	private ProductService prodService;
 	@Autowired
 	private CustomerService cService;
+	@Autowired
+	private EmployeeService empService;
+
 	
 //-----------------------------------------------------------------	
 	
@@ -42,7 +46,7 @@ public class BackProductsController {
 		List<Products> arrRes = prodService.findAll();
 		m.addAttribute("arrRes",arrRes);
 		//會員圖片
-		String imageName = cService.selectImage(username, request);
+		String imageName = empService.selectImage(username, request);
 		m.addAttribute("imageName",imageName);
 		return "BackProducts";
 	}

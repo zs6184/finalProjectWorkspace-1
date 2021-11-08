@@ -2,6 +2,8 @@
 // JavaScript source code
 var customers;
 var cusID = new Array();
+var sessioncheck = $("#sessionUsername").val();
+var sessionRole = $("#sessionRole").val();
 $(function () {
     $('#owl-one').owlCarousel({
         items: 2,
@@ -96,7 +98,60 @@ $.ajax({
 
 
 
-
+//按下領養預約按鈕時清空表單欄位並檢測是否有登入，未登入則跳轉登入頁面
+	$("#b2").click(function(){
+		$("#cusid,#name,#phone").val("");
+		$("#cusid,#name,#phone").attr("placeholder","");
+		    console.log("session username="+$("#sessionUsername").val());
+            console.log("session role="+$("#sessionRole").val());
+		 if($("#sessionRole").val()=="MEMBER"){
+				$.ajax({
+				type: "GET",
+				url: "/users/petreserve/checktheCus",
+				datatype: "JSON",
+				contentType: "application/json",
+				success:function(data){
+					console.log('get theCus successfully');
+					var theCus = jQuery.parseJSON(data).theCus;
+					console.log("cusId="+theCus.cusId)
+					$("#cusid").val(`${theCus.cusId}`);
+					$("#name").val(`${theCus.cusRealname}`);
+					if(theCus.phoneNumber!=null){
+					$("#phone").val(`${theCus.phoneNumber}`);
+					}
+					$("#reservePet").modal("show");					
+				},
+				error:function(){
+					console.log('get the cus fail');
+					window.location.replace("http://localhost:8080/login.Controller");
+				}
+			});
+			}else{
+				$.ajax({
+				type: "GET",
+				url: "/users/petreserve/checktheEmp",
+				datatype: "JSON",
+				contentType: "application/json",
+				success:function(data){
+					console.log('get theCus successfully');
+					var theCus = jQuery.parseJSON(data).theCus;
+					console.log("cusId="+theCus.cusId)
+					$("#cusid").val(`${theCus.cusId}`);
+					$("#name").val(`${theCus.cusRealname}`);
+					if(theCus.phoneNumber!=null){
+					$("#phone").val(`${theCus.phoneNumber}`);
+					}
+					$("#reservePet").modal("show");					
+				},
+				error:function(){
+					console.log('get the emp fail');
+					window.location.replace("http://localhost:8080/login.Controller");
+				}
+			});
+				
+			}
+			
+	});
 
 
 
@@ -132,8 +187,9 @@ $(document).ready(function () {
             orderDate: $('#orderDate').val(),
             time: $('#time').val()
         })
+		console.log("我進來了");
         $.ajax({
-            url: '/backstage/bookings',
+            url: '/users/bookingsRecord',
             method: 'POST',
             dataType: 'text', // 預期回傳的型態 [html, text, json]
             contentType: 'application/json;charset="utf-8"',

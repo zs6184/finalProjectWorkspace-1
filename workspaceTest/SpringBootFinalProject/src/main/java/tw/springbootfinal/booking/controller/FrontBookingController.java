@@ -11,13 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.alibaba.fastjson.JSONObject;
 
 import tw.springbootfinal.booking.model.BookingService;
 import tw.springbootfinal.booking.model.BookingsBean;
+import tw.springbootfinal.booking.model.BookingsDTO;
 import tw.springbootfinal.reservation.model.AdoptReservation;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
@@ -30,6 +34,9 @@ public class FrontBookingController {
 	private BookingService bService;
 	@Autowired
 	private CustomerService cService;
+	
+	@Autowired
+	private BookingService bookingService;
 	
 	int status;
 	
@@ -83,5 +90,19 @@ public class FrontBookingController {
 			return "CusBookingCheck";
 		}
 		
+		
+		
+		/**
+		 * 訂位
+		 * 
+		 * @param bookingsDTO
+		 * @return
+		 */
+		@ResponseBody()
+		@PostMapping(produces = "application/json; charset=utf-8")
+		public String create(@RequestBody BookingsDTO bookingsDTO) {
+			bookingService.save(bookingsDTO);
+			return "　　訂位成功";
+		}
 		
 }

@@ -50,6 +50,7 @@
 
 	<!-- nav欄部分 -->
 	<input type="hidden" id="sessionUsername" value="<%=session.getAttribute("username") %>">
+	<input type="hidden" id="sessionRole" value="<%=session.getAttribute("role") %>">
 	<!-- 檢查SessionAttribute是否存在用 -->
 	<div>
 		<div id="topbar">
