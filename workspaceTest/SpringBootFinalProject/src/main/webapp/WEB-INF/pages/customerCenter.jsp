@@ -35,7 +35,7 @@
 <link rel="icon" type="image/png"  href="/font/favicon1.png">
 </head>
 
-<body id="top" style="background-image: url(/image/背景4.jpg)";>
+<body id="top" style="background-image: url(/image/背景4.jpg);">
 	<div style="background-color: rgb(6, 121, 121, .1);">
 		<br>
 	</div>
