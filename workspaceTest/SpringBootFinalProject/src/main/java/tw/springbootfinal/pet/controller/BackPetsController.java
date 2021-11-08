@@ -31,6 +31,7 @@ import tw.springbootfinal.reservation.model.AdoptReservation;
 import tw.springbootfinal.reservation.model.ReservationService;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
+import tw.springbootfinal.users.model.EmployeeService;
 
 @Controller
 @RequestMapping("/Backstage/pet")
@@ -43,6 +44,9 @@ public class BackPetsController {
 	private CustomerService cService;
 	@Autowired
 	private ReservationService rService;
+	@Autowired
+	private EmployeeService empService;
+
 //--------------------------------------------------------------
 	
 	//取得所有寵物資料
@@ -59,7 +63,7 @@ public class BackPetsController {
 		m.addAttribute("cateSet",cateSet);
 		m.addAttribute("sexSet",sexSet);
 		//會員圖片
-		String imageName = cService.selectImage(username, request);
+		String imageName = empService.selectImage(username, request);
 		m.addAttribute("imageName",imageName);
 
 		return  "BackPetInfo";

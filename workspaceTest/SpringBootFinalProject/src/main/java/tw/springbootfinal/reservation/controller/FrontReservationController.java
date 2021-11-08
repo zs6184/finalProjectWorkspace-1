@@ -25,6 +25,8 @@ import tw.springbootfinal.reservation.model.AdoptReservation;
 import tw.springbootfinal.reservation.model.ReservationService;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
+import tw.springbootfinal.users.model.EmployeeBean;
+import tw.springbootfinal.users.model.EmployeeService;
 
 @Controller
 @RequestMapping("/users/petreserve")
@@ -34,6 +36,8 @@ public class FrontReservationController {
 	private ReservationService rsService;
 	@Autowired
 	private CustomerService cService;
+	@Autowired
+	private EmployeeService empService;
 	
 	int status;
 	
@@ -51,6 +55,17 @@ public class FrontReservationController {
 		out.close();	
 	}
 	
+	//確認已登入後回傳員工資料
+	@GetMapping("/checktheEmp")
+	public void returnTheEmp(@SessionAttribute("username")String username,HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=utf-8");
+		EmployeeBean theEmp = empService.getByEmpUsername(username);
+		JSONObject empData = new JSONObject();
+		empData.put("theEmp", theEmp);
+		PrintWriter out = response.getWriter();
+		out.println(empData);
+		out.close();	
+	}	
 	
 	//檢查是否重複(SinglePetInfo進行預約時候判斷用)
 	@PostMapping("/checkthenupdate") @ResponseBody
@@ -72,12 +87,24 @@ public class FrontReservationController {
 	
 	//查詢單一客戶的領養預約紀錄給個人中心
 	@GetMapping("/getthecusresult")
-	public String slelectTheCusResult(@SessionAttribute("username")String username,Model m,HttpServletRequest request) {
-		CustomerBean temp = cService.getByCusUsername(username);
-		Integer theId = temp.getCusId();
+	public String slelectTheCusResult(@SessionAttribute("username")String username,@SessionAttribute("role")String role,Model m,HttpServletRequest request) {
+		System.out.println("ROLE="+role);
+		String imageName="";
 		int notyet=0;
 		int miss=0;
 		int arrive=0;
+		Integer theId=0;
+		//個人中心圖片
+		if("MEMBER".equals(role)) {
+			imageName = cService.selectImage(username, request);
+			CustomerBean temp = cService.getByCusUsername(username);
+			theId = temp.getCusId();
+		}else {
+			imageName = empService.selectImage(username, request);
+			EmployeeBean temp =empService.getByEmpUsername(username);
+			theId = temp.getEmpId();
+		}
+		
 		List<AdoptReservation> arrRes = rsService.selectTheCusRec(theId);
 		for(AdoptReservation aRes:arrRes) {
 			switch(aRes.getKeepStatus()) {
@@ -95,14 +122,13 @@ public class FrontReservationController {
 		m.addAttribute("notyet",notyet);
 		m.addAttribute("miss",miss);
 		m.addAttribute("arrRes",arrRes);
+		
 		if(status==1) {
 			m.addAttribute("status","已預約");
 			status=0;
 		}
-		//會員圖片
-		String imageName = cService.selectImage(username, request);
 		m.addAttribute("imageName",imageName);
-
+		
 		return "CusAdoptCheck";
 	}
 	
