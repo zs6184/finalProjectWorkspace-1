@@ -4,7 +4,7 @@ $(function(){
 	//初始化購物車圖示
 	$('.shoppingcartnum').hide();
 	let totalnum = CarticonNum(userName);
-	if(totalnum > 0 ){
+	if(totalnum > 0 && totalnum){
 		$('.shoppingcartnum').show();
 		$('.shoppingcartnum p').text(totalnum);
 	}
