@@ -111,7 +111,7 @@ public class ecpayController {
 		 */
 
 		// B.以Client端(消費者)方式回傳付款結果通知
-		obj.setOrderResultURL("http://127.0.0.1:8080/ec/ECPayServer3");
+		obj.setOrderResultURL("http://localhost:8080/ec/ECPayServer3");
 		// 當消費者付款完成後，綠界會將付款結果參數以幕前(Client POST)回傳到該網址。
 		// 若此參數設定網址未使用 https 時，部份瀏覽器可能會出現警告訊息提醒。(註：chrome對於localhost網址不會出現警告訊息提醒)
 		// 若與下面[ClientBackURL]同時設定，將會以此參數為主。
