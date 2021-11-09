@@ -1,0 +1,52 @@
+.item {
+	font-family: 'Noto Sans TC', sans-serif;
+	width: 900px;
+	margin: auto;
+	text-align: center;
+}
+
+.card {
+	margin: 20px;
+	border: 5px solid rgb(6, 121, 121, .8);
+	border-radius: 2%;
+	font-size: 16px;
+	background: rgba(255, 255, 255, .1);
+	backdrop-filter: blur(10px);
+	width: 400px;
+	float: left;
+	text-align: left;
+}
+.card:hover{
+	border: 5px solid rgb(6, 183, 112, .8);
+}
+.ptext{
+	padding:0 10px;
+	padding-top: 10px;
+}
+.ptext span{
+	color: #8E8E8E;
+}
+/*當購物車是空的*/
+.emptycart{
+	margin:auto;
+	margin-top:60px;
+	width: 500px;
+	height:250px;
+	border: 5px solid rgb(6, 121, 121,.8);
+	border-radius:2%; 
+	text-align: center;
+	padding: 50px;
+	font-size: 23px;
+	background: rgba(255, 255, 255, .1);
+	backdrop-filter: blur(10px);
+}
+.emptycart p{
+	border-radius:10%;
+	background-color: rgb(6, 121, 121,.8);
+	height: 29%;
+	width: 158px;
+	margin: auto;
+}
+p a{
+	color: white;
+}

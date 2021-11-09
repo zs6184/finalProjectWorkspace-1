@@ -21,4 +21,8 @@ public interface orderRepository extends JpaRepository<orderBean, Integer> {
 	@Query(value = "SELECT * FROM Orders o WHERE  o.order_ID like  '%25%' or convert(varchar,o.order_time,120) like '%25%' AND o.cus_ID in(select c.cus_ID from Customers c where c.cus_ID= 2 )" ,nativeQuery = true)
 	public List<orderBean> searchcusorder(Integer id,String str);
 	
+	//尋找使用者訂單
+	@Query(value = "select * from Orders where cus_ID=?1 order by order_ID DESC" ,nativeQuery = true)
+	public List<orderBean> findByOrdercus(int id);
+	
 }

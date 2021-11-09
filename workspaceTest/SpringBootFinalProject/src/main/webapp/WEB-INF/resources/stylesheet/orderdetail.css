@@ -106,23 +106,10 @@ td a {
         color:white;
     }
 thead tr{
-    background-color:aquamarine;
+    background-color:rgb(6, 121, 121,.8);
     border-radius:10px;
 }
 
-
-tbody tr td:last-child {
-
-}
- tbody tr td a {
-
- } 
-tbody tr td a:first-child {
-	
- } 
-tbody tr td a:last-child {
-
-}
 /*訂單明細*/
 
 .border {
@@ -224,18 +211,25 @@ button i {
 .searchform input {
     display: inline-block;
     width: 90%;
+    font-size: 22px;
 }
     .searchform i {
-        color: blue;
+        color: #84C1FF;
         position: relative;
-        top: 3px;
-        font-size: 25px;
-        padding: 10px;
+        top: 6px;
+        font-size: 30px;
+        padding: 5px;
         margin-right: 5px;
     }
 .item p{
 	font-size: 20px;
 }    
+
+/*icon*/
+td i{
+	position: relative;
+	top: 4px;
+}
 /*order step*/
 .node {
     height: 10px;
@@ -261,7 +255,7 @@ li p {
     margin-left: 25px;
 }
 
-li {
+.progress li {
     list-style: none;
     line-height: 1px;
 }

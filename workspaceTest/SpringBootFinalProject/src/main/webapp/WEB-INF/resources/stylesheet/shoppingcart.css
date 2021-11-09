@@ -130,6 +130,11 @@ input::-webkit-inner-spin-button {
     color: red;
     cursor: pointer;
 }
+/*產品名稱大一點*/
+tbody td:first-child{
+	font-size: 26px;
+}
+
 /*當購物車是空的*/
 .emptycart{
 	margin:auto;
@@ -154,6 +159,7 @@ input::-webkit-inner-spin-button {
 p a{
 	color: white;
 }
+
 
 
 
