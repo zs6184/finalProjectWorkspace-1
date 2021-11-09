@@ -189,7 +189,7 @@
 			<div class="foot">
 				<a class="home" href="/Users/loginIndex.Controller">回首頁</a>
 				<c:if test="${order.paymethod == '綠界付款'}">
-					<a class="ecpay" href="/ec/ECPayServer/${order.id}">綠界信用卡付款</a>
+					<a class="ecpay" href="/ec/ECPayServer/${order.id}">信用卡付款</a>
 				</c:if>
 			</div>
 		</div>

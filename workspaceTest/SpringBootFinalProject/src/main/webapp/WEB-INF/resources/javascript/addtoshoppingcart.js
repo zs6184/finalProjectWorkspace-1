@@ -1,6 +1,7 @@
 $(function(){
 	//取得使用者名稱
 	let userName = $('#sessionUsername').val();
+	console.log('使用者名稱:'+userName);
 	//初始化購物車圖示
 	$('.shoppingcartnum').hide();
 	let totalnum = CarticonNum(userName);
@@ -30,18 +31,22 @@ $(function(){
 //購物車圖示數量
 function CarticonNum(username) {
     var cookie = $.cookie(`cart${username}`);
-    var testcarJSON = JSON.parse(cookie);
-	let itemnum=0;
-    for (let j in testcarJSON) {
-        console.log('====');
-        console.log(testcarJSON[j].id + ":" + testcarJSON[j].num);
-		num = parseInt(testcarJSON[j].num);
-		itemnum +=num
-	}	
-	if(itemnum > 0 ){
-		$('.shoppingcartnum').show();
-		$('.shoppingcartnum p').text(itemnum);
+	itemnum = '';
+	if(cookie){
+			var testcarJSON = JSON.parse(cookie);
+		let itemnum=0;
+	    for (let j in testcarJSON) {
+	        console.log('====');
+	        console.log(testcarJSON[j].id + ":" + testcarJSON[j].num);
+			num = parseInt(testcarJSON[j].num);
+			itemnum +=num
+		}	
+		if(itemnum > 0 ){
+			$('.shoppingcartnum').show();
+			$('.shoppingcartnum p').text(itemnum);
+		}
 	}
+    
 	return itemnum;
 		
 }
