@@ -1,19 +1,50 @@
 $(function(){
+	//取得使用者名稱
+	let userName = $('#sessionUsername').val();
+	//初始化購物車圖示
+	$('.shoppingcartnum').hide();
+	let totalnum = CarticonNum(userName);
+	if(totalnum > 0 ){
+		$('.shoppingcartnum').show();
+		$('.shoppingcartnum p').text(totalnum);
+	}
+	
+	
 	$('#productForm').submit(function(){
 		let addtoCartNum = parseInt($("#productForm #num").val());
-		let userName = $('#sessionUsername').val();
 		let productId = $("#productForm #productID").val();
 		console.log('購物車id:'+productId);
 		//加入購物車
 		addproductTocart(addtoCartNum,userName,productId);
 	    //查看購物車內容
         testCartNum(userName);
+		//購物車圖示
+		CarticonNum(userName)
 		//結束
 		$('.btn-secondary').click();
 		return false;	
 	});
 	
 });//DOMReady結束
+
+//購物車圖示數量
+function CarticonNum(username) {
+    var cookie = $.cookie(`cart${username}`);
+    var testcarJSON = JSON.parse(cookie);
+	let itemnum=0;
+    for (let j in testcarJSON) {
+        console.log('====');
+        console.log(testcarJSON[j].id + ":" + testcarJSON[j].num);
+		num = parseInt(testcarJSON[j].num);
+		itemnum +=num
+	}	
+	if(itemnum > 0 ){
+		$('.shoppingcartnum').show();
+		$('.shoppingcartnum p').text(itemnum);
+	}
+	return itemnum;
+		
+}
 
 //控制台印出目前購物車狀況
 function testCartNum(username) {

@@ -1,13 +1,15 @@
 $(function(){
+	$('.shoppingcartnum').hide();
 	let userName = $('#sessionUsername').val();
 	let iconNum = $('.shoppingcartnum p').text();
 	let totalnum = testCartNum(userName);
-	if(iconNum > 0 ){
+	if(totalnum > 0 ){
 		$('.shoppingcartnum').show();
 		$('.shoppingcartnum p').text(totalnum);
 	}
 	
 });
+
 //購物車數量
 function testCartNum(username) {
     var cookie = $.cookie(`cart${username}`);

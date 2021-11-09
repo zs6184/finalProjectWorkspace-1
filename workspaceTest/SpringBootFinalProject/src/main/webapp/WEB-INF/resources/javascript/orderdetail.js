@@ -108,10 +108,10 @@ function getsessionuserorders(){
 		method: 'get',
 		url: '/order/findorderbyusername',
 		success: function(data) {
-			var data2 = data.reverse();
+			//var data2 = data.reverse();
 			$('.userorders').html("");
 			
-			for (let i in data2) {
+			for (let i in data) {
 				var order = JSON.parse(data[i]);
 				//日期格式化
 				
@@ -125,7 +125,7 @@ function getsessionuserorders(){
 					case 0:
 						status = '未付款';
 						statusStr = '<i class="bi bi-check-lg" style="color: #E0E0E0 "></i>未付款';
-						payurl ='<a href="#this" class="gopay">付款去</a>';
+						payurl =`<a href="/ec/ECPayServer/${order.id}" class="gopay">付款去</a>`;
 						break;
 					case 1:
 						status = '已付款';
@@ -134,7 +134,7 @@ function getsessionuserorders(){
 						break;
 				}
 				if(order.orderstatus =='取消'){
-					statusStr =  '<i class="bi bi-x-circle" style="color:#fc9d9c"></i>已取消';
+					statusStr =  '<i class="far fa-times-circle" style="color:#fc9d9c"></i>已取消';
 				}
 				//遍歷訂單
 				console.log(order);
@@ -209,8 +209,8 @@ function search(str){
 		data:{'str':str},
 		success: function(data) {
 			$('.userorders').html("");
-			
-			for (let i in data) {
+			var data2 = data.reverse();
+			for (let i in data2) {
 				var order = JSON.parse(data[i]);
 				//日期格式化
 				
@@ -224,7 +224,7 @@ function search(str){
 					case 0:
 						status = '未付款';
 						statusStr = '<i class="bi bi-check-lg" style="color: #E0E0E0 "></i>未付款';
-						payurl ='<a href="#this" class="gopay">付款去</a>';
+						payurl ='<a href="/ec/ECPayServer/${order.id}" class="gopay">付款去</a>';
 						break;
 					case 1:
 						status = '已付款';
@@ -233,7 +233,7 @@ function search(str){
 						break;
 				}
 				if(order.orderstatus =='取消'){
-					statusStr =  '<i class="bi bi-x-circle" style="color:#fc9d9c"></i>已取消';
+					statusStr =  '<i class="far fa-times-circle" style="color:#fc9d9c"></i>已取消';
 				}
 				//遍歷訂單
 				console.log(order);

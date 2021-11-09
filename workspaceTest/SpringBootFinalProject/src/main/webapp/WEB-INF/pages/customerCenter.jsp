@@ -118,6 +118,7 @@
 					</a> <!-- 子連結 -->
 						<ul id="sublist02" class="list-unstyled collapse">
 							<li><a href="/order/memberorders" class="itemDetails">訂單查詢</a></li>
+							<li><a href="/ec/ecdetail" class="itemDetails">綠界訂單檢視</a></li>
 							<li><a href="#" class="itemDetails">訂位查詢</a></li>
 							<li><a href="#" class="itemDetails">訂位更新</a></li>
 						</ul></li>

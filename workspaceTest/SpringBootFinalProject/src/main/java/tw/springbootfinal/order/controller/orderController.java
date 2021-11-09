@@ -231,7 +231,7 @@ public class orderController {
 		model.put("price", order.getTotal());
 		String templateNmae = "order.html";
 		String head = "訂單受理中";
-		// mService.sendMail(request, user,model,templateNmae,head);
+		 mService.sendMail(request, user,model,templateNmae,head);
 		// 存order
 		m.addAttribute("order", order);
 
@@ -336,7 +336,9 @@ public class orderController {
 	public ArrayList<Object> findorderbyusername(HttpSession session) {
 		CustomerBean userBean = cService.getLoginCustomerBean(session);
 		ArrayList<Object> List = new ArrayList<Object>();
-		Set<orderBean> resoultOrder = userBean.getOrderBean();
+		//Set<orderBean> resoultOrder = userBean.getOrderBean();
+		ArrayList<orderBean> resoultOrder = (ArrayList<orderBean>)oService.findByOrdercus(userBean.getCusId());
+		System.out.println(resoultOrder);
 		if (!resoultOrder.isEmpty()) {
 			for (orderBean o : resoultOrder) {
 				o.getCustomer().setOrderBean(null);

@@ -119,7 +119,7 @@
 							class="fas fa-utensils mx-2"></i> <span class="items">訂單及訂位管理</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist02" class="list-unstyled collapse">
-							<li><a href="ordermanage.html" class="itemDetails">訂單管理</a>
+							<li><a href="/order/back.ordermanage.controller" class="itemDetails">訂單管理</a>
 							</li>
 							<li><a href="promo.html" class="itemDetails">優惠碼管理</a></li>
 							<li><a href="#" class="itemDetails">訂位查詢</a></li>
