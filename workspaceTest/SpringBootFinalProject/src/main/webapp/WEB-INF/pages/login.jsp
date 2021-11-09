@@ -82,7 +82,7 @@
 						<div class="row" id="account">
 							<!-- 帳號 -->
 							<div class="offset-2 col-8">
-								<div class="input-group mb-3">
+								<div class="input-group mb-3 relative">
 									<span class="input-group-text" id="basic-addon1"> <i
 										class="fas fa-user"></i>
 									</span> <input type="text" id="username" name="username"
@@ -92,7 +92,7 @@
 							</div>
 							<!--密碼-->
 							<div class="offset-2 col-8">
-								<div class="input-group mb-3">
+								<div class="input-group mb-3 relative">
 									<span class="input-group-text" id="basic-addon2"> <i
 										class="fas fa-lock"></i>
 									</span> <input type="password" id="password" name="password"

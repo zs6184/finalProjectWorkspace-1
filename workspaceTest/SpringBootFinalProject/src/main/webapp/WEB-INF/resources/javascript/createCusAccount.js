@@ -10,10 +10,29 @@ function createErrDiv(input) {
 	$(input).removeClass("is-valid");
 	$(input).addClass("is-invalid");
 	console.log(errDivId);
-	if(errDivId.length>0){
-		console.log("errDivId.length>0");
+	if ($("#username").val() != "") {
+		console.log("username==''");
+	} else if ($("#username").val() == "") {
 		$("#usernameInvalid").remove();
-	}else if(errDivId.val()==""){
+	}
+
+	if ($("#password").val() != "") {
+		console.log("password==''");
+	} else if ($("#password").val() == "") {
+		$("#passwordInvalid").remove();
+	}
+
+	if ($("#phoneNumber").val() != "") {
+		console.log("phoneNumber==''");
+	} else if ($("#phoneNumber").val() == "") {
+		$("#phoneInvalid").remove();
+	}
+
+	if ($("#email").val() != "") {
+		console.log("email==''");
+	} else if ($("#email").val() == "") {
+		console.log("emailInvalid移除");
+		$("#emailInvalid").remove();
 	}
 	//$(input).parent().parent().after(errDiv);
 }
@@ -131,9 +150,9 @@ $(function() {
 			if (errDivMsg.length <= 0) {
 				if ($(this).attr("id") != "nickName" && $(this).attr("id") != "address") {//暱稱與地址除外
 					console.log("errDivMsg.length <= 0 ");
-//					$("#passwordInvalid").remove();
-//					$("#usernameInvalid").remove();
-//					$("#phoneInvalid").remove();
+					//					$("#passwordInvalid").remove();
+					//					$("#usernameInvalid").remove();
+					//					$("#phoneInvalid").remove();
 					console.log("remove");
 					createErrDiv(this);
 				}
@@ -185,6 +204,7 @@ $(function() {
 		} else if (nowUsername.length >= 1 && nowUsername.length < 6) {
 			console.log("請輸入 6~20 碼的英文、數字");
 			if ($("#usernameInvalid").length == 0) {
+				uATDivId.remove();
 				$(this).parent().append(`<div id="usernameInvalid" class="invalid-tooltip difMsg"></div>`);
 			}
 			$("#usernameInvalid").html("請輸入 6~20 碼的英文、數字");
@@ -256,6 +276,7 @@ $(function() {
 				$(`#phoneInvalid`).remove();
 				$(this).parent().append(`<div id="phoneInvalid" class="invalid-tooltip difMsg"></div>`);
 				$("#phoneInvalid").html("電話號碼小於 10 碼");
+				pNATDivId.remove();//移除通過
 				phoneNumber.removeClass("is-valid");//移除通過
 				phoneNumber.addClass("is-invalid"); //新增警告
 				return false;
@@ -264,6 +285,7 @@ $(function() {
 				$(`#phoneInvalid`).remove();
 				$(this).parent().append(`<div id="phoneInvalid" class="invalid-tooltip difMsg"></div>`);
 				$("#phoneInvalid").html("請填寫 09 開頭符合電話號碼格式");
+				pNATDivId.remove();
 				phoneNumber.removeClass("is-valid");//移除通過
 				phoneNumber.addClass("is-invalid"); //新增警告
 				return false;
@@ -284,14 +306,17 @@ $(function() {
 					$(`.pNATMsg`).remove();//清除已被使用
 					return false;
 				} else if (pNATDivId.length <= 0 && $("#phoneNumber").val() != "") {
+					$("#phoneInvalid").remove();//移除禁止
 					createPhoneNumberAlreadyTakenDiv("phoneNumber");
 					return false;
 				} else if (pNATDivId.length > 0 && $("#phoneNumber").val() == "") {
+					$("#phoneInvalid").remove();//移除禁止
 					$("#phoneNumber").addClass("is-valid");
 					$("#phoneNumber").removeClass("is-invalid");
 					$(`.pNATMsg`).remove();
 					return false;
 				} else if (pNATDivId.length > 0 && $("#phoneNumber").val() == "") {
+					$("#phoneInvalid").remove();//移除禁止
 					$("#phoneNumber").addClass("is-valid");
 					$("#phoneNumber").removeClass("is-invalid");
 					$(`.pNATMsg`).remove();
@@ -311,13 +336,15 @@ $(function() {
 		var eATDivId = $(`#eAT_email`);
 		var email = $("#email");
 		var nowEmail = $(this).val();//每次失去焦點後的新email
-		//符合英文、數字_-. 加 @ 加英文、數字_-.及2~4位數的英文
-		var pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-		//判斷是否跟剛從資料庫載入時一致
+		//符合英文、數字_-. 加 @ 加英文、數字_-.及3~4位數的英文
+		var pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{3,4})$/;
 		if (!pattern.test(nowEmail) && nowEmail.length > 0) {
 			console.log("判斷1");
-			$(`.eATMsg`).remove();
+			//$(`.eATMsg`).remove();
+			$(this).parent().append(`<div id="emailInvalid" class="invalid-tooltip difMsg"></div>`);
 			$("#emailInvalid").html("請符合Email格式的英文、數字、@");
+			eATDivId.remove();
+			//eATDivId.remove();//移除通過
 			email.removeClass("is-valid");//移除通過
 			email.addClass("is-invalid"); //新增警告
 			return false;
@@ -325,7 +352,9 @@ $(function() {
 
 			console.log("判斷2");
 			$(`.eATMsg`).remove();
+			$(this).parent().append(`<div id="emailInvalid" class="invalid-tooltip difMsg"></div>`);
 			$("#emailInvalid").html("請填寫Email");
+			eATDivId.remove();//移除通過
 			email.removeClass("is-valid");//移除通過
 			email.addClass("is-invalid"); //新增警告
 			return false;
@@ -341,6 +370,7 @@ $(function() {
 					console.log("進判斷");
 					$("#email").addClass("is-valid");
 					$("#email").removeClass("is-invalid");
+					$("#eATDivId").remove();
 					$(`.eATMsg`).remove();//清除已被使用
 					return false;
 				} else {
@@ -355,6 +385,7 @@ $(function() {
 						return false;
 					} else if (eATDivId.length > 0 && $("#email").val() == "") {
 						console.log("進判斷3");
+						$("#emailInvalid").remove();
 						$("#email").addClass("is-valid");
 						$("#email").removeClass("is-invalid");
 						$(`.eATMsg`).remove();
