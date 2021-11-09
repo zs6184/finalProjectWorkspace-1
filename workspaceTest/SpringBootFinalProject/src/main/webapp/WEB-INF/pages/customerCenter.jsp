@@ -117,7 +117,8 @@
 							class="fas fa-utensils mx-2"></i> <span class="items">訂單訂位查詢</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist02" class="list-unstyled collapse">
-							<li><a href="/order/memberorders" class="itemDetails">訂單查詢</a></li>							
+							<li><a href="/order/memberorders" class="itemDetails">訂單查詢</a></li>
+							<li><a href="/ec/ecdetail" class="itemDetails">綠界訂單檢視</a></li>							
 						</ul></li>
 					<li><a href="#sublist03" data-bs-toggle="collapse"
 						id="dropdown03" class="center"> <i
