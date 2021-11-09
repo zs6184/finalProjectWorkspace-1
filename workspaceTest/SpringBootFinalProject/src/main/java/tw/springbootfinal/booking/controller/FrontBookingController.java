@@ -30,7 +30,7 @@ import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
-@RequestMapping("/users/bookingsRecord")
+@RequestMapping("/Users/bookingsRecord")
 public class FrontBookingController {
 	
 	@Autowired

@@ -116,7 +116,7 @@ $(function(){
 								</div>
 							</li>
 							<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
-							<li><a href="#Reservation" role="button" data-bs-toggle="modal" target="_self">線上訂位</a></li>
+							<li><a href="#Reservation" role="button" data-bs-toggle="modal" target="_self" id="b3">線上訂位</a></li>
 							<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
 							<li><a href="#t1" target="_self">活動訊息</a></li>
 						</ul>
@@ -172,6 +172,7 @@ $(function(){
 							<div class="btn">
 								<button type="button" class="btn btn-dark" id="b2"
 									data-bs-toggle="modal" data-bs-target="#Reservation">我要訂位</button>
+
 							</div>
 						</div>
 					</div>
@@ -423,7 +424,7 @@ $(function(){
 									<ul>
 										<li><a href="#t1" target="_self">活動訊息</a></li>
 										<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
-										  <li><a href="#Reservation" role="button" data-bs-toggle="modal" target="_self">線上訂位</a></li>
+										  <li><a href="#Reservation" role="button" data-bs-toggle="modal" target="_self" id="b4">線上訂位</a></li>
 										<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
 										<li><div class="dropdown absolute backstage">
 												<button class="btn btn-link dropdown-toggle text-light"

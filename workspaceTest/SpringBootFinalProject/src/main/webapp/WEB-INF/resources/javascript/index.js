@@ -99,7 +99,7 @@ $.ajax({
 
 
 //按下領養預約按鈕時清空表單欄位並檢測是否有登入，未登入則跳轉登入頁面
-	$("#b2").click(function(){
+	$("#b2,#b3,#b4").click(function(){
 		$("#cusid,#name,#phone").val("");
 		$("#cusid,#name,#phone").attr("placeholder","");
 		    console.log("session username="+$("#sessionUsername").val());
@@ -107,7 +107,7 @@ $.ajax({
 		 if($("#sessionRole").val()=="MEMBER"){
 				$.ajax({
 				type: "GET",
-				url: "/users/petreserve/checktheCus",
+				url: "/Users/petreserve/checktheCus",
 				datatype: "JSON",
 				contentType: "application/json",
 				success:function(data){
@@ -129,7 +129,7 @@ $.ajax({
 			}else{
 				$.ajax({
 				type: "GET",
-				url: "/users/petreserve/checktheEmp",
+				url: "/Users/petreserve/checktheEmp",
 				datatype: "JSON",
 				contentType: "application/json",
 				success:function(data){
@@ -189,7 +189,7 @@ $(document).ready(function () {
         })
 		console.log("我進來了");
         $.ajax({
-            url: '/users/bookingsRecord',
+            url: '/Users/bookingsRecord',
             method: 'POST',
             dataType: 'text', // 預期回傳的型態 [html, text, json]
             contentType: 'application/json;charset="utf-8"',
