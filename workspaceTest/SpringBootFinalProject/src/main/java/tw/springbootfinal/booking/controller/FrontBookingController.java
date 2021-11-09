@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +24,13 @@ import com.alibaba.fastjson.JSONObject;
 import tw.springbootfinal.booking.model.BookingService;
 import tw.springbootfinal.booking.model.BookingsBean;
 import tw.springbootfinal.booking.model.BookingsDTO;
+import tw.springbootfinal.booking.model.Constant;
 import tw.springbootfinal.reservation.model.AdoptReservation;
 import tw.springbootfinal.users.model.CustomerBean;
 import tw.springbootfinal.users.model.CustomerService;
 
 @Controller
-@RequestMapping("/users/bookingsRecord")
+@RequestMapping("/Users/bookingsRecord")
 public class FrontBookingController {
 	
 	@Autowired
@@ -103,6 +106,23 @@ public class FrontBookingController {
 		public String create(@RequestBody BookingsDTO bookingsDTO) {
 			bookingService.save(bookingsDTO);
 			return "　　訂位成功";
+		}
+		
+		
+		//刪除一筆
+		/**
+		 * 刪除單一資料 (Ajax)
+		 */
+		@DeleteMapping("{id}")
+		@ResponseBody()
+		public String processDeleteById(@PathVariable String id, HttpServletResponse response) {
+//			throw new AjaxException("刪除失敗");
+			System.out.println("Start ---- Delete");
+			System.out.println(id);
+
+			bookingService.delete(Integer.parseInt(id));
+			System.out.println("Delete Success");
+			return Constant.DELETE_SUCCESS;
 		}
 		
 }

@@ -117,7 +117,7 @@ public class BackReservationController {
 	
 	//處理失約的情形並做紀錄
 	@GetMapping("/dealmissing")
-	public void dealMissing(AdoptReservation temp) {
+	public String dealMissing(AdoptReservation temp) {
 		//客戶失約+1
 		CustomerBean theCus = cService.findById(temp.getCusId());
 		int misscount =theCus.getNoShow();
@@ -131,5 +131,7 @@ public class BackReservationController {
 		status="失約";
 		theRecord.setKeepStatus(status);
 		rsService.insertOne(theRecord);
+		
+		return "redirect:/Backstage/reservation/getAll";
 	}
 }

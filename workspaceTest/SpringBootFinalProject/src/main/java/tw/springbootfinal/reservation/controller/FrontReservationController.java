@@ -29,7 +29,7 @@ import tw.springbootfinal.users.model.EmployeeBean;
 import tw.springbootfinal.users.model.EmployeeService;
 
 @Controller
-@RequestMapping("/users/petreserve")
+@RequestMapping("/Users/petreserve")
 public class FrontReservationController {
 
 	@Autowired
@@ -108,8 +108,9 @@ public class FrontReservationController {
 		List<AdoptReservation> arrRes = rsService.selectTheCusRec(theId);
 		for(AdoptReservation aRes:arrRes) {
 			switch(aRes.getKeepStatus()) {
-			case"已赴約":
+			case "已赴約":
 				arrive++;
+				break;
 			case "未赴約":
 				notyet++;
 				break;
@@ -137,7 +138,7 @@ public class FrontReservationController {
 	public String deleteOne(AdoptReservation temp) {
 		rsService.deleteOne(temp);
 		
-		return "redirect:/users/petreserve/getthecusresult";
+		return "redirect:/Users/petreserve/getthecusresult";
 	}
 
 	//送出單筆修改

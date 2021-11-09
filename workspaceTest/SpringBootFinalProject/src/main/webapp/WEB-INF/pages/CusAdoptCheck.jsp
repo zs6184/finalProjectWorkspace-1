@@ -81,10 +81,10 @@
 									</ul>
 								</div>
 							</li>
-							<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
-							<li><a href="/index.html" target="_self">線上訂位</a></li>
-							<li><a href="/index.html" target="_self">餐點介紹</a></li>
-							<li><a href="#t1" target="_self">活動訊息</a></li>
+							<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
+							<li><a href="/Users/loginIndex.Controller#Reservation" target="_self">線上訂位</a></li>
+							<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
+							<li><a href="/Users/loginIndex.Controller#t1" target="_self">活動訊息</a></li>
 						</ul>
 					</div>
 				</div>
@@ -120,14 +120,12 @@
 						</ul></li>
 					<li><a href="#sublist02" data-bs-toggle="collapse"
 						id="dropdown02" class="center"> <i
-							class="fas fa-utensils mx-2"></i> <span class="items">訂單查詢</span>
+							class="fas fa-utensils mx-2"></i> <span class="items">訂單訂位查詢</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist02" class="list-unstyled collapse">
-							<li><a href="/ordermanage.html" class="itemDetails">訂單管理</a>
-							</li>
-							<li><a href="/promo.html" class="itemDetails">優惠碼管理</a></li>
-							<li><a href="#" class="itemDetails">訂位查詢</a></li>
-							<li><a href="#" class="itemDetails">訂位更新</a></li>
+							<li><a href="/order/memberorders" class="itemDetails">訂單查詢</a></li>
+							<li><a href="/users/bookingsRecord/getthecusresult" class="itemDetails">訂位查詢</a></li>
+							<li><a href="/users/bookingsRecord/getthecusresult" class="itemDetails">訂位更新</a></li>
 						</ul></li>
 					<li><a href="#sublist03" data-bs-toggle="collapse"
 						id="dropdown03" class="center"> <i
@@ -135,7 +133,7 @@
 					</a> <!-- 子連結 -->
 						<ul id="sublist03" class="list-unstyled collapse">
 							<li><a href="#" class="itemDetails">公告總覽</a></li>
-							<li><a href="/postCreate.html" class="itemDetails">新增公告</a></li>
+							<li><a href="#" class="itemDetails">新增公告</a></li>
 							<li><a href="#" class="itemDetails">公告更新</a></li>
 						</ul></li>
 					<li><a href="#sublist04" data-bs-toggle="collapse"
@@ -143,14 +141,9 @@
 							class="fas fa-cat mx-2"></i> <span class="items">領養紀錄查詢</span>
 					</a> <!-- 子連結 -->
 						<ul id="sublist04" class="list-unstyled collapse show">
-							<li><a href="/pet/petinfo.controller" class="itemDetails">寵物資訊總覽</a>
-							</li>
-							<li><a href="#" class="itemDetails">文章發佈</a></li>
-							<li><a href="#" class="itemDetails">文章更新</a></li>
-							<li><a href="#" class="itemDetails">寵物領養資訊</a></li>
-							<li><a href="/users/petreserve/getthecusresult"
+							<li><a href="/pet/petinfo.controller" class="itemDetails">寵物資訊總覽</a></li>
+							<li><a href="/Users/petreserve/getthecusresult"
 								class="itemDetails  sidebarLight02">領養預約總覽</a></li>
-							<li><a href="#" class="itemDetails">領養記錄查詢</a></li>
 						</ul></li>
 				</ul>
 			</nav>
@@ -320,10 +313,10 @@
 					<div class="row h-100 align-items-center lowbar">
 						<div class="col-12">
 							<ul>
-								<li><a href="#t1" target="_self">活動訊息</a></li>
-								<li><a href="/index.html" target="_self">餐點介紹</a></li>
-								<li><a href="/index.html" target="_self">線上訂位</a></li>
-								<li><a href="/petinfo.controller" target="_self">寵物領養</a></li>
+								<li><a href="/Users/loginIndex.Controller#t1" target="_self">活動訊息</a></li>
+								<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
+								<li><a href="/Users/loginIndex.Controller#Reservation" target="_self">線上訂位</a></li>
+								<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
 								<li>
 									<div class="dropdown absolute backstage ${role}">
 										<button class="btn btn-link dropdown-toggle text-light"

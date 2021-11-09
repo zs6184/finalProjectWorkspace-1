@@ -168,7 +168,7 @@
 									<legend>預約資訊</legend>
 										<div>
 											<label for="cusId"><span>會員編號</span></label> 
-											<input type="text" id="cusId" name="cusId" class="requiredValue"/>
+											<input type="text" id="cusId" name="cusId" class="requiredValue" readonly/>
 										</div>
 										<div>
 											<label for="cusRealname"><span>會員姓名</span></label> 

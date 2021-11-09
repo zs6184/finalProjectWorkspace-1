@@ -141,7 +141,7 @@ $(function() {
 		var nowTime = $("#modalForm #reserveTime").val();
 		$.ajax({
 			type: "POST",
-			url: "/users/petreserve/updateone",
+			url: "/Users/petreserve/updateone",
 			datatype: "JSON",
 			data:{'preTime':`${DATE}`,'nowTime':`${nowTime}`,'id':`${ID}`},
 			success:function(result){
@@ -185,7 +185,7 @@ function del(obj) {
 			$.ajax({
 			method:"DELETE",
 			datatype: "text", // 回傳型態
-			url:`/Backstage/bookings/${id}`,
+			url:`/Users/bookingsRecord/${id}`,
 			success: function (){
 				$(obj).parents("tr").remove();
 			},

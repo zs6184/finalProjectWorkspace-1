@@ -156,7 +156,9 @@
 							<div class="row col-6 justify-content-center align-items-top">
 								<ul>
 								<li class="text-start fs-2 fw-bold">${arrRice.productName}</li>
-								<li class="text-center fs-4 fw-normal">${arrRice.note}</li>
+								<li class="text-center fs-4 fw-normal">
+									<textarea class="rounded w-100 border bg-transparent fw-bold" style="resize:none;height:220px;" disabled>${arrRice.note}</textarea>
+								</li>
 								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
@@ -179,7 +181,9 @@
 							<div class="row col-6 justify-content-center align-items-top">
 								<ul>
 								<li class="text-start fs-2 fw-bold prodName">${arrNoodle.productName}</li>
-								<li class="text-center fs-4">${arrNoodle.note}</li>
+								<li class="text-center fs-4 fw-normal">
+									<textarea class="rounded w-100 border bg-transparent fw-bold" style="resize:none;height:220px;" disabled>${arrNoodle.note}</textarea>
+								</li>
 								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
@@ -202,7 +206,9 @@
 							<div class="row col-6 justify-content-center align-items-top">
 								<ul>
 								<li class="text-start fs-2 fw-bold">${arrBeverage.productName}</li>
-								<li class="text-center fs-4">${arrBeverage.note}</li>
+								<li class="text-center fs-4 fw-normal">
+									<textarea class="rounded w-100 border bg-transparent fw-bold" style="resize:none;height:220px;" disabled>${arrBeverage.note}</textarea>
+								</li>
 								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
@@ -225,7 +231,9 @@
 							<div class="row col-6 justify-content-center align-items-top">
 								<ul>
 								<li class="text-start fs-2 fw-bold">${arrDessert.productName}</li>
-								<li class="text-center fs-4">${arrDessert.note}</li>
+								<li class="text-center fs-4 fw-normal">
+									<textarea class="rounded w-100 border bg-transparent fw-bold" style="resize:none;height:220px;" disabled>${arrDessert.note}</textarea>
+								</li>
 								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
