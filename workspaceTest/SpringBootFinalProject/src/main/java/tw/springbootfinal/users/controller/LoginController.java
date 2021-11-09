@@ -128,16 +128,6 @@ public class LoginController {
 				}
 				System.out.println("員工成功");
 			}
-
-//			CustomerBean cusBean = cusService.getByCusUsername(username);// 透過使用者名稱搜尋資料
-//			String realName = cusBean.getCusRealname();// 取得真實姓名
-//			String role = cusBean.getRole(); //取得權限
-//			
-//			// 設為session層級的變數給jsp使用
-//			m.addAttribute("username", username);
-//			m.addAttribute("realName", realName);
-//			m.addAttribute("role", role);
-
 		} else {// 如果有取得session代表為google登入、或是員工"再次"進到首頁(因為第一次登入後員工已經有紀錄session)
 			System.out.println("sessionUsername: " + sessionUsername);
 			String role = (String) session.getAttribute("role");

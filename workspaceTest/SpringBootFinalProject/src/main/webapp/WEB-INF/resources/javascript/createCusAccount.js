@@ -9,6 +9,12 @@ function createErrDiv(input) {
 	$(input).parent().append(errDiv);
 	$(input).removeClass("is-valid");
 	$(input).addClass("is-invalid");
+	console.log(errDivId);
+	if(errDivId.length>0){
+		console.log("errDivId.length>0");
+		$("#usernameInvalid").remove();
+	}else if(errDivId.val()==""){
+	}
 	//$(input).parent().parent().after(errDiv);
 }
 
@@ -30,6 +36,7 @@ function createUsernameAlreadyTakenDiv(input) {
 	var uATDivId = `uAT_${input}`;
 	//var uATDiv = $(`<div id="${uATDivId}" class="d-flex align-items-center uATMsg col-2">已被使用</div>`);
 	var uATDiv = $(`<div id="${uATDivId}" class="invalid-tooltip uATMsg">已被使用</div>`);
+	//$("#usernameInvalid").remove();//移除通過
 	$("#username").parent().append(uATDiv);
 	$("#username").addClass("is-invalid");
 	$("#username").removeClass("is-valid");
@@ -111,8 +118,10 @@ $(function() {
 	$("#createCusForm input").blur(function() {
 		var errDivId = `#err_${$(this).attr("id")}`;
 		var errDivMsg = $(errDivId);
+		console.log("必填blur");
 		if ($(this).val() != "") {
 			if (errDivMsg.length > 0) {
+				console.log("errDivMsg.length > 0");
 				$(this).addClass("is-valid");
 				$(this).removeClass("is-invalid");
 				errDivMsg.remove();
@@ -121,9 +130,10 @@ $(function() {
 		} else {
 			if (errDivMsg.length <= 0) {
 				if ($(this).attr("id") != "nickName" && $(this).attr("id") != "address") {//暱稱與地址除外
-					$("#passwordInvalid").remove();
-					$("#usernameInvalid").remove();
-					$("#phoneInvalid").remove();
+					console.log("errDivMsg.length <= 0 ");
+//					$("#passwordInvalid").remove();
+//					$("#usernameInvalid").remove();
+//					$("#phoneInvalid").remove();
 					console.log("remove");
 					createErrDiv(this);
 				}
@@ -162,47 +172,66 @@ $(function() {
 		var pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 		var zh = /[\u4e00-\u9fa5]/; //中、英文格式
 		if (zh.test(nowUsername)) {
-			$(this).parent().append(`<div id="usernameInvalid" class="invalid-tooltip difMsg"></div>`);
+			console.log("請勿輸入中文");
+			if ($("#usernameInvalid").length == 0) {
+				$(this).parent().append(`<div id="usernameInvalid" class="invalid-tooltip difMsg"></div>`);
+			}
 			$("#usernameInvalid").html("請勿輸入中文");
+			uATDivId.removeClass("is-valid");//移除通過
+			uATDivId.addClass("is-invalid"); //新增警告
 			username.removeClass("is-valid");//移除通過
 			username.addClass("is-invalid"); //新增警告
 			return false;
 		} else if (nowUsername.length >= 1 && nowUsername.length < 6) {
-			$(this).parent().append(`<div id="usernameInvalid" class="invalid-tooltip difMsg"></div>`);
+			console.log("請輸入 6~20 碼的英文、數字");
+			if ($("#usernameInvalid").length == 0) {
+				$(this).parent().append(`<div id="usernameInvalid" class="invalid-tooltip difMsg"></div>`);
+			}
 			$("#usernameInvalid").html("請輸入 6~20 碼的英文、數字");
+			uATDivId.removeClass("is-valid");//移除通過
+			uATDivId.addClass("is-invalid"); //新增警告
 			username.removeClass("is-valid");//移除通過
 			username.addClass("is-invalid"); //新增警告
 			return false;
-		}
-		var dataForm = $(this).serialize();
-		$.ajax({
-			method: "post",
-			url: "/CreateCusAccountCheckUsername.controller",
-			data: dataForm,
-			success: function(data) {
-				console.log(data);
-				if (data == "pass" && $("#username").val() != "") {
-					console.log("進判斷");
-					$(`.uATMsg`).remove();//清除已被使用
-					$("#username").addClass("is-valid");
-					$("#username").removeClass("is-invalid");
-					return false;
-				} else {
-					if (uATDivId.length <= 0 && $("#username").val() != "") {
-						createUsernameAlreadyTakenDiv("username");
+		} else {
+
+
+			var dataForm = $(this).serialize();
+			$.ajax({
+				method: "post",
+				url: "/CreateCusAccountCheckUsername.controller",
+				data: dataForm,
+				success: function(data) {
+					console.log(data);
+					if (data == "pass" && $("#username").val() != "") {
+						console.log("ajax進判斷1");
+						$("#usernameInvalid").remove();//移除禁止
+						$(`.uATMsg`).remove();//清除已被使用
+						username.addClass("is-valid");
+						username.removeClass("is-invalid");
 						return false;
-					} else if (uATDivId.length > 0 && $("#username").val() == "") {
-						$("#username").addClass("is-valid");
-						$("#username").removeClass("is-invalid");
-						$(`.uATMsg`).remove();
-						return false;
+					} else {
+						if (uATDivId.length <= 0 && $("#username").val() != "") {
+							console.log("ajax進判斷2");
+							$("#usernameInvalid").remove();//移除禁止
+							createUsernameAlreadyTakenDiv("username");
+							return false;
+						} else if (uATDivId.length > 0 && $("#username").val() == "") {
+							console.log("ajax進判斷3");
+							$("#usernameInvalid").remove();//移除禁止
+							username.addClass("is-isvalid");
+							username.removeClass("is-valid");
+							$(`.uATMsg`).remove();
+							return false;
+						}
 					}
+				},
+				error: function(jqXHR, textStatus, errThrown) {
+					alert(`${textStatus}---${errThrown}`)
 				}
-			},
-			error: function(jqXHR, textStatus, errThrown) {
-				alert(`${textStatus}---${errThrown}`)
-			}
-		});
+
+			});
+		}
 		return false;
 	});
 
@@ -219,8 +248,8 @@ $(function() {
 			$("#phoneInvalid").html("請勿填寫中、英文");
 			phoneNumber.removeClass("is-valid");//移除通過
 			phoneNumber.addClass("is-invalid"); //新增警告
-			return false;
 			console.log("判斷1");
+			return false;
 		} else {
 			if (nowPhone.length > 0 && nowPhone.length < 10) {
 				console.log("判斷2");
