@@ -44,5 +44,13 @@ public class orderServic {
 		return oRepository.searchcusorder(id,str);
 	}
 	
+	//尋找使用者訂單
+	public List<orderBean>findByOrdercus(int id){
+		
+		List<orderBean> findByOrdercus = oRepository.findByOrdercus(id);
+		System.out.println("我是訂單時間 測試:"+findByOrdercus.get(0).getOrdertime());
+		return findByOrdercus;
+	}
+	
 
 }

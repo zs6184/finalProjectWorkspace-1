@@ -16,6 +16,7 @@ $(function() {
 			var numm = parseInt($(this).parent().parent().children().filter('td.subtotal').text((num - 1) * price));
 			$(this).siblings('input').val(num - 1);
 		}
+		testCartNum(userName);
 		totalprice();
 	});
 	//加數量
@@ -27,6 +28,7 @@ $(function() {
 		var price = parseInt($(this).parent().parent().children().filter('td.price').text());
 		var numm = parseInt($(this).parent().parent().children().filter('td.subtotal').text((num + 1) * price));
 		$(this).siblings('input').val(num + 1);
+		testCartNum(userName);
 		totalprice();
 	});
 	//直接使用輸入框變更數量
@@ -34,6 +36,7 @@ $(function() {
 		var num = $(this).val();
 		var price = parseInt($(this).parent().parent().children().filter('td.price').text());
 		var numm = parseInt($(this).parent().parent().children().filter('td.subtotal').text(num * price));
+		testCartNum(userName);
 		totalprice();
 	});
 	//更新總計
@@ -56,14 +59,19 @@ $(function() {
 	}
 	//刪除
 	$('td button[type="button"]').click(function () {
-		var pid = $(this).parent().parent('tr').attr('id');
-		var pnamd = $(this).parent('td').siblings().eq(0).text();
+		var pid1 = $(this).parent().parent('tr').attr('id');
+		var pid = parseInt(pid1);
+		console.log('刪除id'+pid);
+		var pname = $(this).parent('td').siblings().eq(0).text();
+		console.log('刪除名稱'+pname);
 		var cookie = $.cookie(`cart${userName}`);
 		var carJSONpart = JSON.parse(cookie)
-		for (var i in carJSONpart) {
+		for (var i=0;i < carJSONpart.length;i++) {
+			console.log("變數"+i);
 			if (carJSONpart[i].id == pid) {
+				console.log('要被刪除的id'+carJSONpart[i].id);
 				swal({
-					title: `確定刪除${pnamd}?`,
+					title: `確定刪除${pname}?`,
 					text: "不買可惜",
 					type: "warning",
 					showCancelButton: true,
@@ -72,13 +80,17 @@ $(function() {
 					confirmButtonText: "確定",
 					closeOnConfirm: false
 				},
-					function () {
-						carJSONpart.splice(i, 1);
+					function () {	
+						console.log(carJSONpart);				
+						carJSONpart.splice(i,1);					
+						console.log("變數i:"+i);
 						$(`#${pid}`).remove();
 						totalprice();
 						swal("已移除！", "從購物車移除。", "success");
 						$.cookie(`cart${userName}`, JSON.stringify(carJSONpart));
+						testCartNum(userName);
 					});
+					break;
 			}
 		}
 	});
@@ -105,6 +117,20 @@ function testCartNum(username) {
 		console.log('====');
 		console.log(testcarJSON[j].id + ":" + testcarJSON[j].num);
 	}
+}
+//購物車數量
+function testCartNum(username) {
+    var cookie = $.cookie(`cart${username}`);
+    var testcarJSON = JSON.parse(cookie);
+	let itemnum=0;
+    for (let j in testcarJSON) {
+        console.log('====');
+        console.log(testcarJSON[j].id + ":" + testcarJSON[j].num);
+		num = parseInt(testcarJSON[j].num);
+		itemnum +=num
+	}	
+	return itemnum;
+		
 }
 //加減方法
 function carjsonpart(username, pid, state,this1) {

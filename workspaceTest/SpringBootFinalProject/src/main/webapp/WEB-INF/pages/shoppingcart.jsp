@@ -19,10 +19,7 @@
 <script src="/javascript/sweetalert.min.js"></script>
 <script src="/javascript/sweetalert-dev.js"></script>
 <!-- icon -->
-<link rel="stylesheet"
-	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-	crossorigin="anonymous" />
+<link rel="stylesheet" href="/stylesheet/fontawesome-free-5.15.4-web/css/all.css" crossorigin="anonymous"/>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css"/>
 	
@@ -48,7 +45,9 @@
 <script src="/javascript/index.js"></script>
 <script src="/javascript/customerCenter.js"></script>
 <script src="/javascript/shoppingcart.js"></script>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">
 <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <link rel="icon" type="image/png" href="/font/favicon1.png">
 
@@ -162,7 +161,7 @@
 									<tr id="${catitem.id}">
 										<td>${catitem.name}</td>
 										<td><i class="fas fa-minus"></i> <input type="number"
-											value="${catitem.num}" /> <i class="far fa-plus"></i></td>
+											value="${catitem.num}" /> <i class="fas fa-plus"></i></td>
 										<td class="price">${catitem.price}</td>
 										<td class="subtotal">0</td>
 										<td>

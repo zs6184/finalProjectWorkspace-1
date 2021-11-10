@@ -60,6 +60,18 @@ public class orderBean {
 	@Column(name = "note")
 	private String note;
 	
+	@Column(name = "merchant_trade_no")
+	private String merchantTradeNo;
+
+
+	public String getMerchantTradeNo() {
+		return merchantTradeNo;
+	}
+
+	public void setMerchantTradeNo(String merchantTradeNo) {
+		this.merchantTradeNo = merchantTradeNo;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "cus_ID")
 	private CustomerBean customer;

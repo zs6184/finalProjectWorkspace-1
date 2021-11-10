@@ -13,6 +13,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/stylesheet/ProductIntro.css" />
 <link rel="stylesheet" href="/stylesheet/sweetalert.css" />
+<!-- 購物車圖示 -->
+<link rel="stylesheet" href="/stylesheet/shoppingCarticon.css" />
 <!--CSS here-->
 <script src="/javascript/sweetalert.min.js"></script>
 <script src="/javascript/sweetalert-dev.js"></script>
@@ -27,9 +29,10 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/javascript/ProductIntro.js"></script>
 <script src="/javascript/addtoshoppingcart.js"></script>
-<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <!--JS Here-->
-<link rel="icon" type="image/png"  href="/font/favicon1.png">
+<link rel="icon" type="image/png" href="/font/favicon1.png">
 </head>
 <body style="background-image: url(/image/背景4.jpg)">
 	<hr>
@@ -38,7 +41,7 @@
 		<div class="container h-100">
 			<div class="row h-100 align-items-center">
 				<div class="col-12">
-					<a href="/index.html"><img src="/image/浪跡2.png" alt=""></a>
+					<a href="/Users/loginIndex.Controller"><img src="/image/浪跡2.png" alt=""></a>
 					<!--LOGO-->
 				</div>
 			</div>
@@ -47,7 +50,8 @@
 	<hr>
 
 	<!-- nav欄部分 -->
-	<input type="hidden" id="sessionUsername" value="<%=session.getAttribute("username") %>">
+	<input type="hidden" id="sessionUsername"
+		value="<%=session.getAttribute("username")%>">
 	<!-- 檢查SessionAttribute是否存在用 -->
 	<div>
 		<div id="topbar">
@@ -63,8 +67,7 @@
 										<li id="whp1"><a href="/Users/SelectCustomer.controller"
 											style="font-size: 1.1em"
 											class="dropdown-item d-flex justify-content-center"
-											target="_self">會員中心</a>
-										</li>
+											target="_self">會員中心</a></li>
 										<li id="whp2" class="m-0">
 											<form action="/Users/logout.Controller" method="post">
 												<button type="submit"
@@ -75,8 +78,9 @@
 									</ul>
 								</div>
 							</li>
-							
-							<li id="loginOption" class="loginOption"><a href="/login.Controller" target="_self">登入註冊</a></li>
+
+							<li id="loginOption" class="loginOption"><a
+								href="/login.Controller" target="_self">登入註冊</a></li>
 							<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
 							<li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
 							<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
@@ -104,66 +108,73 @@
 
 	<!--內容-->
 	<div class="container" id="container">
-<!-- 		<!--查詢欄位-->
-<!-- 		<form action="/pet/searchdatafront.controller" method="POST" -->
-<!-- 			id="srhForm"> -->
-<!-- 			<div class="row justify-content-start" style="margin: 30px;"> -->
-<!-- 				<div class="col-1 text-center"> -->
-<!-- 					<select name="category" id="srhCategory"> -->
-<!-- 						<option value="">不限類別</option> -->
-<%-- 						<c:forEach var="cateSet" items="${cateSet}"> --%>
-<%-- 							<option value="${cateSet}" name="${cateSet}">${cateSet}</option> --%>
-<%-- 						</c:forEach> --%>
-<!-- 					</select> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-1 text-center"> -->
-<!-- 					<select name="sex" id="srhSex"> -->
-<!-- 						<option value="">不限性別</option> -->
-<%-- 						<c:forEach var="sexSet" items="${sexSet}"> --%>
-<%-- 							<option value="${sexSet}" name="${sexSet}">${sexSet}</option> --%>
-<%-- 						</c:forEach> --%>
-<!-- 					</select> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-2"> -->
-<!-- 					<button type="submit" class="btn-info text-white btn-sm" -->
-<!-- 						id="srhBtn">搜尋</button> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</form> -->
+		<!-- 		<!--查詢欄位-->
+		<!-- 		<form action="/pet/searchdatafront.controller" method="POST" -->
+		<!-- 			id="srhForm"> -->
+		<!-- 			<div class="row justify-content-start" style="margin: 30px;"> -->
+		<!-- 				<div class="col-1 text-center"> -->
+		<!-- 					<select name="category" id="srhCategory"> -->
+		<!-- 						<option value="">不限類別</option> -->
+		<%-- 						<c:forEach var="cateSet" items="${cateSet}"> --%>
+		<%-- 							<option value="${cateSet}" name="${cateSet}">${cateSet}</option> --%>
+		<%-- 						</c:forEach> --%>
+		<!-- 					</select> -->
+		<!-- 				</div> -->
+		<!-- 				<div class="col-1 text-center"> -->
+		<!-- 					<select name="sex" id="srhSex"> -->
+		<!-- 						<option value="">不限性別</option> -->
+		<%-- 						<c:forEach var="sexSet" items="${sexSet}"> --%>
+		<%-- 							<option value="${sexSet}" name="${sexSet}">${sexSet}</option> --%>
+		<%-- 						</c:forEach> --%>
+		<!-- 					</select> -->
+		<!-- 				</div> -->
+		<!-- 				<div class="col-2"> -->
+		<!-- 					<button type="submit" class="btn-info text-white btn-sm" -->
+		<!-- 						id="srhBtn">搜尋</button> -->
+		<!-- 				</div> -->
+		<!-- 			</div> -->
+		<!-- 		</form> -->
 
 		<!--查詢結果概覽-->
 		<div id="tabs">
 			<div>
 				<div class="align-items-center mt-5">
 					<ul id="menuNav" class="row justify-content-center">
-						<li class="row col-2 border justify-content-center"><a href="#rice" class="text-white text-center menuNav">飯</a></li>
-						<li class="row col-2 border justify-content-center"><a href="#noodle" class="text-white text-center menuNav">麵</a></li>
-						<li class="row col-2 border justify-content-center"><a href="#beverage" class="text-white text-center menuNav">飲料</a></li>
-						<li class="row col-2 border justify-content-center"><a href="#dessert" class="text-white text-center menuNav">點心</a></li>
+						<li class="row col-2 border justify-content-center"><a
+							href="#rice" class="text-white text-center menuNav">飯</a></li>
+						<li class="row col-2 border justify-content-center"><a
+							href="#noodle" class="text-white text-center menuNav">麵</a></li>
+						<li class="row col-2 border justify-content-center"><a
+							href="#beverage" class="text-white text-center menuNav">飲料</a></li>
+						<li class="row col-2 border justify-content-center"><a
+							href="#dessert" class="text-white text-center menuNav">點心</a></li>
 					</ul>
 				</div>
 			</div>
-				
+
 			<div id="rice">
 				<div class="main-box">
 					<c:forEach var="arrRice" items="${arrRice}">
-						<div class="row mb-3 justify-content-start border rounded" 
-							style="height:300px;background-image: url(/image/img/bg-img/b10.jpg);">
-							<input type="hidden" value="${arrRice.productID}" id="productid"/>
+						<div class="row mb-3 justify-content-start border rounded"
+							style="height: 300px; background-image: url(/image/img/bg-img/b10.jpg);">
+							<input type="hidden" value="${arrRice.productID}" id="productid" />
 							<div class="col-4 h-100 align-items-center">
-								<img src="data:image/png;base64,${baseStr[arrRice.productID]}" class="col w-100 h-100" />
+								<img src="data:image/png;base64,${baseStr[arrRice.productID]}"
+									class="col w-100 h-100" />
 							</div>
 							<div class="row col-6 justify-content-center align-items-top">
 								<ul>
-								<li class="text-start fs-2 fw-bold">${arrRice.productName}</li>
-								<li class="text-center fs-4 fw-normal">
-									<textarea class="rounded w-100 border bg-transparent fw-bold" style="resize:none;height:220px;" disabled>${arrRice.note}</textarea>
-								</li>
+									<li class="text-start fs-2 fw-bold">${arrRice.productName}</li>
+									<li class="text-center fs-4 fw-normal"><textarea
+											class="rounded w-100 border bg-transparent fw-bold"
+											style="resize: none; height: 220px;" disabled>${arrRice.note}</textarea>
+									</li>
 								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
-								<button type="button" class="btn btn-dark detailBtn fs-4" style="height:50%;"
-										data-bs-toggle="modal" data-bs-target="#productDetail" onclick="getTheProd(this)">我要點餐</button>
+								<button type="button" class="btn btn-dark detailBtn fs-4"
+									style="height: 50%;" data-bs-toggle="modal"
+									data-bs-target="#productDetail" onclick="getTheProd(this)">我要點餐</button>
 							</div>
 						</div>
 					</c:forEach>
@@ -172,23 +183,26 @@
 			<div id="noodle">
 				<div class="main-box">
 					<c:forEach var="arrNoodle" items="${arrNoodle}">
-						<div class="row mb-3 justify-content-start border rounded" 
-							style="height:300px;background-image: url(/image/img/bg-img/b10.jpg);">
-							<input type="hidden" value="${arrNoodle.productID}"/>
+						<div class="row mb-3 justify-content-start border rounded"
+							style="height: 300px; background-image: url(/image/img/bg-img/b10.jpg);">
+							<input type="hidden" value="${arrNoodle.productID}" />
 							<div class="col-4 h-100 align-items-center">
-								<img src="data:image/png;base64,${baseStr[arrNoodle.productID]}" class="col w-100 h-100" />
+								<img src="data:image/png;base64,${baseStr[arrNoodle.productID]}"
+									class="col w-100 h-100" />
 							</div>
 							<div class="row col-6 justify-content-center align-items-top">
 								<ul>
-								<li class="text-start fs-2 fw-bold prodName">${arrNoodle.productName}</li>
-								<li class="text-center fs-4 fw-normal">
-									<textarea class="rounded w-100 border bg-transparent fw-bold" style="resize:none;height:220px;" disabled>${arrNoodle.note}</textarea>
-								</li>
+									<li class="text-start fs-2 fw-bold prodName">${arrNoodle.productName}</li>
+									<li class="text-center fs-4 fw-normal"><textarea
+											class="rounded w-100 border bg-transparent fw-bold"
+											style="resize: none; height: 220px;" disabled>${arrNoodle.note}</textarea>
+									</li>
 								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
-								<button type="button" class="btn btn-dark detailBtn" style="height:50%;"
-										data-bs-toggle="modal" data-bs-target="#productDetail" onclick="getTheProd(this)">我要點餐</button>
+								<button type="button" class="btn btn-dark detailBtn"
+									style="height: 50%;" data-bs-toggle="modal"
+									data-bs-target="#productDetail" onclick="getTheProd(this)">我要點餐</button>
 							</div>
 						</div>
 					</c:forEach>
@@ -197,23 +211,27 @@
 			<div id="beverage">
 				<div class="main-box">
 					<c:forEach var="arrBeverage" items="${arrBeverage}">
-						<div class="row mb-3 justify-content-start border rounded" 
-							style="height:300px;background-image: url(/image/img/bg-img/b10.jpg);">
-							<input type="hidden" value="${arrBeverage.productID}"/>
+						<div class="row mb-3 justify-content-start border rounded"
+							style="height: 300px; background-image: url(/image/img/bg-img/b10.jpg);">
+							<input type="hidden" value="${arrBeverage.productID}" />
 							<div class="col-4 h-100 align-items-center">
-								<img src="data:image/png;base64,${baseStr[arrBeverage.productID]}" class="col w-100 h-100" />
+								<img
+									src="data:image/png;base64,${baseStr[arrBeverage.productID]}"
+									class="col w-100 h-100" />
 							</div>
 							<div class="row col-6 justify-content-center align-items-top">
 								<ul>
-								<li class="text-start fs-2 fw-bold">${arrBeverage.productName}</li>
-								<li class="text-center fs-4 fw-normal">
-									<textarea class="rounded w-100 border bg-transparent fw-bold" style="resize:none;height:220px;" disabled>${arrBeverage.note}</textarea>
-								</li>
+									<li class="text-start fs-2 fw-bold">${arrBeverage.productName}</li>
+									<li class="text-center fs-4 fw-normal"><textarea
+											class="rounded w-100 border bg-transparent fw-bold"
+											style="resize: none; height: 220px;" disabled>${arrBeverage.note}</textarea>
+									</li>
 								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
-								<button type="button" class="btn btn-dark detailBtn" style="height:50%;"
-										data-bs-toggle="modal" data-bs-target="#productDetail" onclick="getTheProd(this)">我要點餐</button>
+								<button type="button" class="btn btn-dark detailBtn"
+									style="height: 50%;" data-bs-toggle="modal"
+									data-bs-target="#productDetail" onclick="getTheProd(this)">我要點餐</button>
 							</div>
 						</div>
 					</c:forEach>
@@ -222,31 +240,35 @@
 			<div id="dessert">
 				<div class="main-box">
 					<c:forEach var="arrDessert" items="${arrDessert}">
-						<div class="row mb-3 justify-content-start border rounded" 
-							style="height:300px;background-image: url(/image/img/bg-img/b10.jpg);">
-							<input type="hidden" value="${arrDessert.productID}"/>
+						<div class="row mb-3 justify-content-start border rounded"
+							style="height: 300px; background-image: url(/image/img/bg-img/b10.jpg);">
+							<input type="hidden" value="${arrDessert.productID}" />
 							<div class="col-4 h-100 align-items-center">
-								<img src="data:image/png;base64,${baseStr[arrDessert.productID]}" class="col w-100 h-100" />
+								<img
+									src="data:image/png;base64,${baseStr[arrDessert.productID]}"
+									class="col w-100 h-100" />
 							</div>
 							<div class="row col-6 justify-content-center align-items-top">
 								<ul>
-								<li class="text-start fs-2 fw-bold">${arrDessert.productName}</li>
-								<li class="text-center fs-4 fw-normal">
-									<textarea class="rounded w-100 border bg-transparent fw-bold" style="resize:none;height:220px;" disabled>${arrDessert.note}</textarea>
-								</li>
+									<li class="text-start fs-2 fw-bold">${arrDessert.productName}</li>
+									<li class="text-center fs-4 fw-normal"><textarea
+											class="rounded w-100 border bg-transparent fw-bold"
+											style="resize: none; height: 220px;" disabled>${arrDessert.note}</textarea>
+									</li>
 								</ul>
 							</div>
 							<div class="row col-2 justify-content-center align-items-center">
-								<button type="button" class="btn btn-dark detailBtn" style="height:50%;"
-										data-bs-toggle="modal" data-bs-target="#productDetail" onclick="getTheProd(this)">我要點餐</button>
+								<button type="button" class="btn btn-dark detailBtn"
+									style="height: 50%;" data-bs-toggle="modal"
+									data-bs-target="#productDetail" onclick="getTheProd(this)">我要點餐</button>
 							</div>
 						</div>
 					</c:forEach>
 				</div>
-			</div>			
+			</div>
 		</div>
 	</div>
-	
+
 	<!-- Product Detail Modal -->
 	<div class="modal fade" id="productDetail" tabindex="-1">
 		<div class="modal-dialog modal-lg">
@@ -260,110 +282,128 @@
 						<div class="row">
 							<div class="text-center" id="mainbox">
 								<fieldset>
-								<legend>餐點外觀</legend>
+									<legend>餐點外觀</legend>
 									<div class="row justify-content-center">
 										<div class="row justify-content-center">
-											<div id="imgPreview" class="border" style="width:400px; height:300px;">
-												<img src="" style="width:100%;height:100%;" alt="圖片預覽區域"/>
+											<div id="imgPreview" class="border"
+												style="width: 400px; height: 300px;">
+												<img src="" style="width: 100%; height: 100%;" alt="圖片預覽區域" />
 											</div>
 										</div>
 									</div>
 								</fieldset>
-								<hr/>
+								<hr />
 								<fieldset>
 									<legend>訂購資訊</legend>
-										<input type="hidden" name="hiddenProdID" id="productID"/>
-										<div>
-											<label for="productName"><span>餐點名稱</span></label> 
-											<input type="text" id="productName" name="productName" disabled/>
-										</div>
-										<div>
-											<label for="category"><span>類別</span></label> 
-											<input type="text" id="category" name="category" disabled/>
-										</div>
-										<div>
-											<label for="unitprice"><span>單價</span></label> 
-											<input type="text" id="unitprice" name="unitprice" readonly/>
-										</div>
-										<div>
-											<label for="totalInstore"><span>庫存剩餘量</span></label> 
-											<input type="text" id="totalInstore" name="totalInstore" disabled/>
-										</div>
-										<div>
-											<label for="num" class=""><span>欲訂購數量</span></label>
-											<input type="text" id="num" name="num" class="requiredValue"
-													oninput="value=value.replace(/[^\d]/g,'')" />
-										</div>
-										<div>
-											<label for="subtotal"><span>小計</span></label> 
-											<input type="text" id="subtotal" name="subtotal" readonly/>
-										</div>
+									<input type="hidden" name="hiddenProdID" id="productID" />
+									<div>
+										<label for="productName"><span>餐點名稱</span></label> <input
+											type="text" id="productName" name="productName" disabled />
+									</div>
+									<div>
+										<label for="category"><span>類別</span></label> <input
+											type="text" id="category" name="category" disabled />
+									</div>
+									<div>
+										<label for="unitprice"><span>單價</span></label> <input
+											type="text" id="unitprice" name="unitprice" readonly />
+									</div>
+									<div>
+										<label for="totalInstore"><span>庫存剩餘量</span></label> <input
+											type="text" id="totalInstore" name="totalInstore" disabled />
+									</div>
+									<div>
+										<label for="num" class=""><span>欲訂購數量</span></label> <input
+											type="text" id="num" name="num" class="requiredValue"
+											oninput="value=value.replace(/[^\d]/g,'')" />
+									</div>
+									<div>
+										<label for="subtotal"><span>小計</span></label> <input
+											type="text" id="subtotal" name="subtotal" readonly />
+									</div>
 								</fieldset>
-								<hr/>
+								<hr />
 								<div class="row justify-content-center modal-footer">
-									<button type="submit" class="col-2 me-3 btn btn-danger" id="sendReserveBtn">加入購物車</button>
-									<button type="button" class="col-2 btn btn-secondary" data-bs-dismiss="modal">取消</button>
+									<button type="submit" class="col-2 me-3 btn btn-danger"
+										id="sendReserveBtn">加入購物車</button>
+									<button type="button" class="col-2 btn btn-secondary"
+										data-bs-dismiss="modal">取消</button>
 								</div>
 							</div>
-						</div>	
+						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 
 	<!--End of Product Detail Modal -->
-	
-            <div class="copy_right">
-                <div>
-                    <div id="lowbar">
-                        <div class="container h-100">
-                            <div class="row h-100 align-items-center lowbar">
-                                <div class="col-12 ">
-                                    <ul>
-                                        <li><a href="/Users/loginIndex.Controller" target="_self">活動訊息</a></li>
-                                        <li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
-                                     	 <li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
-                                        <li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
-                                        <li class="loginOption"><a href="/login.Controller" target="_self">登入註冊</a></li>
-										<li class="memberOption"><div class="dropdown absolute backstage">
-												<button class="btn btn-link dropdown-toggle text-light"
-													type="button" id="cusCenterDropdown2"
-													data-bs-toggle="dropdown">${realName}</button>
-												<ul class="dropdown-menu p-0" role="button">
-													<li id="whp3"><a
-														href="/Users/SelectCustomer.controller"
-														class="text-dark dropdown-item d-flex justify-content-center"
-														target="_self">會員中心</a></li>
-													<li id="whp4" class="m-0">
-														<form action="/Users/logout.Controller" method="post">
-															<button type="submit"
-																class="dropdown-item d-flex justify-content-center"
-																value="logout">登出</button>
-														</form>
-													</li>
-												</ul>
-											</div></li>
-                                   </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
+	<div class="copy_right">
+		<div>
+			<div id="lowbar">
+				<div class="container h-100">
+					<div class="row h-100 align-items-center lowbar">
+						<div class="col-12 ">
+							<ul>
+								<li><a href="/Users/loginIndex.Controller" target="_self">活動訊息</a></li>
+								<li><a href="/product/findallproduct" target="_self">餐點介紹</a></li>
+								<li><a href="/Users/loginIndex.Controller" target="_self">線上訂位</a></li>
+								<li><a href="/pet/petinfo.controller" target="_self">寵物領養</a></li>
+								<li class="loginOption"><a href="/login.Controller"
+									target="_self">登入註冊</a></li>
+								<li class="memberOption"><div
+										class="dropdown absolute backstage">
+										<button class="btn btn-link dropdown-toggle text-light"
+											type="button" id="cusCenterDropdown2"
+											data-bs-toggle="dropdown">${realName}</button>
+										<ul class="dropdown-menu p-0" role="button">
+											<li id="whp3"><a href="/Users/SelectCustomer.controller"
+												class="text-dark dropdown-item d-flex justify-content-center"
+												target="_self">會員中心</a></li>
+											<li id="whp4" class="m-0">
+												<form action="/Users/logout.Controller" method="post">
+													<button type="submit"
+														class="dropdown-item d-flex justify-content-center"
+														value="logout">登出</button>
+												</form>
+											</li>
+										</ul>
+									</div></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
 
-                <div class="container">
-                    Copyright &copy;
-                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
-                    is made with
-                    <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#top">
-                        JAVA team4
-                    </a>
-                </div>
-            </div>
+		</div>
 
-	<div class="fix"><a href="#top" style="font-size: 40px;">TOP</a></div>
+		<div class="container">
+			Copyright &copy;
+			<script>
+				document.write(new Date().getFullYear());
+			</script>
+			All rights reserved | This template is made with <i
+				class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#top">
+				JAVA team4 </a>
+		</div>
+	</div>
 
+	<div class="fix">
+		<a href="#top" style="font-size: 40px;">TOP</a>
+	</div>
+	<!-- 購物車圖示 -->
+	<div class="shoppingcarticon">
+		<a href="/addshoppingcart.controller"><svg
+				xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+				fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+	  		<path
+					d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+		</svg></a>
+		<div class="shoppingcartnum">
+			<p></p>
+		</div>
+	</div>
 </body>
 </html>

@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="/stylesheet/index.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
+<!-- icon -->
+<link rel="stylesheet" href="/stylesheet/fontawesome-free-5.15.4-web/css/all.css" crossorigin="anonymous"/>
 <!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/material_green.css"> -->
 <!--CSS在這邊 要注意放在bootstrap樣式表CDN後面 不然權重相同的部分會被bootstrap蓋過去-->
 <link rel="stylesheet" href="/stylesheet/orderdetail.css" />
@@ -126,7 +128,7 @@
 	<!--搜尋-->
 	<div class="searchform">
 		<form id="search" action="">
-			<i class="bi bi-search"></i> <input type="search"
+			<i class="fas fa-search"></i> <input type="search"
 				class="form-control" placeholder="Search..." aria-label="Search">
 		</form>
 	</div>
