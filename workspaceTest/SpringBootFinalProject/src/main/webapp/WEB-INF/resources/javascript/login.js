@@ -6,6 +6,7 @@ function createErrDiv(input) {
 	var errDivId = `err_${$(input).attr("id")}`;//err_加上取得input下的id名稱
 	var errDiv = $(`<div id="${errDivId}" class="errMsg col-2">必填欄位</div>`);
 	$(input).parent().parent().after(errDiv);//在兩個父元素之後加入div
+	$(input).addClass("is-invalid");
 }
 $(function() {
 
@@ -108,11 +109,15 @@ $(function() {
 		if ($(this).val() != '') {//當value不為空字串時，且
 			if (errDivMsg.length > 0) {
 				errDivMsg.remove();
+				//username.addClass("is-valid"); //新增
+				$(this).removeClass("is-invalid"); //移除警告
 			}
 		}
 		else {//#err小於等於0時呼叫方法新增元素
 			if (errDivMsg.length <= 0) {
 				createErrDiv(this);
+				$(this).addClass("is-invalid"); //新增警告
+				$(this).removeClass("is-valid"); //移除通過
 			}
 		}
 	});
@@ -122,9 +127,13 @@ $(function() {
 
 		$(".errMsg").remove();//重複按登入時清除必填欄位
 		var errs = [];
+		var username = $("#username");
+		var password = $("#password");
 		//確認欄位是否空白
 		$("#account input").each(function() {
 			if ($(this).val() == "") {
+//				username.addClass("is-invalid"); //新增警告
+//				password.addClass("is-invalid"); //新增警告
 				createErrDiv(this);//呼叫新增必填欄位方法(input)
 				errs.push(this);//將空白input放入陣列
 			}
