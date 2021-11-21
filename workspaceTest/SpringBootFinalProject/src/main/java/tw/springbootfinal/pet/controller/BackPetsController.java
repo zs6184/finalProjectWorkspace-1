@@ -127,7 +127,7 @@ public class BackPetsController {
 		
 		Pets temp = pService.selectById(id);
 		//資料轉JSON物件
-		String petStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue));
+		String petStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue));//確認可以印出NULL
 		JSONObject petData = JSONObject.parseObject(petStr);
 
 		PrintWriter out = response.getWriter();
@@ -136,18 +136,21 @@ public class BackPetsController {
 		System.out.println("輸出完成");
 	}
 	
+	
 	//更新寵物資料
 	@PostMapping("/updateone.controller")
 	public String processUpdateOne(Pets temp,@RequestParam("mypic") MultipartFile pic,
 			HttpServletRequest request) throws IOException, TemplateException {
+		
 		//若是更改為已領養情況，刪除該寵物的未領養預約並寄信
 		if(temp.getAdoptStatus().equals("已領養")) {
 			Integer thePet = temp.getPetId();
 			List<AdoptReservation> theReserves = rService.findByPetIdAndKeepStatus(thePet,"未赴約");
-			pService.processAlreadyAdoptedForgotPasswordSendMail(theReserves,request);
+			pService.processAlreadyAdoptedSendMail(theReserves,request);
 			rService.deleteByPetIdAndKeepStatus(thePet,"未赴約");
 		}
-			//執行寵物資料更新
+		
+		//執行寵物資料更新
 			String jsonStr = (JSON.toJSONString(temp, SerializerFeature.WriteMapNullValue)).replaceAll("\"\"","null"); // 將所有空白轉為null
 			Pets transfer = JSON.parseObject(jsonStr, Pets.class);
 			pService.updateOne(transfer, pic);
@@ -155,6 +158,7 @@ public class BackPetsController {
 
 		return "redirect:/Backstage/pet/backpetinfo.controller";
 	}
+	
 	
 	//刪除寵物資料
 	@GetMapping("/deletebyid.controller")

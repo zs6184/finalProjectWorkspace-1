@@ -52,6 +52,7 @@ public class PetsService {
 		return null;
 	}
 	
+	
 	//新增單筆寵物資料(含相片)
 	public void insertOne(Pets temp,MultipartFile pic) throws IOException {
 		if(temp!=null) {
@@ -61,16 +62,19 @@ public class PetsService {
 		}
 	}
 	
+	
 	//使用id查詢資料
 	public Pets selectById(int id) {
 		return pRepo.getById(id);
 	}
 	
+	
 	//根據ID更新寵物資料
 	public void updateOne(Pets temp,MultipartFile pic) throws IOException{
-		int id = temp.getPetId();
-		Pets check =pRepo.findById(id).get();
+
+		Pets check =pRepo.findById(temp.getPetId()).get();
 		check.setBean(temp);
+		
 		if(pic!=null && pic.isEmpty()==false) {
 			byte[] picBytes = pic.getBytes();
 			check.setPic(picBytes);
@@ -78,10 +82,12 @@ public class PetsService {
 		pRepo.save(check);
 	}
 	
+	
 	//根據ID刪除資料
 	public void deleteById(int id) {
 		pRepo.deleteById(id);
 	}
+	
 	
 	//根據ID與領養狀態搜尋
 	public Pets findByIdAndAdoptStatus(Integer petId,String status) {
@@ -89,34 +95,10 @@ public class PetsService {
 	}
 	
 	
-//	//寄送通知EMAIL的方法
-//	@Async
-//	public void processAlreadyAdoptedForgotPasswordSendMail(List<AdoptReservation> theReserves,HttpServletRequest request) 
-//		throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException{
-//		
-//		for(AdoptReservation aReserve:theReserves) {
-//			Map<String, Object> model = new HashMap<String, Object>();
-//			String realName = aReserve.getCusRealname();
-//			String thePet = aReserve.getPetName();
-//			String theDate = aReserve.getReserveTime();
-//			model.put("theDate", theDate);
-//			model.put("thePet", thePet);
-//			model.put("realName", realName);
-//			
-//			String templateNmae = "reservationMarker.html";
-//			String head = "通知:您預約領養的寵物已提前尋獲愛主。"; 
-//			CustomerBean theCus = cService.findById(aReserve.getCusId());
-//			boolean sendMail = mService.sendMail(request, theCus, model, templateNmae, head);
-//			System.out.println(sendMail);
-//			System.out.println("寄出一封");
-//		}
-//	}
-	
-	
 	
 	//寄送通知EMAIL的方法(使用非同步執行)
 	@Async
-	public void processAlreadyAdoptedForgotPasswordSendMail(List<AdoptReservation> theReserves,HttpServletRequest request) 
+	public void processAlreadyAdoptedSendMail(List<AdoptReservation> theReserves,HttpServletRequest request) 
 		throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException{
 			//設置所需參數傳給EMAILService
 			String templateNmae = "reservationMarker.html";

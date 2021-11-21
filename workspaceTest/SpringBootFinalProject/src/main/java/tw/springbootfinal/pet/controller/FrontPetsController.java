@@ -31,13 +31,15 @@ public class FrontPetsController {
 	@Autowired
 	private PetsService pService;
 //--------------------------------------------------------------
+
+	
 	//取得所有未領養寵物資訊
 	@GetMapping("/petinfo.controller")
 	public String processLoadingPage(Model m) throws UnsupportedEncodingException {
-		List<Pets>arrPet = pService.findNotAdopt();
-		Set<String> sexSet = new HashSet<String>();
-		Set<String> cateSet = new HashSet<String>();
-		Map<Integer,String> baseStr = new HashMap<>();
+		List<Pets>arrPet = pService.findNotAdopt();	//存放未領養寵物資料
+		Set<String> sexSet = new HashSet<String>();	//篩選並回傳性別
+		Set<String> cateSet = new HashSet<String>();//篩選並回傳種類
+		Map<Integer,String> baseStr = new HashMap<Integer,String>();//以ID為KEY存放對應圖片
 		
 		for(Pets aPet:arrPet) {
 			sexSet.add(aPet.getSex());		//用Set將重複值篩選掉
@@ -54,6 +56,8 @@ public class FrontPetsController {
 		
 		return "PetInfo";
 	}
+	
+	
 	
 	//使用條件進行查詢(未領養者)
 	@PostMapping("/searchdatafront.controller")
@@ -81,6 +85,7 @@ public class FrontPetsController {
 		return "PetInfo";
 	}
 	
+	
 	//開啟單一寵物詳細資訊(寵物資訊頁面用)
 	@GetMapping("/detaildata/{petId}")
 	public String processSingleDetail(@PathVariable("petId")int petId,Model m) throws UnsupportedEncodingException {
@@ -94,6 +99,7 @@ public class FrontPetsController {
 		
 		return "SinglePetInfo";
 	}
+	
 	
 	//開啟寵物單一資訊頁面(個人中心用)
 	@GetMapping("/checkIfAfopted") @ResponseBody

@@ -102,10 +102,13 @@ $(function() {
 		}
 	});
 	
+	
 	//上傳檔案預覽圖片
 	$("#mypic").change(function(){
 		previewImg(this.files);
 	});
+	
+	
 	//當使用者返回前頁時，需重新預覽前回點選擬上傳的圖片
 	//previewImg($("#mypic")[0].files);
 
@@ -114,6 +117,7 @@ $(function() {
 //跳出確認刪除對話框
 var ID;
 var record;
+
 
 function delAlert(obj) {
 	record = $(obj);
@@ -165,7 +169,7 @@ function select(obj) {
 			$("#modalForm #cusName").val(parsed.cusName);
 			$("#modalForm #adoptDate").val(parsed.adoptDate);
 			$("#modalForm #note").val(parsed.note);
-			$("#imgPreview img").attr("src",`data:image/png;base64,${parsed.pic}`);
+			$("#imgPreview img").attr("src",`data:image/*;base64,${parsed.pic}`);
 			//console.log(parsed.pic);
 		},
 		error: function() {
